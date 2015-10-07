@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>HexHive: Projects</title>
+<link rel="stylesheet" type="text/css" href="../hexhive.css" media="all"/>
+</head>
+<body>
+<div style="padding-top:10px; margin: 0 auto; display: table;">
+<table style="width: 800px;" >
+	<tr>
+		<td><img src="../HexHive-logo.jpg" style="display:block; width:800px;" alt="nebelwelt.net logo"/></td>
+	</tr>
+	<tr>
+		<td align="left">
+			<table style="border-collapse:collapse;">
+				<tr>
+                    <td class="menu1"><a href="../index.html">Overview</a></td>
+                    <td class="menu1"><a href="./">People</a></td>
+                    <td class="menu1"><a href="../publications/">Publications</a></td>
+                    <td class="menu1act">Projects</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="left" class="content">
+<p><h1>Code-Pointer Integrity and Data Confidentiality</h1>
+Ideally, memory safety protects systems against memory corruption attacks. Unfortunately, retrofitting
+memory safety to low-level languages results in prohibitive performance overhead. To restrict overhead,
+Code-Pointer Integrity restricts memory safety guarantees to code pointers and sensitive data, allowing fast
+access to regular data and protecting sensitive data from illegal modification. The Code-Pointer Integrity
+property protects applications from control-flow hijack attacks and stops any code reuse attack. Data
+Confidentiality, an extension of Code-Pointer Integrity identifies sensitive data (e.g., cryptographic keys) and
+protects the confidentiality of this data alongside the control data structures. Data Confidentiality ensures
+that vulnerabilities cannot be used to exfiltrate sensitive data from a program and therefore also protects
+against vulnerabilities like Heartbleed.</p>
+
+<p><h1>Lockdown</h1>
+Compiler-based solutions require a recompilation of software to enforce protection. Unfortunately, we do not
+always have access to the source code of a system. Lockdown leverages binary analysis to recover control flow
+graphs of an application and enforces Control-Flow Integrity, a well accepted security policy that protects
+against code reuse attacks, on legacy, binary-only software at reasonably low overhead. Lockdown is limited
+by the precision of the binary analysis but makes attacks against legacy software significantly harder and is a
+convincing option for binary-only software.</p>
+</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>
