@@ -27,6 +27,31 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	</tr>
 	<tr>
 		<td valign="top" align="left" class="content">
+<p>On current systems, programs are written in low-level languages like C or
+C++ which are prone to memory corruption errors. Such vulnerabilities are
+used to compromise the integrity and confidentiality of running systems, to
+execute attacker-controlled code, and to exfiltrate sensitive data. While
+finding and fixing bugs is important, some bugs will very likely remain. Our
+research focuses on making systems resilient against attack vectors in the
+presence of unpatched vulnerabilities. By leveraging compiler-based and
+binary-translation-based tools we enforce additional security policies on
+the running software to guarantee the integrity, confidentiality, and
+availability of systems.</p>
+
+<p><h1>Memory Safety</h1>
+Memory safety is a fundamental property that prohibits both temporal (use after free) and spatial (out of
+bounds) memory errors. This property inherently protects against any control-flow hijack attack as code
+pointers can no longer be modified indirectly through a memory corruption. It also protects against data-only
+attacks as out-of-context data is protected from modification. Note that memory safety does not protect against
+logic errors that follow legit control and data flow of the program are still possible.<br/><br/>
+
+Memory safety is a desirable property and combined with data execution prevention protects against the
+exploitation of high-profile vulnerabilities, detecting an attack (or error) right when it happens in the
+program. Unfortunately, general memory safety results in relatively high performance overhead if retrofitted to
+C/C++ (e.g., through the SoftBound+CETS mechanism). We are working on lowering the overhead for specific
+niches, targeting specific hardware features (e.g., x64) or embedded systems that have different requirements
+and allow more heavy-weight static optimization.</p>
+
 <p><h1>Code-Pointer Integrity and Data Confidentiality</h1>
 Ideally, memory safety protects systems against memory corruption attacks. Unfortunately, retrofitting
 memory safety to low-level languages results in prohibitive performance overhead. To restrict overhead,
