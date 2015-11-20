@@ -36,21 +36,25 @@ research focuses on making systems resilient against attack vectors in the
 presence of unpatched vulnerabilities. By leveraging compiler-based and
 binary-translation-based tools we enforce additional security policies on
 the running software to guarantee the integrity, confidentiality, and
-availability of systems.</p>
+availability of systems.<br/>
+The implementation prototypes of all published papers are available as open-source on the <a
+href="https://github.com/HexHive/">HexHive GitHub page</a>. We welcome any feedback and comments but be aware
+that these are research prototypes, not production ready software.
+</p><br/>
 
 <p><h1>Memory Safety</h1>
 Memory safety is a fundamental property that prohibits both temporal (use after free) and spatial (out of
 bounds) memory errors. This property inherently protects against any control-flow hijack attack as code
 pointers can no longer be modified indirectly through a memory corruption. It also protects against data-only
 attacks as out-of-context data is protected from modification. Note that memory safety does not protect against
-logic errors that follow legit control and data flow of the program are still possible.<br/><br/>
+logic errors that follow legit control and data flow of the program are still possible.<br/>
 
 Memory safety is a desirable property and combined with data execution prevention protects against the
 exploitation of high-profile vulnerabilities, detecting an attack (or error) right when it happens in the
 program. Unfortunately, general memory safety results in relatively high performance overhead if retrofitted to
 C/C++ (e.g., through the SoftBound+CETS mechanism). We are working on lowering the overhead for specific
 niches, targeting specific hardware features (e.g., x64) or embedded systems that have different requirements
-and allow more heavy-weight static optimization.</p>
+and allow more heavy-weight static optimization.</p><br/>
 
 <p><h1>Code-Pointer Integrity and Data Confidentiality</h1>
 Ideally, memory safety protects systems against memory corruption attacks. Unfortunately, retrofitting
@@ -61,7 +65,8 @@ property protects applications from control-flow hijack attacks and stops any co
 Confidentiality, an extension of Code-Pointer Integrity identifies sensitive data (e.g., cryptographic keys) and
 protects the confidentiality of this data alongside the control data structures. Data Confidentiality ensures
 that vulnerabilities cannot be used to exfiltrate sensitive data from a program and therefore also protects
-against vulnerabilities like Heartbleed.</p>
+against vulnerabilities like Heartbleed. The open-source prototype is available on the <a
+href="http://levee.epfl.ch">Levee/CPI release page</a>.</p><br/>
 
 <p><h1>Lockdown</h1>
 Compiler-based solutions require a recompilation of software to enforce protection. Unfortunately, we do not
@@ -69,7 +74,33 @@ always have access to the source code of a system. Lockdown leverages binary ana
 graphs of an application and enforces Control-Flow Integrity, a well accepted security policy that protects
 against code reuse attacks, on legacy, binary-only software at reasonably low overhead. Lockdown is limited
 by the precision of the binary analysis but makes attacks against legacy software significantly harder and is a
-convincing option for binary-only software.</p>
+convincing option for binary-only software. The open-source prototype is available on the <a
+href="https://github.com/HexHive/libdetox">Lockdown GitHub page</a>.</p><br/>
+
+<p><h1>TRuE/libdetox</h1>
+TRuE/libdetox is a secure runtime environment that enables the safe execution of untrusted (but not malicious)
+code. Untrusted code (e.g., the Apache server) is dynamically analyzed and secured against different forms of
+control-flow based attacks like code injection, control-flow redirection, and return oriented programming. This
+fine-grained security layer detects attacks right when they happen (i.e., before the control flow is executed)
+and the program is terminated. A second layer of protection uses a system-call interposition layer to validate
+each executed system call against a vigorous system call policy. The open-source prototype is available on the
+<a href="https://github.com/HexHive/libdetox">Libdetox GitHub page</a>.</p><br/>
+
+<p><h1>memTrace</h1>
+memTrace is a lightweight memory tracing infrastructure that supports user-defined memlets (short sequences of
+code, execute for every memory access) for unmodified binary x86 applications. A cross-ISA binary translator
+builds on libdetox to translate the application from x86 to x86_64 and to weave the memlets into the executed
+application code. By using the wider memory space and the additional registers of x86_64 memTrace is able
+to achieve very low performance overhead for full memory tracing. The open-source prototype is available on the
+<a href="https://github.com/HexHive/memTrace">memTrace GitHub page</a>.</p><br/>
+
+<p><h1>adaptSTM</h1>
+adaptSTM: a fast, adaptive Software Transactional Memory system We present adaptSTM, a competitive, word-based
+STM library that is based on a global clock and an array of combined global versions (timestamps) and locks. To
+keep track of transactional data adaptSTM implements a multi-level buffer and uses read-set extension to
+achieve competitive performance. The open-source prototype is available on the <a
+href="https://github.com/HexHive/adaptSTM">adaptSTM GitHub page</a>.</p>
+
 </td>
 	</tr>
 </table>
