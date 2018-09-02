@@ -26,17 +26,39 @@
   <tr>
     <td valign="top" align="left" class="content">
       <p><b>Research overview</b><br/>
-In the HexHive group at EPFL, our research focuses on systems security. Despite efforts and improvements in bug 
-discovery techniques, applications will always have
-some remaining vulnerabilities that may be exploited by an attacker. Under this premise, we focus on
-compiler-based, runtime-based, and language-based protection mechanisms and security policies that increase the
-resilience of applications against attacks (in the presence of application vulnerabilities). The current focus
-of the group, with several active research projects, is enforcing memory safety guarantees and type safety
-guarantees at the compiler and runtime level. All prototypes are released as open-source.<br/><br/>
+In the HexHive group at EPFL, our research focuses on systems security. Despite
+efforts and improvements in bug discovery techniques, applications will always
+have some remaining vulnerabilities that may be exploited by an attacker. 
+We target techniques that enable developers to discover and remove bugs in
+software systems as well as making programs resilient against the exploitation
+of unknown or unpatched vulnerabilities.
+<br/><br/>
+
+To discover bugs we propose (i) sanitization techniques that enforce a security
+property such as memory or type safety; given concrete program input, our
+sanitizers then flag any property violations and (ii) fuzzing techniques that
+leverage static and dynamic analysis to create program inputs to explore program
+areas that are not yet covered through existing test cases.
+To protect against exploitable vulnerabilities, we focus on control-flow
+integrity using specific language semantics, enforcing type integrity, and
+protecting selective data.
+<br/><br/>
+
+Under this premise, we focus on compiler-based, runtime-based, and
+language-based protection mechanisms and security policies that increase the
+resilience of applications against attacks (in the presence of software
+vulnerabilities).
+<br/><br/>
+
+The current focus of the group, with several active research projects, is
+enforcing memory safety guarantees and type safety guarantees at the compiler
+and runtime level. All prototypes are released as <a
+href="https://github.com/HexHive/">open-source</a>.<br/><br/>
+
 
 <b>Keywords</b><br/>
-system security, memory safety, type safety, binary exploitation, user-space software-based fault isolation,
-binary translation, virtualization.<br/>
+system security, memory safety, type safety, binary exploitation, user-space
+software-based fault isolation, binary translation, virtualization.<br/>
 
 <table>
   <tr><td colspan="2"><b>Contact details</b></td></tr>
