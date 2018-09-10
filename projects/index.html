@@ -27,21 +27,22 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	</tr>
 	<tr>
 		<td valign="top" align="left" class="content">
-<p>On current systems, programs are written in low-level languages like C or
-C++ which are prone to memory corruption errors. Such vulnerabilities are
-used to compromise the integrity and confidentiality of running systems, to
-execute attacker-controlled code, and to exfiltrate sensitive data. While
-finding and fixing bugs is important, some bugs will very likely remain. Our
-research focuses on making systems resilient against attack vectors in the
-presence of unpatched vulnerabilities. By leveraging compiler-based and
-binary-translation-based tools we enforce additional security policies on
-the running software to guarantee the integrity, confidentiality, and
-availability of systems.<br/>
-The implementation prototypes of all published papers are available as open-source on the <a
-href="https://github.com/HexHive/">HexHive GitHub page</a>. We welcome any feedback and comments but be aware
-that these are research prototypes, not production ready software.
-</p><br/>
+<p>On current systems, programs are written in low-level languages like C or C++ which are prone
+to memory corruption errors. Such vulnerabilities are used to compromise the integrity and
+confidentiality of running systems, to execute attacker-controlled code, and to exfiltrate
+sensitive data. While finding and fixing bugs is important, some bugs will very likely remain.
+Our research focuses on making systems resilient against attack vectors in the presence of
+unpatched vulnerabilities. By leveraging compiler-based and binary-translation-based tools we
+enforce additional security policies on the running software to guarantee the integrity,
+confidentiality, and availability of systems.<br/>
 
+The implementation prototypes of all published papers are available as open-source on the <a
+href="https://github.com/HexHive/">HexHive GitHub page</a>. We welcome any feedback and comments
+but be aware that these are research prototypes, not production ready software.
+</p>
+<br/>
+
+<!--
 <p><h1>Memory Safety</h1>
 Memory safety is a fundamental property that prohibits both temporal (use after free) and spatial (out of
 bounds) memory errors. This property inherently protects against any control-flow hijack attack as code
@@ -100,6 +101,7 @@ STM library that is based on a global clock and an array of combined global vers
 keep track of transactional data adaptSTM implements a multi-level buffer and uses read-set extension to
 achieve competitive performance. The open-source prototype is available on the <a
 href="https://github.com/HexHive/adaptSTM">adaptSTM GitHub page</a>.</p>
+-->
 
 </td>
 	</tr>
