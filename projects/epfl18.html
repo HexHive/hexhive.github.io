@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./github-pandoc.css" type="text/css" />
+</head>
+<body>
+<h1 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h1>
+<p>This is a list of possible BSc, MSc, or PhD semester research projects in the HexHive group. The projects are designed to be scalable a feasible amount of work for each type of project. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
+<p>If you are interested in any of these topics, then contact <a href="mailto:mathias.payer@epfl.ch">Mathias</a>. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing.</p>
+<h2 id="api-flow-graph-sanitization">API flow graph sanitization</h2>
+<p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
+<p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
+<p>Based on the API graph we will then search for violations of the inferred values in real applications by implementing a sanitizer that tracks the API state and searches for violations of the valid state.</p>
+<ul>
+<li>Keywords: sanitizer, API graph, component analysis, compiler analysis</li>
+</ul>
+<h2 id="transformational-fuzzing">Transformational Fuzzing</h2>
+<p>Fuzzing is experiencing a renaissance through coverage-guided greybox fuzzing. AFL and its descendents have been used to find thousands of security bugs. A fuzzing engine consists of an input generator and an execution engine. Coverage guided fuzzing collects coverage information (what parts of the program were executed how many times) from the execution engine to influence the input generator to increase coverage. Existing coverage-guided fuzzing engines often hit a so-called coverage wall where the required input changes are too complex and fuzzing no longer makes progress.</p>
+<p>Instead of only mutating the program input, we have recently proposed transformational fuzzing that analyzes the program and mutates the program alongside the input to reach new coverage. Crashes in the mutated program then must be mapped back to the original program to ensure these are real crashes and not false positives, we call this component the crash analyzer.</p>
+<p>After publishing the initial results we want to increase the precision of the mutation. The goal of this project are to develop a mutation engine and policy on how to mutate the program to ensure the best possible coverage expansion. Potential directions are the inference of non-conditional functions that may be pruned or co-dependent checks along an execution path that trigger violations. Orthogonally, mutational fuzzing should become context sensitive so that the program is mutated on the fly, depending on the execution context with the help of a feedback-guided process.</p>
+<ul>
+<li>Keywords: fuzzing, program transformation, exploitation</li>
+</ul>
+<h2 id="llvm-based-t-fuzzing">LLVM-based T-Fuzzing</h2>
+<p>Similar to the previous project, this project extends T-Fuzz (see the first two paragraphs of the previous project proposal for context). The existing T-Fuzz prototype relies on binary rewriting and is restricted to if conditions (i.e., it cannot support switch statements). The goal of this project is to implement a T-Fuzzing engine on top of LLVM to support a flexible and (runtime) configurable way to readjust checks depending on a transformation policy. Each conditional program location would be extended with a switch that, when triggered would alternate the result.</p>
+<ul>
+<li>Keywords: fuzzing, compiler-based transformation, exploitation</li>
+</ul>
+<h2 id="automatic-isaarchitecture-inference">Automatic ISA/architecture inference</h2>
+<p>Modern CPU architectures are incredibly complex and the documentation of the architecture may be partial, incomplete, or completely lacking. Examples of architectural details are cache hierarchies, cache sizes, branch target buffers, branch predictor strategies, or cache associativity strategies. Knowledge of the underlying architecture can be used for, e.g., performance optimization, reasoning about the presence/absence of side channels, timing information.</p>
+<p>The goal of this project is to develop a fully automatic mechanism that can infer the different layers of caches by generating a set of programs that test sets of hypothesis and thereby infer hardware configurations. As a continuation of this project we will categorize side channels and evaluate any newly found issues.</p>
+<ul>
+<li>Keywords: hardware security, ISA inference, side channels, low level coding</li>
+</ul>
+<h2 id="code-pruning-and-debloating">Code pruning and debloating</h2>
+<p>Current systems leverage libraries to facilitate code reuse across processes. If a program uses data structures or functions from a library then the runtime linker connects those data structures when the program is instantiated. The intention of using shared libraries was to reduce memory pressure across processes. Nowadays where the amount of loaded code is dwarfed by the amount of data it is time to revisit this assumption.</p>
+<p>In this project we will develop a process to statically link binaries, removing any dependencies to other libraries. Libraries will be compiled as LLVM bitcode and inlined during the LTO/thinLTO process. We will measure performance of the newly compiled binaries as well as code reduction and security metrics, e.g., the increased precision of Control-Flow Integrity due to the decreased amount of targets.</p>
+<p>Evaluation targets are: security (reducing the amount of code, target locations, e.g., for CFI, and code pointers in general) and performance (relative accesses instead of GOT access, inlining, map pages/TLB optimization)</p>
+<ul>
+<li>Keywords: debloating, TCB reduction, code analysis, reflowing software</li>
+</ul>
+<h2 id="evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</h2>
+<p>Buffer overflows, use after free attacks, and generally control-flow hijacking due to memory safety and type safety errors have been the cause of countless security vulnerabilities that lead to exploitation of software. Over the past 20 years a large amount of mitigations has been proposed that mitigate control-flow hijacking attacks. The only solution to prohibit the exploitation of this attack vector is memory safety, all other defenses may leave some avenue for attack.</p>
+<p>We will evaluate different control-flow hijacking mechanisms such as Control-Flow Integrity, executable but unreadable code, and other mechanisms, comparing them along different metrics. The goal of this project is to evaluate the power of the different mitigations and to rank them according to completeness, power, overhead, or other systematic weaknesses.</p>
+<ul>
+<li>Keywords: systematization of knowledge, control-flow hijacking, security benchmark</li>
+</ul>
+<h2 id="deep-trust-chains-may-violate-security-expectations">Deep trust chains may violate security expectations</h2>
+<p>Modern frameworks such as JavaScript, NodeJS/NPM, Docker, Python/PIP rely on a vast distribution of libraries with deep dependencies. Whenever you install a certain library or functionality, it may pull in a lot of other dependencies. The security of your application (and sometimes system) now depends on the security of all these additional libraries.</p>
+<p>This project consists of two phases. In the first phase, you will compute the dependency graph across the system, marking individual dependency chains and evaluating common dependencies. In this phase we are interested in the number of dependencies and the different chains and we will evaluate different &quot;hot&quot; packages that are used across large amounts of installations.</p>
+<p>In the second phase, we will evaluate the dependencies of common programs/libraries and study how these dependencies change over time. This allows us to assess the threat surface for given programs and evaluate given security risks.</p>
+<ul>
+<li>Keywords: software ecosystem, components, dependency graph</li>
+</ul>
+<h2 id="other-projects">Other projects</h2>
+<p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
+</body>
+</html>
