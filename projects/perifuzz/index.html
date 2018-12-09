@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>HexHive: Projects: PeriFuzz</title>
+<link rel="stylesheet" type="text/css" href="../../hexhive.css" media="all"/>
+</head>
+<body>
+<div style="padding-top:10px; margin: 0 auto; display: table;">
+<table style="width: 800px;" >
+	<tr>
+		<td><img src="../../HexHive-logo.jpg" style="display:block; width:800px;" alt="HexHive logo"/></td>
+	</tr>
+	<tr>
+		<td align="left">
+			<table style="border-collapse:collapse;">
+				<tr>
+                    <td class="menu1"><a href="../../index.html">Overview</a></td>
+                    <td class="menu1"><a href="../../people">People</a></td>
+                    <td class="menu1"><a href="../../publications/">Publications</a></td>
+                    <td class="menu1act"><a href="../">Projects</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="left" class="content">
+<p>
+The OS kernel is responsible for managing the computer's underlying hardware,
+mediating access to shared resources, and managing requests from peripheral
+devices. The kernel is exposed to input from user programs via the syscall
+interface, data packets from the network, as well as hardware through device
+drivers for attached peripherals. The reliability and security of the kernel are
+paramount as it affects the whole system. All three input interfaces expose the
+kernel to attacks. To date, testing efforts have focused mostly on syscalls and
+network peripherals. The possibility of malicious hardware, e.g., a USB
+connected device, has been neglected. The state of the art testing technique,
+fuzzing, relies on providing random data to programs. Fuzzing device drivers has
+proven difficult because no good technique exists for providing random data from
+the hardware.  Consequently, fuzzing achieves poor coverage in device drivers.
+<br/><br/>
+
+We present PeriFuzz, a framework to apply coverage-guided fuzzing to OS
+kernels, coming from a malicious peripheral device.  PeriFuzz emulates a 
+peripheral device that provides data to the kernel (when it performs IO
+operations). This allows us to fuzz the peripheral input space of the kernel from
+the device's perspective, an angle that is difficult to achieve with real
+hardware.</br><br/>
+
+We implemented a prototype that focuses on USB device drivers of the Linux
+kernel. Our preliminary evaluation on 9 recent versions of Linux kernel
+demonstrates its effectiveness: PeriFuzz discovered 53 bugs, out of which 37
+are new, and 36 are memory bugs of high security impact, potentially allowing
+arbitrary read or write in the kernel address space.
+</p>
+<p>
+<table>
+<tr><td><b><u>CVE</u></b></td><td><b><u>Title</u></b></td><td><b><u>Patch</u></b></td></tr>
+
+<tr><td>?</td><td>OOB read in __usb_get_extra_descriptor</td><td><a href="">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-19824">CVE-2018-19824</a>&nbsp;</td><td>UAF write in usb_audio_probe</td><td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5f8cf712582617d523120df67d392059eaf2fc4b">4.20-RC5</a></td></tr>
+
+<tr><td>?</td><td>NULL derefernce in ath6kl_usb_alloc_urb_from_pipe and ath10k_usb_alloc_urb_from_pipe&nbsp;</td><td><a href="">git</a></td></tr>
+
+<tr><td>?</td><td>OOB read in hso_get_config_data</td><td><a href="">git</a></td></tr>
+
+</table>
+<br/>
+</p>
+</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>
