@@ -434,25 +434,27 @@
   </style>
 </head>
 <body>
+<h1 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h1>
+<p>This is a list of possible BSc, MSc, or PhD semester research projects in the HexHive group. The projects are designed to be adjustable and scalable according to the type of project (BSc, MSc, or PhD research project) depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
+<p>If you are interested in any of these topics, then contact <a href="mailto:mathias.payer@epfl.ch">Mathias</a>. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss!</p>
 <div id="TOC">
 <ul>
-<li><a href="#hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</a><ul>
 <li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
 <li><a href="#transformational-fuzzing">Transformational Fuzzing</a></li>
 <li><a href="#llvm-based-t-fuzzing">LLVM-based T-Fuzzing</a></li>
 <li><a href="#automatic-isaarchitecture-inference">Automatic ISA/architecture inference</a></li>
 <li><a href="#code-pruning-and-debloating">Code pruning and debloating</a></li>
+<li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</a></li>
 <li><a href="#evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</a></li>
 <li><a href="#deep-trust-chains-may-violate-security-expectations">Deep trust chains may violate security expectations</a></li>
 <li><a href="#information-leakage-in-blockchain-protocols">Information leakage in blockchain protocols</a></li>
 <li><a href="#secure-memory-allocator">Secure Memory Allocator</a></li>
 <li><a href="#leveraging-intel-pt-to-enforce-online-dispatch-safety">Leveraging Intel PT to enforce online dispatch safety</a></li>
+<li><a href="#binary-vulnerability-inference">Binary vulnerability inference</a></li>
+<li><a href="#information-hiding-a-new-hope">Information Hiding: A New Hope</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </div>
-<h1 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h1>
-<p>This is a list of possible BSc, MSc, or PhD semester research projects in the HexHive group. The projects are designed to be scalable a feasible amount of work for each type of project. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
-<p>If you are interested in any of these topics, then contact <a href="mailto:mathias.payer@epfl.ch">Mathias</a>. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing.</p>
 <h2 id="api-flow-graph-sanitization">API flow graph sanitization</h2>
 <p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
 <p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
@@ -461,7 +463,7 @@
 <li>Keywords: sanitizer, API graph, component analysis, compiler analysis</li>
 </ul>
 <h2 id="transformational-fuzzing">Transformational Fuzzing</h2>
-<p>Fuzzing is experiencing a renaissance through coverage-guided greybox fuzzing. AFL and its descendents have been used to find thousands of security bugs. A fuzzing engine consists of an input generator and an execution engine. Coverage guided fuzzing collects coverage information (what parts of the program were executed how many times) from the execution engine to influence the input generator to increase coverage. Existing coverage-guided fuzzing engines often hit a so-called coverage wall where the required input changes are too complex and fuzzing no longer makes progress.</p>
+<p>Fuzzing is experiencing a renaissance through coverage-guided greybox fuzzing. AFL and its descendants have been used to find thousands of security bugs. A fuzzing engine consists of an input generator and an execution engine. Coverage guided fuzzing collects coverage information (what parts of the program were executed how many times) from the execution engine to influence the input generator to increase coverage. Existing coverage-guided fuzzing engines often hit a so-called coverage wall where the required input changes are too complex and fuzzing no longer makes progress.</p>
 <p>Instead of only mutating the program input, we have recently proposed transformational fuzzing that analyzes the program and mutates the program alongside the input to reach new coverage. Crashes in the mutated program then must be mapped back to the original program to ensure these are real crashes and not false positives, we call this component the crash analyzer.</p>
 <p>After publishing the initial results we want to increase the precision of the mutation. The goal of this project are to develop a mutation engine and policy on how to mutate the program to ensure the best possible coverage expansion. Potential directions are the inference of non-conditional functions that may be pruned or co-dependent checks along an execution path that trigger violations. Orthogonally, mutational fuzzing should become context sensitive so that the program is mutated on the fly, depending on the execution context with the help of a feedback-guided process.</p>
 <ul>
@@ -484,6 +486,17 @@
 <p>Evaluation targets are: security (reducing the amount of code, target locations, e.g., for CFI, and code pointers in general) and performance (relative accesses instead of GOT access, inlining, map pages/TLB optimization)</p>
 <ul>
 <li>Keywords: debloating, TCB reduction, code analysis, reflowing software</li>
+</ul>
+<h2 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</h2>
+<p>Dynamic software testing is currently an all or nothing approach. Software is compiled with sanitization and fuzzing and then evaluated. As software is developed in small steps, it would be advantageous to fuzz the delta that was added. This project will focus on developing a software testing environment that keeps track about areas that were already fuzzed or tested and which test cases had what coverage. This allows that, whenever a part of the software is changed, we can focus on that new part.</p>
+<ul>
+<li>Develop a mechanism to track coverage across input and sanitizer checks</li>
+<li>Correlate the coverage to specific areas of software</li>
+<li>Focus testing on tests that explored the changed area and see if you can focus testing on only the changed part</li>
+</ul>
+<p>Evaluation targets are common software repositories for open source projects.</p>
+<ul>
+<li>Keywords: fuzzing, sanitization</li>
 </ul>
 <h2 id="evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</h2>
 <p>Buffer overflows, use after free attacks, and generally control-flow hijacking due to memory safety and type safety errors have been the cause of countless security vulnerabilities that lead to exploitation of software. Over the past 20 years a large amount of mitigations has been proposed that mitigate control-flow hijacking attacks. The only solution to prohibit the exploitation of this attack vector is memory safety, all other defenses may leave some avenue for attack.</p>
@@ -527,6 +540,33 @@
 <li>Verify integrity on second core, pause before I/O or state system calls so that second core can catch up</li>
 </ul>
 <p>This approach allows us to keep a shadow object graph in a validator process and check every virtual dispatch at low overhead. The policy is the same as CPI but at much lower overhead as pointer writes no longer need to be checked inline in the original process.</p>
+<ul>
+<li>Keywords: mitigation, control-flow hijacking</li>
+</ul>
+<h2 id="binary-vulnerability-inference">Binary vulnerability inference</h2>
+<p>Deployed programs may include third party code in inlined form or as customized libraries. Keeping these external code repositories up to date is challenging. Ideally, the program would be updated immediately with the underlying repository. Unfortunately, these updates may be forgotten. In this project, we want to study the prevalence of such misuses and forgotten updates.</p>
+<ul>
+<li>First, we have to detect the library version and compilation settings by developing a binary analysis that leverages features of a binary to detect its version.</li>
+<li>Classify vulnerabilities and vulnerable code according to code patterns by evaluating libraries and creating a ground truth data set of code patterns and vulnerabilities.</li>
+<li>Search for the classified vulnerabilities and code patterns in binaries</li>
+<li>Study on packaged/prepackaged libraries and track vulnerability provenance</li>
+</ul>
+<p>Note that this project could also focus on Android applications.</p>
+<ul>
+<li>Keywords: binary analysis, vulnerability study, pattern-based search, measurement study</li>
+</ul>
+<h2 id="information-hiding-a-new-hope">Information Hiding: A New Hope</h2>
+<p>Many mitigations require some form of meta data to check the integrity of the process and to detect violations. This defines two privilege domains with the application data and the security data. Bugs in the code that computes on application data should not be allowed to access or modify the security data. Information hiding allows low-overhead fault isolation by separating the two types of data and making it <em>unlikely</em> that the data can be accessed. As there is no actual separation, correctly guessing the address of the secure data would allow application code to overwrite secure data. Information leaks are therefore a problem, guessing oracles or allocation oracles probe for the secret area.</p>
+<ul>
+<li>Study existing attacks against information hiding and their weaknesses.</li>
+<li>Create a kernel module and protocol that allows the allocation of safe metadata areas (the high bits on x64 are reserved to the kernel; in this vast address space we can hide some memory pages; these pages can be used to store the secure metadata). Allow allocation of memory areas in high level memory. Extend syscall of clone to allocate safe stack when creating a new thread Add syscall to allocate a new hidden memory area Add syscall to disable this feature (on per-thread basis)</li>
+<li>Develop a compiler pass to move meta data to this memory area.</li>
+<li>Evaluate: safe stack, OpenSSL to store keys, CFIXX, or type safety</li>
+</ul>
+<p>Key idea: Allocate the hidden memory areas in a safe space. High level memory reserved for kernel is the perfect place, most is unmapped and traps. The attacker cannot probe for this area.</p>
+<ul>
+<li>Keywords: information hiding, kernel, systems security</li>
+</ul>
 <h2 id="other-projects">Other projects</h2>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 </body>
