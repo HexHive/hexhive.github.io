@@ -1,82 +1,298 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-<title>HexHive: Active Protection for Vulnerable Code</title>
-<link rel="stylesheet" type="text/css" href="hexhive.css" media="all"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Mathias Payer">
+<meta name="theme-color" content="#563d7c">
+<title>HexHive</title>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/fontawesome.min.css" rel="stylesheet"/>
+<link href="css/academicons.min.css" rel="stylesheet"/>
+<link href="css/basic.min.css" rel="stylesheet"/>
 </head>
+
 <body>
-<div style="padding-top:10px; margin: 0 auto; display: table;">
-<table width="800px" >
-  <tr>
-    <td><img src="HexHive-logo.jpg" style="display:block; width:800px;" alt="HexHive logo"/></td>
-  </tr>
-  <tr>
-    <td align="left">
-      <table style="border-collapse:collapse;">
-        <tr>
-          <td class="menu1act">Overview</td>
-          <td class="menu1"><a href="people/">People</a></td>
-          <td class="menu1"><a href="publications/">Publications</a></td>
-          <td class="menu1"><a href="projects/">Projects</a></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top" align="left" class="content">
-      <p><b>Research overview</b><br/>
-In the HexHive group at EPFL, our research focuses on software and systems security. Despite
-efforts and improvements in bug discovery techniques, applications will always
-have some remaining vulnerabilities that may be exploited by an attacker. 
-We target techniques that enable developers to discover and remove bugs in
-software systems as well as making programs resilient against the exploitation
-of unknown or unpatched vulnerabilities.
+
+<div class="container"> 
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#"><img src="img/logo.png" width="220px"/></a>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <ul class="navbar-nav mr-auto">
+    <li><a class="nav-link" href="#people">People</a></li>
+    <li class="nav-item"><a class="nav-link" href="publications/">Publications</a></li>
+    <li class="nav-item"><a class="nav-link" href="epflprojects/">Student Projects</a></li>
+  </ul>
+  </div>
+</nav>
+</div>
+
+<main role="main" class="container" style="padding-top: 5.5rem;">
+
+<section id="overview">
+<div class="jumbotron">
+<p><b>Research Agenda</b><br/>
+Our research focuses on software and systems security. Despite efforts and improvements in bug discovery techniques, some exploitable vulnerabilities will remain. We target techniques that both enable developers to discover and remove bugs and make programs resilient against the exploitation of unknown or unpatched vulnerabilities.
 <br/><br/>
 
-To discover bugs we propose (i) sanitization techniques that enforce a security
-property such as memory or type safety; given concrete program input, our
-sanitizers then flag any property violations and (ii) fuzzing techniques that
-leverage static and dynamic analysis to create program inputs to explore program
-areas that are not yet covered through existing test cases.
-To protect against exploitable vulnerabilities, we focus on control-flow
-integrity using specific language semantics, enforcing type integrity, and
-protecting selective data.
-<br/><br/>
-
-Under this premise, we focus on compiler-based, runtime-based, and
-language-based protection mechanisms and security policies that increase the
-resilience of applications against attacks (in the presence of software
-vulnerabilities).
-<br/><br/>
-
-The current focus of the group, with several active research projects, is
-enforcing memory safety guarantees and type safety guarantees at the compiler
-and runtime level. All prototypes are released as <a
+To discover bugs we propose (i) sanitization techniques that enforce a security property such as memory or type safety; given concrete program input, our sanitizers then flag any property violations and (ii) fuzzing techniques that leverage static and dynamic analysis to create program inputs to explore program areas that are not yet covered through existing test cases. To protect against exploitable vulnerabilities, we focus on control-flow integrity using specific language semantics, enforcing type integrity, and protecting selective data. Under this premise, we focus on compiler-based, runtime-based, and language-based protection mechanisms and security policies that increase the resilience of applications against attacks (in the presence of software vulnerabilities). All prototypes are released as <a
 href="https://github.com/HexHive/">open-source</a>.<br/><br/>
 
 
-<b>Keywords</b><br/>
-software security, system security, sanitization, memory safety, type safety, fuzzing
-mitigation, binary exploitation, fault isolation, binary translation, virtualization.<br/>
-
-<table>
-  <tr><td colspan="2"><b>Contact details</b></td></tr>
-  <tr><td>E-Mail:&nbsp;</td><td><a href="mailto:mathias.payer@nebelwelt.net">mathias.payer@nebelwelt.net</a></td></tr>
-  <tr><td>EPFL Offices:&nbsp;</td><td><a href="https://plan.epfl.ch/?person=Mathias%20Payer">BC 160 (Mathias Payer)</a></td></tr>
-  <tr><td>EPFL Labs:&nbsp;</td><td><a href="https://plan.epfl.ch/?room=BC159">BC 159</a></td></tr>
-  <tr><td>Purdue Labs:&nbsp;</td><td>HAAS 266</td></tr>
-</table></p>
+<b>Key Topics</b><br/>
+software security, system security, sanitization, software testing, fuzzing
+mitigation, fault isolation, compartmentalization.<br/>
 
 <p><b>Frequently Asked Questions</b><br/>
-Interested in joining the HexHive research group? Read this <a href="./people/advice.html">advice</a> for
-prospective students and send <a href="mailto:mathias.payer@nebelwelt.net">us an email</a>.<br/>
-If you are at EPFL, looking for a BSc, MSc, or PhD semester project, please head over to the
-<a href="./projects/">project page</a>.<br/>
-Interested in Capture the Flag? Go check out the <a href="https://ctf.epfl.ch/">(EPFL) polygl0ts</a>.</p>
-    </td>
-  </tr>
+Interested in joining HexHive? Read the <a href="./advice.html">advice</a> for
+prospective students and send <a href="mailto:mathias.payer@nebelwelt.net">us
+an email</a>.<br/>
+If you are an EPFL student and looking for a BSc, MSc, or PhD semester
+project, check out the <a href="./studentprojects/">project page</a>.<br/>
+Interested in Capture the Flag? Come play with the
+<a href="https://ctf.epfl.ch/">(EPFL) polygl0ts</a>.</p>
+
+<div class="container">
+<div class="row">
+<div class="col-xs-6">
+<table>
+<tr><td colspan="2"><b>Contact</b></td></tr>
+<tr><td valign="top">Address:&nbsp;</td><td>
+EPFL IC IINFCOM HEXHIVE&nbsp;&nbsp;&nbsp;<br/>
+BC 160 (Bâtiment BC)<br/>
+Station 14<br/>
+CH-1015 Lausanne</td>
+</tr>
+<tr><td>Office:</td><td><a href="https://plan.epfl.ch/?room==BC%20160">BC 160</a></td></tr>
+<tr><td>Lab:</td><td><a href="https://plan.epfl.ch/?room==BC%20159">BC 159</a></td></tr>
 </table>
 </div>
+<div class="col-xs-6">
+<br/>
+<iframe width="700" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.5589988231658936%2C46.516956139522314%2C6.565704345703126%2C46.52011963719466&amp;layer=mapnik&amp;marker=46.518539,6.562108" style="border: 1px solid black"></iframe><br/><small>
+Directions: You can reach the BC building by metro (stop "EPFL") or bus 701 (stop "Parc scientifique").<br/>The HexHive offices are on the first floor in the east; <a href="https://plan.epfl.ch/?room==BC%20160">check out the EPFL map here</a>.</small> 
+</div>
+</div>
+</div>
+
+</p>
+</div>
+</section>
+
+<section id="people">
+<div class="container">
+  <h1>Meet the members of the HexHive</h1><br/>
+<div class="row row-cols-4">
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/mathias.jpg" width="200px">
+    <h4>Mathias Payer</h4>
+    <h5>Assistant Professor</h5>
+    <h5>
+      <a href="mailto:mathias.payer@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/gannimo"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=9cFCY5wAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/gannimo"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://nebelwelt.net"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://nebelwelt.net/cv-payerm.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/daniele.png" width="200px">
+    <h4>Daniele Antonioli</h4>
+    <h5>Post Doc, EPFL</h5>
+    <h5>
+      <a href="mailto:daniele.antonioli@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/francozappa"><i class="fab fa-twitter"></i></a>
+      <a href="https://scholar.google.com/citations?user=RkX4eFsAAAAJ&hl"><i class="ai ai-google-scholar"></i></a>
+      <a href="https://github.com/francozappa"><i class="fab fa-github-square"></i></a>
+      <a href="https://francozappa.github.io"><i class="fa fa-home"></i></a>
+      <a href="https://francozappa.github.io/files/cv.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Hui Peng</h4>
+    <h5>PhD Candidate, Purdue</h5>
+    <h5>
+      <a href="mailto:peng124@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/XyiP3h"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=vnwYc4EAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/benquike"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://benquike.github.io"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://bitbucket.org/peng124/data/src/master/cv/"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/priyam.jpg" width="200px">
+    <h4>Priyam Biswas</h4>
+    <h5>PhD Candidate, Purdue</h5>
+    <h5>
+      <a href="mailto:jhijhipoka23@gmail.com"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/amipri"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=NXAbDx4AAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/beduin23"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://sites.google.com/site/sitespriyam/"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://sites.google.com/site/sitespriyam/curriculum-vitae"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/yuseok.jpg" width="200px">
+    <h4>Yuseok Jeon</h4>
+    <h5>PhD Candidate, Purdue</h5>
+    <h5>
+      <a href="mailto:jeon41@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/yjeon82"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=jiWJfWkAAAAJ&hl=en"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/jys0710"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="http://ysjeon.net"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://www.cs.purdue.edu/homes/jeon41/CV_Yuseok_Jeon.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/derrick.jpg" width="200px">
+    <h4>Derrick McKee</h4>
+    <h5>PhD Student, Purdue</h5>
+    <h5>
+      <a href="mailto:mckee15@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/unbound_brewer"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=5o0NqDYAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/deadly-platypus"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://derrick.geth.systems"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://www.overleaf.com/read/jbfwdbryjkmd"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/prashast.jpg" width="200px">
+    <h4>Prashast Srivastava</h4>
+    <h5>PhD Student, Purdue</h5>
+    <h5>
+      <a href="mailto:srivas41@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/3rdWorldGuy"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=PC7fhbYAAAAJ&hl=en"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/prashast"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://prashast.github.io"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://prashast.github.io/files/cv.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Bader AlBassam</h4>
+    <h5>PhD Student, Purdue</h5>
+    <h5>
+      <a href="mailto:balbassa@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Naif Almakhdhub</h4>
+    <h5>PhD Candidate, Purdue</h5>
+    <h5>
+      <a href="mailto:nalmakhd@purdue.edu"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Adrian Herrara</h4>
+    <h5>PhD Student, ANU</h5>
+    <h5>
+      <a href="mailto:adrian.herrera@anu.edu.au"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/atri.jpg" width="200px">
+    <h4>Atri Bhattacharyya</h4>
+    <h5>PhD Candidate, EPFL</h5>
+    <h5>
+      <a href="mailto:atri.bhattacharyya@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://scholar.google.com/citations?user=rMoLlvYAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+      <a href="https://github.com/atrib"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://atrib.bitbucket.io"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://atrib.bitbucket.io/Resume.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Ahmad Hazimeh</h4>
+    <h5>PhD Candidate, EPFL</h5>
+    <h5>
+      <a href="mailto:ahmad.hazimeh@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Uro&scaron; Te&scaron;i&cacute;</h4>
+    <h5>PhD Student, EPFL</h5>
+    <h5>
+      <a href="mailto:uros.tesic@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Nicolas Badoux</h4>
+    <h5>PhD Student, EPFL</h5>
+    <h5>
+      <a href="mailto:n.badoux@hotmail.com"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/n_vwvw"><i class="fab fa-twitter"></i></a>&nbsp;
+      <a href="https://github.com/vwvw"><i class="fab fa-github-square"></i></a>&nbsp;
+      <a href="https://nicolasbadoux.com"><i class="fa fa-home"></i></a>&nbsp;
+      <a href="https://nicolasbadoux.com/resume_Nicolas_Badoux.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <img class="img-fluid member-avatar rounded-circle" src="img/people/andres.jpg" width="200px">
+    <h4>Andr&eacute;s Sanchez</h4>
+    <h5>MSc Scholar, EPFL</h5>
+    <h5>
+      <a href="mailto:andres.sanchez@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+      <a href="https://twitter.com/andsanmar"><i class="fab fa-twitter"></i></a>
+      <a href="https://scholar.google.com/citations?user=bRJpHdQAAAAJ&hl=en"><i class="ai ai-google-scholar"></i></a>
+      <a href="https://github.com/andsanmar"><i class="fab fa-github-square"></i></a>
+      <a href="https://andsanmar.github.io"><i class="fa fa-home"></i></a>
+      <a href="https://andsanmar.github.io/cv.pdf"><i class="ai ai-cv"></i></a>
+    </h5>
+  </div>
+  <div class="col text-center">
+    <i class="fas fa-user-circle" style="font-size: 200px;"></i>
+    <h4>Anil Kurmus</h4>
+    <h5>Visiting Researcher, IBM</h5>
+    <h5>
+      <a href="mailto:KUR@zurich.ibm.com"><i class="fa fa-envelope"></i></a>&nbsp;
+    </h5>
+  </div>
+</div>
+</section>
+
+<section id="alumni">
+<div class="jumbotron">
+<p>
+<b>Graduated PhD students:</b>
+<ul>
+<li>Abe Clements (<a href="./theses/19-clements-thesis.pdf">PhD thesis</a>, spring '19, co-advised with Saurabh Bagchi, first job: Sandia National Labs)</li>
+<li>Kyriakos Ispoglou (<a href="./theses/19-ispoglou-thesis.pdf">PhD thesis</a>, spring '19, first job: Google Inc.)</li>
+<li>Nathan Burow (<a href="./theses/18-burow-thesis.pdf">PhD thesis</a>, fall'18, HexHive postdoc, first job: MIT LL Research)</li>
+<li>Terry Hsu (<a href="./theses/18-hsu-thesis.pdf">PhD thesis</a>, spring '18, co-advised with Patrick Eugster, first job: Apple Inc.)</li>
+<li>Scott Carr (<a href="./theses/17-carr-thesis.pdf">PhD thesis</a>, spring '17, first job: Northrop Grumman -- Xetron)</li>
+<li>Ahmed Hussein (<a href="./theses/16-hussein-thesis.pdf">PhD thesis</a>, fall '16, co-advised with Tony Hosking, first job: Huawei)</li>
+</ul></p>
+<p><b>Past visiting researchers, students, and post docs:</b>
+<ul>
+<li>Nathan Burow (post doc, fall '18)</li>
+<li>Alessandro Di Federico (visiting PhD student, fall '16)</li>
+</ul></p>
+<p><b>A selection of undergraduate and graduate student projects</b>
+<ul>
+<li>Matteo Rizzo (MSc thesis, fall '19)</li>
+<li>Nicolas Badoux (MSc thesis, spring '19)</li>
+<li>Sushant Dinesh (PhD student/<a href="./theses/19-dinesh-thesis.pdf">MSc thesis</a>, graduated spring '19)</li>
+<li>Daniele Midi (PhD fall '16, advisor: Elisa Bertino)</li>
+<li>Ammar Askar (undergraduate term project, spring '16)</li>
+</ul></p>
+</div>
+</section>
+
+</main><!-- /.container -->
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,38 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-<title>HexHive: Projects</title>
-<link rel="stylesheet" type="text/css" href="../hexhive.css" media="all"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Mathias Payer">
+<meta name="theme-color" content="#563d7c">
+<title>HexHive</title>
+<!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../css/academicons.min.css" rel="stylesheet"/>
+<link href="../css/basic.min.css" rel="stylesheet"/>
 </head>
+
 <body>
-<div style="padding-top:10px; margin: 0 auto; display: table;">
-<table style="width: 800px;" >
-	<tr>
-		<td><img src="../HexHive-logo.jpg" style="display:block; width:800px;" alt="nebelwelt.net logo"/></td>
-	</tr>
-	<tr>
-		<td align="left">
-			<table style="border-collapse:collapse;">
-				<tr>
-                    <td class="menu1"><a href="../index.html">Overview</a></td>
-                    <td class="menu1"><a href="../people">People</a></td>
-                    <td class="menu1"><a href="../publications/">Publications</a></td>
-                    <td class="menu1act">Projects</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td valign="top" align="left" class="content">
-<h1 id="hexhive-research-focus">HexHive research focus</h1>
-<p>The HexHive laboratory at EPFL researches novel technologies to protect applications in the presence of vulnerabilities along two dimensions. First, discovering exploitable bugs in source code through dynamic analysis techniques, building on sanitization and dynamic testing. Second, detecting the active exploitation of a vulnerability through lightweight mitigations. These technologies are integrated into both compiler toolchains (analyzing the code during compilation and integrating into the developer workflow) and binary rewriting platforms (allowing the protection of binary-only code, e.g., for libraries where the developer or user does not have access to the source code). All code developed in the HexHive laboratory is released as open source.</p>
-<p>The implementation prototypes of all published papers are available as open-source on the <a href="https://github.com/HexHive/">HexHive GitHub page</a>. We welcome any feedback and comments.</p>
+
+<div class="container"> 
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="../#"><img src="../img/logo.png" width="220px"/></a>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <ul class="navbar-nav mr-auto">
+    <li><a class="nav-link" href="../#people">People</a></li>
+    <li class="nav-item"><a class="nav-link" href="../publications">Publications</a></li>
+    <li class="nav-item active"><a class="nav-link" href="#">Student Projects</a></li>
+  </ul>
+  </div>
+</nav>
+</div>
+
+<main role="main" class="container" style="padding-top: 5.5rem;">
+
+<section id="publications">
+<div class="jumbotron">
 <h1 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h1>
 <p>This is a list of possible open, unassigned BSc, MSc, or PhD semester research projects in the HexHive group. The projects are designed to be adjustable and scalable according to the type of project (BSc, MSc, or PhD research project) depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
-<p>If you are interested in any of these topics, then contact <a href="mailto:hexhive@groupes.epfl.ch">the HexHive group list</a> or any of the <a href="../people/">doctoral students</a>. Please start your email with &quot;[(MSc|BSc) (Project|Thesis)]&quot;, e.g., &quot;[MSc Project] LLVM-based code analysis&quot;. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss!</p>
+<p>If you are interested in any of these topics, then contact <a href="mailto:hexhive@groupes.epfl.ch">the HexHive group list</a> or any of the <a href="../#people">doctoral students</a>. Please start your email with &quot;[(MSc|BSc) (Project|Thesis)]&quot;, e.g., &quot;[MSc Project] LLVM-based code analysis&quot;. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss!</p>
 
 <div id="TOC">
 <ul>
@@ -201,9 +204,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <p>Key idea: Allocate the hidden memory areas in a safe space. High level memory reserved for kernel is the perfect place, most is unmapped and traps. The attacker cannot probe for this area.</p>
 <h2 id="other-projects">Other projects</h2>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
-</td>
-	</tr>
-</table>
 </div>
+</section>
+
+</main>
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
