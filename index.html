@@ -17,7 +17,7 @@
 
 <div class="container"> 
 <nav class="navbar navbar-expand-md navbar-light bg-light static-top" style="background-color: #e3f2fd;">
-	<a class="navbar-brand" href="#"><img src="img/logo.png" width="220px"/></a>
+	<a class="navbar-brand" href="#"><img src="img/hexhive.png" width="50px"/>&nbsp;<span style="color:#2fbf00;">Hex</span><span style="color:#000c10;">Hive</span></a>
 	<div class="navbar" id="navbar">
 	<ul class="navbar-nav mr-auto">
 		<li><a class="nav-link" href="#people">People</a></li>
@@ -32,19 +32,21 @@
 
 <section id="overview">
 <div class="jumbotron">
-<p><b>Research Agenda</b><br/>
+<p>
+<!--<img src="img/hexhive.png" class="img-fluid" style="max-width:250px; margin-left:12px; float:right;" alt="HexHive logo"/>-->
+<h4>Research Agenda</h4>
 Our research focuses on software and systems security. Despite efforts and improvements in bug discovery techniques, some exploitable vulnerabilities will remain. We target techniques that both enable developers to discover and remove bugs and make programs resilient against the exploitation of unknown or unpatched vulnerabilities.
 <br/><br/>
 
 To discover bugs we propose (i) sanitization techniques that enforce a security property such as memory or type safety; given concrete program input, our sanitizers then flag any property violations and (ii) fuzzing techniques that leverage static and dynamic analysis to create program inputs to explore program areas that are not yet covered through existing test cases. To protect against exploitable vulnerabilities, we focus on control-flow integrity using specific language semantics, enforcing type integrity, and protecting selective data. Under this premise, we focus on compiler-based, runtime-based, and language-based protection mechanisms and security policies that increase the resilience of applications against attacks (in the presence of software vulnerabilities). All prototypes are released as <a
-href="https://github.com/HexHive/">open-source</a>.<br/><br/>
+href="https://github.com/HexHive/">open-source</a>.</p>
 
 
-<b>Key Topics</b><br/>
+<p><h4>Key Topics</h4>
 software security, system security, sanitization, software testing, fuzzing
-mitigation, fault isolation, compartmentalization.<br/>
+mitigation, fault isolation, compartmentalization.</p>
 
-<p><b>Frequently Asked Questions</b><br/>
+<p><h4>Frequently Asked Questions</h4>
 Interested in joining HexHive? Read the <a href="./advice.html">advice</a> for
 prospective students and send <a href="mailto:mathias.payer@epfl.ch">Mathias
 an email</a>.<br/>
@@ -52,12 +54,15 @@ If you are an EPFL student and looking for a BSc, MSc, or PhD semester
 project, check out the <a href="./epflprojects/">project page</a>.<br/>
 Interested in Capture the Flag? Come play with the
 <a href="https://ctf.epfl.ch/">(EPFL) polygl0ts</a>.</p>
+</div>
+</section>
 
-<div class="container">
+<section id="contact">
+<div class="jumbotron">
 <div class="row">
 <div class="col-xs-6">
+<h4>Contact</h4>
 <table>
-<tr><td colspan="2"><b>Contact</b></td></tr>
 <tr><td valign="top">Address:&nbsp;</td><td>
 EPFL IC IINFCOM HEXHIVE&nbsp;&nbsp;&nbsp;<br/>
 BC 160 (Bâtiment BC)<br/>
@@ -75,14 +80,11 @@ Directions: You can reach the BC building by metro (stop "EPFL") or bus 701 (sto
 </div>
 </div>
 </div>
-
-</p>
-</div>
 </section>
 
 <section id="people">
-<div class="container">
-	<b>Meet the members of the HexHive</b><br/><br/>
+<div class="jumbotron">
+<h4>Meet the members of the HexHive</h4>
 <div class="row">
 	<div class="col-md-3 col-sm-4 col-6 text-center">
 		<img class="img-fluid member-avatar rounded-circle" src="img/people/mathias.jpg" width="200px"><br/>
@@ -256,7 +258,7 @@ Directions: You can reach the BC building by metro (stop "EPFL") or bus 701 (sto
 <section id="alumni">
 <div class="jumbotron">
 <p>
-<b>Graduated PhD students:</b>
+<h4>Graduated PhD students:</h4>
 <ul>
 <li>Abe Clements (<a href="./theses/19-clements-thesis.pdf">PhD thesis</a>, spring '19, co-advised with Saurabh Bagchi, first job: Sandia National Labs)</li>
 <li>Kyriakos Ispoglou (<a href="./theses/19-ispoglou-thesis.pdf">PhD thesis</a>, spring '19, first job: Google Inc.)</li>
@@ -265,12 +267,12 @@ Directions: You can reach the BC building by metro (stop "EPFL") or bus 701 (sto
 <li>Scott Carr (<a href="./theses/17-carr-thesis.pdf">PhD thesis</a>, spring '17, first job: Northrop Grumman -- Xetron)</li>
 <li>Ahmed Hussein (<a href="./theses/16-hussein-thesis.pdf">PhD thesis</a>, fall '16, co-advised with Tony Hosking, first job: Huawei)</li>
 </ul></p>
-<p><b>Past visiting researchers, students, and post docs:</b>
+<p><h4>Past visiting researchers, students, and post docs:</h4>
 <ul>
 <li>Nathan Burow (post doc, fall '18)</li>
 <li>Alessandro Di Federico (visiting PhD student, fall '16)</li>
 </ul></p>
-<p><b>A selection of undergraduate and graduate student projects</b>
+<p><h4>A selection of undergraduate and graduate student projects</h4>
 <ul>
 <li>Matteo Rizzo (MSc thesis, fall '19)</li>
 <li>Nicolas Badoux (MSc thesis, spring '19)</li>
@@ -281,7 +283,7 @@ Directions: You can reach the BC building by metro (stop "EPFL") or bus 701 (sto
 </div>
 </section>
 
-</main><!-- /.container -->
+</main>
 <script src="js/jquery-3.4.1.slim.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>
