@@ -37,8 +37,9 @@
 <p>This is a list of possible open, unassigned BSc, MSc, or PhD semester research projects in the HexHive group. The projects are designed to be adjustable and scalable according to the type of project (BSc, MSc, or PhD research project) depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
 <p>If you are interested in any of these topics, then contact <a href="mailto:hexhive@groupes.epfl.ch">the HexHive group list</a> or any of the <a href="../#people">doctoral students</a>. Please start your email with &quot;[(MSc|BSc) (Project|Thesis)]&quot;, e.g., &quot;[MSc Project] LLVM-based code analysis&quot;. In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss!</p>
 
-<div id="TOC">
+<nav id="TOC">
 <ul>
+<li><a href="#google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</a></li>
 <li><a href="#bluetooth-security">Bluetooth Security</a></li>
 <li><a href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</a></li>
 <li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
@@ -54,14 +55,33 @@
 <li><a href="#information-hiding-a-new-hope">Information Hiding: A New Hope</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
-</div>
-
+</nav>
+<h5 id="google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</h5>
+<ul>
+<li>Point of contact: <a href="mailto:daniele.antonioli@epfl.ch">Daniele Antonioli</a></li>
+<li>Keywords: GAEN, COVID-19, Testing, Experiments</li>
+</ul>
+<p>Google and Apple joined their efforts to develop a digital Exposure Notification system (GAEN) to help trace and slow-down the spread of SARS-CoV-2 (which can cause COVID-19). The GAEN system is based on several research efforts including the Decentralized Privacy-Preserving Proximity Tracing (DP3T) system developed by EPFL and other European research institutes.</p>
+<p>GAEN makes use of Bluetooth Low Energy (BLE) and mobile applications to wirelessly register contacts between application users in proximity. All contacts are registered in a secure and privacy-preserving way and they allow to automatically notify application users that were in contact with COVID-19 positive individuals. GAEN provides a unified API for iOS and Android and the API is evolving according to the developers’ needs and user feedback. Several countries in the EU have already developed and shipped their contact tracing app (e.g., SwissCovid app in Switzerland, Corona-Warn-App in Germany, and Immuni app in Italy).</p>
+<p>The GAEN-based contact tracing apps are used a huge set of heterogeneous smartphones. Smartphones’ diversity is due to different factors including the OS (e.g., Android and iOS), the Bluetooth chip (e.g., Broadcom and Qualcomm) and the supported Bluetooth version (e.g., 4.2 and 5.0). At EPFL we are running large scale measurement and calibration experiments to check that the GAEN API works as expected across different dimensions (OS, Bluetooth chip, Bluetooth Version, GAEN version). We are looking for motivated students interested in running such large-scale experiments. The results of those experiments are and will help to shape the GAEN API to stop the spread of SARS-CoV-2.</p>
+<p>A candidate should be interested in (or familiar with):</p>
+<ul>
+<li>Android and iOS</li>
+<li>Bluetooth</li>
+<li>Mobile app development</li>
+</ul>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://developers.google.com/android/exposure-notifications/exposure-notifications-api">Android GAEN API</a></li>
+<li><a href="https://www.blog.google/documents/70/Exposure_Notification_-_Bluetooth_Specification_v1.2.2.pdf">Android GAEN BLE Spec</a></li>
+<li><a href="https://blog.google/documents/69/Exposure_Notification_-_Cryptography_Specification_v1.2.1.pdf">Android GAEN Crypto Spec</a></li>
+</ul>
 <h5 id="bluetooth-security">Bluetooth Security</h5>
 <ul>
 <li>Point of contact: <a href="mailto:daniele.antonioli@epfl.ch">Daniele Antonioli</a></li>
 <li>Keywords: Bluetooth, BR/EDR, BLE, Attacks, Defenses, Testing, RE, IoT</li>
 </ul>
-<p>Bluetooth is a pervasive technology for low power wireless communications, and it is used every day by billions of devices, including smartphone, laptops, wearables, cars, medical devices, industrial devices, etc. Bluetooth is specified in an open standard and it provides two main stacks: Bluetooth BR/EDR (aka Classic) and Bluetooth Low Energy (BLE). One (1) vulnerability in the Bluetooth standard results into billions of exploitable devices (e.g. the KNOB attack).</p>
+<p>Bluetooth is a pervasive technology for low power wireless communications, and it is used every day by billions of devices, including smartphone, laptops, wearables, cars, medical devices, industrial devices, etc. Bluetooth is specified in an open standard and it provides two main stacks: Bluetooth BR/EDR (aka Classic) and Bluetooth Low Energy (BLE). One (1) vulnerability in the Bluetooth standard results into billions of exploitable devices (e.g. the KNOB attack).</p>
 <p>We are interested in all security aspects of Bluetooth BR/EDR and BLE including attacks, defenses, reverse engineering of closed source (proprietary) software and hardware, static and dynamic analysis and testing/fuzzing. A project will likely cover one of the listed aspects but according to the student interest and progresses we can cover more.</p>
 <p>A candidate student should be familiar with:</p>
 <ul>
@@ -89,7 +109,7 @@
 <li>Keywords: microarchitectural attacks, side channels</li>
 </ul>
 <p>A number of microarchitectural side-channel attacks have emerged since 2018, of which Spectre and Meltdown surfaced in January. A critical step in all of these attacks has been a reverse-engineering effort to determine the exact behavior of components of the microarchitecture: the cache organization and replacement policy, the branch prediction algorithm and structures.</p>
-<p>We would need to characterize the behavior of these components by designing experiments which target specific behavior, and can leak the structure of internal components. An example is the associativity of caches. An expt which leaks this information is the size of eviction sets. By accessing a set of memory addresses which we increase until we have cache evictions, we can figure out associativity. By modifying the access patterns, we can also infer the cache's eviction policy. A great example on reverse engineering branch predictors on older Intel processors <a href="https://xania.org/201602/bpu-part-one">is this blog post series</a>.</p>
+<p>We would need to characterize the behavior of these components by designing experiments which target specific behavior, and can leak the structure of internal components. An example is the associativity of caches. An expt which leaks this information is the size of eviction sets. By accessing a set of memory addresses which we increase until we have cache evictions, we can figure out associativity. By modifying the access patterns, we can also infer the cache’s eviction policy. A great example on reverse engineering branch predictors on older Intel processors <a href="https://xania.org/201602/bpu-part-one">is this blog post series</a>.</p>
 <p>We propose a semester project for masters students or dedicated bachelors students in which we tackle this challenge. An ideal candidate have taken a course on computer architecture and be familiar with the microarchitectural components. Experience with coding in x86 or ARM assembly will be very useful (but is not essential).</p>
 <h5 id="api-flow-graph-sanitization">API flow graph sanitization</h5>
 <ul>
@@ -146,7 +166,7 @@
 <li>Keywords: software ecosystem, components, dependency graph</li>
 </ul>
 <p>Modern frameworks such as JavaScript, NodeJS/NPM, Docker, Python/PIP rely on a vast distribution of libraries with deep dependencies. Whenever you install a certain library or functionality, it may pull in a lot of other dependencies. The security of your application (and sometimes system) now depends on the security of all these additional libraries.</p>
-<p>This project consists of two phases. In the first phase, you will compute the dependency graph across the system, marking individual dependency chains and evaluating common dependencies. In this phase we are interested in the number of dependencies and the different chains and we will evaluate different &quot;hot&quot; packages that are used across large amounts of installations.</p>
+<p>This project consists of two phases. In the first phase, you will compute the dependency graph across the system, marking individual dependency chains and evaluating common dependencies. In this phase we are interested in the number of dependencies and the different chains and we will evaluate different “hot” packages that are used across large amounts of installations.</p>
 <p>In the second phase, we will evaluate the dependencies of common programs/libraries and study how these dependencies change over time. This allows us to assess the threat surface for given programs and evaluate given security risks.</p>
 <h5 id="secure-memory-allocator">Secure Memory Allocator</h5>
 <ul>
@@ -161,7 +181,7 @@
 <li>Make the allocator C++ aware! (according to type classes)</li>
 <li>Use classes of allocations (depending on location/type) As part of the optimization, we will discuss how to store the metadata, e.g., per thread, per allocation size, or using a mixed data structure.</li>
 </ul>
-<p>Discussion points for the memory allocator are: (i) if meta-data and malloc'd data is separated, (ii) (configurable) canaries between blocks, (iii) (configurable) overwrite on free, (iv) (configurable) no-reuse policy, (v) as a performance optimization: leverage guard pages and efficiently allocate them.</p>
+<p>Discussion points for the memory allocator are: (i) if meta-data and malloc’d data is separated, (ii) (configurable) canaries between blocks, (iii) (configurable) overwrite on free, (iv) (configurable) no-reuse policy, (v) as a performance optimization: leverage guard pages and efficiently allocate them.</p>
 <h5 id="leveraging-intel-pt-to-enforce-online-dispatch-safety">Leveraging Intel PT to enforce online dispatch safety</h5>
 <ul>
 <li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
@@ -204,6 +224,8 @@
 <p>Key idea: Allocate the hidden memory areas in a safe space. High level memory reserved for kernel is the perfect place, most is unmapped and traps. The attacker cannot probe for this area.</p>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
+
+
 </div>
 </section>
 
