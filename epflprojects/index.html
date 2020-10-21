@@ -39,16 +39,14 @@
 
 <nav id="TOC">
 <ul>
+<li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
 <li><a href="#google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</a></li>
 <li><a href="#bluetooth-security">Bluetooth Security</a></li>
 <li><a href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</a></li>
 <li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
-<li><a href="#transformational-fuzzing">Transformational Fuzzing</a></li>
-<li><a href="#llvm-based-t-fuzzing">LLVM-based T-Fuzzing</a></li>
 <li><a href="#code-pruning-and-debloating">Code pruning and debloating</a></li>
 <li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</a></li>
 <li><a href="#evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</a></li>
-<li><a href="#deep-trust-chains-may-violate-security-expectations">Deep trust chains may violate security expectations</a></li>
 <li><a href="#secure-memory-allocator">Secure Memory Allocator</a></li>
 <li><a href="#leveraging-intel-pt-to-enforce-online-dispatch-safety">Leveraging Intel PT to enforce online dispatch safety</a></li>
 <li><a href="#binary-vulnerability-inference">Binary vulnerability inference</a></li>
@@ -56,6 +54,25 @@
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
+<h5 id="gui-fuzzing">GUI Fuzzing</h5>
+<ul>
+<li>Point of contact: <a href="mailto:mathias.payer@epfl.ch">Mathias Payer</a></li>
+<li>Keywords: Android, GUI, fuzzing</li>
+</ul>
+<p>Fuzzing has recently seen a lot of use when analyzing libraries and different CLI applications. So far, GUI applications have remained elusive due to the complexity of interactions and different entry points into the code. Especially the complex interaction patterns with the code makes fuzzing GUI applications challenging. Additionally, a driver needs to create events for the individual aspects of the application. Similarly, modern applications frequently interact with a server whose state may be unknown.</p>
+<p>The key research questions in this project are:</p>
+<ul>
+<li>How can we design a fuzzer that handles event-based systems</li>
+<li>When fuzzing event-based systems, how can the input generation keep track of fired events and interactions with the GUI app</li>
+<li>If the app has a remote component, how can we model the abstract space of that component</li>
+</ul>
+<p>After reading into the topic of fuzzing and event-based state machines, the student will develop a model for event-based fuzzing with GUI interactions as the key part of the project. To evaluate the project, the student will then evaluate the newly generated fuzzer using a set of different GUI applications, targeting the exploration of Linux GUI apps. As a second goal, if time permits, the student will extend the exploration to apps that have remote components.</p>
+<p>A candidate should be interested in (or familiar with):</p>
+<ul>
+<li>GUI programming</li>
+<li>Android</li>
+<li>C/C++ programming and event-based systems</li>
+</ul>
 <h5 id="google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</h5>
 <ul>
 <li>Point of contact: <a href="mailto:daniele.antonioli@epfl.ch">Daniele Antonioli</a></li>
@@ -119,20 +136,6 @@
 <p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
 <p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
 <p>Based on the API graph we will then search for violations of the inferred values in real applications by implementing a sanitizer that tracks the API state and searches for violations of the valid state.</p>
-<h5 id="transformational-fuzzing">Transformational Fuzzing</h5>
-<ul>
-<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
-<li>Keywords: fuzzing, program transformation, exploitation</li>
-</ul>
-<p>Fuzzing is experiencing a renaissance through coverage-guided greybox fuzzing. AFL and its descendants have been used to find thousands of security bugs. A fuzzing engine consists of an input generator and an execution engine. Coverage guided fuzzing collects coverage information (what parts of the program were executed how many times) from the execution engine to influence the input generator to increase coverage. Existing coverage-guided fuzzing engines often hit a so-called coverage wall where the required input changes are too complex and fuzzing no longer makes progress.</p>
-<p>Instead of only mutating the program input, we have recently proposed transformational fuzzing that analyzes the program and mutates the program alongside the input to reach new coverage. Crashes in the mutated program then must be mapped back to the original program to ensure these are real crashes and not false positives, we call this component the crash analyzer.</p>
-<p>After publishing the initial results we want to increase the precision of the mutation. The goal of this project are to develop a mutation engine and policy on how to mutate the program to ensure the best possible coverage expansion. Potential directions are the inference of non-conditional functions that may be pruned or co-dependent checks along an execution path that trigger violations. Orthogonally, mutational fuzzing should become context sensitive so that the program is mutated on the fly, depending on the execution context with the help of a feedback-guided process.</p>
-<h5 id="llvm-based-t-fuzzing">LLVM-based T-Fuzzing</h5>
-<ul>
-<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
-<li>Keywords: fuzzing, compiler-based transformation, exploitation</li>
-</ul>
-<p>Similar to the previous project, this project extends T-Fuzz (see the first two paragraphs of the previous project proposal for context). The existing T-Fuzz prototype relies on binary rewriting and is restricted to if conditions (i.e., it cannot support switch statements). The goal of this project is to implement a T-Fuzzing engine on top of LLVM to support a flexible and (runtime) configurable way to readjust checks depending on a transformation policy. Each conditional program location would be extended with a switch that, when triggered would alternate the result.</p>
 <h5 id="code-pruning-and-debloating">Code pruning and debloating</h5>
 <ul>
 <li>Point of contact: <a href="mailto:uros.tesic@epfl.ch">Tesic Uros</a></li>
@@ -160,14 +163,6 @@
 </ul>
 <p>Buffer overflows, use after free attacks, and generally control-flow hijacking due to memory safety and type safety errors have been the cause of countless security vulnerabilities that lead to exploitation of software. Over the past 20 years a large amount of mitigations has been proposed that mitigate control-flow hijacking attacks. The only solution to prohibit the exploitation of this attack vector is memory safety, all other defenses may leave some avenue for attack.</p>
 <p>We will evaluate different control-flow hijacking mechanisms such as Control-Flow Integrity, executable but unreadable code, and other mechanisms, comparing them along different metrics. The goal of this project is to evaluate the power of the different mitigations and to rank them according to completeness, power, overhead, or other systematic weaknesses.</p>
-<h5 id="deep-trust-chains-may-violate-security-expectations">Deep trust chains may violate security expectations</h5>
-<ul>
-<li>Point of contact: <a href="mailto:uros.tesic@epfl.ch">Tesic Uros</a></li>
-<li>Keywords: software ecosystem, components, dependency graph</li>
-</ul>
-<p>Modern frameworks such as JavaScript, NodeJS/NPM, Docker, Python/PIP rely on a vast distribution of libraries with deep dependencies. Whenever you install a certain library or functionality, it may pull in a lot of other dependencies. The security of your application (and sometimes system) now depends on the security of all these additional libraries.</p>
-<p>This project consists of two phases. In the first phase, you will compute the dependency graph across the system, marking individual dependency chains and evaluating common dependencies. In this phase we are interested in the number of dependencies and the different chains and we will evaluate different “hot” packages that are used across large amounts of installations.</p>
-<p>In the second phase, we will evaluate the dependencies of common programs/libraries and study how these dependencies change over time. This allows us to assess the threat surface for given programs and evaluate given security risks.</p>
 <h5 id="secure-memory-allocator">Secure Memory Allocator</h5>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
