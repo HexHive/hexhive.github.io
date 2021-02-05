@@ -45,12 +45,10 @@
 <li><a href="#google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</a></li>
 <li><a href="#bluetooth-security">Bluetooth Security</a></li>
 <li><a href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</a></li>
+<li><a href="#software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</a></li>
 <li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
-<li><a href="#code-pruning-and-debloating">Code pruning and debloating</a></li>
 <li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</a></li>
-<li><a href="#evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</a></li>
 <li><a href="#secure-memory-allocator">Secure Memory Allocator</a></li>
-<li><a href="#leveraging-intel-pt-to-enforce-online-dispatch-safety">Leveraging Intel PT to enforce online dispatch safety</a></li>
 <li><a href="#binary-vulnerability-inference">Binary vulnerability inference</a></li>
 <li><a href="#information-hiding-a-new-hope">Information Hiding: A New Hope</a></li>
 <li><a href="#other-projects">Other projects</a></li>
@@ -130,6 +128,14 @@
 <p>A number of microarchitectural side-channel attacks have emerged since 2018, of which Spectre and Meltdown surfaced in January. A critical step in all of these attacks has been a reverse-engineering effort to determine the exact behavior of components of the microarchitecture: the cache organization and replacement policy, the branch prediction algorithm and structures.</p>
 <p>We would need to characterize the behavior of these components by designing experiments which target specific behavior, and can leak the structure of internal components. An example is the associativity of caches. An expt which leaks this information is the size of eviction sets. By accessing a set of memory addresses which we increase until we have cache evictions, we can figure out associativity. By modifying the access patterns, we can also infer the cache’s eviction policy. A great example on reverse engineering branch predictors on older Intel processors <a href="https://xania.org/201602/bpu-part-one">is this blog post series</a>.</p>
 <p>We propose a semester project for masters students or dedicated bachelors students in which we tackle this challenge. An ideal candidate have taken a course on computer architecture and be familiar with the microarchitectural components. Experience with coding in x86 or ARM assembly will be very useful (but is not essential).</p>
+<h5 id="software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</h5>
+<ul>
+<li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
+<li>Keywords: compartmentalization, modularity, web applications</li>
+</ul>
+<p>Compartmentalization is a software-development principle to reduce a program’s attack surface, and limit the exploitability of bugs. A compartmentalized program is separated into a number of compartments, each of which executes with minimal privileges and rights, and communicates through structured API only. Essentially, an exploit in one compartment should not trivially compromise other compartments.</p>
+<p>We propose a semester/thesis project for masters students, and skilled bachelors students with software development expertise in which we will compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
+<p>A benchmark suite would preferably be portable, running on different operating systems/libraries, hardware, and be amenable to be ported onto hardware or software research proposals for better compartmentalization.</p>
 <h5 id="api-flow-graph-sanitization">API flow graph sanitization</h5>
 <ul>
 <li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
@@ -138,14 +144,6 @@
 <p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
 <p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
 <p>Based on the API graph we will then search for violations of the inferred values in real applications by implementing a sanitizer that tracks the API state and searches for violations of the valid state.</p>
-<h5 id="code-pruning-and-debloating">Code pruning and debloating</h5>
-<ul>
-<li>Point of contact: <a href="mailto:uros.tesic@epfl.ch">Tesic Uros</a></li>
-<li>Keywords: debloating, TCB reduction, code analysis, reflowing software</li>
-</ul>
-<p>Current systems leverage libraries to facilitate code reuse across processes. If a program uses data structures or functions from a library then the runtime linker connects those data structures when the program is instantiated. The intention of using shared libraries was to reduce memory pressure across processes. Nowadays where the amount of loaded code is dwarfed by the amount of data it is time to revisit this assumption.</p>
-<p>In this project we will develop a process to statically link binaries, removing any dependencies to other libraries. Libraries will be compiled as LLVM bitcode and inlined during the LTO/thinLTO process. We will measure performance of the newly compiled binaries as well as code reduction and security metrics, e.g., the increased precision of Control-Flow Integrity due to the decreased amount of targets.</p>
-<p>Evaluation targets are: security (reducing the amount of code, target locations, e.g., for CFI, and code pointers in general) and performance (relative accesses instead of GOT access, inlining, map pages/TLB optimization)</p>
 <h5 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</h5>
 <ul>
 <li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
@@ -158,13 +156,6 @@
 <li>Focus testing on tests that explored the changed area and see if you can focus testing on only the changed part</li>
 </ul>
 <p>Evaluation targets are common software repositories for open source projects.</p>
-<h5 id="evaluating-control-flow-hijacking-defenses">Evaluating control-flow hijacking defenses</h5>
-<ul>
-<li>Point of contact: <a href="mailto:uros.tesic@epfl.ch">Tesic Uros</a></li>
-<li>Keywords: systematization of knowledge, control-flow hijacking, security benchmark</li>
-</ul>
-<p>Buffer overflows, use after free attacks, and generally control-flow hijacking due to memory safety and type safety errors have been the cause of countless security vulnerabilities that lead to exploitation of software. Over the past 20 years a large amount of mitigations has been proposed that mitigate control-flow hijacking attacks. The only solution to prohibit the exploitation of this attack vector is memory safety, all other defenses may leave some avenue for attack.</p>
-<p>We will evaluate different control-flow hijacking mechanisms such as Control-Flow Integrity, executable but unreadable code, and other mechanisms, comparing them along different metrics. The goal of this project is to evaluate the power of the different mitigations and to rank them according to completeness, power, overhead, or other systematic weaknesses.</p>
 <h5 id="secure-memory-allocator">Secure Memory Allocator</h5>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
@@ -179,20 +170,6 @@
 <li>Use classes of allocations (depending on location/type) As part of the optimization, we will discuss how to store the metadata, e.g., per thread, per allocation size, or using a mixed data structure.</li>
 </ul>
 <p>Discussion points for the memory allocator are: (i) if meta-data and malloc’d data is separated, (ii) (configurable) canaries between blocks, (iii) (configurable) overwrite on free, (iv) (configurable) no-reuse policy, (v) as a performance optimization: leverage guard pages and efficiently allocate them.</p>
-<h5 id="leveraging-intel-pt-to-enforce-online-dispatch-safety">Leveraging Intel PT to enforce online dispatch safety</h5>
-<ul>
-<li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
-<li>Keywords: mitigation, control-flow hijacking</li>
-</ul>
-<p>Intel PT is a technology that allows recording of control flow decisions and evaluation of them on a different thread. The idea of this project is to implement a security monitor on top of Intel PT. By following certain jumps, we can encode messages and send them to the monitor to keep track of them.</p>
-<ul>
-<li>Encode object allocations into indirect (but controlled) calls to magic</li>
-<li>location so that they show up in the PT trace.</li>
-<li>Read out PT trace from second core to build up object graph</li>
-<li>Translate virtual dispatch to include the object location that is dispatched on (i.e., including it in the PT trace)</li>
-<li>Verify integrity on second core, pause before I/O or state system calls so that second core can catch up</li>
-</ul>
-<p>This approach allows us to keep a shadow object graph in a validator process and check every virtual dispatch at low overhead. The policy is the same as CPI but at much lower overhead as pointer writes no longer need to be checked inline in the original process.</p>
 <h5 id="binary-vulnerability-inference">Binary vulnerability inference</h5>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
