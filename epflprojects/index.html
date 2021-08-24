@@ -42,8 +42,6 @@
 <nav id="TOC">
 <ul>
 <li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
-<li><a href="#google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</a></li>
-<li><a href="#bluetooth-security">Bluetooth Security</a></li>
 <li><a href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</a></li>
 <li><a href="#software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</a></li>
 <li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
@@ -56,7 +54,7 @@
 </nav>
 <h5 id="gui-fuzzing">GUI Fuzzing</h5>
 <ul>
-<li>Point of contact: <a href="mailto:mathias.payer@epfl.ch">Mathias Payer</a></li>
+<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
 <li>Keywords: Android, GUI, fuzzing</li>
 </ul>
 <p>Fuzzing has recently seen a lot of use when analyzing libraries and different CLI applications. So far, GUI applications have remained elusive due to the complexity of interactions and different entry points into the code. Especially the complex interaction patterns with the code makes fuzzing GUI applications challenging. Additionally, a driver needs to create events for the individual aspects of the application. Similarly, modern applications frequently interact with a server whose state may be unknown.</p>
@@ -72,53 +70,6 @@
 <li>GUI programming</li>
 <li>Android</li>
 <li>C/C++ programming and event-based systems</li>
-</ul>
-<h5 id="google-apple-exposure-notification-gaen-experiments">Google-Apple Exposure Notification (GAEN) Experiments</h5>
-<ul>
-<li>Point of contact: <a href="mailto:daniele.antonioli@epfl.ch">Daniele Antonioli</a></li>
-<li>Keywords: GAEN, COVID-19, Testing, Experiments</li>
-</ul>
-<p>Google and Apple joined their efforts to develop a digital Exposure Notification system (GAEN) to help trace and slow-down the spread of SARS-CoV-2 (which can cause COVID-19). The GAEN system is based on several research efforts including the Decentralized Privacy-Preserving Proximity Tracing (DP3T) system developed by EPFL and other European research institutes.</p>
-<p>GAEN makes use of Bluetooth Low Energy (BLE) and mobile applications to wirelessly register contacts between application users in proximity. All contacts are registered in a secure and privacy-preserving way and they allow to automatically notify application users that were in contact with COVID-19 positive individuals. GAEN provides a unified API for iOS and Android and the API is evolving according to the developers’ needs and user feedback. Several countries in the EU have already developed and shipped their contact tracing app (e.g., SwissCovid app in Switzerland, Corona-Warn-App in Germany, and Immuni app in Italy).</p>
-<p>The GAEN-based contact tracing apps are used a huge set of heterogeneous smartphones. Smartphones’ diversity is due to different factors including the OS (e.g., Android and iOS), the Bluetooth chip (e.g., Broadcom and Qualcomm) and the supported Bluetooth version (e.g., 4.2 and 5.0). At EPFL we are running large scale measurement and calibration experiments to check that the GAEN API works as expected across different dimensions (OS, Bluetooth chip, Bluetooth Version, GAEN version). We are looking for motivated students interested in running such large-scale experiments. The results of those experiments are and will help to shape the GAEN API to stop the spread of SARS-CoV-2.</p>
-<p>A candidate should be interested in (or familiar with):</p>
-<ul>
-<li>Android and iOS</li>
-<li>Bluetooth</li>
-<li>Mobile app development</li>
-</ul>
-<p>Recommended readings:</p>
-<ul>
-<li><a href="https://developers.google.com/android/exposure-notifications/exposure-notifications-api">Android GAEN API</a></li>
-<li><a href="https://www.blog.google/documents/70/Exposure_Notification_-_Bluetooth_Specification_v1.2.2.pdf">Android GAEN BLE Spec</a></li>
-<li><a href="https://blog.google/documents/69/Exposure_Notification_-_Cryptography_Specification_v1.2.1.pdf">Android GAEN Crypto Spec</a></li>
-</ul>
-<h5 id="bluetooth-security">Bluetooth Security</h5>
-<ul>
-<li>Point of contact: <a href="mailto:daniele.antonioli@epfl.ch">Daniele Antonioli</a></li>
-<li>Keywords: Bluetooth, BR/EDR, BLE, Attacks, Defenses, Testing, RE, IoT</li>
-</ul>
-<p>Bluetooth is a pervasive technology for low power wireless communications, and it is used every day by billions of devices, including smartphone, laptops, wearables, cars, medical devices, industrial devices, etc. Bluetooth is specified in an open standard and it provides two main stacks: Bluetooth BR/EDR (aka Classic) and Bluetooth Low Energy (BLE). One (1) vulnerability in the Bluetooth standard results into billions of exploitable devices (e.g. the KNOB attack).</p>
-<p>We are interested in all security aspects of Bluetooth BR/EDR and BLE including attacks, defenses, reverse engineering of closed source (proprietary) software and hardware, static and dynamic analysis and testing/fuzzing. A project will likely cover one of the listed aspects but according to the student interest and progresses we can cover more.</p>
-<p>A candidate student should be familiar with:</p>
-<ul>
-<li>Bluetooth Host Controller Interface (HCI), e.g, HCI commands, HCI events, and the HCI protocol.</li>
-<li>Bluetooth security mechanisms, e.g, pairing, authentication, session establishment, and association</li>
-<li>Network analysis tools, e.g., <code>ifconfig</code> <code>wireshark</code></li>
-<li>Bluetooth tools such as <code>hciconfig</code>, <code>hcitool</code></li>
-</ul>
-<p>And ideally have some knowledge about:</p>
-<ul>
-<li>Bluetooth host stack codebase and API, e.g., BlueZ</li>
-<li>Bluetooth controller stack, e.g, LM and LMP</li>
-<li>Internalblue RE toolkit</li>
-<li>Bluetooth SoC and development boards</li>
-</ul>
-<p>Recommended reading:</p>
-<ul>
-<li>The KNOB is Broken: Exploiting Low Entropy in the Encryption Key (Daniele Antonioli et al)</li>
-<li>Low Entropy Key Negotiation Attacks on Bluetooth and Bluetooth Low Energy (Daniele Antonioli et al)</li>
-<li>Guide to Bluetooth Security (NIST)</li>
 </ul>
 <h5 id="reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</h5>
 <ul>
