@@ -39,7 +39,7 @@
 <p>If you are interested in any of these topics then contact the <a href="../#people">doctoral students</a> assigned with the project. Please start your email with &quot;[(MSc|BSc) (Project|Thesis)]&quot;, e.g., &quot;[MSc Project] LLVM-based code analysis&quot;. Please explain your background such as particular coding skills or classes you took in sufficient detail, also highlight why you're interested in the project.</p>
 <p>In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss! Reach out to the people most closest to your ideas and we'll let the ideas bubble up.</p>
 
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
 <li><a href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</a></li>
@@ -49,10 +49,14 @@
 <li><a href="#secure-memory-allocator">Secure Memory Allocator</a></li>
 <li><a href="#binary-vulnerability-inference">Binary vulnerability inference</a></li>
 <li><a href="#information-hiding-a-new-hope">Information Hiding: A New Hope</a></li>
+<li><a href="#function-boundary-discovery">Function boundary discovery</a></li>
+<li><a href="#retrofitting-defences-to-c-code">Retrofitting defences to C++ code</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
+<li><a href="#attestation-in-linux-platforms">Attestation in Linux platforms</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
-<h5 id="gui-fuzzing">GUI Fuzzing</h5>
+<h6 id="gui-fuzzing">GUI Fuzzing</h6>
 <ul>
 <li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
 <li>Keywords: Android, GUI, fuzzing</li>
@@ -71,7 +75,7 @@
 <li>Android</li>
 <li>C/C++ programming and event-based systems</li>
 </ul>
-<h5 id="reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</h5>
+<h6 id="reverse-engineering-cpu-microarchitecture">Reverse-engineering CPU microarchitecture</h6>
 <ul>
 <li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
 <li>Keywords: microarchitectural attacks, side channels</li>
@@ -79,7 +83,7 @@
 <p>A number of microarchitectural side-channel attacks have emerged since 2018, of which Spectre and Meltdown surfaced in January. A critical step in all of these attacks has been a reverse-engineering effort to determine the exact behavior of components of the microarchitecture: the cache organization and replacement policy, the branch prediction algorithm and structures.</p>
 <p>We would need to characterize the behavior of these components by designing experiments which target specific behavior, and can leak the structure of internal components. An example is the associativity of caches. An expt which leaks this information is the size of eviction sets. By accessing a set of memory addresses which we increase until we have cache evictions, we can figure out associativity. By modifying the access patterns, we can also infer the cache’s eviction policy. A great example on reverse engineering branch predictors on older Intel processors <a href="https://xania.org/201602/bpu-part-one">is this blog post series</a>.</p>
 <p>We propose a semester project for masters students or dedicated bachelors students in which we tackle this challenge. An ideal candidate have taken a course on computer architecture and be familiar with the microarchitectural components. Experience with coding in x86 or ARM assembly will be very useful (but is not essential).</p>
-<h5 id="software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</h5>
+<h6 id="software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</h6>
 <ul>
 <li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
 <li>Keywords: compartmentalization, modularity, web applications</li>
@@ -87,7 +91,7 @@
 <p>Compartmentalization is a software-development principle to reduce a program’s attack surface, and limit the exploitability of bugs. A compartmentalized program is separated into a number of compartments, each of which executes with minimal privileges and rights, and communicates through structured API only. Essentially, an exploit in one compartment should not trivially compromise other compartments.</p>
 <p>We propose a semester/thesis project for masters students, and skilled bachelors students with software development expertise in which we will compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
 <p>A benchmark suite would preferably be portable, running on different operating systems/libraries, hardware, and be amenable to be ported onto hardware or software research proposals for better compartmentalization.</p>
-<h5 id="api-flow-graph-sanitization">API flow graph sanitization</h5>
+<h6 id="api-flow-graph-sanitization">API flow graph sanitization</h6>
 <ul>
 <li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
 <li>Keywords: sanitizer, API graph, component analysis, compiler analysis</li>
@@ -95,7 +99,7 @@
 <p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
 <p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
 <p>Based on the API graph we will then search for violations of the inferred values in real applications by implementing a sanitizer that tracks the API state and searches for violations of the valid state.</p>
-<h5 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</h5>
+<h6 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</h6>
 <ul>
 <li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
 <li>Keywords: fuzzing, sanitization</li>
@@ -107,7 +111,7 @@
 <li>Focus testing on tests that explored the changed area and see if you can focus testing on only the changed part</li>
 </ul>
 <p>Evaluation targets are common software repositories for open source projects.</p>
-<h5 id="secure-memory-allocator">Secure Memory Allocator</h5>
+<h6 id="secure-memory-allocator">Secure Memory Allocator</h6>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Keywords: memory allocation, memory corruption, heap protection</li>
@@ -121,7 +125,7 @@
 <li>Use classes of allocations (depending on location/type) As part of the optimization, we will discuss how to store the metadata, e.g., per thread, per allocation size, or using a mixed data structure.</li>
 </ul>
 <p>Discussion points for the memory allocator are: (i) if meta-data and malloc’d data is separated, (ii) (configurable) canaries between blocks, (iii) (configurable) overwrite on free, (iv) (configurable) no-reuse policy, (v) as a performance optimization: leverage guard pages and efficiently allocate them.</p>
-<h5 id="binary-vulnerability-inference">Binary vulnerability inference</h5>
+<h6 id="binary-vulnerability-inference">Binary vulnerability inference</h6>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Keywords: binary analysis, vulnerability study, pattern-based search, measurement study</li>
@@ -134,7 +138,7 @@
 <li>Study on packaged/prepackaged libraries and track vulnerability provenance</li>
 </ul>
 <p>Note that this project could also focus on Android applications.</p>
-<h5 id="information-hiding-a-new-hope">Information Hiding: A New Hope</h5>
+<h6 id="information-hiding-a-new-hope">Information Hiding: A New Hope</h6>
 <ul>
 <li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Keywords: information hiding, kernel, systems security</li>
@@ -147,7 +151,66 @@
 <li>Evaluate: safe stack, OpenSSL to store keys, CFIXX, or type safety</li>
 </ul>
 <p>Key idea: Allocate the hidden memory areas in a safe space. High level memory reserved for kernel is the perfect place, most is unmapped and traps. The attacker cannot probe for this area.</p>
-<h5 id="other-projects">Other projects</h5>
+<h6 id="function-boundary-discovery">Function boundary discovery</h6>
+<ul>
+<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a></li>
+<li>Keywords: reverse engineering, program analysis</li>
+</ul>
+<p>In reverse engineering applications it is often interesting to know what constitutes code, and what is not. As part of this, we are interested to know where functions begin and end.</p>
+<p>This project will focus on two possible applications. Hexhive’s binary rewriting project Retrowrite requires highly accurate function discovery to function correctly, and as a proof of concept uses debug symbols. We aim to replace this with a detection mechanism.</p>
+<p>A related research project on binary similarity can be vastly improved by detecting function boundary techniques.</p>
+<p>This project will therefore have several goals, with the latter goals depending on the interests and motivations of the student.</p>
+<ul>
+<li>Firstly, we will write a simple linear scan for function boundaries that will identify call frames and bookkeep regions such that we can identify potential missing functions.</li>
+<li>An implementation in Retrowrite as a proof of concept.</li>
+<li>Research into function identification, boundary techniques to identify avenues for improvement and potential heuristics that can be used. Concretely we would aim to produce an overview of existing literature, the relative costs of techniques and to identify potential areas for improvement.</li>
+<li>The implementation of select techniques as a python library.</li>
+</ul>
+<p>This project can be tailored to various levels (Bachelor or Master) and will involve collaborations with outside researchers. Students should be familiar with basic reverse engineering skills and have some basic knowledge of how C programs are compiled, and be willing to improve their knowledge. Students should also be comfortable with Python.</p>
+<h6 id="retrofitting-defences-to-c-code">Retrofitting defences to C++ code</h6>
+<ul>
+<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a></li>
+<li>Keywords: reverse engineering, program analysis</li>
+</ul>
+<p>In a recent project we were able to improve our state of the art binary rewriting framework Retrowrite to add initial C++ support. This allows us to take a C++ binary and from it, produce assembly that we can recompile into a functional binary. We can also extract useful type information from C++ binaries.</p>
+<p>This project will extend upon the solid foundation we have established and use it to apply previous hexhive research as binary rewriting passes. Concretely our goals will be:</p>
+<ul>
+<li>To iron out any issues with the current C++ code by establishing ground truth (rewrite without any analysis) on large, real-world C++ projects.</li>
+<li>Implement CFIXX, HexTypes or both as Retrowrite analysis passes.</li>
+<li>Research and evaluate the suitability of other possible mitigations in the literature, and implement them.</li>
+<li>Compare to the ground truth to critically evaluate the cost of applying mitigations to the original binary.</li>
+</ul>
+<p>Ambitious students may wish to try to tackle such projects on closed source ARM binaries as found in, for example, the Android operating system. Students should have some basic experience with reverse engineering and tools used for this, and also OOP. C++ is an advantage but not required: an understanding of objects from any OO language, and exceptions, are a good starting point.</p>
+<h6 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h6>
+<ul>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a> or <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a>.</li>
+<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
+</ul>
+<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
+<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
+<ul>
+<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
+<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
+<li>Modify Retrowrite to support ARM64 kernel modules.</li>
+<li>Evalaute the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
+</ul>
+<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
+<h6 id="attestation-in-linux-platforms">Attestation in Linux platforms</h6>
+<ul>
+<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a>.</li>
+<li>Keywords: Linux, Attestation, Reproducible Builds</li>
+</ul>
+<p>Current state of the art Linux-based platforms use two techniques to enhance package security over simple package signing. The first is dm-verity. Root filesystems may be signed whole, and considered immutable. The second technique is reproducible builds. Reproducible builds extend the concept of author signed packages by allowing anyone with the same build tooling to produce an identical output. A concrete link between source and binary can be established, adding confidence the code is free of malicious modifications.</p>
+<p>Since filesystem images signed by dm-verity must first be composed and we wish to verify what we have signed, our goal is to focus on the second task. To produce a proof of concept demonstration, our goal would be:</p>
+<ul>
+<li>To research and detail the challenges and problems surrounding reproducible builds, and which Linux systmes offer them.</li>
+<li>To implement attestation tooling into an existing Linux package management suite, to produce attestations from signed code, including indicating that a build is reproducible.</li>
+<li>To implement a method for end users to perform their own reproduction of the build and to submit attestations of their own.</li>
+<li>To implement a variant of certificate transparency, but for attested builds.</li>
+</ul>
+<p>Students should be familiar and comfortable with the internal workings of Linux package management, have basic development skills in for example Python, and have basic cryptographic notions. A good sign would be having packaged a project for an open source distribution in the past.</p>
+<p>The goal for this project would be to produce work that can be contributed back to the open source community if successful.</p>
+<h6 id="other-projects">Other projects</h6>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
 
