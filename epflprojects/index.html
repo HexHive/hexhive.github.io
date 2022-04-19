@@ -52,10 +52,7 @@
 <li><a href="#mining-specification-from-blob-dissectors">Mining Specification from Blob Dissectors</a></li>
 <li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
 <li><a href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting Bug Constraints from Execution-Flow Deltas</a></li>
-<li><a href="#function-boundary-discovery">Function boundary discovery</a></li>
-<li><a href="#retrofitting-defences-to-c-code">Retrofitting defences to C++ code</a></li>
 <li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#attestation-in-linux-platforms">Attestation in Linux platforms</a></li>
 <li><a href="#leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
@@ -194,39 +191,9 @@
 <li>Translate the diff in constraints into a (set of) boolean statement(s) that could determine whether the bug is triggered in the original (unfixed) program</li>
 <li>Evaluate your approach on existing bugs in Magma (as control), and on new bugs handpicked from the plethora of CVEs published daily</li>
 </ul>
-<h6 id="function-boundary-discovery">Function boundary discovery</h6>
-<ul>
-<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a></li>
-<li>Keywords: reverse engineering, program analysis</li>
-</ul>
-<p>In reverse engineering applications it is often interesting to know what constitutes code, and what is not. As part of this, we are interested to know where functions begin and end.</p>
-<p>This project will focus on two possible applications. Hexhive’s binary rewriting project Retrowrite requires highly accurate function discovery to function correctly, and as a proof of concept uses debug symbols. We aim to replace this with a detection mechanism.</p>
-<p>A related research project on binary similarity can be vastly improved by detecting function boundary techniques.</p>
-<p>This project will therefore have several goals, with the latter goals depending on the interests and motivations of the student.</p>
-<ul>
-<li>Firstly, we will write a simple linear scan for function boundaries that will identify call frames and bookkeep regions such that we can identify potential missing functions.</li>
-<li>An implementation in Retrowrite as a proof of concept.</li>
-<li>Research into function identification, boundary techniques to identify avenues for improvement and potential heuristics that can be used. Concretely we would aim to produce an overview of existing literature, the relative costs of techniques and to identify potential areas for improvement.</li>
-<li>The implementation of select techniques as a python library.</li>
-</ul>
-<p>This project can be tailored to various levels (Bachelor or Master) and will involve collaborations with outside researchers. Students should be familiar with basic reverse engineering skills and have some basic knowledge of how C programs are compiled, and be willing to improve their knowledge. Students should also be comfortable with Python.</p>
-<h6 id="retrofitting-defences-to-c-code">Retrofitting defences to C++ code</h6>
-<ul>
-<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a></li>
-<li>Keywords: reverse engineering, program analysis</li>
-</ul>
-<p>In a recent project we were able to improve our state of the art binary rewriting framework Retrowrite to add initial C++ support. This allows us to take a C++ binary and from it, produce assembly that we can recompile into a functional binary. We can also extract useful type information from C++ binaries.</p>
-<p>This project will extend upon the solid foundation we have established and use it to apply previous hexhive research as binary rewriting passes. Concretely our goals will be:</p>
-<ul>
-<li>To iron out any issues with the current C++ code by establishing ground truth (rewrite without any analysis) on large, real-world C++ projects.</li>
-<li>Implement CFIXX, HexTypes or both as Retrowrite analysis passes.</li>
-<li>Research and evaluate the suitability of other possible mitigations in the literature, and implement them.</li>
-<li>Compare to the ground truth to critically evaluate the cost of applying mitigations to the original binary.</li>
-</ul>
-<p>Ambitious students may wish to try to tackle such projects on closed source ARM binaries as found in, for example, the Android operating system. Students should have some basic experience with reverse engineering and tools used for this, and also OOP. C++ is an advantage but not required: an understanding of objects from any OO language, and exceptions, are a good starting point.</p>
 <h6 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h6>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a> or <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a>.</li>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
 <li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
 </ul>
 <p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
@@ -238,21 +205,6 @@
 <li>Evalaute the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
 </ul>
 <p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
-<h6 id="attestation-in-linux-platforms">Attestation in Linux platforms</h6>
-<ul>
-<li>Point of contact: <a href="mailto:antony.vennard@epfl.ch">Antony Vennard</a>.</li>
-<li>Keywords: Linux, Attestation, Reproducible Builds</li>
-</ul>
-<p>Current state of the art Linux-based platforms use two techniques to enhance package security over simple package signing. The first is dm-verity. Root filesystems may be signed whole, and considered immutable. The second technique is reproducible builds. Reproducible builds extend the concept of author signed packages by allowing anyone with the same build tooling to produce an identical output. A concrete link between source and binary can be established, adding confidence the code is free of malicious modifications.</p>
-<p>Since filesystem images signed by dm-verity must first be composed and we wish to verify what we have signed, our goal is to focus on the second task. To produce a proof of concept demonstration, our goal would be:</p>
-<ul>
-<li>To research and detail the challenges and problems surrounding reproducible builds, and which Linux systmes offer them.</li>
-<li>To implement attestation tooling into an existing Linux package management suite, to produce attestations from signed code, including indicating that a build is reproducible.</li>
-<li>To implement a method for end users to perform their own reproduction of the build and to submit attestations of their own.</li>
-<li>To implement a variant of certificate transparency, but for attested builds.</li>
-</ul>
-<p>Students should be familiar and comfortable with the internal workings of Linux package management, have basic development skills in for example Python, and have basic cryptographic notions. A good sign would be having packaged a project for an open source distribution in the past.</p>
-<p>The goal for this project would be to produce work that can be contributed back to the open source community if successful.</p>
 <h6 id="leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</h6>
 <ul>
 <li>Point of contact : <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
@@ -260,13 +212,7 @@
 </ul>
 <p>Memory tagging is a hardware extension that adds a level of restriction when dereferencing memory addresses: the key held should match the memory key. This extension can be found implemented both by Memory Protection Keys (MPK) and Memory Tagging Extension (MTE), corresponding respectively to <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a> and <a href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a> architectures, which have a different granularity (page vs 16 bytes) and way to store the key (register or per-pointer), resulting in a substantially different programming model.</p>
 <p>The adoption of such a technology would be decisive for finding memory safety bugs in existing pieces of code such as <a href="https://lwn.net/Articles/643797/">databases</a>, cryptographic toolkits, operating system kernels, web servers, web browsers… Albeit this technologies are acknowledged (like MPK for which the Linux kernel provides <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an interface</a>), their adoption from the application side requires a previous study which remains to be done.</p>
-<p>This project includes:</p>
-<ul>
-<li>Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging.</li>
-<li>Source code modification of the codebase to include support to memory tagging.</li>
-<li>Functionality testing and performance impact benchmarking</li>
-<li>Potential adoption of the source code modification in the project upstream</li>
-</ul>
+<p>This project includes: * Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging. * Source code modification of the codebase to include support to memory tagging. * Functionality testing and performance impact benchmarking * Potential adoption of the source code modification in the project upstream</p>
 <p>This project can be performed by either bachelor or master students, as there are different challenging codebases that can be addressed. It is also possible to do a master thesis out of it by creating a compiler-based framework that outlines in a sound way the possible protections an application can receive and analyzes them.</p>
 <h6 id="other-projects">Other projects</h6>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
