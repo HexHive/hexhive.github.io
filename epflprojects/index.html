@@ -54,6 +54,7 @@
 <li><a href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting Bug Constraints from Execution-Flow Deltas</a></li>
 <li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
 <li><a href="#leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</a></li>
+<li><a href="#improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving Clang Static Analyzer’s False-positive and False-negative Rates</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -214,6 +215,20 @@
 <p>The adoption of such a technology would be decisive for finding memory safety bugs in existing pieces of code such as <a href="https://lwn.net/Articles/643797/">databases</a>, cryptographic toolkits, operating system kernels, web servers, web browsers… Albeit this technologies are acknowledged (like MPK for which the Linux kernel provides <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an interface</a>), their adoption from the application side requires a previous study which remains to be done.</p>
 <p>This project includes: * Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging. * Source code modification of the codebase to include support to memory tagging. * Functionality testing and performance impact benchmarking * Potential adoption of the source code modification in the project upstream</p>
 <p>This project can be performed by either bachelor or master students, as there are different challenging codebases that can be addressed. It is also possible to do a master thesis out of it by creating a compiler-based framework that outlines in a sound way the possible protections an application can receive and analyzes them.</p>
+<h6 id="improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving Clang Static Analyzer’s False-positive and False-negative Rates</h6>
+<ul>
+<li>Point of contact: <a href="mailto:gwangmu.lee@epfl.ch">Gwangmu Lee</a></li>
+<li>Keywords: static analyzer, symbolic analysis, software analysis</li>
+</ul>
+<p>Modern static analyzers like Clang Static Analyzer partially incorporate symbolic execution to improve the correctness of analysis. In particular, they provide generic symbolic analysis APIs to “checkers”, so that they can perform simple symbolic analysis on the source code to discover a dedicated kind of issues.</p>
+<p>However, static analyzers are still known for its high false-positive and false-negative rate, meaning that either most issues reported by the analyzers are non-existent (high false-positive) or most real issues are not reported at all (high false-negative). In this project, we will find how severe those limitations are and identify the reasons that contribute to these limitations. Finally, we will try to improve the issue-detecting capability by addressing the reasons.</p>
+<p>To be specific, you are expected to do the followings:</p>
+<ul>
+<li>Understand the inner workings of Clang Static Analyzer.</li>
+<li>Given a selected set of checkers, find the false-positive and false-negative rates on various source samples.</li>
+<li>Identify the reasons for false-positives and false-negatives with collected samples.</li>
+<li>Improve the issue-detection capability by addressing some of the identified reasons.</li>
+</ul>
 <h6 id="other-projects">Other projects</h6>
 <p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
