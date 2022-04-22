@@ -213,7 +213,13 @@
 </ul>
 <p>Memory tagging is a hardware extension that adds a level of restriction when dereferencing memory addresses: the key held should match the memory key. This extension can be found implemented both by Memory Protection Keys (MPK) and Memory Tagging Extension (MTE), corresponding respectively to <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a> and <a href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a> architectures, which have a different granularity (page vs 16 bytes) and way to store the key (register or per-pointer), resulting in a substantially different programming model.</p>
 <p>The adoption of such a technology would be decisive for finding memory safety bugs in existing pieces of code such as <a href="https://lwn.net/Articles/643797/">databases</a>, cryptographic toolkits, operating system kernels, web servers, web browsers… Albeit this technologies are acknowledged (like MPK for which the Linux kernel provides <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an interface</a>), their adoption from the application side requires a previous study which remains to be done.</p>
-<p>This project includes: * Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging. * Source code modification of the codebase to include support to memory tagging. * Functionality testing and performance impact benchmarking * Potential adoption of the source code modification in the project upstream</p>
+<p>This project includes:</p>
+<ul>
+<li>Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging.</li>
+<li>Source code modification of the codebase to include support to memory tagging.</li>
+<li>Functionality testing and performance impact benchmarking</li>
+<li>Potential adoption of the source code modification in the project upstream</li>
+</ul>
 <p>This project can be performed by either bachelor or master students, as there are different challenging codebases that can be addressed. It is also possible to do a master thesis out of it by creating a compiler-based framework that outlines in a sound way the possible protections an application can receive and analyzes them.</p>
 <h6 id="improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving Clang Static Analyzer’s False-positive and False-negative Rates</h6>
 <ul>
