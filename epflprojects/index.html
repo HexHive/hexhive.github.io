@@ -42,8 +42,6 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#forensic-analysis-of-memory-corruption-errors">Forensic
-analysis of memory corruption errors</a></li>
 <li><a href="#library-fuzzing">Library Fuzzing</a></li>
 <li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
 <li><a
@@ -77,41 +75,6 @@ Clang Static Analyzer’s False-positive and False-negative Rates</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
-<h6 id="forensic-analysis-of-memory-corruption-errors">Forensic analysis
-of memory corruption errors</h6>
-<ul>
-<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio
-Toffalini</a></li>
-<li>Keywords: Memory forensic, memory corruption</li>
-</ul>
-<p>Memory corruption errors may lead to control-flow/data-only attacks
-that hijack the program execution flow. This project wants to
-investigate novel approaches to observe such attacks and eventually
-provide forensic evidence for future analyses. This work investigates
-this challenge in the context of event-based programs (e.g., Web APIs).
-To sum up, we want to investigate the process memory before and after
-serving a request and identify memory regions erroneously written.</p>
-<p>The research questions are:</p>
-<ul>
-<li>Can we identify memory corruption errors for forensic analysis?</li>
-<li>Can we use such information to derive the root-of-cause?</li>
-</ul>
-<p>This is preliminary work, the student will need to instantiate a
-minimum set-up in which to verify future hypotheses. Specifically, the
-student will pursue the following (or a subset of) tasks:</p>
-<ul>
-<li>Setting up the environment (a VM) and installing a minimum set of
-application</li>
-<li>Developing a snapshotting mechanism to extract the memory
-overwritten after a request.</li>
-</ul>
-<p>Technical skills (not all needed):</p>
-<ul>
-<li>C/C++ userspace</li>
-<li>System manager</li>
-<li>kernel/event based</li>
-<li>Python (eventually)</li>
-</ul>
 <h6 id="library-fuzzing">Library Fuzzing</h6>
 <ul>
 <li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio
@@ -527,12 +490,16 @@ provides <a
 href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an
 interface</a>), their adoption from the application side requires a
 previous study which remains to be done.</p>
-<p>This project includes: * Acquisition of familiarity with a relevant
-program source code base that would benefit through memory tagging. *
-Source code modification of the codebase to include support to memory
-tagging. * Functionality testing and performance impact benchmarking *
-Potential adoption of the source code modification in the project
-upstream</p>
+<p>This project includes:</p>
+<ul>
+<li>Acquisition of familiarity with a relevant program source code base
+that would benefit through memory tagging.</li>
+<li>Source code modification of the codebase to include support to
+memory tagging.</li>
+<li>Functionality testing and performance impact benchmarking</li>
+<li>Potential adoption of the source code modification in the project
+upstream</li>
+</ul>
 <p>This project can be performed by either bachelor or master students,
 as there are different challenging codebases that can be addressed. It
 is also possible to do a master thesis out of it by creating a
