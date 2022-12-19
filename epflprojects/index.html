@@ -150,34 +150,6 @@ exploration to apps that have remote components.</p>
 <li>Android</li>
 <li>C/C++ programming and event-based systems</li>
 </ul>
-<h6 id="reverse-engineering-cpu-microarchitecture">Reverse-engineering
-CPU microarchitecture</h6>
-<ul>
-<li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri
-Bhattacharyya</a></li>
-<li>Keywords: microarchitectural attacks, side channels</li>
-</ul>
-<p>A number of microarchitectural side-channel attacks have emerged
-since 2018, of which Spectre and Meltdown surfaced in January. A
-critical step in all of these attacks has been a reverse-engineering
-effort to determine the exact behavior of components of the
-microarchitecture: the cache organization and replacement policy, the
-branch prediction algorithm and structures.</p>
-<p>We would need to characterize the behavior of these components by
-designing experiments which target specific behavior, and can leak the
-structure of internal components. An example is the associativity of
-caches. An expt which leaks this information is the size of eviction
-sets. By accessing a set of memory addresses which we increase until we
-have cache evictions, we can figure out associativity. By modifying the
-access patterns, we can also infer the cache’s eviction policy. A great
-example on reverse engineering branch predictors on older Intel
-processors <a href="https://xania.org/201602/bpu-part-one">is this blog
-post series</a>.</p>
-<p>We propose a semester project for masters students or dedicated
-bachelors students in which we tackle this challenge. An ideal candidate
-have taken a course on computer architecture and be familiar with the
-microarchitectural components. Experience with coding in x86 or ARM
-assembly will be very useful (but is not essential).</p>
 <h6
 id="ground-up-software-stack-for-compartmentalized-systems">Ground-up
 software stack for compartmentalized systems</h6>
