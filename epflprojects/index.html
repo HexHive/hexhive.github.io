@@ -42,37 +42,45 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#library-fuzzing">Library Fuzzing</a></li>
-<li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
-<li><a
-href="#reverse-engineering-cpu-microarchitecture">Reverse-engineering
-CPU microarchitecture</a></li>
-<li><a
-href="#ground-up-software-stack-for-compartmentalized-systems">Ground-up
-software stack for compartmentalized systems</a></li>
-<li><a href="#software-compartmentalization-benchmark-suite">Software
+<li><a href="#library-fuzzing" id="toc-library-fuzzing">Library
+Fuzzing</a></li>
+<li><a href="#gui-fuzzing" id="toc-gui-fuzzing">GUI Fuzzing</a></li>
+<li><a href="#designing-an-extensible-build-system"
+id="toc-designing-an-extensible-build-system">Designing an extensible
+build system</a></li>
+<li><a href="#multi-platform-firmware-analysis"
+id="toc-multi-platform-firmware-analysis">Multi-platform firmware
+analysis</a></li>
+<li><a href="#software-compartmentalization-benchmark-suite"
+id="toc-software-compartmentalization-benchmark-suite">Software
 Compartmentalization Benchmark suite</a></li>
-<li><a href="#api-flow-graph-sanitization">API flow graph
+<li><a href="#api-flow-graph-sanitization"
+id="toc-api-flow-graph-sanitization">API flow graph
 sanitization</a></li>
-<li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing
-and sanitization</a></li>
-<li><a href="#mining-specification-from-blob-dissectors">Mining
-Specification from Blob Dissectors</a></li>
-<li><a
-href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
+<li><a href="#incremental-fuzzing-and-sanitization"
+id="toc-incremental-fuzzing-and-sanitization">Incremental fuzzing and
+sanitization</a></li>
+<li><a href="#mining-specification-from-blob-dissectors"
+id="toc-mining-specification-from-blob-dissectors">Mining Specification
+from Blob Dissectors</a></li>
+<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark"
+id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
 Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a
-href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting
+<li><a href="#extracting-bug-constraints-from-execution-flow-deltas"
+id="toc-extracting-bug-constraints-from-execution-flow-deltas">Extracting
 Bug Constraints from Execution-Flow Deltas</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+<li><a href="#arm64-kernel-driver-retrowriting"
+id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
 Retrowriting</a></li>
-<li><a
-href="#leveraging-application-security-through-memory-tagging">Leveraging
+<li><a href="#leveraging-application-security-through-memory-tagging"
+id="toc-leveraging-application-security-through-memory-tagging">Leveraging
 application security through memory tagging</a></li>
 <li><a
-href="#improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving
+href="#improving-clang-static-analyzers-false-positive-and-false-negative-rates"
+id="toc-improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving
 Clang Static Analyzer’s False-positive and False-negative Rates</a></li>
-<li><a href="#other-projects">Other projects</a></li>
+<li><a href="#other-projects" id="toc-other-projects">Other
+projects</a></li>
 </ul>
 </nav>
 <h6 id="library-fuzzing">Library Fuzzing</h6>
@@ -150,36 +158,75 @@ exploration to apps that have remote components.</p>
 <li>Android</li>
 <li>C/C++ programming and event-based systems</li>
 </ul>
-<h6
-id="ground-up-software-stack-for-compartmentalized-systems">Ground-up
-software stack for compartmentalized systems</h6>
+<h6 id="designing-an-extensible-build-system">Designing an extensible
+build system</h6>
 <ul>
-<li>Point of contact: <a
-href="mailto:florian.hofhammer@fhofhammer.de">Florian Hofhammer</a></li>
-<li>Suitable for: BSc/MSc semester project<br />
-</li>
-<li>Keywords: compartmentalization, operating systems, runtime
-environment</li>
+<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
+<li>Suitable for: BSc semester project</li>
+<li>Keywords: software engineering, build systems</li>
 </ul>
-<p>Compartmentalization is the principle of dividing a software up into
-smaller modules (the so-called <em>compartments</em>) which are isolated
-from each other with respect to their view on memory and which can only
-communicate via well-defined interfaces. The goal of this principle is
-to minimize attack surface and impact of successful attacks against the
-compartmentalized software by having each compartment operate only
-according to the <em>principle of least privilege</em>.</p>
-<p>In the HexHive lab, we built a system supporting efficient
-compartmentalization architecturally and adapted a microkernel operating
-system to support this custom architecture. We propose a semester
-project in which the student will extend the ecosystem around this
-architecture and operating system to make it more generally applicable
-and to get more complex software running on this system.</p>
-<p>This includes, but is not limited to, device drivers, development
-frameworks, and system libraries. Ideally, at the end of the project we
-will be able to run extensive benchmarks on our system to evaluate both
-its performance and security guarantees. The project’s scope therefore
-comprises the full software stack from the operating system and its
-components up to general-purpose userspace software.</p>
+<p>Systems/software security researchers regularly work with medium to
+large sized software projects. Said projects are implemented in a
+multitude of programming languages, require a certain build order for
+certain parts of the software, or have other restrictions that need to
+be taken into consideration when building/installing the corresponding
+piece of software.</p>
+<p>In this context, different configuration and build systems provide
+different features, some of which are more important for a certain
+project than others. For example, GNU <a
+href="https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/html_node/index.html">autoconf</a>/<a
+href="https://www.gnu.org/software/automake/manual/html_node/index.html">automake</a>,
+<a href="https://cmake.org/">CMake</a> or <a
+href="https://mesonbuild.com/">Meson</a> are widely used tools for
+configuring and building complex software projects. In this project, the
+student will implement a reliable and extensible build system based on
+existing tooling for a medium-sized software project combining source
+files in different programming languages.</p>
+<p>A candidate should be interested in (and ideally already be familiar
+with):</p>
+<ul>
+<li>Build/compilation workflows (configuration, compilation, linking,
+etc.)</li>
+<li>Software engineering best practices (software
+design/architecture)</li>
+</ul>
+<h6 id="multi-platform-firmware-analysis">Multi-platform firmware
+analysis</h6>
+<ul>
+<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
+<li>Suitable for: MSc semester project</li>
+<li>Keywords: embedded systems, microcontrollers, RISC-V, ARM</li>
+</ul>
+<p>Firmware for microcontroller-based embedded systems differs from
+typical software running as a process on the everyday operating system
+on your laptop/desktop computer. First, it runs on <em>bare metal</em>,
+i.e., without OS abstractions such as syscalls in between the firmware
+and the CPU. Second, such firmware typically interacts with the outside
+world through <em>peripherals</em> such as, e.g., UART or Ethernet
+interfaces.</p>
+<p>While the biggest market share in the MCU space currently is held by
+ARM’s Cortex-M MCU lineup, RISC-V based chips are also on the rise with
+big tech manufacturers such as Western Digital or NVIDIA incorporating
+RISC-V chips in their products. Consequently, analyzing such firmware
+for bugs/vulnerabilities gains in importance, and corresponding tooling
+needs to be developed.</p>
+<p>In this project, we aim to generalize existing dynamic analysis
+tooling for firmware running on ARM Cortex-M MCUs to support other
+instruction set architectures as well. One of the targets is RISC-V, due
+to this ISA gaining widespread adoption, its simplicity, and available
+documentation.</p>
+<p>A candidate should be interested in (and ideally already be familiar
+with):</p>
+<ul>
+<li>Differences between embedded system firmware and common userspace
+software for commodity OSs (I/O, processes/threads/tasks, and other OS
+abstractions)</li>
+<li>Low-level programming (OS/hypervisor-level, C and assembly)</li>
+<li>RISC ISAs and platforms they are implemented in (ARM 32, ARM 64, ARM
+Thumb, RISC-V 32, RISC-V 64, etc.)</li>
+</ul>
 <h6 id="software-compartmentalization-benchmark-suite">Software
 Compartmentalization Benchmark suite</h6>
 <ul>
