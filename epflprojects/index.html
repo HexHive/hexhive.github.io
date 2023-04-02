@@ -42,82 +42,35 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#library-fuzzing" id="toc-library-fuzzing">Library
-Fuzzing</a></li>
-<li><a href="#gui-fuzzing" id="toc-gui-fuzzing">GUI Fuzzing</a></li>
-<li><a href="#designing-an-extensible-build-system"
-id="toc-designing-an-extensible-build-system">Designing an extensible
-build system</a></li>
-<li><a href="#multi-platform-firmware-analysis"
-id="toc-multi-platform-firmware-analysis">Multi-platform firmware
-analysis</a></li>
-<li><a href="#software-compartmentalization-benchmark-suite"
-id="toc-software-compartmentalization-benchmark-suite">Software
-Compartmentalization Benchmark suite</a></li>
-<li><a href="#api-flow-graph-sanitization"
-id="toc-api-flow-graph-sanitization">API flow graph
-sanitization</a></li>
-<li><a href="#incremental-fuzzing-and-sanitization"
-id="toc-incremental-fuzzing-and-sanitization">Incremental fuzzing and
-sanitization</a></li>
-<li><a href="#mining-specification-from-blob-dissectors"
-id="toc-mining-specification-from-blob-dissectors">Mining Specification
-from Blob Dissectors</a></li>
-<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark"
-id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
-Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a href="#extracting-bug-constraints-from-execution-flow-deltas"
-id="toc-extracting-bug-constraints-from-execution-flow-deltas">Extracting
-Bug Constraints from Execution-Flow Deltas</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting"
-id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
-Retrowriting</a></li>
-<li><a href="#leveraging-application-security-through-memory-tagging"
-id="toc-leveraging-application-security-through-memory-tagging">Leveraging
-application security through memory tagging</a></li>
-<li><a
-href="#improving-clang-static-analyzers-false-positive-and-false-negative-rates"
-id="toc-improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving
-Clang Static Analyzer’s False-positive and False-negative Rates</a></li>
-<li><a href="#other-projects" id="toc-other-projects">Other
-projects</a></li>
+<li><a href="#library-fuzzing">Library Fuzzing</a></li>
+<li><a href="#gui-fuzzing">GUI Fuzzing</a></li>
+<li><a href="#designing-an-extensible-build-system">Designing an extensible build system</a></li>
+<li><a href="#multi-platform-firmware-analysis">Multi-platform firmware analysis</a></li>
+<li><a href="#software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</a></li>
+<li><a href="#api-flow-graph-sanitization">API flow graph sanitization</a></li>
+<li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</a></li>
+<li><a href="#mining-specification-from-blob-dissectors">Mining Specification from Blob Dissectors</a></li>
+<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting Bug Constraints from Execution-Flow Deltas</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
+<li><a href="#leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</a></li>
+<li><a href="#improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving Clang Static Analyzer’s False-positive and False-negative Rates</a></li>
+<li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
 <h6 id="library-fuzzing">Library Fuzzing</h6>
 <ul>
-<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio
-Toffalini</a></li>
+<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio Toffalini</a></li>
 <li>Keywords: Linux, library, fuzzing</li>
 </ul>
-<p>Unlike fuzzing CLI programs, whose input is modelled as a stream of
-bytes, fuzzing libraries requires drivers (library consumers) to bridge
-an input into a sequence of APIs. The code coverage and error discovery
-depend on the API combinations within the driver. Therefore, it is
-crucial having interesting drivers to deeply test a target library.
-Unfortunately, building such drivers is challenging due to a lack of
-semantic information about the APIs and their usage. Moreover, insidious
-errors may appear only with rare API sequencies. Current techniques
-infer API usage from already-existing programs, however, the quality of
-the new drivers is inevitably limited by the existing consumers. In this
-project, we aim at generating library drivers without looking into
-existing consumers. Precisely, we use a combination of static analysis
-and automatic testing to mine the API usage and automatically build
-drivers able to explore a vaster library portion of code and trigger
-more complex errors.</p>
+<p>Unlike fuzzing CLI programs, whose input is modelled as a stream of bytes, fuzzing libraries requires drivers (library consumers) to bridge an input into a sequence of APIs. The code coverage and error discovery depend on the API combinations within the driver. Therefore, it is crucial having interesting drivers to deeply test a target library. Unfortunately, building such drivers is challenging due to a lack of semantic information about the APIs and their usage. Moreover, insidious errors may appear only with rare API sequencies. Current techniques infer API usage from already-existing programs, however, the quality of the new drivers is inevitably limited by the existing consumers. In this project, we aim at generating library drivers without looking into existing consumers. Precisely, we use a combination of static analysis and automatic testing to mine the API usage and automatically build drivers able to explore a vaster library portion of code and trigger more complex errors.</p>
 <p>The research questions in this project are:</p>
 <ul>
-<li>how can we design static analysis to infer API dependency
-information and use them to build interseting drivers?</li>
-<li>how can we use feedback from automatic testing to refine the driver
-generation (e.g., remove incorrect API sequences)?</li>
+<li>how can we design static analysis to infer API dependency information and use them to build interseting drivers?</li>
+<li>how can we use feedback from automatic testing to refine the driver generation (e.g., remove incorrect API sequences)?</li>
 </ul>
-<p>The candidate will require to assist the design and develop of a
-prototype for testing different driver building strategies. The
-prototype will be a combination of different technologies, such as
-static analysis over LLVM IR, Python modules for the driver generation,
-and fuzzer for the automatic testing.</p>
-<p>A candidate should be interested in (or familiar with) at least one
-of the following topics.</p>
+<p>The candidate will require to assist the design and develop of a prototype for testing different driver building strategies. The prototype will be a combination of different technologies, such as static analysis over LLVM IR, Python modules for the driver generation, and fuzzer for the automatic testing.</p>
+<p>A candidate should be interested in (or familiar with) at least one of the following topics.</p>
 <ul>
 <li>LLVM/Clang (also C/C++ will help)</li>
 <li>Basic knowledge of static analysis</li>
@@ -125,448 +78,180 @@ of the following topics.</p>
 </ul>
 <h6 id="gui-fuzzing">GUI Fuzzing</h6>
 <ul>
-<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di
-Bartolomeo</a></li>
+<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
 <li>Keywords: Android, GUI, fuzzing</li>
 </ul>
-<p>Fuzzing has recently seen a lot of use when analyzing libraries and
-different CLI applications. So far, GUI applications have remained
-elusive due to the complexity of interactions and different entry points
-into the code. Especially the complex interaction patterns with the code
-makes fuzzing GUI applications challenging. Additionally, a driver needs
-to create events for the individual aspects of the application.
-Similarly, modern applications frequently interact with a server whose
-state may be unknown.</p>
+<p>Fuzzing has recently seen a lot of use when analyzing libraries and different CLI applications. So far, GUI applications have remained elusive due to the complexity of interactions and different entry points into the code. Especially the complex interaction patterns with the code makes fuzzing GUI applications challenging. Additionally, a driver needs to create events for the individual aspects of the application. Similarly, modern applications frequently interact with a server whose state may be unknown.</p>
 <p>The key research questions in this project are:</p>
 <ul>
 <li>How can we design a fuzzer that handles event-based systems</li>
-<li>When fuzzing event-based systems, how can the input generation keep
-track of fired events and interactions with the GUI app</li>
-<li>If the app has a remote component, how can we model the abstract
-space of that component</li>
+<li>When fuzzing event-based systems, how can the input generation keep track of fired events and interactions with the GUI app</li>
+<li>If the app has a remote component, how can we model the abstract space of that component</li>
 </ul>
-<p>After reading into the topic of fuzzing and event-based state
-machines, the student will develop a model for event-based fuzzing with
-GUI interactions as the key part of the project. To evaluate the
-project, the student will then evaluate the newly generated fuzzer using
-a set of different GUI applications, targeting the exploration of Linux
-GUI apps. As a second goal, if time permits, the student will extend the
-exploration to apps that have remote components.</p>
+<p>After reading into the topic of fuzzing and event-based state machines, the student will develop a model for event-based fuzzing with GUI interactions as the key part of the project. To evaluate the project, the student will then evaluate the newly generated fuzzer using a set of different GUI applications, targeting the exploration of Linux GUI apps. As a second goal, if time permits, the student will extend the exploration to apps that have remote components.</p>
 <p>A candidate should be interested in (or familiar with):</p>
 <ul>
 <li>GUI programming</li>
 <li>Android</li>
 <li>C/C++ programming and event-based systems</li>
 </ul>
-<h6 id="designing-an-extensible-build-system">Designing an extensible
-build system</h6>
+<h6 id="designing-an-extensible-build-system">Designing an extensible build system</h6>
 <ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
-Hofhammer</a></li>
+<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
 <li>Suitable for: BSc semester project</li>
 <li>Keywords: software engineering, build systems</li>
 </ul>
-<p>Systems/software security researchers regularly work with medium to
-large sized software projects. Said projects are implemented in a
-multitude of programming languages, require a certain build order for
-certain parts of the software, or have other restrictions that need to
-be taken into consideration when building/installing the corresponding
-piece of software.</p>
-<p>In this context, different configuration and build systems provide
-different features, some of which are more important for a certain
-project than others. For example, GNU <a
-href="https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/html_node/index.html">autoconf</a>/<a
-href="https://www.gnu.org/software/automake/manual/html_node/index.html">automake</a>,
-<a href="https://cmake.org/">CMake</a> or <a
-href="https://mesonbuild.com/">Meson</a> are widely used tools for
-configuring and building complex software projects. In this project, the
-student will implement a reliable and extensible build system based on
-existing tooling for a medium-sized software project combining source
-files in different programming languages.</p>
-<p>A candidate should be interested in (and ideally already be familiar
-with):</p>
+<p>Systems/software security researchers regularly work with medium to large sized software projects. Said projects are implemented in a multitude of programming languages, require a certain build order for certain parts of the software, or have other restrictions that need to be taken into consideration when building/installing the corresponding piece of software.</p>
+<p>In this context, different configuration and build systems provide different features, some of which are more important for a certain project than others. For example, GNU <a href="https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/html_node/index.html">autoconf</a>/<a href="https://www.gnu.org/software/automake/manual/html_node/index.html">automake</a>, <a href="https://cmake.org/">CMake</a> or <a href="https://mesonbuild.com/">Meson</a> are widely used tools for configuring and building complex software projects. In this project, the student will implement a reliable and extensible build system based on existing tooling for a medium-sized software project combining source files in different programming languages.</p>
+<p>A candidate should be interested in (and ideally already be familiar with):</p>
 <ul>
-<li>Build/compilation workflows (configuration, compilation, linking,
-etc.)</li>
-<li>Software engineering best practices (software
-design/architecture)</li>
+<li>Build/compilation workflows (configuration, compilation, linking, etc.)</li>
+<li>Software engineering best practices (software design/architecture)</li>
 </ul>
-<h6 id="multi-platform-firmware-analysis">Multi-platform firmware
-analysis</h6>
+<h6 id="multi-platform-firmware-analysis">Multi-platform firmware analysis</h6>
 <ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
-Hofhammer</a></li>
+<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
 <li>Suitable for: MSc semester project</li>
 <li>Keywords: embedded systems, microcontrollers, RISC-V, ARM</li>
 </ul>
-<p>Firmware for microcontroller-based embedded systems differs from
-typical software running as a process on the everyday operating system
-on your laptop/desktop computer. First, it runs on <em>bare metal</em>,
-i.e., without OS abstractions such as syscalls in between the firmware
-and the CPU. Second, such firmware typically interacts with the outside
-world through <em>peripherals</em> such as, e.g., UART or Ethernet
-interfaces.</p>
-<p>While the biggest market share in the MCU space currently is held by
-ARM’s Cortex-M MCU lineup, RISC-V based chips are also on the rise with
-big tech manufacturers such as Western Digital or NVIDIA incorporating
-RISC-V chips in their products. Consequently, analyzing such firmware
-for bugs/vulnerabilities gains in importance, and corresponding tooling
-needs to be developed.</p>
-<p>In this project, we aim to generalize existing dynamic analysis
-tooling for firmware running on ARM Cortex-M MCUs to support other
-instruction set architectures as well. One of the targets is RISC-V, due
-to this ISA gaining widespread adoption, its simplicity, and available
-documentation.</p>
-<p>A candidate should be interested in (and ideally already be familiar
-with):</p>
+<p>Firmware for microcontroller-based embedded systems differs from typical software running as a process on the everyday operating system on your laptop/desktop computer. First, it runs on <em>bare metal</em>, i.e., without OS abstractions such as syscalls in between the firmware and the CPU. Second, such firmware typically interacts with the outside world through <em>peripherals</em> such as, e.g., UART or Ethernet interfaces.</p>
+<p>While the biggest market share in the MCU space currently is held by ARM’s Cortex-M MCU lineup, RISC-V based chips are also on the rise with big tech manufacturers such as Western Digital or NVIDIA incorporating RISC-V chips in their products. Consequently, analyzing such firmware for bugs/vulnerabilities gains in importance, and corresponding tooling needs to be developed.</p>
+<p>In this project, we aim to generalize existing dynamic analysis tooling for firmware running on ARM Cortex-M MCUs to support other instruction set architectures as well. One of the targets is RISC-V, due to this ISA gaining widespread adoption, its simplicity, and available documentation.</p>
+<p>A candidate should be interested in (and ideally already be familiar with):</p>
 <ul>
-<li>Differences between embedded system firmware and common userspace
-software for commodity OSs (I/O, processes/threads/tasks, and other OS
-abstractions)</li>
+<li>Differences between embedded system firmware and common userspace software for commodity OSs (I/O, processes/threads/tasks, and other OS abstractions)</li>
 <li>Low-level programming (OS/hypervisor-level, C and assembly)</li>
-<li>RISC ISAs and platforms they are implemented in (ARM 32, ARM 64, ARM
-Thumb, RISC-V 32, RISC-V 64, etc.)</li>
+<li>RISC ISAs and platforms they are implemented in (ARM 32, ARM 64, ARM Thumb, RISC-V 32, RISC-V 64, etc.)</li>
 </ul>
-<h6 id="software-compartmentalization-benchmark-suite">Software
-Compartmentalization Benchmark suite</h6>
+<h6 id="software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</h6>
 <ul>
-<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés
-Sánchez</a></li>
+<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
 <li>Keywords: compartmentalization, modularity, web applications</li>
 </ul>
-<p>Compartmentalization is a software-development principle to reduce a
-program’s attack surface, and limit the exploitability of bugs. A
-compartmentalized program is separated into a number of compartments,
-each of which executes with minimal privileges and rights, and
-communicates through structured API only. Essentially, an exploit in one
-compartment should not trivially compromise other compartments.</p>
-<p>We propose a semester/thesis project for masters students, and
-skilled bachelors students with software development expertise in which
-we will compartmentalize high-risk software. Prime examples of such
-software are webservers, browsers and operating systems. We are open to
-other suggestions. We would like to eventually have a set of
-representative software comprising a benchmark suite against which to
-evaluate the different compartmentalization techniques.</p>
-<p>A benchmark suite would preferably be portable, running on different
-operating systems/libraries, hardware, and be amenable to be ported onto
-hardware or software research proposals for better
-compartmentalization.</p>
+<p>Compartmentalization is a software-development principle to reduce a program’s attack surface, and limit the exploitability of bugs. A compartmentalized program is separated into a number of compartments, each of which executes with minimal privileges and rights, and communicates through structured API only. Essentially, an exploit in one compartment should not trivially compromise other compartments.</p>
+<p>We propose a semester/thesis project for masters students, and skilled bachelors students with software development expertise in which we will compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
+<p>A benchmark suite would preferably be portable, running on different operating systems/libraries, hardware, and be amenable to be ported onto hardware or software research proposals for better compartmentalization.</p>
 <h6 id="api-flow-graph-sanitization">API flow graph sanitization</h6>
 <ul>
-<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
-Badoux</a></li>
-<li>Keywords: sanitizer, API graph, component analysis, compiler
-analysis</li>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
+<li>Keywords: sanitizer, API graph, component analysis, compiler analysis</li>
 </ul>
-<p>Software components (e.g., libraries) often expose a complex API.
-When using a component, sequences of API calls will build up deep API
-state that is custom to the component. These API calls are often highly
-complex and dependent on each other. API call sequences for high level
-languages (Java) have been analyzed in software engineering but C/C++
-libraries so far were neglected due to lack of type information.</p>
-<p>In this project, we will build an API inference graph that, using a
-whole system analysis, collects all uses of a library (starting with a
-simple file-based search but potentially moving to a compiler-based
-analysis). This API graph encodes dependencies between individual API
-calls (e.g., read can only be called after open) and parameters for API
-calls (e.g., open may specify if the file can be written or not). The
-API graph encodes all possible API interactions and defines the
-parameter space for each method.</p>
-<p>Based on the API graph we will then search for violations of the
-inferred values in real applications by implementing a sanitizer that
-tracks the API state and searches for violations of the valid state.</p>
-<h6 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and
-sanitization</h6>
+<p>Software components (e.g., libraries) often expose a complex API. When using a component, sequences of API calls will build up deep API state that is custom to the component. These API calls are often highly complex and dependent on each other. API call sequences for high level languages (Java) have been analyzed in software engineering but C/C++ libraries so far were neglected due to lack of type information.</p>
+<p>In this project, we will build an API inference graph that, using a whole system analysis, collects all uses of a library (starting with a simple file-based search but potentially moving to a compiler-based analysis). This API graph encodes dependencies between individual API calls (e.g., read can only be called after open) and parameters for API calls (e.g., open may specify if the file can be written or not). The API graph encodes all possible API interactions and defines the parameter space for each method.</p>
+<p>Based on the API graph we will then search for violations of the inferred values in real applications by implementing a sanitizer that tracks the API state and searches for violations of the valid state.</p>
+<h6 id="incremental-fuzzing-and-sanitization">Incremental fuzzing and sanitization</h6>
 <ul>
-<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
-Badoux</a></li>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
 <li>Keywords: fuzzing, sanitization</li>
 </ul>
-<p>Dynamic software testing is currently an all or nothing approach.
-Software is compiled with sanitization and fuzzing and then evaluated.
-As software is developed in small steps, it would be advantageous to
-fuzz the delta that was added. This project will focus on developing a
-software testing environment that keeps track about areas that were
-already fuzzed or tested and which test cases had what coverage. This
-allows that, whenever a part of the software is changed, we can focus on
-that new part.</p>
+<p>Dynamic software testing is currently an all or nothing approach. Software is compiled with sanitization and fuzzing and then evaluated. As software is developed in small steps, it would be advantageous to fuzz the delta that was added. This project will focus on developing a software testing environment that keeps track about areas that were already fuzzed or tested and which test cases had what coverage. This allows that, whenever a part of the software is changed, we can focus on that new part.</p>
 <ul>
-<li>Develop a mechanism to track coverage across input and sanitizer
-checks</li>
+<li>Develop a mechanism to track coverage across input and sanitizer checks</li>
 <li>Correlate the coverage to specific areas of software</li>
-<li>Focus testing on tests that explored the changed area and see if you
-can focus testing on only the changed part</li>
+<li>Focus testing on tests that explored the changed area and see if you can focus testing on only the changed part</li>
 </ul>
-<p>Evaluation targets are common software repositories for open source
-projects.</p>
-<h6 id="mining-specification-from-blob-dissectors">Mining Specification
-from Blob Dissectors</h6>
+<p>Evaluation targets are common software repositories for open source projects.</p>
+<h6 id="mining-specification-from-blob-dissectors">Mining Specification from Blob Dissectors</h6>
 <ul>
-<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad
-Hazimeh</a></li>
+<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Suitable for: MSc semester project/thesis, internship</li>
 <li>Keywords: fuzzing, grammar, static analysis</li>
 </ul>
-<p>Description: Software testing often requires identifying the input
-vectors of a system and supplying it with meaningful data that exercises
-its different functionalities. Fuzz testing is one such technique which
-heavily relies on generating structurally-valid inputs, albeit mostly
-through random mutations and strokes of luck. Fuzzing can benefit
-greatly from a target-specific description of the input formats and
-sequences in order to evaluate the system-under-test (SUT) more
-effectively. However, writing these specifications is a time-consuming
-task and poses a daunting challenge for most developers. One key
-insight, nonetheless, is that specification is all around us: all
-protocol-compliant software presents a machine-language encoding of some
-specification. Developers have already done the task of translating
-human-readable standards and descriptions into machine code, and as
-such, have already made a leap closer to machine-parsable specification
-which fuzzers could leverage. The data is there, in the source code, and
-all that’s left is to trim away the application-specific code that
-consumes the parsed data.</p>
-<p>One good starting point would be blob dissectors, such as those
-available in Wireshark, Suricata, and Zeek IDS, which mostly encode the
-bare specification without additional processing. The lack of “clutter”
-in the code should make it easier to identify the different fields in
-the data blobs, how to parse them, and what dependencies exist among
-them. These dissectors also often encode the (partial) protocol state
-machines for sanity-checking the sequence of messages and tracking
-requests and sessions. Although the encoded specification may not be
-entirely complete, it still serves as a goldmine for fuzzers since it
-should enable more concise and state-aware input generation that could
-evaluate the SUT more efficiently and more comprehensively.</p>
+<p>Description: Software testing often requires identifying the input vectors of a system and supplying it with meaningful data that exercises its different functionalities. Fuzz testing is one such technique which heavily relies on generating structurally-valid inputs, albeit mostly through random mutations and strokes of luck. Fuzzing can benefit greatly from a target-specific description of the input formats and sequences in order to evaluate the system-under-test (SUT) more effectively. However, writing these specifications is a time-consuming task and poses a daunting challenge for most developers. One key insight, nonetheless, is that specification is all around us: all protocol-compliant software presents a machine-language encoding of some specification. Developers have already done the task of translating human-readable standards and descriptions into machine code, and as such, have already made a leap closer to machine-parsable specification which fuzzers could leverage. The data is there, in the source code, and all that’s left is to trim away the application-specific code that consumes the parsed data.</p>
+<p>One good starting point would be blob dissectors, such as those available in Wireshark, Suricata, and Zeek IDS, which mostly encode the bare specification without additional processing. The lack of “clutter” in the code should make it easier to identify the different fields in the data blobs, how to parse them, and what dependencies exist among them. These dissectors also often encode the (partial) protocol state machines for sanity-checking the sequence of messages and tracking requests and sessions. Although the encoded specification may not be entirely complete, it still serves as a goldmine for fuzzers since it should enable more concise and state-aware input generation that could evaluate the SUT more efficiently and more comprehensively.</p>
 <p>The project would take place across several phases:</p>
 <ol type="1">
-<li><strong>Reconnaissance</strong>: Research what’s already been done
-in the field of static analysis and extraction of code semantics, and
-more specifically, work on dissector synthesis and analysis.</li>
-<li><strong>Enumeration</strong>: Inspect the existing implementations
-of dissectors, how they interface with the software (e.g. Wireshark),
-how they encode specification, and how to manually map source code to a
-set of rules (i.e. parsing and state-tracking).</li>
-<li><strong>Abstraction</strong>: Lift the source code into a
-higher-level abstraction of the specification, and systematize the
-specification extraction process. Static code analysis may come in handy
-at this phase, to help you reason about code from a semantic
-viewpoint.</li>
-<li><strong>Assessment</strong>: Test your system against existing
-dissectors and identify its shortcomings and how we could address
-them.</li>
-<li><strong>Packaging</strong>: Translate the extracted specification
-into a fuzzer-readable encoding that enables (optionally, state-aware)
-input generation with dependency resolution primitives.</li>
+<li><strong>Reconnaissance</strong>: Research what’s already been done in the field of static analysis and extraction of code semantics, and more specifically, work on dissector synthesis and analysis.</li>
+<li><strong>Enumeration</strong>: Inspect the existing implementations of dissectors, how they interface with the software (e.g. Wireshark), how they encode specification, and how to manually map source code to a set of rules (i.e. parsing and state-tracking).</li>
+<li><strong>Abstraction</strong>: Lift the source code into a higher-level abstraction of the specification, and systematize the specification extraction process. Static code analysis may come in handy at this phase, to help you reason about code from a semantic viewpoint.</li>
+<li><strong>Assessment</strong>: Test your system against existing dissectors and identify its shortcomings and how we could address them.</li>
+<li><strong>Packaging</strong>: Translate the extracted specification into a fuzzer-readable encoding that enables (optionally, state-aware) input generation with dependency resolution primitives.</li>
 </ol>
-<h6 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
-Magma: A Ground-Truth Fuzzing Benchmark</h6>
+<h6 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</h6>
 <ul>
-<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad
-Hazimeh</a></li>
+<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Suitable for: BS semester project, MSc optional project</li>
 <li>Keywords: fuzzing, evaluation, benchmark</li>
 </ul>
-<p><a href="https://hexhive.epfl.ch/magma">Magma</a> is a fuzzer
-evaluation framework that enables accurate performance measurements by
-leveraging ground-truth information on bugs in real software. Magma
-includes a library of real targets (e.g. libpng, libtiff, openssl, etc…)
-with real bugs that have been re-introduced into those targets based on
-previous bug reports and fix commits. By reverse-engineering the commit
-which fixed a certain bug, we can identify what the root cause of the
-bug was, reintroduce it, and add a check (a canary) to determine when
-that bug is triggered, based on program state information available at
-runtime (i.e., variable values).</p>
-<p>As fuzzers are tuned and improved on a regular basis, the benchmark
-upon which they’re evaluated must equally be upgraded, to keep up with
-the progress and avoid becoming out-dated. To achieve this, new targets
-and bugs must be added frequently, and old targets and bugs must be
-checked again for relevance, in case some bugs become
-unreachable/untrigerrable, or in case the target’s source code has
-changed enough to disallow the reintroduction of some bug without
-reintroducing old code functionality.</p>
+<p><a href="https://hexhive.epfl.ch/magma">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. By reverse-engineering the commit which fixed a certain bug, we can identify what the root cause of the bug was, reintroduce it, and add a check (a canary) to determine when that bug is triggered, based on program state information available at runtime (i.e., variable values).</p>
+<p>As fuzzers are tuned and improved on a regular basis, the benchmark upon which they’re evaluated must equally be upgraded, to keep up with the progress and avoid becoming out-dated. To achieve this, new targets and bugs must be added frequently, and old targets and bugs must be checked again for relevance, in case some bugs become unreachable/untrigerrable, or in case the target’s source code has changed enough to disallow the reintroduction of some bug without reintroducing old code functionality.</p>
 <p>For this project, you are expected to:</p>
 <ul>
-<li>Identify good target additions to Magma, justify their impact on the
-evaluation framework, and study the viability of their bug history;</li>
-<li>Enumerate the bugs for a selected target and process them
-individually, by decreasing order of recency, reintroduce them into the
-target, and provide the canaries that determine whether or not a bug is
-triggered.</li>
-<li>Add the target to the Magma code base and evaluate it against the
-available set of fuzzers to identify the feasibility of fuzzing it and
-triggering the injected bugs.</li>
+<li>Identify good target additions to Magma, justify their impact on the evaluation framework, and study the viability of their bug history;</li>
+<li>Enumerate the bugs for a selected target and process them individually, by decreasing order of recency, reintroduce them into the target, and provide the canaries that determine whether or not a bug is triggered.</li>
+<li>Add the target to the Magma code base and evaluate it against the available set of fuzzers to identify the feasibility of fuzzing it and triggering the injected bugs.</li>
 </ul>
-<p>As a tangent, Magma could also benefit greatly from functional
-improvements:</p>
+<p>As a tangent, Magma could also benefit greatly from functional improvements:</p>
 <ul>
-<li>automatic distributed task scheduling, work collection, and
-post-processing pipelines</li>
-<li>periodic scheduling of fuzzing campaigns with real-time monitoring
-of progress through the web-based reports page</li>
-<li>CI/CD pipeline for evaluating new targets and bugs, identifying
-build errors on the <code>dev</code> branch or regression-testing old
-bugs that can no longer be triggered due to updated target code
-bases</li>
+<li>automatic distributed task scheduling, work collection, and post-processing pipelines</li>
+<li>periodic scheduling of fuzzing campaigns with real-time monitoring of progress through the web-based reports page</li>
+<li>CI/CD pipeline for evaluating new targets and bugs, identifying build errors on the <code>dev</code> branch or regression-testing old bugs that can no longer be triggered due to updated target code bases</li>
 </ul>
-<h6
-id="extracting-bug-constraints-from-execution-flow-deltas">Extracting
-Bug Constraints from Execution-Flow Deltas</h6>
+<h6 id="extracting-bug-constraints-from-execution-flow-deltas">Extracting Bug Constraints from Execution-Flow Deltas</h6>
 <ul>
-<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad
-Hazimeh</a></li>
+<li>Point of contact: <a href="mailto:ahmad.hazimeh@epfl.ch">Ahmad Hazimeh</a></li>
 <li>Suitable for: MSc semester project/thesis, internship</li>
 <li>Keywords: root cause, constraints, control-flow, delta analysis</li>
 </ul>
-<p>Patch mining is the process of analyzing a fix in program code to
-identify the semantics of the change and reconstruct the root cause of
-the bug based on the applied modifications. This method could mainly be
-used for the development of 1-day exploits [<a
-href="https://www.blackhat.com/presentations/bh-usa-09/OH/BHUSA09-Oh-DiffingBinaries-PAPER.pdf">1</a>],
-or for program repair [<a
-href="https://arxiv.org/abs/1810.01791">2</a>,<a
-href="https://ieeexplore.ieee.org/document/8530036">3</a>].
-Nevertheless, patch mining has also been used for the development of <a
-href="https://hexhive.epfl.ch/magma">Magma</a>. By inspecting previous
-bug fixes, we can identify and localize the changes in source code
-responsible for the fix, and consequently infer the original root cause
-of the bug, reintroduce it, and provide a set of constraints which
-determine whether or not the bug is triggered at runtime. However, this
-process was applied manually during Magma’s development, making it the
-most time-consuming aspect of this benchmark. In order to enable faster
-updates and more swift maintenance of Magma, automating the patch mining
-and constraint extraction process is key.</p>
-<p>By examining the flow of control and data before and after the patch
-and identifying the differences, we should be able to reconstruct the
-original constraints for triggering the bug.</p>
+<p>Patch mining is the process of analyzing a fix in program code to identify the semantics of the change and reconstruct the root cause of the bug based on the applied modifications. This method could mainly be used for the development of 1-day exploits [<a href="https://www.blackhat.com/presentations/bh-usa-09/OH/BHUSA09-Oh-DiffingBinaries-PAPER.pdf">1</a>], or for program repair [<a href="https://arxiv.org/abs/1810.01791">2</a>,<a href="https://ieeexplore.ieee.org/document/8530036">3</a>]. Nevertheless, patch mining has also been used for the development of <a href="https://hexhive.epfl.ch/magma">Magma</a>. By inspecting previous bug fixes, we can identify and localize the changes in source code responsible for the fix, and consequently infer the original root cause of the bug, reintroduce it, and provide a set of constraints which determine whether or not the bug is triggered at runtime. However, this process was applied manually during Magma’s development, making it the most time-consuming aspect of this benchmark. In order to enable faster updates and more swift maintenance of Magma, automating the patch mining and constraint extraction process is key.</p>
+<p>By examining the flow of control and data before and after the patch and identifying the differences, we should be able to reconstruct the original constraints for triggering the bug.</p>
 <p>For this project, you are thus expected to:</p>
 <ul>
-<li>Research methods of statically analyzing code snippets and
-constructing partial CFGs describing the operations and their context
-within the modified code</li>
-<li>Establish a method for collecting symbolic constraints from these
-partial graphs, and calculate the diff before and after the patch</li>
-<li>Translate the diff in constraints into a (set of) boolean
-statement(s) that could determine whether the bug is triggered in the
-original (unfixed) program</li>
-<li>Evaluate your approach on existing bugs in Magma (as control), and
-on new bugs handpicked from the plethora of CVEs published daily</li>
+<li>Research methods of statically analyzing code snippets and constructing partial CFGs describing the operations and their context within the modified code</li>
+<li>Establish a method for collecting symbolic constraints from these partial graphs, and calculate the diff before and after the patch</li>
+<li>Translate the diff in constraints into a (set of) boolean statement(s) that could determine whether the bug is triggered in the original (unfixed) program</li>
+<li>Evaluate your approach on existing bugs in Magma (as control), and on new bugs handpicked from the plethora of CVEs published daily</li>
 </ul>
-<h6 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
-Retrowriting</h6>
+<h6 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h6>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di
-Bartolomeo</a></li>
-<li>Keywords: Retrowrite, binary rewriting, mobile reverse
-engineering</li>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
 </ul>
-<p>A common feature of the Android ecosystem are proprietary binary
-blobs. Vendors may not update these and may not compile them with the
-latest exploit mitigations. A particular cause of concern are kernel
-modules given their privileged access.</p>
-<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting
-tool that can retrofit mitigations to legacy binaries without the need
-for source code. This currently works on ARM64 and x86-64 platforms, and
-x86-64 in kernel mode. The goal of this project would be to target ARM64
-kernel modules, with the ability to add for example kASAN. We would aim
-to:</p>
+<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
+<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
 <ul>
-<li>Identify kernel modules of particular interest, including open
-source modules to act as ground truth.</li>
-<li>Produce a framework to evaluate the effectiveness of binary
-rewriting these modules by exercising their functionality, using fuzzing
-where appropriate.</li>
+<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
+<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
 <li>Modify Retrowrite to support ARM64 kernel modules.</li>
-<li>Evalaute the implementation against ground truth targets and against
-targets of interest. Evaluate the cost of instrumentation passes.</li>
+<li>Evalaute the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
 </ul>
-<p>Students should have a basic understanding of how Linux kernel
-modules are built and loaded, and a good grasp of Linux internals.
-Ambitious students may also have Android Internals knowledge and be
-interested in testing their work on Android hardware.</p>
-<h6
-id="leveraging-application-security-through-memory-tagging">Leveraging
-application security through memory tagging</h6>
+<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
+<h6 id="leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</h6>
 <ul>
-<li>Point of contact : <a href="mailto:andres.sanchez@epfl.ch">Andrés
-Sánchez</a></li>
+<li>Point of contact : <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
 <li>Keywords: Software development, virtual memory, compilers</li>
 </ul>
-<p>Memory tagging is a hardware extension that adds a level of
-restriction when dereferencing memory addresses: the key held should
-match the memory key. This extension can be found implemented both by
-Memory Protection Keys (MPK) and Memory Tagging Extension (MTE),
-corresponding respectively to <a
-href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a>
-and <a
-href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a>
-architectures, which have a different granularity (page vs 16 bytes) and
-way to store the key (register or per-pointer), resulting in a
-substantially different programming model.</p>
-<p>The adoption of such a technology would be decisive for finding
-memory safety bugs in existing pieces of code such as <a
-href="https://lwn.net/Articles/643797/">databases</a>, cryptographic
-toolkits, operating system kernels, web servers, web browsers… Albeit
-this technologies are acknowledged (like MPK for which the Linux kernel
-provides <a
-href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an
-interface</a>), their adoption from the application side requires a
-previous study which remains to be done.</p>
+<p>Memory tagging is a hardware extension that adds a level of restriction when dereferencing memory addresses: the key held should match the memory key. This extension can be found implemented both by Memory Protection Keys (MPK) and Memory Tagging Extension (MTE), corresponding respectively to <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a> and <a href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a> architectures, which have a different granularity (page vs 16 bytes) and way to store the key (register or per-pointer), resulting in a substantially different programming model.</p>
+<p>The adoption of such a technology would be decisive for finding memory safety bugs in existing pieces of code such as <a href="https://lwn.net/Articles/643797/">databases</a>, cryptographic toolkits, operating system kernels, web servers, web browsers… Albeit this technologies are acknowledged (like MPK for which the Linux kernel provides <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an interface</a>), their adoption from the application side requires a previous study which remains to be done.</p>
 <p>This project includes:</p>
 <ul>
-<li>Acquisition of familiarity with a relevant program source code base
-that would benefit through memory tagging.</li>
-<li>Source code modification of the codebase to include support to
-memory tagging.</li>
+<li>Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging.</li>
+<li>Source code modification of the codebase to include support to memory tagging.</li>
 <li>Functionality testing and performance impact benchmarking</li>
-<li>Potential adoption of the source code modification in the project
-upstream</li>
+<li>Potential adoption of the source code modification in the project upstream</li>
 </ul>
-<p>This project can be performed by either bachelor or master students,
-as there are different challenging codebases that can be addressed. It
-is also possible to do a master thesis out of it by creating a
-compiler-based framework that outlines in a sound way the possible
-protections an application can receive and analyzes them.</p>
-<h6
-id="improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving
-Clang Static Analyzer’s False-positive and False-negative Rates</h6>
+<p>This project can be performed by either bachelor or master students, as there are different challenging codebases that can be addressed. It is also possible to do a master thesis out of it by creating a compiler-based framework that outlines in a sound way the possible protections an application can receive and analyzes them.</p>
+<h6 id="improving-clang-static-analyzers-false-positive-and-false-negative-rates">Improving Clang Static Analyzer’s False-positive and False-negative Rates</h6>
 <ul>
-<li>Point of contact: <a href="mailto:gwangmu.lee@epfl.ch">Gwangmu
-Lee</a></li>
+<li>Point of contact: <a href="mailto:gwangmu.lee@epfl.ch">Gwangmu Lee</a></li>
 <li>Keywords: static analyzer, symbolic analysis, software analysis</li>
 </ul>
-<p>Modern static analyzers like Clang Static Analyzer partially
-incorporate symbolic execution to improve the correctness of analysis.
-In particular, they provide generic symbolic analysis APIs to
-“checkers”, so that they can perform simple symbolic analysis on the
-source code to discover a dedicated kind of issues.</p>
-<p>However, static analyzers are still known for its high false-positive
-and false-negative rate, meaning that either most issues reported by the
-analyzers are non-existent (high false-positive) or most real issues are
-not reported at all (high false-negative). In this project, we will find
-how severe those limitations are and identify the reasons that
-contribute to these limitations. Finally, we will try to improve the
-issue-detecting capability by addressing the reasons.</p>
+<p>Modern static analyzers like Clang Static Analyzer partially incorporate symbolic execution to improve the correctness of analysis. In particular, they provide generic symbolic analysis APIs to “checkers”, so that they can perform simple symbolic analysis on the source code to discover a dedicated kind of issues.</p>
+<p>However, static analyzers are still known for its high false-positive and false-negative rate, meaning that either most issues reported by the analyzers are non-existent (high false-positive) or most real issues are not reported at all (high false-negative). In this project, we will find how severe those limitations are and identify the reasons that contribute to these limitations. Finally, we will try to improve the issue-detecting capability by addressing the reasons.</p>
 <p>To be specific, you are expected to do the followings:</p>
 <ul>
 <li>Understand the inner workings of Clang Static Analyzer.</li>
-<li>Given a selected set of checkers, find the false-positive and
-false-negative rates on various source samples.</li>
-<li>Identify the reasons for false-positives and false-negatives with
-collected samples.</li>
-<li>Improve the issue-detection capability by addressing some of the
-identified reasons.</li>
+<li>Given a selected set of checkers, find the false-positive and false-negative rates on various source samples.</li>
+<li>Identify the reasons for false-positives and false-negatives with collected samples.</li>
+<li>Improve the issue-detection capability by addressing some of the identified reasons.</li>
 </ul>
 <h6 id="other-projects">Other projects</h6>
-<p>Several other projects are possible in the areas of software and
-system security. We are open to discuss possible projects around the
-development of security benchmarks, using machine learning to detect
-vulnerabilities, secure memory allocation, sanitizer-based coverage
-tracking, and others.</p>
+<p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
 
 </div>
 </section>
 
 </main>
-<script src="js/jquery-3.4.1.slim.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
