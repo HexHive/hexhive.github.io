@@ -42,53 +42,42 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#library-fuzzing" id="toc-library-fuzzing">Library
-Fuzzing</a></li>
-<li><a href="#android-acropalypse" id="toc-android-acropalypse">Android
-acropalypse</a></li>
-<li><a href="#designing-an-extensible-build-system"
-id="toc-designing-an-extensible-build-system">Designing an extensible
-build system</a></li>
-<li><a href="#multi-platform-firmware-analysis"
-id="toc-multi-platform-firmware-analysis">Multi-platform firmware
+<li><a href="#library-fuzzing">Library Fuzzing</a></li>
+<li><a href="#android-acropalypse">Android acropalypse</a></li>
+<li><a href="#designing-an-extensible-build-system">Designing an
+extensible build system</a></li>
+<li><a href="#multi-platform-firmware-analysis">Multi-platform firmware
 analysis</a></li>
-<li><a href="#software-compartmentalization-benchmark-suite"
-id="toc-software-compartmentalization-benchmark-suite">Software
+<li><a href="#software-compartmentalization-benchmark-suite">Software
 Compartmentalization Benchmark suite</a></li>
-<li><a href="#api-flow-graph-sanitization"
-id="toc-api-flow-graph-sanitization">API flow graph
+<li><a href="#api-flow-graph-sanitization">API flow graph
 sanitization</a></li>
-<li><a href="#incremental-fuzzing-and-sanitization"
-id="toc-incremental-fuzzing-and-sanitization">Incremental fuzzing and
-sanitization</a></li>
-<li><a href="#mining-specification-from-blob-dissectors"
-id="toc-mining-specification-from-blob-dissectors">Mining Specification
-from Blob Dissectors</a></li>
-<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark"
-id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
+<li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing
+and sanitization</a></li>
+<li><a href="#mining-specification-from-blob-dissectors">Mining
+Specification from Blob Dissectors</a></li>
+<li><a
+href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
 Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a href="#extracting-bug-constraints-from-execution-flow-deltas"
-id="toc-extracting-bug-constraints-from-execution-flow-deltas">Extracting
+<li><a
+href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting
 Bug Constraints from Execution-Flow Deltas</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting"
-id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
 Retrowriting</a></li>
-<li><a href="#leveraging-application-security-through-memory-tagging"
-id="toc-leveraging-application-security-through-memory-tagging">Leveraging
+<li><a
+href="#leveraging-application-security-through-memory-tagging">Leveraging
 application security through memory tagging</a></li>
-<li><a href="#scripting-language-implementation-bug-analysis"
-id="toc-scripting-language-implementation-bug-analysis">Scripting
+<li><a href="#scripting-language-implementation-bug-analysis">Scripting
 Language Implementation Bug Analysis</a></li>
-<li><a href="#house-of-scudo" id="toc-house-of-scudo">House of
-SCUDO</a></li>
-<li><a href="#malicious-runtime-object-manipulation"
-id="toc-malicious-runtime-object-manipulation">Malicious Runtime Object
-Manipulation</a></li>
-<li><a href="#augmented-regression-fuzzing"
-id="toc-augmented-regression-fuzzing">Augmented Regression
+<li><a href="#house-of-scudo">House of SCUDO</a></li>
+<li><a href="#malicious-runtime-object-manipulation">Malicious Runtime
+Object Manipulation</a></li>
+<li><a href="#augmented-regression-fuzzing">Augmented Regression
 Fuzzing</a></li>
-<li><a href="#other-projects" id="toc-other-projects">Other
-projects</a></li>
+<li><a
+href="#seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</a></li>
+<li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
 <h6 id="library-fuzzing">Library Fuzzing</h6>
@@ -621,7 +610,6 @@ interpreter and have some experience with memory corruption exploitation
 Lee</a></li>
 <li>Suitable for: MSc semester project, internship</li>
 <li>Keywords: static analysis, fuzzing, regression bugs</li>
-<li><strong>Unavailable for Antumn 2023</strong></li>
 </ul>
 <p>Recent findings suggest that new software bugs are mostly caused by
 patches rather than discovered in the established codebase. Meanwhile,
@@ -644,6 +632,38 @@ reduction and discovering new bugs)</li>
 <li>Understanding of the LLVM IR.</li>
 <li>Proficiency with understanding/modifying a C/C++ project.</li>
 <li>Proficiency with command-line environments (e.g., Linux CLI).</li>
+</ul></li>
+</ul>
+<h6 id="seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</h6>
+<ul>
+<li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri
+Bhattacharyya</a></li>
+<li>Suitable for: MSc thesis</li>
+<li>Keywords: kernel security, data race protection, security
+policy</li>
+</ul>
+<p>System call filtering is a crucial part of protection policies
+ubiquitious in cloud, desktop and mobile environments (Android, Docker,
+etc.). The existing SECCOMP filter system is unable to inspect arguments
+passed by reference since the user can modify the values in memory,
+resulting in a TOCTTOU exploit.</p>
+<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel,
+exploiting the user memory access API to provide double fetch
+protection. In this project, you will mplement and evaluate SECCOMP
+filtering for system call arguments passed by reference, leveraging
+Midas to protect the kernel from the double fetch introduced in the
+process.</p>
+<ul>
+<li>This project requires:
+<ul>
+<li>Expert experience in C development</li>
+<li>Experience with standard C/GNU build, development and debug tools
+(gdb, Makefiles)</li>
+<li>Understanding of OS principles</li>
+<li>Basic experience of OS coding/course project</li>
+<li>Understanding of the x86 architecture and assembly
+coding/debugging</li>
 </ul></li>
 </ul>
 <h6 id="other-projects">Other projects</h6>
