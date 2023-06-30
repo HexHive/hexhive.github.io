@@ -42,42 +42,50 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#library-fuzzing">Library Fuzzing</a></li>
-<li><a href="#android-acropalypse">Android acropalypse</a></li>
-<li><a href="#designing-an-extensible-build-system">Designing an
-extensible build system</a></li>
-<li><a href="#multi-platform-firmware-analysis">Multi-platform firmware
-analysis</a></li>
-<li><a href="#software-compartmentalization-benchmark-suite">Software
-Compartmentalization Benchmark suite</a></li>
-<li><a href="#api-flow-graph-sanitization">API flow graph
-sanitization</a></li>
-<li><a href="#incremental-fuzzing-and-sanitization">Incremental fuzzing
-and sanitization</a></li>
-<li><a href="#mining-specification-from-blob-dissectors">Mining
-Specification from Blob Dissectors</a></li>
-<li><a
-href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
-Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a
-href="#extracting-bug-constraints-from-execution-flow-deltas">Extracting
-Bug Constraints from Execution-Flow Deltas</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
-Retrowriting</a></li>
-<li><a
-href="#leveraging-application-security-through-memory-tagging">Leveraging
-application security through memory tagging</a></li>
-<li><a href="#scripting-language-implementation-bug-analysis">Scripting
-Language Implementation Bug Analysis</a></li>
-<li><a href="#house-of-scudo">House of SCUDO</a></li>
-<li><a href="#malicious-runtime-object-manipulation">Malicious Runtime
-Object Manipulation</a></li>
-<li><a href="#augmented-regression-fuzzing">Augmented Regression
+<li><a href="#library-fuzzing" id="toc-library-fuzzing">Library
 Fuzzing</a></li>
-<li><a
-href="#seccomp-implementation-for-double-fetch-protection">SECCOMP
+<li><a href="#android-acropalypse" id="toc-android-acropalypse">Android
+acropalypse</a></li>
+<li><a href="#software-compartmentalization-benchmark-suite"
+id="toc-software-compartmentalization-benchmark-suite">Software
+Compartmentalization Benchmark suite</a></li>
+<li><a href="#api-flow-graph-sanitization"
+id="toc-api-flow-graph-sanitization">API flow graph
+sanitization</a></li>
+<li><a href="#incremental-fuzzing-and-sanitization"
+id="toc-incremental-fuzzing-and-sanitization">Incremental fuzzing and
+sanitization</a></li>
+<li><a href="#mining-specification-from-blob-dissectors"
+id="toc-mining-specification-from-blob-dissectors">Mining Specification
+from Blob Dissectors</a></li>
+<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark"
+id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
+Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#extracting-bug-constraints-from-execution-flow-deltas"
+id="toc-extracting-bug-constraints-from-execution-flow-deltas">Extracting
+Bug Constraints from Execution-Flow Deltas</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting"
+id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+Retrowriting</a></li>
+<li><a href="#leveraging-application-security-through-memory-tagging"
+id="toc-leveraging-application-security-through-memory-tagging">Leveraging
+application security through memory tagging</a></li>
+<li><a href="#scripting-language-implementation-bug-analysis"
+id="toc-scripting-language-implementation-bug-analysis">Scripting
+Language Implementation Bug Analysis</a></li>
+<li><a href="#house-of-scudo" id="toc-house-of-scudo">House of
+SCUDO</a></li>
+<li><a href="#malicious-runtime-object-manipulation"
+id="toc-malicious-runtime-object-manipulation">Malicious Runtime Object
+Manipulation</a></li>
+<li><a href="#augmented-regression-fuzzing"
+id="toc-augmented-regression-fuzzing">Augmented Regression
+Fuzzing</a></li>
+<li><a href="#seccomp-implementation-for-double-fetch-protection"
+id="toc-seccomp-implementation-for-double-fetch-protection">SECCOMP
 implementation for double fetch protection</a></li>
-<li><a href="#other-projects">Other projects</a></li>
+<li><a href="#other-projects" id="toc-other-projects">Other
+projects</a></li>
 </ul>
 </nav>
 <h6 id="library-fuzzing">Library Fuzzing</h6>
@@ -142,75 +150,6 @@ searching for potential alternative data leaks.</p>
 <ul>
 <li>Android application reverse engineering</li>
 <li>Static analysis tooling for Android apks</li>
-</ul>
-<h6 id="designing-an-extensible-build-system">Designing an extensible
-build system</h6>
-<ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
-Hofhammer</a></li>
-<li>Suitable for: BSc semester project</li>
-<li>Keywords: software engineering, build systems</li>
-</ul>
-<p>Systems/software security researchers regularly work with medium to
-large sized software projects. Said projects are implemented in a
-multitude of programming languages, require a certain build order for
-certain parts of the software, or have other restrictions that need to
-be taken into consideration when building/installing the corresponding
-piece of software.</p>
-<p>In this context, different configuration and build systems provide
-different features, some of which are more important for a certain
-project than others. For example, GNU <a
-href="https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/html_node/index.html">autoconf</a>/<a
-href="https://www.gnu.org/software/automake/manual/html_node/index.html">automake</a>,
-<a href="https://cmake.org/">CMake</a> or <a
-href="https://mesonbuild.com/">Meson</a> are widely used tools for
-configuring and building complex software projects. In this project, the
-student will implement a reliable and extensible build system based on
-existing tooling for a medium-sized software project combining source
-files in different programming languages.</p>
-<p>A candidate should be interested in (and ideally already be familiar
-with):</p>
-<ul>
-<li>Build/compilation workflows (configuration, compilation, linking,
-etc.)</li>
-<li>Software engineering best practices (software
-design/architecture)</li>
-</ul>
-<h6 id="multi-platform-firmware-analysis">Multi-platform firmware
-analysis</h6>
-<ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian
-Hofhammer</a></li>
-<li>Suitable for: MSc semester project</li>
-<li>Keywords: embedded systems, microcontrollers, RISC-V, ARM</li>
-</ul>
-<p>Firmware for microcontroller-based embedded systems differs from
-typical software running as a process on the everyday operating system
-on your laptop/desktop computer. First, it runs on <em>bare metal</em>,
-i.e., without OS abstractions such as syscalls in between the firmware
-and the CPU. Second, such firmware typically interacts with the outside
-world through <em>peripherals</em> such as, e.g., UART or Ethernet
-interfaces.</p>
-<p>While the biggest market share in the MCU space currently is held by
-ARM’s Cortex-M MCU lineup, RISC-V based chips are also on the rise with
-big tech manufacturers such as Western Digital or NVIDIA incorporating
-RISC-V chips in their products. Consequently, analyzing such firmware
-for bugs/vulnerabilities gains in importance, and corresponding tooling
-needs to be developed.</p>
-<p>In this project, we aim to generalize existing dynamic analysis
-tooling for firmware running on ARM Cortex-M MCUs to support other
-instruction set architectures as well. One of the targets is RISC-V, due
-to this ISA gaining widespread adoption, its simplicity, and available
-documentation.</p>
-<p>A candidate should be interested in (and ideally already be familiar
-with):</p>
-<ul>
-<li>Differences between embedded system firmware and common userspace
-software for commodity OSs (I/O, processes/threads/tasks, and other OS
-abstractions)</li>
-<li>Low-level programming (OS/hypervisor-level, C and assembly)</li>
-<li>RISC ISAs and platforms they are implemented in (ARM 32, ARM 64, ARM
-Thumb, RISC-V 32, RISC-V 64, etc.)</li>
 </ul>
 <h6 id="software-compartmentalization-benchmark-suite">Software
 Compartmentalization Benchmark suite</h6>
