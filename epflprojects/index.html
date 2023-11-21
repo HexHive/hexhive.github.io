@@ -44,34 +44,76 @@
 <ul>
 <li><a href="#library-fuzzing">Library Fuzzing</a></li>
 <li><a href="#android-acropalypse">Android acropalypse</a></li>
-<li><a href="#software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</a></li>
-<li><a href="#webassembly-based-protection-strengths-and-limitations">WebAssembly-based protection, strengths and limitations</a></li>
-<li><a href="#type-confusion-test-suite">Type confusion test suite</a></li>
+<li><a href="#software-compartmentalization-benchmark-suite">Software
+Compartmentalization Benchmark suite</a></li>
+<li><a
+href="#webassembly-based-protection-strengths-and-limitations">WebAssembly-based
+protection, strengths and limitations</a></li>
+<li><a href="#type-confusion-test-suite">Type confusion test
+suite</a></li>
 <li><a href="#fuzzing-c-libraries">Fuzzing C++ libraries</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</a></li>
-<li><a href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking Fuzzers for Structured Text Input Software</a></li>
-<li><a href="#emulating-trusted-applications">Emulating Trusted Applications</a></li>
-<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
-<li><a href="#leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use Bugs</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+Retrowriting</a></li>
+<li><a
+href="#leveraging-application-security-through-memory-tagging">Leveraging
+application security through memory tagging</a></li>
+<li><a
+href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking
+Fuzzers for Structured Text Input Software</a></li>
+<li><a href="#emulating-trusted-applications">Emulating Trusted
+Applications</a></li>
+<li><a href="#modeling-embedded-peripherals-in-software">Modeling
+Embedded Peripherals in Software</a></li>
+<li><a href="#ble-protocol-analysis">BLE Protocol Analysis</a></li>
+<li><a
+href="#seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</a></li>
+<li><a
+href="#leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging
+Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use
+Bugs</a></li>
 <li><a href="#sykaller-profiling">Sykaller Profiling</a></li>
-<li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
+<li><a
+href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking
+Fuzzers For Seed Selection Capability</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
 <h5 id="library-fuzzing">Library Fuzzing</h5>
 <ul>
-<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio Toffalini</a></li>
+<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio
+Toffalini</a></li>
 <li>Keywords: Linux, library, fuzzing</li>
 </ul>
-<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of bytes, fuzzing libraries requires drivers (library consumers) to bridge an input into a sequence of APIs. The code coverage and error discovery depend on the API combinations within the driver. Therefore, it is crucial having interesting drivers to deeply test a target library. Unfortunately, building such drivers is challenging due to a lack of semantic information about the APIs and their usage. Moreover, insidious errors may appear only with rare API sequences. Current techniques infer API usage from already-existing programs, however, the quality of the new drivers is inevitably limited by the existing consumers. In this project, we aim at generating library drivers without looking into existing consumers. Precisely, we use a combination of static analysis and automatic testing to mine the API usage and automatically build drivers able to explore a vaster library portion of code and trigger more complex errors.</p>
+<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of
+bytes, fuzzing libraries requires drivers (library consumers) to bridge
+an input into a sequence of APIs. The code coverage and error discovery
+depend on the API combinations within the driver. Therefore, it is
+crucial having interesting drivers to deeply test a target library.
+Unfortunately, building such drivers is challenging due to a lack of
+semantic information about the APIs and their usage. Moreover, insidious
+errors may appear only with rare API sequences. Current techniques infer
+API usage from already-existing programs, however, the quality of the
+new drivers is inevitably limited by the existing consumers. In this
+project, we aim at generating library drivers without looking into
+existing consumers. Precisely, we use a combination of static analysis
+and automatic testing to mine the API usage and automatically build
+drivers able to explore a vaster library portion of code and trigger
+more complex errors.</p>
 <p>The research questions in this project are:</p>
 <ul>
-<li>how can we design static analysis to infer API dependency information and use them to build interesting drivers?</li>
-<li>how can we use feedback from automatic testing to refine the driver generation (e.g., remove incorrect API sequences)?</li>
+<li>how can we design static analysis to infer API dependency
+information and use them to build interesting drivers?</li>
+<li>how can we use feedback from automatic testing to refine the driver
+generation (e.g., remove incorrect API sequences)?</li>
 </ul>
-<p>The candidate will require to assist the design and develop of a prototype for testing different driver building strategies. The prototype will be a combination of different technologies, such as static analysis over LLVM IR, Python modules for the driver generation, and fuzzer for the automatic testing.</p>
-<p>A candidate should be interested in (or familiar with) at least one of the following topics.</p>
+<p>The candidate will require to assist the design and develop of a
+prototype for testing different driver building strategies. The
+prototype will be a combination of different technologies, such as
+static analysis over LLVM IR, Python modules for the driver generation,
+and fuzzer for the automatic testing.</p>
+<p>A candidate should be interested in (or familiar with) at least one
+of the following topics.</p>
 <ul>
 <li>LLVM/Clang (also C/C++ will help)</li>
 <li>Basic knowledge of static analysis</li>
@@ -79,105 +121,257 @@
 </ul>
 <h5 id="android-acropalypse">Android acropalypse</h5>
 <ul>
-<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
 <li>Suitable for: Msc Semester Project / Thesis</li>
 <li>Keywords: Reverse Engineering, Static Analysis</li>
 </ul>
-<p>You might have heard about the recent security disaster that is <a href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>. Well, it turns out that the reason behind this bug is Google silently updating some <a href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s API for opening files</a> which causes files not to be truncated anymore when opening them.</p>
-<p>This is pretty wild and we think that there might be many more applications of aCropalypse, not just cropped screenshots. This project is about writing tooling to automatically analyze Android apks and searching for potential alternative data leaks.</p>
+<p>You might have heard about the recent security disaster that is <a
+href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>.
+Well, it turns out that the reason behind this bug is Google silently
+updating some <a
+href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s
+API for opening files</a> which causes files not to be truncated anymore
+when opening them.</p>
+<p>This is pretty wild and we think that there might be many more
+applications of aCropalypse, not just cropped screenshots. This project
+is about writing tooling to automatically analyze Android apks and
+searching for potential alternative data leaks.</p>
 <p>A candidate should be interested in:</p>
 <ul>
 <li>Android application reverse engineering</li>
 <li>Static analysis tooling for Android apks</li>
 </ul>
-<h5 id="software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</h5>
+<h5 id="software-compartmentalization-benchmark-suite">Software
+Compartmentalization Benchmark suite</h5>
 <ul>
-<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
+<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés
+Sánchez</a></li>
 <li>Keywords: compartmentalization, modularity, web applications</li>
 </ul>
-<p>Compartmentalization is a software-development principle to reduce a program’s attack surface, and limit the exploitability of bugs. A compartmentalized program is separated into a number of compartments, each of which executes with minimal privileges and rights, and communicates through structured API only. Essentially, an exploit in one compartment should not trivially compromise other compartments.</p>
-<p>We propose a semester/thesis project for masters students with software development expertise to compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
-<p>A benchmark suite would preferably be portable, running on different operating systems/libraries, hardware, and be amenable to be ported onto hardware or software research proposals for better compartmentalization.</p>
-<h5 id="webassembly-based-protection-strengths-and-limitations">WebAssembly-based protection, strengths and limitations</h5>
+<p>Compartmentalization is a software-development principle to reduce a
+program’s attack surface, and limit the exploitability of bugs. A
+compartmentalized program is separated into a number of compartments,
+each of which executes with minimal privileges and rights, and
+communicates through structured API only. Essentially, an exploit in one
+compartment should not trivially compromise other compartments.</p>
+<p>We propose a semester/thesis project for masters students with
+software development expertise to compartmentalize high-risk software.
+Prime examples of such software are webservers, browsers and operating
+systems. We are open to other suggestions. We would like to eventually
+have a set of representative software comprising a benchmark suite
+against which to evaluate the different compartmentalization
+techniques.</p>
+<p>A benchmark suite would preferably be portable, running on different
+operating systems/libraries, hardware, and be amenable to be ported onto
+hardware or software research proposals for better
+compartmentalization.</p>
+<h5
+id="webassembly-based-protection-strengths-and-limitations">WebAssembly-based
+protection, strengths and limitations</h5>
 <ul>
-<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
+<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés
+Sánchez</a></li>
 <li>Keywords: compartmentalization, program analysis, webassembly</li>
 </ul>
-<p>WebAssembly is an standard virtual architecture in which a program can be compiled to. Thanks to its high performance and isolation through a sandbox, a developer can compile regular source code (e.g., written in C or Rust) to WebAssembly, ensuring that the interaction with the WebAssembly module is limited to the interfaces it exports. Software known for containing vulnerabilities can therefore be set in an external module.</p>
-<p>In this project tailored for a MSc project/thesis, the student will analyze existing code and determine the shortcomings produced by its conversion to WebAssembly for security purposes. Ideally, a monolithic program can be split in such a way that the resulting version will be composed by several WebAssembly modules. This study requires the characterization of the limitations of running WebAssembly code and a fine-grained runtime analysis of the resulting software. The outcome shall be compared with other existing techniques.</p>
-<p>This project also can also be accomplished by extending the features of the WebAssembly standard to support more software.</p>
+<p>WebAssembly is an standard virtual architecture in which a program
+can be compiled to. Thanks to its high performance and isolation through
+a sandbox, a developer can compile regular source code (e.g., written in
+C or Rust) to WebAssembly, ensuring that the interaction with the
+WebAssembly module is limited to the interfaces it exports. Software
+known for containing vulnerabilities can therefore be set in an external
+module.</p>
+<p>In this project tailored for a MSc project/thesis, the student will
+analyze existing code and determine the shortcomings produced by its
+conversion to WebAssembly for security purposes. Ideally, a monolithic
+program can be split in such a way that the resulting version will be
+composed by several WebAssembly modules. This study requires the
+characterization of the limitations of running WebAssembly code and a
+fine-grained runtime analysis of the resulting software. The outcome
+shall be compared with other existing techniques.</p>
+<p>This project also can also be accomplished by extending the features
+of the WebAssembly standard to support more software.</p>
 <h5 id="type-confusion-test-suite">Type confusion test suite</h5>
 <ul>
-<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
+Badoux</a></li>
 <li>Keywords: sanitizer, type confusion, test suite</li>
 </ul>
-<p>Type confusion is a common vulnerability in C/C++ programs. It occurs when a type is incorrectly casted to another type. This can lead to memory corruption and code execution. HexHive has published a <a href="https://nebelwelt.net/files/17CCS.pdf">number</a> of <a href="https://nebelwelt.net/files/16CCS2.pdf">works</a> trying to detect and mitigate the impact of type confusions. The goal of this project is to create a test suite for type confusion detection tools. Recent works have been evaluated on a common run time performance benchmark but they miss a validation on a common set of type confusion bugs. The test suite will be composed of a set of programs and unit test with type confusion bugs. Some bugs should be based on real world vulnerabilities while others can be purely synthetic.</p>
+<p>Type confusion is a common vulnerability in C/C++ programs. It occurs
+when a type is incorrectly casted to another type. This can lead to
+memory corruption and code execution. HexHive has published a <a
+href="https://nebelwelt.net/files/17CCS.pdf">number</a> of <a
+href="https://nebelwelt.net/files/16CCS2.pdf">works</a> trying to detect
+and mitigate the impact of type confusions. The goal of this project is
+to create a test suite for type confusion detection tools. Recent works
+have been evaluated on a common run time performance benchmark but they
+miss a validation on a common set of type confusion bugs. The test suite
+will be composed of a set of programs and unit test with type confusion
+bugs. Some bugs should be based on real world vulnerabilities while
+others can be purely synthetic.</p>
 <p>We would aim to:</p>
 <ul>
-<li>Identify a set of type confusion bugs in real world programs. Create a set of</li>
-<li>synthetic type confusion bugs. Create a representative set of unit tests for</li>
-<li>type confusion detection tools. Evaluate state-of-the-art type confusion</li>
+<li>Identify a set of type confusion bugs in real world programs. Create
+a set of</li>
+<li>synthetic type confusion bugs. Create a representative set of unit
+tests for</li>
+<li>type confusion detection tools. Evaluate state-of-the-art type
+confusion</li>
 <li>detection tools on the test suite.</li>
 </ul>
-<p>Students should have a basic understanding of how C/C++ programs are built and a good grasp of Linux internals.</p>
+<p>Students should have a basic understanding of how C/C++ programs are
+built and a good grasp of Linux internals.</p>
 <h5 id="fuzzing-c-libraries">Fuzzing C++ libraries</h5>
 <ul>
-<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
+Badoux</a></li>
 <li>Keywords: library fuzzing, fuzzing, C++</li>
 </ul>
-<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of bytes, fuzzing libraries requires drivers (library consumers) to bridge an input into a sequence of APIs. The code coverage and error discovery depend on the API combinations within the driver. Recent work at HexHive has shown promising result for automatically generating these drivers for C libraries. The goal of this project is to extend this work to C++ libraries. In particular, some adaptations will be necessary to handle the object-oriented nature of C++ as well as supporting casting operations.</p>
-<p>The candidate will be required to identify the necessary adaptations to the existing C library fuzzing tool as well as implement support for them in the existing framework. The prototype will be a combination of different technologies, such as static analysis over LLVM IR, Python modules for the driver generation, and fuzzer for the automatic testing. The candidate will also be in charged of finding and motivating the choice of suitable C++ libraries to test.</p>
-<p>A candidate should be interested in (or familiar with) the following topics.</p>
+<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of
+bytes, fuzzing libraries requires drivers (library consumers) to bridge
+an input into a sequence of APIs. The code coverage and error discovery
+depend on the API combinations within the driver. Recent work at HexHive
+has shown promising result for automatically generating these drivers
+for C libraries. The goal of this project is to extend this work to C++
+libraries. In particular, some adaptations will be necessary to handle
+the object-oriented nature of C++ as well as supporting casting
+operations.</p>
+<p>The candidate will be required to identify the necessary adaptations
+to the existing C library fuzzing tool as well as implement support for
+them in the existing framework. The prototype will be a combination of
+different technologies, such as static analysis over LLVM IR, Python
+modules for the driver generation, and fuzzer for the automatic testing.
+The candidate will also be in charged of finding and motivating the
+choice of suitable C++ libraries to test.</p>
+<p>A candidate should be interested in (or familiar with) the following
+topics.</p>
 <ul>
 <li>LLVM/Clang (also C/C++ will help)</li>
 <li>Python</li>
 </ul>
-<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h5>
+<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+Retrowriting</h5>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
+<li>Keywords: Retrowrite, binary rewriting, mobile reverse
+engineering</li>
 </ul>
-<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
-<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
+<p>A common feature of the Android ecosystem are proprietary binary
+blobs. Vendors may not update these and may not compile them with the
+latest exploit mitigations. A particular cause of concern are kernel
+modules given their privileged access.</p>
+<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting
+tool that can retrofit mitigations to legacy binaries without the need
+for source code. This currently works on ARM64 and x86-64 platforms, and
+x86-64 in kernel mode. The goal of this project would be to target ARM64
+kernel modules, with the ability to add for example kASAN. We would aim
+to:</p>
 <ul>
-<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
-<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
+<li>Identify kernel modules of particular interest, including open
+source modules to act as ground truth.</li>
+<li>Produce a framework to evaluate the effectiveness of binary
+rewriting these modules by exercising their functionality, using fuzzing
+where appropriate.</li>
 <li>Modify Retrowrite to support ARM64 kernel modules.</li>
-<li>Evaluate the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
+<li>Evaluate the implementation against ground truth targets and against
+targets of interest. Evaluate the cost of instrumentation passes.</li>
 </ul>
-<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
-<h5 id="leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</h5>
+<p>Students should have a basic understanding of how Linux kernel
+modules are built and loaded, and a good grasp of Linux internals.
+Ambitious students may also have Android Internals knowledge and be
+interested in testing their work on Android hardware.</p>
+<h5
+id="leveraging-application-security-through-memory-tagging">Leveraging
+application security through memory tagging</h5>
 <ul>
-<li>Point of contact : <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
+<li>Point of contact : <a href="mailto:andres.sanchez@epfl.ch">Andrés
+Sánchez</a></li>
 <li>Keywords: Software development, virtual memory, compilers</li>
 </ul>
-<p>Memory tagging is a hardware extension that adds a level of restriction when dereferencing memory addresses: the key held should match the memory key. This extension can be found implemented both by Memory Protection Keys (MPK) and Memory Tagging Extension (MTE), corresponding respectively to <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a> and <a href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a> architectures, which have a different granularity (page vs 16 bytes) and way to store the key (register or per-pointer), resulting in a substantially different programming model.</p>
-<p>The adoption of such a technology would be decisive for finding memory safety bugs in existing pieces of code such as <a href="https://lwn.net/Articles/643797/">databases</a>, cryptographic toolkits, operating system kernels, web servers, web browsers… Albeit this technologies are acknowledged (like MPK for which the Linux kernel provides <a href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an interface</a>), their adoption from the application side requires a previous study which remains to be done.</p>
+<p>Memory tagging is a hardware extension that adds a level of
+restriction when dereferencing memory addresses: the key held should
+match the memory key. This extension can be found implemented both by
+Memory Protection Keys (MPK) and Memory Tagging Extension (MTE),
+corresponding respectively to <a
+href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">x86-64</a>
+and <a
+href="https://community.arm.com/arm-community-blogs/b/architectures-and-processors-blog/posts/enhancing-memory-safety">ARM64</a>
+architectures, which have a different granularity (page vs 16 bytes) and
+way to store the key (register or per-pointer), resulting in a
+substantially different programming model.</p>
+<p>The adoption of such a technology would be decisive for finding
+memory safety bugs in existing pieces of code such as <a
+href="https://lwn.net/Articles/643797/">databases</a>, cryptographic
+toolkits, operating system kernels, web servers, web browsers… Albeit
+this technologies are acknowledged (like MPK for which the Linux kernel
+provides <a
+href="https://www.gnu.org/software/libc/manual/html_node/Memory-Protection.html">an
+interface</a>), their adoption from the application side requires a
+previous study which remains to be done.</p>
 <p>This project includes:</p>
 <ul>
-<li>Acquisition of familiarity with a relevant program source code base that would benefit through memory tagging.</li>
-<li>Source code modification of the codebase to include support to memory tagging.</li>
+<li>Acquisition of familiarity with a relevant program source code base
+that would benefit through memory tagging.</li>
+<li>Source code modification of the codebase to include support to
+memory tagging.</li>
 <li>Functionality testing and performance impact benchmarking</li>
-<li>Potential adoption of the source code modification in the project upstream</li>
+<li>Potential adoption of the source code modification in the project
+upstream</li>
 </ul>
-<p>This project can be performed by either bachelor or master students, as there are different challenging codebases that can be addressed. It is also possible to do a master thesis out of it by creating a compiler-based framework that outlines in a sound way the possible protections an application can receive and analyzes them.</p>
-<h5 id="benchmarking-fuzzers-for-structured-text-input-software">Benchmarking Fuzzers for Structured Text Input Software</h5>
+<p>This project can be performed by either bachelor or master students,
+as there are different challenging codebases that can be addressed. It
+is also possible to do a master thesis out of it by creating a
+compiler-based framework that outlines in a sound way the possible
+protections an application can receive and analyzes them.</p>
+<h5
+id="benchmarking-fuzzers-for-structured-text-input-software">Benchmarking
+Fuzzers for Structured Text Input Software</h5>
 <ul>
-<li>Point of contact: <a href="mailto:chibin.zhang@epfl.ch">Chibin Zhang</a></li>
+<li>Point of contact: <a href="mailto:chibin.zhang@epfl.ch">Chibin
+Zhang</a></li>
 <li>Suitable for: Master Thesis Project</li>
 <li>Keywords: fuzzing, benchmark, compilers, data analysis</li>
 </ul>
-<p>Fuzzing is an effective technique for finding bugs in software. Prior works have created benchmarks to assess the performance of fuzzers. However, these benchmarks are biased towards targets that accept binary inputs and towards fuzzers that mutate at the byte level. Additionally, they suffer from saturation, meaning the performance differences between top fuzzers are often insignificant. It is a known issue that existing byte-level fuzzers do not perform well on targets accepting structured text inputs. Current fuzzing benchmarks do not include state-of-the-art structure-aware fuzzers, such as grammar fuzzers, in their baselines. This is due to the fact that these fuzzers typically require additional grammars, dictionaries, or large seed corpora. Furthermore, existing structure-aware fuzzers have been evaluated on a limited set of disparate targets, run with different specifications, making it challenging to compare their performance quantitatively or even qualitatively.</p>
-<p>In this project, you will create an extensive benchmark for targets that accept structured text inputs. You are expected to integrate at least 8 structure/syntax-aware fuzzers and 16 new targets (latest version), along with the required grammars, dictionaries, and corpora. It is suggested to use the Nix build system, as its build configurations are written declaratively and build artifacts are deterministic. This choice is anticipated to streamline the benchmarking process and ensure reproducibility. You will then conduct fuzzing campaigns and analyze the results quantitatively. A potential focus could be assessing the impact of the provided grammars, dictionaries, and corpora on the performance of the fuzzers. The build, run, and analysis scripts will be open-sourced to facilitate future research.</p>
+<p>Fuzzing is an effective technique for finding bugs in software. Prior
+works have created benchmarks to assess the performance of fuzzers.
+However, these benchmarks are biased towards targets that accept binary
+inputs and towards fuzzers that mutate at the byte level. Additionally,
+they suffer from saturation, meaning the performance differences between
+top fuzzers are often insignificant. It is a known issue that existing
+byte-level fuzzers do not perform well on targets accepting structured
+text inputs. Current fuzzing benchmarks do not include state-of-the-art
+structure-aware fuzzers, such as grammar fuzzers, in their baselines.
+This is due to the fact that these fuzzers typically require additional
+grammars, dictionaries, or large seed corpora. Furthermore, existing
+structure-aware fuzzers have been evaluated on a limited set of
+disparate targets, run with different specifications, making it
+challenging to compare their performance quantitatively or even
+qualitatively.</p>
+<p>In this project, you will create an extensive benchmark for targets
+that accept structured text inputs. You are expected to integrate at
+least 8 structure/syntax-aware fuzzers and 16 new targets (latest
+version), along with the required grammars, dictionaries, and corpora.
+It is suggested to use the Nix build system, as its build configurations
+are written declaratively and build artifacts are deterministic. This
+choice is anticipated to streamline the benchmarking process and ensure
+reproducibility. You will then conduct fuzzing campaigns and analyze the
+results quantitatively. A potential focus could be assessing the impact
+of the provided grammars, dictionaries, and corpora on the performance
+of the fuzzers. The build, run, and analysis scripts will be
+open-sourced to facilitate future research.</p>
 <p>Examples of interesting fuzzers and targets for integration:</p>
 <ul>
-<li>Fuzzers: AFL++ with cmplog and autodict, Token-level AFL, Gramatron, Nautilus, Grimoire, Superion, Polyglot, CSmith.</li>
+<li>Fuzzers: AFL++ with cmplog and autodict, Token-level AFL, Gramatron,
+Nautilus, Grimoire, Superion, Polyglot, CSmith.</li>
 <li>Targets:
 <ul>
 <li>All targets included in fuzzbench.</li>
-<li>Compilers/Interpreters/Assemblers accepting code inputs: clang, hotspot, python, php, ruby, v8, JavaScriptCore, SpiderMonkey.</li>
+<li>Compilers/Interpreters/Assemblers accepting code inputs: clang,
+hotspot, python, php, ruby, v8, JavaScriptCore, SpiderMonkey.</li>
 <li>Document formats: html, postscript, word, rtf, roff, markdown.</li>
-<li>Data (interchange) formats and their processors: json, yaml, toml, xml, csv, tsv, jq, yq, sqlite.</li>
+<li>Data (interchange) formats and their processors: json, yaml, toml,
+xml, csv, tsv, jq, yq, sqlite.</li>
 </ul></li>
 </ul>
 <p>Recommended Background:</p>
@@ -186,42 +380,143 @@
 <li>Familiarity with NixOS and Nix-based build tools.</li>
 <li>Experience with fuzzing and triaging compiler/interpreter bugs.</li>
 </ul>
-<h5 id="emulating-trusted-applications">Emulating Trusted Applications</h5>
+<h5 id="emulating-trusted-applications">Emulating Trusted
+Applications</h5>
 <ul>
-<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp Mao</a></li>
+<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp
+Mao</a></li>
 <li>Suitable for: MSc project, MSc semester project</li>
-<li>Keywords: memory safety, reverse-engineering, emulation, Android, ARM</li>
+<li>Keywords: memory safety, reverse-engineering, emulation, Android,
+ARM</li>
 </ul>
-<p>To safely manage a user’s secrets, modern Android devices leverage TAs (trusted applications), running in a TEE (Trusted Execution Environment). These TAs are closed-source and hard to analyze, since they run isolated from the rest of the Android framework.</p>
-<p>The goal of this project is to build an emulator that can run TAs. By emulating TAs we’ll be able to debug or even fuzz the TAs. For this project we’ll focus on TAs from the beanpod TEE. The beanpod TEE implementation runs on low-end xiaomi devices. We will build our emulator on top of qiling, an emulator written in python.</p>
-<p>Project tasks (in no particular order): - Reverse-engineering of TAs to check if emulation is working correctly. - Implementing emulation support for Global Platform APIs and standard libc functions. (The Global Platform API is a standard for TAs) - Reverse-engineering of the relevant beanpod libraries to add emulation support for custom beanpod specific APIs used by TAs. - Adding cross-TA communication support. - (optional) implement a fuzzing framework on top of our emulator using AFLs unicorn mode.</p>
-<p>Students interested in this project should be comfortable with both reverse engineering (think ghidra, binja or ida) and programming in python. Familiarity with ARM or TEE/TAs is a plus but not required.</p>
-<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
+<p>To safely manage a user’s secrets, modern Android devices leverage
+TAs (trusted applications), running in a TEE (Trusted Execution
+Environment). These TAs are closed-source and hard to analyze, since
+they run isolated from the rest of the Android framework.</p>
+<p>The goal of this project is to build an emulator that can run TAs. By
+emulating TAs we’ll be able to debug or even fuzz the TAs. For this
+project we’ll focus on TAs from the beanpod TEE. The beanpod TEE
+implementation runs on low-end xiaomi devices. We will build our
+emulator on top of qiling, an emulator written in python.</p>
+<p>Project tasks (in no particular order): - Reverse-engineering of TAs
+to check if emulation is working correctly. - Implementing emulation
+support for Global Platform APIs and standard libc functions. (The
+Global Platform API is a standard for TAs) - Reverse-engineering of the
+relevant beanpod libraries to add emulation support for custom beanpod
+specific APIs used by TAs. - Adding cross-TA communication support. -
+(optional) implement a fuzzing framework on top of our emulator using
+AFLs unicorn mode.</p>
+<p>Students interested in this project should be comfortable with both
+reverse engineering (think ghidra, binja or ida) and programming in
+python. Familiarity with ARM or TEE/TAs is a plus but not required.</p>
+<h5 id="modeling-embedded-peripherals-in-software">Modeling Embedded
+Peripherals in Software</h5>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Suitable for: MSc thesis</li>
-<li>Keywords: kernel security, data race protection, security policy</li>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
+<li>Suitable for: MSc semester project</li>
+<li>Keywords: Reverse engineering, rehosting, emulation, embedded
+systems</li>
 </ul>
-<p>System call filtering is a crucial part of protection policies ubiquitous in cloud, desktop and mobile environments (Android, Docker, etc.). The existing SECCOMP filter system is unable to inspect arguments passed by reference since the user can modify the values in memory, resulting in a TOCTTOU exploit.</p>
-<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel, exploiting the user memory access API to provide double fetch protection. In this project, you will implement and evaluate SECCOMP filtering for system call arguments passed by reference, leveraging Midas to protect the kernel from the double fetch introduced in the process.</p>
+<p>In contrast to your usual userspace program that leverages kernel
+APIs, embedded firmware oftentimes accesses hardware peripherals for
+communication with the outside world directly. This behavior makes
+dynamic analysis of embedded firmware difficult, since such hardware
+behavior needs to be replicated with sufficient precision if we want to
+execute embedded software in a virtualized environment. Previous work in
+this area suffers from a significant tradeoff: either the hardware’s
+behavior is only approximated with low precision or the engineering
+effort to implement more precise hardware modeling is prohibitively
+high.</p>
+<p>In this project, we aim to close the gap and reduce the tradeoffs
+that need to be taken in such an environment. For this reason, an
+interested student should be familiar with low-level software (device
+drivers in normal OSs or embedded firmware are a plus), should be
+willing reverse engineer code interacting with hardware and link the
+behavior to hardware specifications, and have a strong background in
+systems programming languages (mainly C, but ideally also decent
+knowledge of C++). Familiarity with load-store RISC architectures as
+commonly used in embedded systems (Arm, MIPS, RISC-V, PPC) is a
+plus.</p>
+<h5 id="ble-protocol-analysis">BLE Protocol Analysis</h5>
+<ul>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
+<li>Suitable for: BSc semester project, MSc semester project</li>
+<li>Keywords: Bluetooth Low Energy, protocol analyisis, reverse
+engineering</li>
+</ul>
+<p>In our connected world, Bluetooth and Bluetooth Low Energy (BLE) play
+an important role for exchanging information between devices. This
+exchange of information is not always properly secured. Even under the
+generous assumption that BLE itself is secure, the protocols implemented
+on top of this transmission channel might be broken and not adhere to
+proper security standards.</p>
+<p>In this project, the student is tasked to analyse the security of
+BLE-enabled devices with regard to the application protocols deployed on
+top of BLE. This includes (among others) questions such as:</p>
+<ul>
+<li>Are communicating devices properly authenticated to each other?</li>
+<li>Are transmitted messages protected against replay?</li>
+<li>Can transmitted messages be maliciously modified by an attacker? If
+yes, to what degree?</li>
+</ul>
+<p>Students interested in this project should be familiar with
+networking principles such as layered protocols, should be able to
+reverse engineer protocol implementations in software and correlate
+their findings with recorded traffic traces, and should be willing to
+extend their knowledge about protocol stacks and software across the
+whole stack (firmware, OS, application code).</p>
+<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</h5>
+<ul>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
+<li>Suitable for: MSc thesis</li>
+<li>Keywords: kernel security, data race protection, security
+policy</li>
+</ul>
+<p>System call filtering is a crucial part of protection policies
+ubiquitous in cloud, desktop and mobile environments (Android, Docker,
+etc.). The existing SECCOMP filter system is unable to inspect arguments
+passed by reference since the user can modify the values in memory,
+resulting in a TOCTTOU exploit.</p>
+<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel,
+exploiting the user memory access API to provide double fetch
+protection. In this project, you will implement and evaluate SECCOMP
+filtering for system call arguments passed by reference, leveraging
+Midas to protect the kernel from the double fetch introduced in the
+process.</p>
 <ul>
 <li>This project requires:
 <ul>
 <li>Expert experience in C development</li>
-<li>Experience with standard C/GNU build, development and debug tools (gdb, Makefiles)</li>
+<li>Experience with standard C/GNU build, development and debug tools
+(gdb, Makefiles)</li>
 <li>Understanding of OS principles</li>
 <li>Basic experience of OS coding/course project</li>
-<li>Understanding of the x86 architecture and assembly coding/debugging</li>
+<li>Understanding of the x86 architecture and assembly
+coding/debugging</li>
 </ul></li>
 </ul>
-<h5 id="leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use Bugs</h5>
+<h5
+id="leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging
+Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use
+Bugs</h5>
 <ul>
-<li>Point of contact: <a href="mailto:marcel.busch@epfl.ch">Marcel Busch</a></li>
+<li>Point of contact: <a href="mailto:marcel.busch@epfl.ch">Marcel
+Busch</a></li>
 <li>Suitable for: MSc semester project</li>
-<li>Keywords: software engineering, reverse engineering, binary analysis, static analysis</li>
+<li>Keywords: software engineering, reverse engineering, binary
+analysis, static analysis</li>
 </ul>
-<p>TOCTOU bugs can lead to severe memory corruptions. These memory corruptions might allow adversaries to compromise and take full control of the affected system. In this project, we want to port and adapt an exisiting binary static analysis to uncover TOCTOU bugs in proprietary real-world software.</p>
-<p>A candidate should be interested in (and ideally already be familiar with):</p>
+<p>TOCTOU bugs can lead to severe memory corruptions. These memory
+corruptions might allow adversaries to compromise and take full control
+of the affected system. In this project, we want to port and adapt an
+exisiting binary static analysis to uncover TOCTOU bugs in proprietary
+real-world software.</p>
+<p>A candidate should be interested in (and ideally already be familiar
+with):</p>
 <ul>
 <li>Python</li>
 <li>Ghidra/Ghidrathon and/or angr</li>
@@ -230,30 +525,61 @@
 </ul>
 <h5 id="sykaller-profiling">Sykaller Profiling</h5>
 <ul>
-<li>Point of contact: <a href="mailto:zhiyao.feng@epfl.ch">Zhiyao Feng</a></li>
+<li>Point of contact: <a href="mailto:zhiyao.feng@epfl.ch">Zhiyao
+Feng</a></li>
 <li>Keywords: kernel fuzzing</li>
 </ul>
-<p>Syzkaller is a state-of-the-art coverage-guided kernel fuzzer. It employs various strategies and optimizations for system call fuzzing and is actively maintained. It has uncovered thousands of bugs from multiple OSes (e.g., Linux, FreeBSD, Windows). Consequently, many <a href="https://github.com/google/syzkaller/blob/master/docs/research.md">research prototypes</a> aimed at improving the kernel fuzzing efficiency are built upon Syzkaller.</p>
-<p>In this project, we will take a deep look into Syzkaller’s specific fuzzing strategies and optimizations. The goal is to evaluate their effectiveness, identify the fuzzing objects they excel or struggle with (e.g., system calls with a certain type of argument), and gather insights for potential improvement.</p>
-<p>A candidate should be proficient in C/C++/Go programming and have a good grasp of Linux internals.</p>
-<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</h5>
+<p>Syzkaller is a state-of-the-art coverage-guided kernel fuzzer. It
+employs various strategies and optimizations for system call fuzzing and
+is actively maintained. It has uncovered thousands of bugs from multiple
+OSes (e.g., Linux, FreeBSD, Windows). Consequently, many <a
+href="https://github.com/google/syzkaller/blob/master/docs/research.md">research
+prototypes</a> aimed at improving the kernel fuzzing efficiency are
+built upon Syzkaller.</p>
+<p>In this project, we will take a deep look into Syzkaller’s specific
+fuzzing strategies and optimizations. The goal is to evaluate their
+effectiveness, identify the fuzzing objects they excel or struggle with
+(e.g., system calls with a certain type of argument), and gather
+insights for potential improvement.</p>
+<p>A candidate should be proficient in C/C++/Go programming and have a
+good grasp of Linux internals.</p>
+<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking
+Fuzzers For Seed Selection Capability</h5>
 <ul>
-<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han Zheng</a></li>
+<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han
+Zheng</a></li>
 <li>Keywords: Benchmark, Fuzzing</li>
 </ul>
-<p>Fuzzing is an efficient software testing technique to reveal bugs. Therefore it has been widely investigated both in academia and industry. Despite the growth of the newly proposed fuzzing prototypes, evaluating the fuzzer’s coverage capability is still challenging.</p>
-<p>Existing platforms like fuzzbench pick the well-constructed harness, which enable the fuzzers to iterate over each seed in the queue exhaustively.<br />
-Nevertheless, real-world scenarios might deviate from this ideal: seed explosion widely exists, fuzzer’s seed selection capability is critical and should not be deprioritize in the evaluation.</p>
-<p>In this project, we will extend fuzzbench to more complex targets, which allows a more thorough assessment of fuzzer’s seed selection capability.</p>
+<p>Fuzzing is an efficient software testing technique to reveal bugs.
+Therefore it has been widely investigated both in academia and industry.
+Despite the growth of the newly proposed fuzzing prototypes, evaluating
+the fuzzer’s coverage capability is still challenging.</p>
+<p>Existing platforms like fuzzbench pick the well-constructed harness,
+which enable the fuzzers to iterate over each seed in the queue
+exhaustively.<br />
+Nevertheless, real-world scenarios might deviate from this ideal: seed
+explosion widely exists, fuzzer’s seed selection capability is critical
+and should not be deprioritize in the evaluation.</p>
+<p>In this project, we will extend fuzzbench to more complex targets,
+which allows a more thorough assessment of fuzzer’s seed selection
+capability.</p>
 <p>The goal of this project:</p>
 <ul>
 <li>design a metric to define and select the “complex” targets</li>
-<li>integrate the target into the fuzzbench and evaluate existing fuzzers</li>
-<li>propose some metrics other than coverage to assess the seed selection capability.</li>
+<li>integrate the target into the fuzzbench and evaluate existing
+fuzzers</li>
+<li>propose some metrics other than coverage to assess the seed
+selection capability.</li>
 </ul>
-<p>A candidate should be interested in (ideally familiar with) the following: * Python * Basic knowledge of configure/cmake/make * Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
+<p>A candidate should be interested in (ideally familiar with) the
+following: * Python * Basic knowledge of configure/cmake/make *
+Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
 <h5 id="other-projects">Other projects</h5>
-<p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
+<p>Several other projects are possible in the areas of software and
+system security. We are open to discussing possible projects around the
+development of security benchmarks, using machine learning to detect
+vulnerabilities, secure memory allocation, sanitizer-based coverage
+tracking, and others.</p>
 
 
 </div>
