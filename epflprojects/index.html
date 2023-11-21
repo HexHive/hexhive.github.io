@@ -37,7 +37,7 @@
 <h4 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h4>
 <p>This is a list of possible open, unassigned BSc or MSc research projects in the HexHive group <b>for EPFL students</b>.</p>
 <p>The projects are designed to be adjustable and scalable according to the type of BSc, MSc, or short PhD research project depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
-<p>If you are interested in any of these topics then contact the <a href="../#people">doctoral students</a> assigned with the project. Please start your email with &quot;[(MSc|BSc) (Project|Thesis)]&quot;, e.g., &quot;[MSc Project] LLVM-based code analysis&quot;. Please explain your background such as particular coding skills or classes you took in sufficient detail, also highlight why you're interested in the project.</p>
+<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/ziWv7RSXZoKBgxLFA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews. The application deadline for projects in spring '24 is December 15, 2023.</p>
 <p>In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss! Reach out to the people most closest to your ideas and we'll let the ideas bubble up.</p>
 
 <nav id="TOC" role="doc-toc">
@@ -45,16 +45,17 @@
 <li><a href="#library-fuzzing">Library Fuzzing</a></li>
 <li><a href="#android-acropalypse">Android acropalypse</a></li>
 <li><a href="#software-compartmentalization-benchmark-suite">Software Compartmentalization Benchmark suite</a></li>
+<li><a href="#webassembly-based-protection-strengths-and-limitations">WebAssembly-based protection, strengths and limitations</a></li>
 <li><a href="#type-confusion-test-suite">Type confusion test suite</a></li>
 <li><a href="#fuzzing-c-libraries">Fuzzing C++ libraries</a></li>
 <li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
 <li><a href="#leveraging-application-security-through-memory-tagging">Leveraging application security through memory tagging</a></li>
 <li><a href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking Fuzzers for Structured Text Input Software</a></li>
-<li><a href="#house-of-scudo">House of SCUDO</a></li>
-<li><a href="#malicious-runtime-object-manipulation">Malicious Runtime Object Manipulation</a></li>
-<li><a href="#augmented-regression-fuzzing">Augmented Regression Fuzzing</a></li>
+<li><a href="#emulating-trusted-applications">Emulating Trusted Applications</a></li>
 <li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
 <li><a href="#leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use Bugs</a></li>
+<li><a href="#sykaller-profiling">Sykaller Profiling</a></li>
+<li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -95,8 +96,16 @@
 <li>Keywords: compartmentalization, modularity, web applications</li>
 </ul>
 <p>Compartmentalization is a software-development principle to reduce a program’s attack surface, and limit the exploitability of bugs. A compartmentalized program is separated into a number of compartments, each of which executes with minimal privileges and rights, and communicates through structured API only. Essentially, an exploit in one compartment should not trivially compromise other compartments.</p>
-<p>We propose a semester/thesis project for masters students, and skilled bachelors students with software development expertise in which we will compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
+<p>We propose a semester/thesis project for masters students with software development expertise to compartmentalize high-risk software. Prime examples of such software are webservers, browsers and operating systems. We are open to other suggestions. We would like to eventually have a set of representative software comprising a benchmark suite against which to evaluate the different compartmentalization techniques.</p>
 <p>A benchmark suite would preferably be portable, running on different operating systems/libraries, hardware, and be amenable to be ported onto hardware or software research proposals for better compartmentalization.</p>
+<h5 id="webassembly-based-protection-strengths-and-limitations">WebAssembly-based protection, strengths and limitations</h5>
+<ul>
+<li>Point of contact: <a href="mailto:andres.sanchez@epfl.ch">Andrés Sánchez</a></li>
+<li>Keywords: compartmentalization, program analysis, webassembly</li>
+</ul>
+<p>WebAssembly is an standard virtual architecture in which a program can be compiled to. Thanks to its high performance and isolation through a sandbox, a developer can compile regular source code (e.g., written in C or Rust) to WebAssembly, ensuring that the interaction with the WebAssembly module is limited to the interfaces it exports. Software known for containing vulnerabilities can therefore be set in an external module.</p>
+<p>In this project tailored for a MSc project/thesis, the student will analyze existing code and determine the shortcomings produced by its conversion to WebAssembly for security purposes. Ideally, a monolithic program can be split in such a way that the resulting version will be composed by several WebAssembly modules. This study requires the characterization of the limitations of running WebAssembly code and a fine-grained runtime analysis of the resulting software. The outcome shall be compared with other existing techniques.</p>
+<p>This project also can also be accomplished by extending the features of the WebAssembly standard to support more software.</p>
 <h5 id="type-confusion-test-suite">Type confusion test suite</h5>
 <ul>
 <li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas Badoux</a></li>
@@ -177,46 +186,19 @@
 <li>Familiarity with NixOS and Nix-based build tools.</li>
 <li>Experience with fuzzing and triaging compiler/interpreter bugs.</li>
 </ul>
-<h5 id="house-of-scudo">House of SCUDO</h5>
+<h5 id="emulating-trusted-applications">Emulating Trusted Applications</h5>
 <ul>
 <li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp Mao</a></li>
-<li>Keywords: memory safety, heap, Android</li>
+<li>Suitable for: MSc project, MSc semester project</li>
+<li>Keywords: memory safety, reverse-engineering, emulation, Android, ARM</li>
 </ul>
-<p>Since Android 11, Android has switched its memory allocator from jemalloc to scudo. This allocator has so far not been studied extensively.</p>
-<p>The goal of this project is to dive deeply into the inner workings of scudo and build some exploitation “houses”. Starting from some memory corruption primitives (address leak, overflow, UAF, double free etc…) try to achieve arbitrary write/code execution. We’ll start with more powerful primitives and then subsequently try to reduce the initial primitives to build houses applicable to real-world exploitation scenarios.</p>
-<p>Students interested in this project should have some experience with heap exploitation (being able to solve easy/medium heap pwn ctf challenges).</p>
-<h5 id="malicious-runtime-object-manipulation">Malicious Runtime Object Manipulation</h5>
-<ul>
-<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp Mao</a></li>
-<li>Keywords: memory safety, interpreter, cross-language attacks</li>
-</ul>
-<p>This project is about cross-language attacks in programs that use both interpreted and native languages.</p>
-<p>The goal of this project is to study how malicious modifications of objects processed by the runtime of an interpreted language can be leveraged by an attacker. These malicious modifications take place because of a vulnerability in the part of the program written in a native language (Think an Android app written in Java that uses a vulnerable image compression library written in C). We want to investigate two attack approaches: either trying to turn the runtime that is itself written in a native language into a weird machine or changing the execution flow in the interpreted program currently being executed. For this project we will take a look at cpython or alternative python runtimes.</p>
-<p>Students should have taken a course that involves writing an interpreter and have some experience with memory corruption exploitation (stack buffer overflow etc.)</p>
-<h5 id="augmented-regression-fuzzing">Augmented Regression Fuzzing</h5>
-<ul>
-<li>Point of contact: <a href="mailto:gwangmu.lee@epfl.ch">Gwangmu Lee</a></li>
-<li>Suitable for: MSc semester project, internship</li>
-<li>Keywords: static analysis, fuzzing, regression bugs</li>
-</ul>
-<p>Recent findings suggest that new software bugs are mostly caused by patches rather than discovered in the established codebase. Meanwhile, most software bugs have definitive preconditions before being exhibited as anomalies or crashes. Some examples of preconditions include; free in use-after-free, null assignment in null-dereference, and locking in deadlock. In this project, we try to take advantage of this to augment the bug detection capability of regression fuzzing.</p>
-<ul>
-<li>Brief agenda
-<ul>
-<li>Instrumenting source code for a custom code coverage with the LLVM compiler.</li>
-<li>Augmenting the regression fuzzer (AFLChurn).</li>
-<li>Evaluating the augmented regression fuzzer (i.e., measuring TTE reduction and discovering new bugs)</li>
-</ul></li>
-<li>Preferred skills
-<ul>
-<li>Understanding of the LLVM IR.</li>
-<li>Proficiency with understanding/modifying a C/C++ project.</li>
-<li>Proficiency with command-line environments (e.g., Linux CLI).</li>
-</ul></li>
-</ul>
+<p>To safely manage a user’s secrets, modern Android devices leverage TAs (trusted applications), running in a TEE (Trusted Execution Environment). These TAs are closed-source and hard to analyze, since they run isolated from the rest of the Android framework.</p>
+<p>The goal of this project is to build an emulator that can run TAs. By emulating TAs we’ll be able to debug or even fuzz the TAs. For this project we’ll focus on TAs from the beanpod TEE. The beanpod TEE implementation runs on low-end xiaomi devices. We will build our emulator on top of qiling, an emulator written in python.</p>
+<p>Project tasks (in no particular order): - Reverse-engineering of TAs to check if emulation is working correctly. - Implementing emulation support for Global Platform APIs and standard libc functions. (The Global Platform API is a standard for TAs) - Reverse-engineering of the relevant beanpod libraries to add emulation support for custom beanpod specific APIs used by TAs. - Adding cross-TA communication support. - (optional) implement a fuzzing framework on top of our emulator using AFLs unicorn mode.</p>
+<p>Students interested in this project should be comfortable with both reverse engineering (think ghidra, binja or ida) and programming in python. Familiarity with ARM or TEE/TAs is a plus but not required.</p>
 <h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
 <ul>
-<li>Point of contact: <a href="mailto:atri.bhattacharyya@epfl.ch">Atri Bhattacharyya</a></li>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
 <li>Suitable for: MSc thesis</li>
 <li>Keywords: kernel security, data race protection, security policy</li>
 </ul>
@@ -246,8 +228,32 @@
 <li>ARM assembly</li>
 <li>Static analysis (e.g., RDA)</li>
 </ul>
+<h5 id="sykaller-profiling">Sykaller Profiling</h5>
+<ul>
+<li>Point of contact: <a href="mailto:zhiyao.feng@epfl.ch">Zhiyao Feng</a></li>
+<li>Keywords: kernel fuzzing</li>
+</ul>
+<p>Syzkaller is a state-of-the-art coverage-guided kernel fuzzer. It employs various strategies and optimizations for system call fuzzing and is actively maintained. It has uncovered thousands of bugs from multiple OSes (e.g., Linux, FreeBSD, Windows). Consequently, many <a href="https://github.com/google/syzkaller/blob/master/docs/research.md">research prototypes</a> aimed at improving the kernel fuzzing efficiency are built upon Syzkaller.</p>
+<p>In this project, we will take a deep look into Syzkaller’s specific fuzzing strategies and optimizations. The goal is to evaluate their effectiveness, identify the fuzzing objects they excel or struggle with (e.g., system calls with a certain type of argument), and gather insights for potential improvement.</p>
+<p>A candidate should be proficient in C/C++/Go programming and have a good grasp of Linux internals.</p>
+<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</h5>
+<ul>
+<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han Zheng</a></li>
+<li>Keywords: Benchmark, Fuzzing</li>
+</ul>
+<p>Fuzzing is an efficient software testing technique to reveal bugs. Therefore it has been widely investigated both in academia and industry. Despite the growth of the newly proposed fuzzing prototypes, evaluating the fuzzer’s coverage capability is still challenging.</p>
+<p>Existing platforms like fuzzbench pick the well-constructed harness, which enable the fuzzers to iterate over each seed in the queue exhaustively.<br />
+Nevertheless, real-world scenarios might deviate from this ideal: seed explosion widely exists, fuzzer’s seed selection capability is critical and should not be deprioritize in the evaluation.</p>
+<p>In this project, we will extend fuzzbench to more complex targets, which allows a more thorough assessment of fuzzer’s seed selection capability.</p>
+<p>The goal of this project:</p>
+<ul>
+<li>design a metric to define and select the “complex” targets</li>
+<li>integrate the target into the fuzzbench and evaluate existing fuzzers</li>
+<li>propose some metrics other than coverage to assess the seed selection capability.</li>
+</ul>
+<p>A candidate should be interested in (ideally familiar with) the following: * Python * Basic knowledge of configure/cmake/make * Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
 <h5 id="other-projects">Other projects</h5>
-<p>Several other projects are possible in the areas of software and system security. We are open to discuss possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
+<p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
 
 </div>
