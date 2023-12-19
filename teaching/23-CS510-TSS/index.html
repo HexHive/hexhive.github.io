@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CS-510 Topics in Software Security</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">
+html {
+font-size: 100%;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+a:focus {
+outline: thin dotted #333;
+outline: 5px auto -webkit-focus-ring-color;
+outline-offset: -2px;
+}
+a:hover,
+a:active {
+outline: 0;
+}
+sub,
+sup {
+position: relative;
+font-size: 75%;
+line-height: 0;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+img {
+width: auto\9;
+height: auto;
+max-width: 100%;
+vertical-align: middle;
+border: 0;
+-ms-interpolation-mode: bicubic;
+}
+@media print {
+* {
+color: #000 !important;
+text-shadow: none !important;
+background: transparent !important;
+box-shadow: none !important;
+}
+a,
+a:visited {
+text-decoration: underline;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after,
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
+content: "";
+}
+pre,
+blockquote {
+border: 1px solid #999;
+page-break-inside: avoid;
+}
+thead {
+display: table-header-group;
+}
+tr,
+img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page {
+margin: 0.5cm;
+}
+h1 {
+page-break-before:always;
+}
+h1.title {
+page-break-before:avoid;
+}
+p,
+h2,
+h3 {
+orphans: 3;
+widows: 3;
+}
+h2,
+h3 {
+page-break-after: avoid;
+}
+}
+body {
+margin: 40px;
+margin-right: auto;
+margin-left: auto;
+width: 700px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333333;
+background-color: #ffffff;
+}
+a {
+color: #0088cc;
+text-decoration: none;
+}
+a:hover,
+a:focus {
+color: #005580;
+text-decoration: underline;
+}
+.img-rounded {
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+.img-polaroid {
+padding: 4px;
+background-color: #fff;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+p {
+margin: 0 0 10px;
+}
+small {
+font-size: 85%;
+}
+strong {
+font-weight: bold;
+}
+em {
+font-style: italic;
+}
+cite {
+font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+font-family: inherit;
+font-weight: bold;
+line-height: 20px;
+color: inherit;
+text-rendering: optimizelegibility;
+}
+h1 {
+font-size: 2em;
+padding-bottom:.2em;
+border-bottom:1px solid grey;
+}
+h1.title {
+padding-bottom:1em;
+border-bottom:0px;
+}
+h2 {
+font-size: 1.5em;
+}
+h3 {
+font-size: 1.3em;
+font-family:Georgia, serif;
+font-style:italic;
+
+}
+h4 {
+font-size: 1.3em;
+}
+h5 {
+font-size: 1.2em;
+}
+h6 {
+font-size: 1.1em;
+}
+ul,
+ol {
+padding: 0;
+margin: 0 0 10px 25px;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-bottom: 0;
+}
+li {
+line-height: 20px;
+}
+dl {
+margin-bottom: 20px;
+}
+dt,
+dd {
+line-height: 20px;
+}
+dt {
+font-weight: bold;
+}
+dd {
+margin-left: 10px;
+}
+hr {
+margin: 20px 0;
+border: 0;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid #ffffff;
+}
+abbr[title],
+abbr[data-original-title] {
+cursor: help;
+border-bottom: 1px dotted #999999;
+}
+abbr.initialism {
+font-size: 90%;
+text-transform: uppercase;
+}
+blockquote {
+padding: 0 0 0 15px;
+margin: 0 0 20px;
+border-left: 5px solid #eeeeee;
+}
+blockquote p {
+margin-bottom: 0;
+font-size: 17.5px;
+font-weight: 300;
+line-height: 1.25;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+content: "";
+}
+address {
+display: block;
+margin-bottom: 20px;
+font-style: normal;
+line-height: 20px;
+}
+code,
+pre {
+padding: 0 3px 2px;
+font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+font-size: 12px;
+color: #333333;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+code {
+padding: 2px 4px;
+color: #d14;
+white-space: nowrap;
+background-color: #f7f7f9;
+border: 1px solid #e1e1e8;
+}
+pre {
+display: block;
+padding: 9.5px;
+margin: 0 0 10px;
+font-size: 13px;
+line-height: 20px;
+word-break: break-all;
+word-wrap: break-word;
+white-space: pre;
+white-space: pre-wrap;
+background-color: #f5f5f5;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.15);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+pre.prettyprint {
+margin-bottom: 20px;
+}
+pre code {
+padding: 0;
+color: inherit;
+white-space: pre;
+white-space: pre-wrap;
+background-color: transparent;
+border: 0;
+}
+.pre-scrollable {
+max-height: 340px;
+overflow-y: scroll;
+}
+table {
+max-width: 100%;
+width: 100%;
+background-color: transparent;
+border-collapse: collapse;
+border-spacing: 0;
+}
+.table {
+width: 100%;
+margin-bottom: 20px;
+border: 1px solid;
+}
+.table th,
+.table td {
+padding: 8px;
+line-height: 20px;
+text-align: left;
+vertical-align: top;
+border-top: 1px solid #dddddd;
+}
+.table th {
+font-weight: bold;
+}
+.table thead th {
+vertical-align: bottom;
+background-color: #cccccc;
+}
+th {
+background-color: #cccccc;
+}
+tr:nth-child(even) {
+background-color: #cccccc;
+}
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+border-top: 0;
+}
+.table tbody + tbody {
+border-top: 2px solid #dddddd;
+}
+.table .table {
+background-color: #ffffff;
+}
+.table-condensed th,
+.table-condensed td {
+padding: 4px 5px;
+}
+.table-bordered {
+border: 1px solid #dddddd;
+border-collapse: separate;
+*border-collapse: collapse;
+border-left: 0;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.table-bordered th,
+.table-bordered td {
+border-left: 1px solid #dddddd;
+}
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+border-top: 0;
+}
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+-webkit-border-top-left-radius: 4px;
+border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+}
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+-webkit-border-top-right-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+-webkit-border-bottom-left-radius: 4px;
+border-bottom-left-radius: 4px;
+-moz-border-radius-bottomleft: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+-webkit-border-bottom-right-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-radius-bottomright: 4px;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+-webkit-border-bottom-left-radius: 0;
+border-bottom-left-radius: 0;
+-moz-border-radius-bottomleft: 0;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+-webkit-border-bottom-right-radius: 0;
+border-bottom-right-radius: 0;
+-moz-border-radius-bottomright: 0;
+}
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+-webkit-border-top-left-radius: 4px;
+border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+}
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+-webkit-border-top-right-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+}
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+background-color: #999999;
+}
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+background-color: #f5f5f5;
+}
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+display: table-cell;
+float: none;
+margin-left: 0;
+}
+.hero-unit {
+padding: 60px;
+margin-bottom: 30px;
+font-size: 18px;
+font-weight: 200;
+line-height: 30px;
+color: inherit;
+background-color: #eeeeee;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+.hero-unit h1 {
+margin-bottom: 0;
+font-size: 60px;
+line-height: 1;
+letter-spacing: -1px;
+color: inherit;
+}
+.hero-unit li {
+line-height: 30px;
+}
+
+.borderless, table.borderless td, table.borderless th {
+border: 0 }
+table.borderless td, table.borderless th {
+
+padding: 0 0.5em 0 0 ! important }
+.first {
+
+margin-top: 0 ! important }
+.last, .with-subtitle {
+margin-bottom: 0 ! important }
+.hidden {
+display: none }
+a.toc-backref {
+text-decoration: none ;
+color: black }
+blockquote.epigraph {
+margin: 2em 5em ; }
+dl.docutils dd {
+margin-bottom: 0.5em }
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+overflow: hidden;
+}
+
+div.abstract {
+margin: 2em 5em }
+div.abstract p.topic-title {
+font-weight: bold ;
+text-align: center }
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+margin: 2em ;
+border: medium outset ;
+padding: 1em }
+div.note, div.warning {
+margin:1.5em 0px;
+border: none;
+}
+div.note p.admonition-title,
+div.warning p.admonition-title
+{
+display:none;
+}
+
+div.note:after,
+div.warning:after {
+content:"";
+display:table;
+clear:both;
+}
+div.note p:before,
+div.warning p:before {
+display:block;
+float:left;
+font-size:4em;
+line-height:1em;
+margin-right:20px;
+margin-left: 0em;
+margin-top:-10px;
+content:'\0270D'; 
+}
+div.warning p:before {
+content:'\026A0'; 
+}
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+font-weight: bold ;
+font-family: sans-serif }
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+color: red ;
+font-weight: bold ;
+font-family: sans-serif }
+
+div.dedication {
+margin: 2em 5em ;
+text-align: center ;
+font-style: italic }
+div.dedication p.topic-title {
+font-weight: bold ;
+font-style: normal }
+div.figure {
+margin-left: 2em ;
+margin-right: 2em }
+div.footer, div.header {
+clear: both;
+font-size: smaller }
+div.line-block {
+display: block ;
+margin-top: 1em ;
+margin-bottom: 1em }
+div.line-block div.line-block {
+margin-top: 0 ;
+margin-bottom: 0 ;
+margin-left: 1.5em }
+div.sidebar {
+margin: 0 0 0.5em 1em ;
+border: medium outset ;
+padding: 1em ;
+background-color: #ffffee ;
+width: 40% ;
+float: right ;
+clear: right }
+div.sidebar p.rubric {
+font-family: sans-serif ;
+font-size: medium }
+div.system-messages {
+margin: 5em }
+div.system-messages h1 {
+color: red }
+div.system-message {
+border: medium outset ;
+padding: 1em }
+div.system-message p.system-message-title {
+color: red ;
+font-weight: bold }
+div.topic {
+margin: 2em }
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+margin-top: 0.4em }
+h1.title {
+text-align: center }
+h2.subtitle {
+text-align: center }
+hr.docutils {
+width: 75% }
+img.align-left, .figure.align-left, object.align-left {
+clear: left ;
+float: left ;
+margin-right: 1em }
+img.align-right, .figure.align-right, object.align-right {
+clear: right ;
+float: right ;
+margin-left: 1em }
+img.align-center, .figure.align-center, object.align-center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.align-left {
+text-align: left }
+.align-center {
+clear: both ;
+text-align: center }
+.align-right {
+text-align: right }
+
+div.align-right {
+text-align: inherit }
+
+
+ol.simple, ul.simple {
+margin-bottom: 1em }
+ol.arabic {
+list-style: decimal }
+ol.loweralpha {
+list-style: lower-alpha }
+ol.upperalpha {
+list-style: upper-alpha }
+ol.lowerroman {
+list-style: lower-roman }
+ol.upperroman {
+list-style: upper-roman }
+p.attribution {
+text-align: right ;
+margin-left: 50% }
+p.caption {
+font-style: italic }
+p.credits {
+font-style: italic ;
+font-size: smaller }
+p.label {
+white-space: nowrap }
+p.rubric {
+font-weight: bold ;
+font-size: larger ;
+color: maroon ;
+text-align: center }
+p.sidebar-title {
+font-family: sans-serif ;
+font-weight: bold ;
+font-size: larger }
+p.sidebar-subtitle {
+font-family: sans-serif ;
+font-weight: bold }
+p.topic-title {
+font-weight: bold }
+pre.address {
+margin-bottom: 0 ;
+margin-top: 0 ;
+font: inherit }
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+margin-left: 2em ;
+margin-right: 2em }
+pre.code .ln { color: grey; } 
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+span.classifier {
+font-family: sans-serif ;
+font-style: oblique }
+span.classifier-delimiter {
+font-family: sans-serif ;
+font-weight: bold }
+span.interpreted {
+font-family: sans-serif }
+span.option {
+white-space: nowrap }
+span.pre {
+white-space: pre }
+span.problematic {
+color: red }
+span.section-subtitle {
+
+font-size: 80% }
+table.citation {
+border-left: solid 1px gray;
+margin-left: 1px }
+table.docinfo {
+margin: 2em 4em }
+table.docutils {
+margin-top: 0.5em ;
+margin-bottom: 0.5em }
+table.footnote {
+border-left: solid 1px black;
+margin-left: 1px }
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+padding-left: 0.5em ;
+padding-right: 0.5em ;
+vertical-align: top }
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+font-weight: bold ;
+text-align: left ;
+white-space: nowrap ;
+padding-left: 0 }
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+font-size: 100% }
+ul.auto-toc {
+list-style-type: none }
+.code .pygments-hll { background-color: #ffffcc }
+.code .pygments-c { color: #60a0b0; font-style: italic } 
+.code .pygments-err { border: 1px solid #FF0000 } 
+.code .pygments-k { color: #007020; font-weight: bold } 
+.code .pygments-o { color: #666666 } 
+.code .pygments-cm { color: #60a0b0; font-style: italic } 
+.code .pygments-cp { color: #007020 } 
+.code .pygments-c1 { color: #60a0b0; font-style: italic } 
+.code .pygments-cs { color: #60a0b0; background-color: #fff0f0 } 
+.code .pygments-gd { color: #A00000 } 
+.code .pygments-ge { font-style: italic } 
+.code .pygments-gr { color: #FF0000 } 
+.code .pygments-gh { color: #000080; font-weight: bold } 
+.code .pygments-gi { color: #00A000 } 
+.code .pygments-go { color: #888888 } 
+.code .pygments-gp { color: #c65d09; font-weight: bold } 
+.code .pygments-gs { font-weight: bold } 
+.code .pygments-gu { color: #800080; font-weight: bold } 
+.code .pygments-gt { color: #0044DD } 
+.code .pygments-kc { color: #007020; font-weight: bold } 
+.code .pygments-kd { color: #007020; font-weight: bold } 
+.code .pygments-kn { color: #007020; font-weight: bold } 
+.code .pygments-kp { color: #007020 } 
+.code .pygments-kr { color: #007020; font-weight: bold } 
+.code .pygments-kt { color: #902000 } 
+.code .pygments-m { color: #40a070 } 
+.code .pygments-s { color: #4070a0 } 
+.code .pygments-na { color: #4070a0 } 
+.code .pygments-nb { color: #007020 } 
+.code .pygments-nc { color: #0e84b5; font-weight: bold } 
+.code .pygments-no { color: #60add5 } 
+.code .pygments-nd { color: #555555; font-weight: bold } 
+.code .pygments-ni { color: #d55537; font-weight: bold } 
+.code .pygments-ne { color: #007020 } 
+.code .pygments-nf { color: #06287e } 
+.code .pygments-nl { color: #002070; font-weight: bold } 
+.code .pygments-nn { color: #0e84b5; font-weight: bold } 
+.code .pygments-nt { color: #062873; font-weight: bold } 
+.code .pygments-nv { color: #bb60d5 } 
+.code .pygments-ow { color: #007020; font-weight: bold } 
+.code .pygments-w { color: #bbbbbb } 
+.code .pygments-mf { color: #40a070 } 
+.code .pygments-mh { color: #40a070 } 
+.code .pygments-mi { color: #40a070 } 
+.code .pygments-mo { color: #40a070 } 
+.code .pygments-sb { color: #4070a0 } 
+.code .pygments-sc { color: #4070a0 } 
+.code .pygments-sd { color: #4070a0; font-style: italic } 
+.code .pygments-s2 { color: #4070a0 } 
+.code .pygments-se { color: #4070a0; font-weight: bold } 
+.code .pygments-sh { color: #4070a0 } 
+.code .pygments-si { color: #70a0d0; font-style: italic } 
+.code .pygments-sx { color: #c65d09 } 
+.code .pygments-sr { color: #235388 } 
+.code .pygments-s1 { color: #4070a0 } 
+.code .pygments-ss { color: #517918 } 
+.code .pygments-bp { color: #007020 } 
+.code .pygments-vc { color: #bb60d5 } 
+.code .pygments-vg { color: #bb60d5 } 
+.code .pygments-vi { color: #bb60d5 } 
+.code .pygments-il { color: #40a070 } 
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CS-510 Topics in Software Security</h1>
+</header>
+<p>Taught by <a href="https://nebelwelt.net">Mathias Payer</a>. Fall semester 2023, 3 credit course.</p>
+<h1 id="news">News</h1>
+<ul>
+<li>03/10 Updated course assignments</li>
+<li>01/10 Updated course assignments</li>
+<li>27/09 Published course assignments and clarified scribing</li>
+<li>06/09 Course description updated</li>
+<li>19/09 <a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction presentation</a> and course updated</li>
+</ul>
+<h1 id="course-overview">Course overview</h1>
+<p>Unsafe languages like C/C++ are widely used for their great promise of performance. Unfortunately, these languages are prone to a large set of different types of memory and type errors that allow the exploitation of several attack vectors such as code reuse, privilege escalation, or information leaks. On a high level memory and type safety would solve all these problems. Safe languages can (somewhat) cheaply enforce these properties. Unfortunately, these guarantees come at a high cost if retrofitted onto existing languages.</p>
+<p>When working with unsafe languages, three fundamental approaches exist to protect against software flaws: formal verification (proving the absence of bugs), software testing (finding bugs), and mitigation (protecting against the exploitation of bugs). In this seminar, we will primarily focus on recent advances in system security by looking at papers from recent top tier conferences.</p>
+<p>This seminar explores three areas: the understanding of attack vectors, approaches to software testing, and mitigation strategies. First you need to understand what kind of software flaws exist in low level software and how those flaws can be exploited.</p>
+<p>Each student will pick one topic from the list of topics below. The student is expected to organize the material and prepare a presentation of the topic for the other students. The main goals of this seminar are:</p>
+<ol type="1">
+<li>understanding and defining the security policy and corresponding guarantees/trade-offs implemented by given work;</li>
+<li>reasoning about the power and effectiveness (completeness in regard to attack vectors covered, strength of the guarantees, and effectiveness) of different security policies (and being able to compare between them);</li>
+<li>reasoning on the computational and resource cost of mechanisms and possible downsides;</li>
+<li>alternative implementations of the policy at other levels of abstraction.</li>
+<li>developing skills to present a technical topic in computer science to an audience of peers;</li>
+<li>learning how to identify possible research topics and articulating differences to existing related work.</li>
+</ol>
+<p>Your grade is based on:</p>
+<ol type="1">
+<li>technical presentation of your topic (40%);</li>
+<li>writing a one page summary of your presentation with key topics/aspects mentioned during the discussion (20%), writing a one page summary of the discussion of the presentation <em>of a colleague</em> (30%); for both summaries, the suggested layout is 2/3 column summary of the paper, 2/3 column summary of the discussion and 2/3 column with your own reflections;</li>
+<li>active participation in class which includes reading the assigned papers and asking questions/participating in the discussions (10%).</li>
+</ol>
+<p>Your summaries are expected to be written using the acm two-column format. You must submit them at most one week after the presentations.</p>
+<h1 id="schedule">Schedule</h1>
+<p>The seminar meets Tuesdays from 10:15 to 12:00 in INM203. A draft of the schedule looks as follows but remember that no plan survives contact with reality!</p>
+<table>
+<colgroup>
+<col style="width: 10%"></col>
+<col style="width: 15%"></col>
+<col style="width: 15%"></col>
+<col style="width: 60%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Presenter</th>
+<th>Scribe</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>19/9</td>
+<td>Mathias Payer</td>
+<td></td>
+<td><a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction</a></td>
+</tr>
+<tr class="even">
+<td>26/9</td>
+<td>Leon Windler</td>
+<td>Annamira O&#39;Toole</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/schepers">Framing Frames: Bypassing Wi-Fi Encryption by Manipulating Transmit Queues (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Erchang Ni</td>
+<td>Duo Xu</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/wu-yuhang">Mitigating Security Risks in Linux with KLAUS: A Method for Evaluating Patch Correctness (SEC&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>3/10</td>
+<td>Wouter Van Hoof</td>
+<td>Leon Windler</td>
+<td><a href="https://cseweb.ucsd.edu/~dstefan/pubs/johnson:2023:wave.pdf">WaVe: a verifiably secure WebAssembly sandboxing runtime (Oakland&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Lothaire Aubergeon</td>
+<td>Stefan Popescu</td>
+<td><a href="https://www.ndss-symposium.org/ndss-paper/drone-security-and-the-mysterious-case-of-djis-droneid/">Drone Security and the Mysterious Case of DJI&#39;s DroneID (NDSS&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>10/10</td>
+<td>Emilien Duc</td>
+<td>Antoine Moix</td>
+<td><a href="https://dl.acm.org/doi/10.1145/3548606.3560575">Evocatio: Conjuring Bug Capabilities from a Single PoC (CCS&#39;22)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Senne Van Den Broeck</td>
+<td>Maxime Zammit</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/han-xing">Medusa Attack: Exploring Security Hazards of In-App QR Code Scanning (SEC&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>17/10</td>
+<td>Johan Belloy</td>
+<td>Vincenzo Pellegrini</td>
+<td><a href="https://ieeexplore.ieee.org/document/10179330">BLEDiff: Scalable and Property-Agnostic Noncompliance Checking for BLE Implementations (Oakland&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Felix Schoellen</td>
+<td>Raymond Nasr</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/ye">VIPER: Spotting Syscall-Guard Variables for Data-Only Attacks (SEC&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>24/10</td>
+<td>Annamira O&#39;Toole</td>
+<td>Senne Van Den Broeck</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/henzinger">One Server for the Price of Two: Simple and Fast Single-Server Private Information Retrieval (SEC23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Stefan Popescu</td>
+<td>Felix Schoellen</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/emami-naeini">Are Consumers Willing to Pay for Security and Privacy of IoT Devices? (SEC&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>31/10</td>
+<td>Adrien Rey</td>
+<td>Wouter Van Hoof</td>
+<td><a href="https://www.computer.org/csdl/proceedings-article/sp/2023/933600b271/1OXGQlKldtK">WarpAttack: Bypassing CFI through Compiler-Introduced Double-Fetches (Oakland&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Han Zheng</td>
+<td>Zurab Tsinadze</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/kim-tae-eun">DAFL: Directed Grey-box Fuzzing guided by Data Dependency (SEC23)</a></td>
+</tr>
+<tr class="even">
+<td>7/11</td>
+<td>Antoine Moix</td>
+<td>Adrien Rey</td>
+<td><a href="https://ieeexplore.ieee.org/document/10179294">How IoT Recycling Threatens Your Sensitive Data: Exploring the User-Data Disposal in Used IoT Devices (Oakland&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Luca Zunino</td>
+<td>Han Zheng</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/shen-bingyu-logging">Improving Logging to Reduce Permission Over-Granting Mistakes (SEC23)</a></td>
+</tr>
+<tr class="even">
+<td>14/11</td>
+<td>Maxime Zammit</td>
+<td>Emilien Duc</td>
+<td><a href="https://www.usenix.org/system/files/sec23fall-prepub-81-akgul.pdf">Bug Hunters&#39; Perspectives on the Challenges and Benefits of the Bug Bounty Ecosystem (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Zurab Tsinadze</td>
+<td>Emma-Andreea Chirlomez</td>
+<td><a href="https://gts3.org/assets/papers/2023/jeong:utopia.pdf">UTOPIA: Automatic Generation of Fuzz Driver using Unit Tests (Oakland&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>21/11</td>
+<td>Vincenzo Pellegrini</td>
+<td>Ruben Burdin</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/bang">TRUST: A Compilation Framework for In-process Isolation to Protect Safe Rust against Untrusted Code (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Emma-Andreea Chirlomez</td>
+<td>Erchang Ni</td>
+<td><a href="https://dl.acm.org/doi/abs/10.1145/3548606.3560602">LibAFL: A Framework to Build Modular and Reusable Fuzzer (CCS22)</a></td>
+</tr>
+<tr class="even">
+<td>28/11</td>
+<td>Pei Weng</td>
+<td>Michaël Tasev</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/stone">No Linux No Problem: Fast and Correct Windows Binary Fuzzing via Target-embedded Snapshotting (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Duo Xu</td>
+<td>Aleksandra Bozhinoska</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/bars">Fuzztruction: Using Fault Injection-based Fuzzing to Leverage Implicit Domain Knowledge (SEC&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>5/12</td>
+<td>Raymond Nasr</td>
+<td>Lothaire Aubergeon</td>
+<td><a href="Security%20and%20Privacy%20Failures%20in%20Popular%202FA%20Apps">Security and Privacy Failures in Popular 2FA Apps (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Ruben Burdin</td>
+<td>Johan Belloy</td>
+<td><a href="https://arxiv.org/abs/2204.04008">Taxonomy of Attacks on Open-Source Software Supply Chains (Oakland&#39;23)</a></td>
+</tr>
+<tr class="even">
+<td>12/12</td>
+<td>Pietro Moretto</td>
+<td>Luca Zunino</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/koschel">Uncontained: Uncovering Container Confusion in the Linux Kernel (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Aleksandra Bozhinoska</td>
+<td>Brice Theurillat</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/fu-yu-fu">autofz: Automated Fuzzer Composition at Runtime (SEC23)</a></td>
+</tr>
+<tr class="even">
+<td>19/12</td>
+<td>Brice Theurillat</td>
+<td>Pei Weng</td>
+<td><a href="https://www.usenix.org/conference/usenixsecurity23/presentation/wang-junjie">FuzzJIT: Oracle-Enhanced Fuzzing for JavaScript Engine JIT Compiler (SEC&#39;23)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Michaël Tasev</td>
+<td>Pietro Moretto</td>
+<td><a href="https://ieeexplore.ieee.org/document/10179478">Vulnerability Discovery for All: Experiences of Marginalization in Vulnerability Discovery (SP&#39;23)</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="topic-presentations">Topic presentations</h1>
+<p>The length of presentations for research papers should be between around 30 minutes, followed by 15 minutes of discussion. You can structure the presentation as follows:</p>
+<ol type="1">
+<li>Motivation of the paper (1-2 slides, ~5 minutes)</li>
+<li>Key research questions (1-2 slides, ~5 minutes)</li>
+<li>Presentation of the core design and implementation of the research paper (4-8 slides, ~10 minutes)</li>
+<li>Evaluation of the security policy (2-3 slides, ~5 minutes)</li>
+<li>Material for discussion: advantages, disadvantages, limitations of the approach (2-3 slides, ~5 minutes)</li>
+<li>Summary slide of the paper: policy, defense property (at which point in memory model), implementation (language, compiler, or runtime)</li>
+</ol>
+<p>When preparing the presentation, send a PDF version of your slides to <a href="mailto:mathias.payer@epfl.ch">Mathias</a> <em>before</em> your talk.</p>
+<h1 id="topics">Topics</h1>
+<p>This list is non-exhaustive and the list may be adapted during class and students may suggest other recent software security papers they are interested in. The open book Software Security: Principles, Policies, and Protection<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> provides an overview of many topics but does not go into depth for each policy. Similarly, the Eternal War in Memory<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> presents an overview of the software security landscape.</p>
+<p><em>Automated Fuzz Testing</em></p>
+<ul>
+<li>DriveFuzz: Discovering Autonomous Driving Bugs through Driving Quality-Guided Fuzzing (CCS&#39;22)</li>
+<li>MC2: Rigorous and Efficient Directed Greybox Fuzzing (CCS&#39;22)</li>
+<li>SpecDoctor: Differential Fuzz Testing to Find Transient Execution Vulnerabilities (CCS&#39;22)</li>
+<li><code class="interpreted-text" role="strike">LibAFL: A Framework to Build Modular and Reusable Fuzzer (CCS22)</code></li>
+<li>No Grammar, No Problem: Towards Fuzzing the Linux Kernel without System-Call Descriptions (NDSS&#39;23)</li>
+<li>FUZZILLI: Fuzzing for JavaScript JIT Compiler Vulnerabilities (NDSS&#39;23)</li>
+<li>FUZZILLI: Fuzzing for JavaScript JIT Compiler Vulnerabilities (NDSS&#39;23)</li>
+<li>SegFuzz: Segmentizing Thread Interleaving to Discover Kernel Concurrency Bugs through Fuzzing (Oakland&#39;23)</li>
+<li><code class="interpreted-text" role="strike">UTOPIA: Automatic Generation of Fuzz Driver using Unit Tests (Oakland&#39;23)</code></li>
+<li>TEEzz: Fuzzing Trusted Applications on COTS Android Devices (Oakland&#39;23)</li>
+<li>VIDEZZO: Dependency-aware Virtual Device Fuzzing (Oakland&#39;23)</li>
+<li><code class="interpreted-text" role="strike">Fuzztruction: Using Fault Injection-based Fuzzing to Leverage Implicit Domain Knowledge (SEC&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">autofz: Automated Fuzzer Composition at Runtime (SEC23)</code></li>
+<li><code class="interpreted-text" role="strike">DAFL: Directed Grey-box Fuzzing guided by Data Dependency (SEC23)</code></li>
+<li>CarpetFuzz: Automatic Program Option Constraint Extraction from Documentation for Fuzzing (SEC23)</li>
+<li>KextFuzz: Fuzzing macOS Kernel EXTensions on Apple Silicon via Exploiting Mitigations (SEC&#39;23)</li>
+<li><code class="interpreted-text" role="strike">No Linux, No Problem: Fast and Correct Windows Binary Fuzzing via Target-embedded Snapshotting (SEC&#39;23)</code></li>
+<li>Jit-Picking: Differential Fuzzing of JavaScript Engines (SEC&#39;23)</li>
+<li>PET: Prevent Discovered Errors from Being Triggered in the Linux Kernel (SEC&#39;23)</li>
+<li><code class="interpreted-text" role="strike">Mitigating Security Risks in Linux with KLAUS: A Method for Evaluating Patch Correctness (SEC&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">FuzzJIT: Oracle-Enhanced Fuzzing for JavaScript Engine JIT Compiler (SEC&#39;23)</code></li>
+</ul>
+<p><em>Bugs everywhere</em></p>
+<ul>
+<li><code class="interpreted-text" role="strike">Drone Security and the Mysterious Case of DJI&#39;s DroneID (NDSS&#39;23)</code></li>
+<li>GraphSPD: Graph-Based Security Patch Detection with Enriched Code Semantics (Oakland&#39;23)</li>
+<li><code class="interpreted-text" role="strike">Taxonomy of Attacks on Open-Source Software Supply Chains (Oakland&#39;23)</code></li>
+<li>When Top-down Meets Bottom-up: Detecting and Exploiting Use-After-Cleanup Bugs in Linux Kernel (Oakland&#39;23)</li>
+<li><code class="interpreted-text" role="strike">BLEDiff: Scalable and Property-Agnostic Noncompliance Checking for BLE Implementations (Oakland&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">How IoT Recycling Threatens Your Sensitive Data: Exploring the User-Data Disposal in Used IoT Devices (Oakland&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">WarpAttack: Bypassing CFI through Compiler-Introduced Double-Fetches (Oakland&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">Bug Hunters&#39; Perspectives on the Challenges and Benefits of the Bug Bounty Ecosystem (SEC&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">Framing Frames: Bypassing Wi-Fi Encryption by Manipulating Transmit Queues (SEC&#39;23)</code>`</li>
+<li><code class="interpreted-text" role="strike">VIPER: Spotting Syscall-Guard Variables for Data-Only Attacks (SEC&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">Are Consumers Willing to Pay for Security and Privacy of IoT Devices? (SEC&#39;23)</code></li>
+</ul>
+<p><em>Sanitizers</em></p>
+<ul>
+<li>DangZero: Efficient Use-After-Free Detection via Direct Page Table Access (CCS&#39;22)</li>
+<li><code class="interpreted-text" role="strike">Evocatio: Conjuring Bug Capabilities from a Single PoC (CCS&#39;22)</code></li>
+<li><code class="interpreted-text" role="strike">Vulnerability Discovery for All: Experiences of Marginalization in Vulnerability Discovery (SP&#39;23)</code></li>
+<li>MTSan: A Feasible and Practical Memory Sanitizer for Fuzzing COTS Binaries (SEC&#39;23)</li>
+<li><code class="interpreted-text" role="strike">Uncontained: Uncovering Container Confusion in the Linux Kernel (SEC&#39;23)</code></li>
+</ul>
+<p><em>Security Architectures</em></p>
+<ul>
+<li>CETIS: Retrofitting Intel CET for Generic and Efficient Intra-process Memory Isolation (CCS&#39;22)</li>
+<li>Assesing the Impact of Interface Vulnerabilities in Compartmentalized Software (NDSS&#39;23)</li>
+<li><code class="interpreted-text" role="strike">WaVe: a verifiably secure WebAssembly sandboxing runtime (Oakland&#39;23)</code></li>
+<li>SecureCells: A Secure Compartmentalized Architecture (Oakland&#39;23)</li>
+<li><code class="interpreted-text" role="strike">TRUST: A Compilation Framework for In-process Isolation to Protect Safe Rust against Untrusted Code (SEC&#39;23)</code></li>
+</ul>
+<p>You can find the papers through DBLP or the corresponding websites:</p>
+<ul>
+<li><a href="https://dblp.org/db/conf/ccs/ccs2022.html">CCS&#39;22</a></li>
+<li><a href="https://dblp.org/db/conf/ndss/ndss2023.html">NDSS&#39;23</a></li>
+<li><a href="https://dblp.org/db/conf/sp/sp2023.html">Oakland&#39;23</a></li>
+<li><a href="https://dblp.org/db/conf/uss/uss2023.html">SEC&#39;23</a></li>
+</ul>
+<h1 id="references">References</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://nebelwelt.net/SS3P/">Software Security: Principles, Policies, and Protection. Mathias Payer</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://nebelwelt.net/publications/files/13Oakland.pdf">SoK: Eternal War in Memory. Laszlo Szekeres, Mathias Payer, Tao Wei, and Dawn Song. In Oakland&#39;13: Proc. Int&#39;l Symp. on Security and Privacy, 2013.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
