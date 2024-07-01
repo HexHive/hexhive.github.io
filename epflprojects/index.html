@@ -57,6 +57,7 @@
 <li><a href="#evaluation-on-syscall-filtering-techniques">Evaluation on Syscall Filtering Techniques</a></li>
 <li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
 <li><a href="#a-ground-truth-fuzzing-benchmark-for-stateful-protocols">A Ground-Truth Fuzzing Benchmark for Stateful Protocols</a></li>
+<li><a href="#hyper-cube2-a-scalable-performant-multi-thread-blackbox-virtual-device-fuzzer">Hyper-Cube2: A Scalable, Performant, Multi-thread Blackbox Virtual Device Fuzzer</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -269,6 +270,29 @@ Nevertheless, real-world scenarios might deviate from this ideal: seed explosion
 <p>Recommended readings</p>
 <ul>
 <li><a href="https://hexhive.epfl.ch/publications/files/21SIGMETRICS.pdf">Magma: A ground-truth fuzzing benchmark</a></li>
+</ul>
+<h5 id="hyper-cube2-a-scalable-performant-multi-thread-blackbox-virtual-device-fuzzer">Hyper-Cube2: A Scalable, Performant, Multi-thread Blackbox Virtual Device Fuzzer</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: Master Semester/Thesis Project</li>
+<li>Keywords: Blackbox, Virtual Device, Fuzzing</li>
+</ul>
+<p>Virtual devices remain the main attack surface to hypervisors. Vulnerabilities in virtual devices lead to denial of service, data breaches, execution hijacking, and other security problems. Hyper-Cube was proposed to fuzz virtual devices. It is a blackbox fuzzer and has very high throughput. Hyper-Cube has great usability but suffers from the following two problems:</p>
+<ul>
+<li>Hyper-Cube is only compatible with hypervisors that support a x86 32-bit OS.</li>
+<li>Hyper-Cube cannot discover race conditions in virtual devices.</li>
+</ul>
+<p>In this project, we aim to to achieve three specific goals.</p>
+<ul>
+<li>Implement Hyper-Cube2: Implement a userspace virtual device fuzzer (based on libFuzzer) running on top of a 64-bit OS for both x64-64 and ARM (e.g., Ubuntu)</li>
+<li>Optimize Hyper-Cube2: Optimize Hyper-Cube2 regarding performance (by choosing a small and fast 64-bit OS and reducing code complexity)</li>
+<li>Extend Hyper-Cube2: Implement a multi-thread mode for race conditions</li>
+</ul>
+<p>We are building a new blackbox virtual device fuzzer. A candidate is required to have experience with programming in C, compiling with Clang, programming profiling (e.g., FlameGraph), and algorithm optimization. It is preferable but not necessary to have experience with fuzzing, the development of operating systems and virtual devices, ARM, Hyper-V, VMWare Esxi, and macOS.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.ndss-symposium.org/wp-content/uploads/2020/02/23096-paper.pdf">Hyper-Cube Paper</a></li>
+<li><a href="https://github.com/RUB-SysSec/Hypercube">Hyper-Cube Source Code</a></li>
 </ul>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
