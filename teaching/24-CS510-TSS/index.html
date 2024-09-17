@@ -12,7 +12,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <style type="text/css">
 html {
@@ -795,220 +794,368 @@ list-style-type: none }
 <header id="title-block-header">
 <h1 class="title">CS-510 Topics in Software Security</h1>
 </header>
-<p>Taught by <a href="https://nebelwelt.net">Mathias Payer</a>. Fall
-semester 2024, 3 credit course.</p>
+<p>Taught by <a href="https://nebelwelt.net">Mathias Payer</a>. Fall semester 2024, 3 credit course.</p>
 <h1 id="news">News</h1>
 <ul>
-<li>10/09 <a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction
-presentation</a> and course updated</li>
+<li>17/09 Updated course schedule and presentation timings</li>
+<li>10/09 <a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction presentation</a> and course updated</li>
 </ul>
 <h1 id="course-overview">Course overview</h1>
-<p>Unsafe languages like C/C++ are widely used for their great promise
-of performance. Unfortunately, these languages are prone to a large set
-of different types of memory and type errors that allow the exploitation
-of several attack vectors such as code reuse, privilege escalation, or
-information leaks. On a high level memory and type safety would solve
-all these problems. Safe languages can (somewhat) cheaply enforce these
-properties. Unfortunately, these guarantees come at a high cost if
-retrofitted onto existing languages.</p>
-<p>When working with unsafe languages, three fundamental approaches
-exist to protect against software flaws: formal verification (proving
-the absence of bugs), software testing (finding bugs), and mitigation
-(protecting against the exploitation of bugs). In this seminar, we will
-primarily focus on recent advances in system security by looking at
-papers from recent top tier conferences.</p>
-<p>This seminar explores three areas: the understanding of attack
-vectors, approaches to software testing, and mitigation strategies.
-First you need to understand what kind of software flaws exist in low
-level software and how those flaws can be exploited.</p>
-<p>Each student will pick one topic from the list of topics below.
-Alternatively, the student may suggest a paper from a top tier venue of
-the last year in security (NDSS, Oakland, SEC, or CCS). The student is
-expected to organize the material and prepare a presentation of the
-topic for the other students. The main goals of this seminar are:</p>
+<p>Unsafe languages like C/C++ are widely used for their great promise of performance. Unfortunately, these languages are prone to a large set of different types of memory and type errors that allow the exploitation of several attack vectors such as code reuse, privilege escalation, or information leaks. On a high level memory and type safety would solve all these problems. Safe languages can (somewhat) cheaply enforce these properties. Unfortunately, these guarantees come at a high cost if retrofitted onto existing languages.</p>
+<p>When working with unsafe languages, three fundamental approaches exist to protect against software flaws: formal verification (proving the absence of bugs), software testing (finding bugs), and mitigation (protecting against the exploitation of bugs). In this seminar, we will primarily focus on recent advances in system security by looking at papers from recent top tier conferences.</p>
+<p>This seminar explores three areas: the understanding of attack vectors, approaches to software testing, and mitigation strategies. First you need to understand what kind of software flaws exist in low level software and how those flaws can be exploited.</p>
+<p>Each student will pick one topic from the list of topics below. Alternatively, the student may suggest a paper from a top tier venue of the last year in security (NDSS, Oakland, SEC, or CCS). The student is expected to organize the material and prepare a presentation of the topic for the other students. The main goals of this seminar are:</p>
 <ol type="1">
-<li>understanding and defining the security policy and corresponding
-guarantees/trade-offs implemented by given work;</li>
-<li>reasoning about the power and effectiveness (completeness in regard
-to attack vectors covered, strength of the guarantees, and
-effectiveness) of different security policies (and being able to compare
-between them);</li>
-<li>reasoning on the computational and resource cost of mechanisms and
-possible downsides;</li>
-<li>alternative implementations of the policy at other levels of
-abstraction.</li>
-<li>developing skills to present a technical topic in computer science
-to an audience of peers;</li>
-<li>learning how to identify possible research topics and articulating
-differences to existing related work.</li>
+<li>understanding and defining the security policy and corresponding guarantees/trade-offs implemented by given work;</li>
+<li>reasoning about the power and effectiveness (completeness in regard to attack vectors covered, strength of the guarantees, and effectiveness) of different security policies (and being able to compare between them);</li>
+<li>reasoning on the computational and resource cost of mechanisms and possible downsides;</li>
+<li>alternative implementations of the policy at other levels of abstraction.</li>
+<li>developing skills to present a technical topic in computer science to an audience of peers;</li>
+<li>learning how to identify possible research topics and articulating differences to existing related work.</li>
 </ol>
 <p>Your grade is based on:</p>
 <ol type="1">
 <li>technical presentation of your topic (60%);</li>
-<li>writing a two page summary of <em>a colleague&#39;s</em> presentation
-and paper (30%); the suggested layout is to use the first page for the
-summary of the paper, one column as a summary of the class discussion
-and the final column with your own reflections; use the <a href="https://www.usenix.org/conferences/author-resources/paper-templates">Usenix
-template</a> for the summary;</li>
-<li>active participation in class which includes reading the assigned
-papers and asking questions/participating in the discussions (10%).</li>
+<li>writing a two page summary of <em>a colleague&#39;s</em> presentation and paper (30%); the suggested layout is to use the first page for the summary of the paper, one column as a summary of the class discussion and the final column with your own reflections; use the <a href="https://www.usenix.org/conferences/author-resources/paper-templates">Usenix template</a> for the summary;</li>
+<li>active participation in class which includes reading the assigned papers and asking questions/participating in the discussions (10%).</li>
 </ol>
-<p>Submit your slides until Friday before your presentation so that you
-can incorporate some feedback for your presentation on Tuesday. For the
-summary, submit it until Monday night after the presentation, i.e., you
-have one week for the summary.</p>
+<p>Submit your slides until Friday before your presentation so that you can incorporate some feedback for your presentation on Tuesday. For the summary, submit it until Monday night after the presentation, i.e., you have one week for the summary.</p>
 <h1 id="schedule">Schedule</h1>
-<p>The seminar meets Tuesdays from 10:15 to 12:00 in INM203. A draft of
-the schedule looks as follows but remember that no plan survives contact
-with reality!</p>
+<p>The seminar meets Tuesdays from 10:15 to 12:00 in INM203. A draft of the schedule looks as follows but remember that no plan survives contact with reality!</p>
 <table>
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 60%" />
+<col style="width: 10%"></col>
+<col style="width: 60%"></col>
+<col style="width: 15%"></col>
+<col style="width: 15%"></col>
 </colgroup>
 <thead>
 <tr class="header">
 <th>Date</th>
+<th>Paper</th>
 <th>Presenter</th>
 <th>Scribe</th>
-<th>Topic</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>19/9</td>
-<td>Mathias Payer</td>
+<td>10/09</td>
+<td>Introduction</td>
+<td>Mathias</td>
 <td></td>
-<td><a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction</a></td>
+</tr>
+<tr class="even">
+<td>17/09</td>
+<td>QUACK: Hindering Deserialization Attacks via Static Duck Typing (NDSS&#39;24)</td>
+<td>Luca Carroz</td>
+<td>Daniel Bucher</td>
+</tr>
+<tr class="odd">
+<td>17/09</td>
+<td>Blocked: Chao Zhang (Research Faculty at Tsinghua) will give a talk</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>17/09</td>
+<td>Blocked: Chao Zhang (Research Faculty at Tsinghua) will give a talk</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>24/09</td>
+<td>Wear&#39;s my Data? Understanding the Cross-Device Runtime Permission Model in Wearables (Oakland&#39;24)</td>
+<td>Johanna Nuding</td>
+<td>Paul Tissot-Daguette</td>
+</tr>
+<tr class="even">
+<td>24/09</td>
+<td>Predictive Context-sensitive Fuzzing (NDSS&#39;24)</td>
+<td>Paul Tissot-Daguette</td>
+<td>Johanna Nuding</td>
+</tr>
+<tr class="odd">
+<td>24/09</td>
+<td></td>
+<td>Houhou Thomas</td>
+<td>Xavier Marchon</td>
+</tr>
+<tr class="even">
+<td>1/10</td>
+<td>CAMP: Compiler and Allocator-based Heap Memory Protection (SEC&#39;24)</td>
+<td>Jonas Sulzer</td>
+<td>Julian Levkov</td>
+</tr>
+<tr class="odd">
+<td>1/10</td>
+<td>Everything is Good for Something: Counterexample-Guided Directed Fuzzing via Likely Invariant Inference (Oakland&#39;24)</td>
+<td>Julian Levkov</td>
+<td>Jonas Sulzer</td>
+</tr>
+<tr class="even">
+<td>1/10</td>
+<td></td>
+<td>Konstantinos Chasialis</td>
+<td>Rafaila Galanopoulou</td>
+</tr>
+<tr class="odd">
+<td>8/10</td>
+<td>The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web (Oakland&#39;24*)</td>
+<td>Siim Markus Marvet</td>
+<td>Maitri Dedhia</td>
+</tr>
+<tr class="even">
+<td>8/10</td>
+<td>LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors (NDSS&#39;24)</td>
+<td>Xavier Marchon</td>
+<td>Yago Pérez</td>
+</tr>
+<tr class="odd">
+<td>8/10</td>
+<td>Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality (NDSS&#39;24*)</td>
+<td>Yago Pérez</td>
+<td>Diogo Cardoso</td>
+</tr>
+<tr class="even">
+<td>15/10</td>
+<td>Spill the TeA: An Empirical Study of Trusted Application Rollback Prevention on Android</td>
+<td>Dominique Huang</td>
+<td>Shunchang Liu</td>
+</tr>
+<tr class="odd">
+<td>15/10</td>
+<td>LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks (Oakland&#39;24)</td>
+<td>Daniel López</td>
+<td>Samuel Tepoorten</td>
+</tr>
+<tr class="even">
+<td>15/10</td>
+<td>From Virtual Touch to Tesla Command: Unlocking Unauthenticated Control Chains From Smart Glasses for Vehicle Takeover (Oakland&#39;24*)</td>
+<td>Oscar de Francesca</td>
+<td>Alexander Procelewski</td>
+</tr>
+<tr class="odd">
+<td>22/10</td>
+<td>Holidays</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>29/10</td>
+<td></td>
+<td>Alexander Procelewski</td>
+<td>Oscar de Francesca</td>
+</tr>
+<tr class="odd">
+<td>29/10</td>
+<td>Vulnerability-oriented Testing for RESTful APIs (USENIX &#39;24)</td>
+<td>Rafaila Galanopoulou</td>
+<td>Daniel López</td>
+</tr>
+<tr class="even">
+<td>29/10</td>
+<td>DarthShader: Fuzzing WebGPU Shader Translators &amp; Compilers</td>
+<td>Solène Husseini</td>
+<td>Eugen Bosnjak</td>
+</tr>
+<tr class="odd">
+<td>5/11</td>
+<td>MetaSafe: Compiling for Protecting Smart Pointer Metadata to Ensure Safe Rust Integrity (SEC&#39;24)</td>
+<td>Daniel Bucher</td>
+<td>Luca Carroz</td>
+</tr>
+<tr class="even">
+<td>5/11</td>
+<td>Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities (Oakland&#39;24*)</td>
+<td>Samuel Tepoorten</td>
+<td>Raymond Nasr</td>
+</tr>
+<tr class="odd">
+<td>5/11</td>
+<td>GPU Memory Exploitation for Fun and Profit (SEC&#39;24)</td>
+<td>Flavien Jaquerod</td>
+<td>Solène Husseini</td>
+</tr>
+<tr class="even">
+<td>12/11</td>
+<td>UntrustIDE: Exploiting Weaknesses in VS Code Extensions (NDSS&#39;24*)</td>
+<td>Eugen Bosnjak</td>
+<td>Flavien Jaquerod</td>
+</tr>
+<tr class="odd">
+<td>12/11</td>
+<td>Why Aren’t We Using Passkeys? Obstacles Companies Face Deploying FIDO2 Passwordless Authentication</td>
+<td>Raymond Nasr</td>
+<td>Thomas Houhou</td>
+</tr>
+<tr class="even">
+<td>12/11</td>
+<td>EL3XIR: Fuzzing COTS Secure Monitors (SEC&#39;24)</td>
+<td>Nadine Al Fadel Raad</td>
+<td>Konstantinos Chasialis</td>
+</tr>
+<tr class="odd">
+<td>19/11</td>
+<td>PrintListener: Uncovering the Vulnerability of Fingerprint Authentication via the Finger Friction Sound (NDSS&#39;24)</td>
+<td>Maitri Dedhia</td>
+<td>Jonas Scholz</td>
+</tr>
+<tr class="even">
+<td>19/11</td>
+<td>Blocked</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>19/11</td>
+<td>Blocked</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>26/11</td>
+<td>From Chatbots to Phishbots?: Phishing Scam Generation in Commercial Large Language Models (Oakland&#39;24*)</td>
+<td>Shunchang Liu</td>
+<td>Dominique Huang</td>
+</tr>
+<tr class="odd">
+<td>26/11</td>
+<td>CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation (CCS&#39;23)</td>
+<td>Ahyoung Seo</td>
+<td>Siim Markus Marvet</td>
+</tr>
+<tr class="even">
+<td>26/11</td>
+<td>K-LEAK: Towards Automating the Generation of Multi-Step Infoleak Exploits against the Linux Kernel (NDSS&#39;24)</td>
+<td>Ethan Bai</td>
+<td>Sahil Singhvi</td>
+</tr>
+<tr class="odd">
+<td>3/12</td>
+<td>RustSan: Retrofitting AddressSanitizer for Efficient Sanitization of Rust (SEC&#39;24)</td>
+<td>Khalil M&#39;hirsi</td>
+<td>Ahyoung Seo</td>
+</tr>
+<tr class="even">
+<td>3/12</td>
+<td>File Hijacking Vulnerability: The Elephant in the Room (NDSS&#39;24)</td>
+<td>Diogo Cardoso</td>
+<td>Olena Zavertiaieva</td>
+</tr>
+<tr class="odd">
+<td>3/12</td>
+<td>Go Go Gadget Hammer: Flipping Nested Pointers for Arbitrary Data Leakage (SEC&#39;24)</td>
+<td>Rasmus Makiniemi</td>
+<td>Ethan Bai</td>
+</tr>
+<tr class="even">
+<td>10/12</td>
+<td>Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms (NDSS&#39;24*)</td>
+<td>Sahil Singhvi</td>
+<td>Nadine Al Fadel Raad</td>
+</tr>
+<tr class="odd">
+<td>10/12</td>
+<td>HYPERPILL: Fuzzing for Hypervisor-bugs by Leveraging the Hardware Virtualization Interface (SEC&#39;24*)</td>
+<td>Jonas Scholz</td>
+<td>Khalil M&#39;hirsi</td>
+</tr>
+<tr class="even">
+<td>10/12</td>
+<td>Parse Me, Baby, One More Time: Bypassing HTML Sanitizer via Parsing Differentials (Oakland&#39;24)</td>
+<td>Olena Zavertiaieva</td>
+<td>Egeas Papadopoulos</td>
+</tr>
+<tr class="odd">
+<td>17/12</td>
+<td>Reserved (feel free to grab if all other slots are taken)</td>
+<td>Egeas Papadopoulos</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>17/12</td>
+<td>Reserved (feel free to grab if all other slots are taken)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>17/12</td>
+<td>Reserved (feel free to grab if all other slots are taken)</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h1 id="topic-presentations">Topic presentations</h1>
-<p>The length of presentations for research papers should be between
-around 30 minutes, followed by 15 minutes of discussion. You can
-structure the presentation as follows:</p>
+<p>The length of presentations for research papers should be between around 25 minutes, followed by 10 minutes of discussion (i.e., 35min per slot followed by 5min of feedback/setup). You can structure the presentation as follows:</p>
 <ol type="1">
 <li>Motivation of the paper (1-2 slides, ~5 minutes)</li>
 <li>Key research questions (1-2 slides, ~5 minutes)</li>
-<li>Presentation of the core design and implementation of the research
-paper (4-8 slides, ~10 minutes)</li>
+<li>Presentation of the core design and implementation of the research paper (4-8 slides, ~10 minutes)</li>
 <li>Evaluation of the security policy (2-3 slides, ~5 minutes)</li>
-<li>Material for discussion: advantages, disadvantages, limitations of
-the approach (2-3 slides, ~5 minutes)</li>
-<li>Summary slide of the paper: policy, defense property (at which point
-in memory model), implementation (language, compiler, or runtime)</li>
+<li>Material for discussion: advantages, disadvantages, limitations of the approach (2-3 slides, ~5 minutes)</li>
+<li>Summary slide of the paper: policy, defense property (at which point in memory model), implementation (language, compiler, or runtime)</li>
 </ol>
-<p>When preparing the presentation, send a PDF version of your slides to
-<a href="mailto:mathias.payer@epfl.ch">Mathias</a> <em>before</em> your
-talk to get feedback and submit the final slides <em>right before</em>
-your talk.</p>
+<p>When preparing the presentation, send a PDF version of your slides to <a href="mailto:mathias.payer@epfl.ch">Mathias</a> <em>before</em> your talk to get feedback and submit the final slides <em>right before</em> your talk.</p>
 <h1 id="topics">Topics</h1>
-<p>This list is non-exhaustive and the list may be adapted during class
-and students may suggest other recent software security papers they are
-interested in. The open book Software Security: Principles, Policies,
-and Protection<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> provides an overview of many topics
-but does not go into depth for each policy. Similarly, the Eternal War
-in Memory<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> presents an overview of the software
-security landscape. <code class="interpreted-text" role="strike">Crossed out topics</code> have already been selected.</p>
+<p>This list is non-exhaustive and the list may be adapted during class and students may suggest other recent software security papers they are interested in. The open book Software Security: Principles, Policies, and Protection<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> provides an overview of many topics but does not go into depth for each policy. Similarly, the Eternal War in Memory<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> presents an overview of the software security landscape. <code class="interpreted-text" role="strike">Crossed out topics</code> have already been selected.</p>
 <p><em>Fuzzing everywhere</em></p>
 <ul>
 <li>HOPPER: Interpretative Fuzzing for Libraries (CCS&#39;23)</li>
-<li>ShapFuzz: Efficient Fuzzing via Shapley-Guided Byte Selection
-(NDSS&#39;24)</li>
+<li>ShapFuzz: Efficient Fuzzing via Shapley-Guided Byte Selection (NDSS&#39;24)</li>
 <li>Predictive Context-sensitive Fuzzing (NDSS&#39;24)</li>
-<li>Facilitating Non-Intrusive In-Vivo Firmware Testing with Stateless
-Instrumentation (NDSS&#39;24)</li>
+<li>Facilitating Non-Intrusive In-Vivo Firmware Testing with Stateless Instrumentation (NDSS&#39;24)</li>
 <li>SoK: Prudent Evaluation Practices for Fuzzing (Oakland&#39;24*)</li>
-<li>SyzGen++: Dependency Inference for Augmenting Kernel Driver Fuzzing
-(Oakland&#39;24)</li>
-<li>Everything is Good for Something: Counterexample-Guided Directed
-Fuzzing via Likely Invariant Inference (Oakland&#39;24)</li>
+<li>SyzGen++: Dependency Inference for Augmenting Kernel Driver Fuzzing (Oakland&#39;24)</li>
+<li>Everything is Good for Something: Counterexample-Guided Directed Fuzzing via Likely Invariant Inference (Oakland&#39;24)</li>
 <li>Data Coverage for Guided Fuzzing (SEC&#39;24)</li>
 <li>Cascade: CPU Fuzzing via Intricate Program Generation (SEC&#39;24)</li>
-<li>HyperPill: Fuzzing for Hypervisor-bugs by leveraging the Hardware
-Virtualization Interface (SEC&#39;24*)</li>
+<li>HyperPill: Fuzzing for Hypervisor-bugs by leveraging the Hardware Virtualization Interface (SEC&#39;24*)</li>
 <li>EL3XIR: Fuzzing COTS Secure Monitors (SEC&#39;24)</li>
 <li>SDFuzz: Target States Driven Directed Fuzzing (SEC&#39;24)</li>
-<li>SHiFT: Semi-hosted Fuzz Testing for Embedded Applications
-(SEC&#39;24)</li>
-<li>MultiFuzz: A Multi-Stream Fuzzer For Testing Monolithic
-Firmware(SEC&#39;24)</li>
+<li>SHiFT: Semi-hosted Fuzz Testing for Embedded Applications (SEC&#39;24)</li>
+<li>MultiFuzz: A Multi-Stream Fuzzer For Testing Monolithic Firmware(SEC&#39;24)</li>
 </ul>
 <p><em>Sanitization is king</em></p>
 <ul>
-<li>SHERLOC: Secure and Holistic Control-Flow Violation Detection on
-Embedded Systems (CCS&#39;23)</li>
-<li>CoCo: Efficient Browser Extension Vulnerability Detection via
-Coverage-guided, Concurrent Abstract Interpretation (CCS&#39;23)</li>
-<li>QUACK: Hindering Deserialization Attacks via Static Duck Typing
-(NDSS&#39;24)</li>
-<li>LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors
-(NDSS&#39;24)</li>
-<li>SoK: Unintended Interactions among Machine Learning Defenses and
-Risks (Oakland&#39;24*)</li>
-<li>Don&#39;t Waste My Efforts: Pruning Redundant Sanitizer Checks by
-Developer-Implemented Type Checks (SEC&#39;24)</li>
-<li>RustSan: Retrofitting AddressSanitizer for Efficient Sanitization of
-Rust (SEC&#39;24)</li>
-<li>CAMP: Compiler and Allocator-based Heap Memory Protection
-(SEC&#39;24)</li>
-<li>DMAAUTH: A Lightweight Pointer Integrity-based Secure Architecture
-to Defeat DMA Attacks (SEC&#39;24)</li>
+<li>SHERLOC: Secure and Holistic Control-Flow Violation Detection on Embedded Systems (CCS&#39;23)</li>
+<li>CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation (CCS&#39;23)</li>
+<li>QUACK: Hindering Deserialization Attacks via Static Duck Typing (NDSS&#39;24)</li>
+<li>LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors (NDSS&#39;24)</li>
+<li>SoK: Unintended Interactions among Machine Learning Defenses and Risks (Oakland&#39;24*)</li>
+<li>Don&#39;t Waste My Efforts: Pruning Redundant Sanitizer Checks by Developer-Implemented Type Checks (SEC&#39;24)</li>
+<li>RustSan: Retrofitting AddressSanitizer for Efficient Sanitization of Rust (SEC&#39;24)</li>
+<li>CAMP: Compiler and Allocator-based Heap Memory Protection (SEC&#39;24)</li>
+<li>DMAAUTH: A Lightweight Pointer Integrity-based Secure Architecture to Defeat DMA Attacks (SEC&#39;24)</li>
 </ul>
 <p><em>Languages and interactions</em></p>
 <ul>
-<li>Eavesdropping on Controller Acoustic Emanation for Keystroke
-Inference Attack in Virtual Reality (NDSS&#39;24*)</li>
-<li>UntrustIDE: Exploiting Weaknesses in VS Code Extensions
-(NDSS&#39;24*)</li>
-<li>BENZENE: A Practical Root Cause Analysis System with an
-Under-Constrained State Mutation (Oakland&#39;24*)</li>
-<li>Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study
-on Evaluating Widespread Security Vulnerabilities (Oakland&#39;24*)</li>
-<li>LLMs Cannot Reliably Identify and Reason About Security
-Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and
-Benchmarks (Oakland&#39;24)</li>
-<li>Wear&#39;s my Data? Understanding the Cross-Device Runtime Permission
-Model in Wearables (Oakland&#39;24)</li>
-<li>From Chatbots to Phishbots?: Phishing Scam Generation in Commercial
-Large Language Models (Oakland&#39;24*)</li>
-<li>MetaSafe: Compiling for Protecting Smart Pointer Metadata to Ensure
-Safe Rust Integrity (SEC&#39;24)</li>
-<li>Spill the TeA: An Empirical Study of Trusted Application Rollback
-Prevention on Android (SEC&#39;24)</li>
+<li>Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality (NDSS&#39;24*)</li>
+<li>UntrustIDE: Exploiting Weaknesses in VS Code Extensions (NDSS&#39;24*)</li>
+<li>BENZENE: A Practical Root Cause Analysis System with an Under-Constrained State Mutation (Oakland&#39;24*)</li>
+<li>Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities (Oakland&#39;24*)</li>
+<li>LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks (Oakland&#39;24)</li>
+<li>Wear&#39;s my Data? Understanding the Cross-Device Runtime Permission Model in Wearables (Oakland&#39;24)</li>
+<li>From Chatbots to Phishbots?: Phishing Scam Generation in Commercial Large Language Models (Oakland&#39;24*)</li>
+<li>MetaSafe: Compiling for Protecting Smart Pointer Metadata to Ensure Safe Rust Integrity (SEC&#39;24)</li>
+<li>Spill the TeA: An Empirical Study of Trusted Application Rollback Prevention on Android (SEC&#39;24)</li>
 </ul>
 <p><em>Exploits and attacks</em></p>
 <ul>
-<li>File Hijacking Vulnerability: The Elephant in the Room
-(NDSS&#39;24)</li>
-<li>Like, Comment, Get Scammed: Characterizing Comment Scams on Media
-Platforms (NDSS&#39;24*)</li>
-<li>SyzBridge: Bridging the Gap in Exploitability Assessment of Linux
-Kernel Bugs in the Linux Ecosystem (NDSS&#39;24)</li>
-<li>K-LEAK: Towards Automating the Generation of Multi-Step Infoleak
-Exploits against the Linux Kernel （NDSS&#39;24）</li>
-<li>Leaky Address Masking: Exploiting Unmasked Spectre Gadgets with
-Noncanonical Address Translation (Oakland&#39;24)</li>
-<li>&quot;False negative - that one is going to kill you.&quot; - Understanding
-Industry Perspectives of Static Analysis based Security Testing
-(Oakland&#39;24*)</li>
-<li>The Great Request Robbery: An Empirical Study of Client-side Request
-Hijacking Vulnerabilities on the Web (Oakland&#39;24*)</li>
-<li>Parse Me, Baby, One More Time: Bypassing HTML Sanitizer via Parsing
-Differentials (Oakland&#39;24)</li>
-<li>From Virtual Touch to Tesla Command: Unlocking Unauthenticated
-Control Chains From Smart Glasses for Vehicle Takeover
-(Oakland&#39;24*)</li>
-<li>WESEE: Using Malicious #VC Interrupts to Break AMD SEV-SNP
-(Oakland&#39;24*)</li>
-<li>Go Go Gadget Hammer: Flipping Nested Pointers for Arbitrary Data
-Leakage (SEC&#39;24)</li>
+<li>File Hijacking Vulnerability: The Elephant in the Room (NDSS&#39;24)</li>
+<li>Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms (NDSS&#39;24*)</li>
+<li>SyzBridge: Bridging the Gap in Exploitability Assessment of Linux Kernel Bugs in the Linux Ecosystem (NDSS&#39;24)</li>
+<li>K-LEAK: Towards Automating the Generation of Multi-Step Infoleak Exploits against the Linux Kernel （NDSS&#39;24）</li>
+<li>Leaky Address Masking: Exploiting Unmasked Spectre Gadgets with Noncanonical Address Translation (Oakland&#39;24)</li>
+<li>&quot;False negative - that one is going to kill you.&quot; - Understanding Industry Perspectives of Static Analysis based Security Testing (Oakland&#39;24*)</li>
+<li>The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web (Oakland&#39;24*)</li>
+<li>Parse Me, Baby, One More Time: Bypassing HTML Sanitizer via Parsing Differentials (Oakland&#39;24)</li>
+<li>From Virtual Touch to Tesla Command: Unlocking Unauthenticated Control Chains From Smart Glasses for Vehicle Takeover (Oakland&#39;24*)</li>
+<li>WESEE: Using Malicious #VC Interrupts to Break AMD SEV-SNP (Oakland&#39;24*)</li>
+<li>Go Go Gadget Hammer: Flipping Nested Pointers for Arbitrary Data Leakage (SEC&#39;24)</li>
 <li>GPU Memory Exploitation for Fun and Profit (SEC&#39;24)</li>
 </ul>
-<p>You can find the papers through DBLP or the corresponding
-websites:</p>
+<p>You can find the papers through DBLP or the corresponding websites:</p>
 <ul>
 <li><a href="https://www.sigsac.org/ccs/CCS2023/">CCS&#39;23</a></li>
 <li><a href="https://www.ndss-symposium.org/ndss2024/">NDSS&#39;24</a></li>
@@ -1016,15 +1163,11 @@ websites:</p>
 <li><a href="https://www.usenix.org/conference/usenixsecurity24">SEC&#39;24</a></li>
 </ul>
 <h1 id="references">References</h1>
-<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="https://nebelwelt.net/SS3P/">Software Security: Principles,
-Policies, and Protection. Mathias Payer</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a href="https://nebelwelt.net/publications/files/13Oakland.pdf">SoK:
-Eternal War in Memory. Laszlo Szekeres, Mathias Payer, Tao Wei, and Dawn
-Song. In Oakland&#39;13: Proc. Int&#39;l Symp. on Security and Privacy,
-2013.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://nebelwelt.net/SS3P/">Software Security: Principles, Policies, and Protection. Mathias Payer</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://nebelwelt.net/publications/files/13Oakland.pdf">SoK: Eternal War in Memory. Laszlo Szekeres, Mathias Payer, Tao Wei, and Dawn Song. In Oakland&#39;13: Proc. Int&#39;l Symp. on Security and Privacy, 2013.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>
