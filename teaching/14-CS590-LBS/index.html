@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>CS590 LBS Language-based Software Security</title>
+<style type="text/css">
+
+/*
+:Author: Chad Skeeters
+:Contact: cskeeters@nciinc.com
+
+Stylesheet for use with Docutils/rst2html.
+*/
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+@media print {
+  * {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  h1 {
+    page-break-before:always;
+  }
+  h1.title {
+    page-break-before:avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+body {
+  margin: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 700px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #005580;
+  text-decoration: underline;
+}
+
+.img-rounded {
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+cite {
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+h1 {
+  font-size: 2em;
+  padding-bottom:.2em;
+  border-bottom:1px solid grey;
+}
+h1.title {
+  padding-bottom:1em;
+  border-bottom:0px;
+}
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-family:Georgia, serif;
+  font-style:italic;
+  /*font-weight:normal;*/
+}
+
+h4 {
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.2em;
+}
+
+h6 {
+  font-size: 1.1em;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 25px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+li {
+  line-height: 20px;
+}
+
+dl {
+  margin-bottom: 20px;
+}
+
+dt,
+dd {
+  line-height: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 10px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eeeeee;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 17.5px;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px;
+}
+
+code,
+pre {
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+code {
+  padding: 2px 4px;
+  color: #d14;
+  white-space: nowrap;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+pre.prettyprint {
+  margin-bottom: 20px;
+}
+
+pre code {
+  padding: 0;
+  color: inherit;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+  display: table-cell;
+  float: none;
+  margin-left: 0;
+}
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.hero-unit li {
+  line-height: 30px;
+}
+
+
+/* rst2html default used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.note, div.warning {
+  margin:1.5em 0px;
+  border: none;
+}
+
+div.note p.admonition-title,
+div.warning p.admonition-title
+{
+  display:none;
+}
+
+/* Clearfix
+ * http://css-tricks.com/snippets/css/clear-fix/
+ */
+
+div.note:after,
+div.warning:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
+div.note p:before,
+div.warning p:before {
+  display:block;
+  float:left;
+  font-size:4em;
+  line-height:1em;
+  margin-right:20px;
+  margin-left: 0em;
+  margin-top:-10px;
+  content:'\0270D'; /*handwriting*/
+}
+
+div.warning p:before {
+  content:'\026A0'; /*warning*/
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+.code .pygments-hll { background-color: #ffffcc }
+.code .pygments-c { color: #60a0b0; font-style: italic } /* Comment */
+.code .pygments-err { border: 1px solid #FF0000 } /* Error */
+.code .pygments-k { color: #007020; font-weight: bold } /* Keyword */
+.code .pygments-o { color: #666666 } /* Operator */
+.code .pygments-cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.code .pygments-cp { color: #007020 } /* Comment.Preproc */
+.code .pygments-c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.code .pygments-cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.code .pygments-gd { color: #A00000 } /* Generic.Deleted */
+.code .pygments-ge { font-style: italic } /* Generic.Emph */
+.code .pygments-gr { color: #FF0000 } /* Generic.Error */
+.code .pygments-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.code .pygments-gi { color: #00A000 } /* Generic.Inserted */
+.code .pygments-go { color: #888888 } /* Generic.Output */
+.code .pygments-gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.code .pygments-gs { font-weight: bold } /* Generic.Strong */
+.code .pygments-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.code .pygments-gt { color: #0044DD } /* Generic.Traceback */
+.code .pygments-kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.code .pygments-kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.code .pygments-kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.code .pygments-kp { color: #007020 } /* Keyword.Pseudo */
+.code .pygments-kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.code .pygments-kt { color: #902000 } /* Keyword.Type */
+.code .pygments-m { color: #40a070 } /* Literal.Number */
+.code .pygments-s { color: #4070a0 } /* Literal.String */
+.code .pygments-na { color: #4070a0 } /* Name.Attribute */
+.code .pygments-nb { color: #007020 } /* Name.Builtin */
+.code .pygments-nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.code .pygments-no { color: #60add5 } /* Name.Constant */
+.code .pygments-nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.code .pygments-ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.code .pygments-ne { color: #007020 } /* Name.Exception */
+.code .pygments-nf { color: #06287e } /* Name.Function */
+.code .pygments-nl { color: #002070; font-weight: bold } /* Name.Label */
+.code .pygments-nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.code .pygments-nt { color: #062873; font-weight: bold } /* Name.Tag */
+.code .pygments-nv { color: #bb60d5 } /* Name.Variable */
+.code .pygments-ow { color: #007020; font-weight: bold } /* Operator.Word */
+.code .pygments-w { color: #bbbbbb } /* Text.Whitespace */
+.code .pygments-mf { color: #40a070 } /* Literal.Number.Float */
+.code .pygments-mh { color: #40a070 } /* Literal.Number.Hex */
+.code .pygments-mi { color: #40a070 } /* Literal.Number.Integer */
+.code .pygments-mo { color: #40a070 } /* Literal.Number.Oct */
+.code .pygments-sb { color: #4070a0 } /* Literal.String.Backtick */
+.code .pygments-sc { color: #4070a0 } /* Literal.String.Char */
+.code .pygments-sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.code .pygments-s2 { color: #4070a0 } /* Literal.String.Double */
+.code .pygments-se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.code .pygments-sh { color: #4070a0 } /* Literal.String.Heredoc */
+.code .pygments-si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.code .pygments-sx { color: #c65d09 } /* Literal.String.Other */
+.code .pygments-sr { color: #235388 } /* Literal.String.Regex */
+.code .pygments-s1 { color: #4070a0 } /* Literal.String.Single */
+.code .pygments-ss { color: #517918 } /* Literal.String.Symbol */
+.code .pygments-bp { color: #007020 } /* Name.Builtin.Pseudo */
+.code .pygments-vc { color: #bb60d5 } /* Name.Variable.Class */
+.code .pygments-vg { color: #bb60d5 } /* Name.Variable.Global */
+.code .pygments-vi { color: #bb60d5 } /* Name.Variable.Instance */
+.code .pygments-il { color: #40a070 } /* Literal.Number.Integer.Long */
+
+</style>
+</head>
+<body>
+<div class="document" id="cs590-lbs-language-based-software-security">
+<h1 class="title">CS590 LBS Language-based Software Security</h1>
+<h2 class="subtitle" id="aka-the-eternal-war-in-memory">(aka <cite>The Eternal War in Memory</cite>)</h2>
+
+<p><a class="reference external" href="https://nebelwelt.net">Mathias Payer</a> -- Fall semester 2014, 3 credit course</p>
+<div class="section" id="news">
+<h1>News</h1>
+<ul class="simple">
+<li>12/03 Project report and presentation summary deadlines extended to 12/10 (from 12/08)</li>
+<li>11/05 Moved Michael's presentation to the 10th.</li>
+<li>11/04 Project deadline extended to 12/01. Every team must send a mandatory
+weekly status update until the deadline (on 11/7, 11/14, 11/21, and 11/28).</li>
+<li>09/29 Moved 10/29 presentation to 10/27 due to conflict.</li>
+<li>09/23 Updated policy on missing/late hand-ins.</li>
+<li>09/19 Proposal submission deadline extended to Friday 09/19 11:59pm.</li>
+<li>09/03 Added information about presentation.</li>
+<li>09/01 Fixed typo with dates.</li>
+<li>08/31 Filled in students names to list of papers.</li>
+<li>08/26 We have a <a class="reference external" href="https://piazza.com/purdue/fall2014/cs59000lbs/home">Piazza page</a> !</li>
+<li>08/25 Office hours (Mon, 3:30p in LWSN 3154M) and course evaluation added.</li>
+<li>08/23 Updated detailed schedule and dates</li>
+<li>08/02 Students can now register online for the course</li>
+<li>07/29 Updated topic description</li>
+<li>07/28 Updated topic description</li>
+<li>06/07 Updated text and topic description</li>
+<li>05/30 First draft of description</li>
+</ul>
+</div>
+<div class="section" id="course-overview">
+<h1>Course overview</h1>
+<p>Unsafe languages like C/C++ are widely used for their great promise of
+performance. Unfortunately, these languages are prone to a large set of
+different types of memory errors that allow the exploitation of several attack
+vectors. A (non-exhaustive) list of low-level memory errors is (i) buffer
+overflows, (ii) integer overflows, (iii) off by one error, (iv) improper null
+termination, (v) unchecked format string, (vi) memory allocation errors like
+double free or use after free, and many many more. Combinations of one or more
+of these errors may be used to execute possible memory attacks like code
+corruption, control-flow hijack attacks, data-only attacks, or information
+leaks.</p>
+<p>On a high level memory safety (and type safety) would solve all these problems.
+Safe languages can (somewhat) cheaply enforce these properties. Unfortunately,
+these guarantees come at a pretty high cost if retrofitted onto existing
+languages.</p>
+<p>This seminar explores different security policies that are applied to low level
+languages without type or memory safety to enforce (relatively) stronger
+protection and guarantees compared to the status quo. We will evaluate different
+security policies at different levels of abstractions: based on language
+changes, source code changes, and binary rewriting that enforce some guarantees
+at different stages of an ongoing exploit. Each student will pick one topic
+(one specific security policy) from the list of topics below. The student is
+expected to organize the material and prepare a presentation of the topic for
+the other students. In addition, students will propose and work on an
+independent course project. The main goals of this seminar are:</p>
+<ol class="arabic simple">
+<li>understanding and defining the security policy implemented by given work;</li>
+<li>reasoning about the power and effectiveness (completeness in regard to attack
+vectors covered, strength of the guarantees) of different security policies
+(and being able to compare between them);</li>
+<li>reasoning on the computational and resource cost of security policies and
+possible downsides;</li>
+<li>alternative implementations of the policy at other levels.</li>
+</ol>
+<p>General goals of a seminar are:</p>
+<ol class="arabic simple">
+<li>learning how to understand and prepare an overview of a topic for other;</li>
+<li>students through reading the relevant papers, articles, or surveys and through
+practical investigations;</li>
+<li>learning how to reflect on a topic;</li>
+<li>presenting a technical topic in computer science to an audience of peers;</li>
+<li>learning how to identify possible research topics and articulating differences
+to existing related work.</li>
+</ol>
+<p>Your grade is based on:</p>
+<ol class="arabic simple">
+<li>design and implementation of class project (65%) (hard deadlines: 09/23 for
+description, 12/01 for code, 12/10 for write-up (extended from 12/08); weekly status updates on
+11/07, 11/14, 11/21, and 11/28 mandatory);</li>
+<li>technical presentation of your topic and writing a 1 page summary of the
+presentation after your topic (deadline: 12/10; extended from 12/08) (30%);</li>
+<li>active participation in class (5%);</li>
+<li>for academic honesty refer to the <a class="reference external" href="http://www.purdue.edu/purdue/about/integrity_statement.html">Purdue integrity/code of conduct</a>;</li>
+<li>except as by prior arrangement or notification by the professor of an
+extension before the deadline, missing or late work will be counted as a zero/fail.</li>
+</ol>
+</div>
+<div class="section" id="topic-presentations">
+<h1>Topic presentations</h1>
+<p>The length of presentations for research papers should be between 20 and 30
+minutes. You can structure the presentation as follows:</p>
+<ol class="arabic simple">
+<li>Motivation of the paper (1-2 slides, ~3 minutes)</li>
+<li>Presentation of the core design and implementation of the research paper (4-8
+slides, ~10 minutes)</li>
+<li>Evaluation of the security policy (2-3 slides, ~4 minutes)</li>
+<li>Material for discussion: advantages, disadvantages, limitations of the
+approach (2-3 slides, ~5 minutes)</li>
+<li>Summary slide of the paper: policy, defense property (at which point in
+memory model), implementation (language, compiler, or runtime)</li>
+</ol>
+</div>
+<div class="section" id="course-project">
+<h1>Course project</h1>
+<p>For the course project you can either choose to (i) design and implement
+extension of existing policy or (ii) develop metrics and implement benchmark
+that measures effectiveness of existing policy. The project follows the
+following milestones:</p>
+<ol class="arabic simple">
+<li>propose and discuss details and scope of the project. Deadline: 09/19 (past)</li>
+<li>design and implementation of the project. Deadline: 12/01 (past, extended from 11/17)</li>
+<li>documentation and presentation of the course project. Deadline: 12/10 (extended from 12/08)</li>
+</ol>
+<p>The project will be graded based on the 1 page proposal that you have to turn
+in on 09/17 and the documentation that you have to hand in on 12/10. As
+documentation you'll write a research paper (3 to 5 pages in <a class="reference external" href="http://www.sigplan.org/Resources/Author/">ACM sigplan
+format</a>)
+that includes motivation, introduction, design, implementation, and evaluation
+of your research project. The paper will be reviewed according to academic
+standards, including merit, contribution, feasibility, implementation, and
+evaluation.</p>
+</div>
+<div class="section" id="topics">
+<h1>Topics</h1>
+<p>A list of covered and related topics ranges from memory safety <a class="footnote-reference" href="#ccured" id="id1">[4]</a>,
+<a class="footnote-reference" href="#cyclone" id="id2">[5]</a>, <a class="footnote-reference" href="#sb" id="id3">[6]</a>, <a class="footnote-reference" href="#bbc" id="id4">[7]</a>, <a class="footnote-reference" href="#asan" id="id5">[8]</a>, <a class="footnote-reference" href="#cets" id="id6">[9]</a>, <a class="footnote-reference" href="#cling" id="id7">[10]</a>, <a class="footnote-reference" href="#dh" id="id8">[11]</a>, <a class="footnote-reference" href="#dh2" id="id9">[12]</a>,
+<a class="footnote-reference" href="#mc" id="id10">[13]</a>, <a class="footnote-reference" href="#vg" id="id11">[14]</a> over data and pointer integrity <a class="footnote-reference" href="#wit" id="id12">[15]</a>, <a class="footnote-reference" href="#ba" id="id13">[16]</a>, <a class="footnote-reference" href="#pi" id="id14">[17]</a>, <a class="footnote-reference" href="#bpi" id="id15">[18]</a>,
+randomization <a class="footnote-reference" href="#dsr" id="id16">[19]</a>, <a class="footnote-reference" href="#aslr" id="id17">[20]</a>, <a class="footnote-reference" href="#stir" id="id18">[21]</a>, <a class="footnote-reference" href="#isr" id="id19">[22]</a>, <a class="footnote-reference" href="#ilr" id="id20">[23]</a>, data and control
+flow integrity <a class="footnote-reference" href="#dfi" id="id21">[24]</a>, <a class="footnote-reference" href="#cfi" id="id22">[25]</a>, <a class="footnote-reference" href="#xfi" id="id23">[26]</a>, <a class="footnote-reference" href="#hs" id="id24">[27]</a>, <a class="footnote-reference" href="#cpi" id="id25">[28]</a>, and dynamic policies
+<a class="footnote-reference" href="#sl" id="id26">[29]</a>, <a class="footnote-reference" href="#ps" id="id27">[30]</a>, <a class="footnote-reference" href="#st" id="id28">[31]</a> to software-based fault isolation <a class="footnote-reference" href="#pf" id="id29">[32]</a>, <a class="footnote-reference" href="#nacl" id="id30">[33]</a>. This
+list is non-exhaustive and the list may be adapted during class and students may
+suggest other policies they are interested in.</p>
+</div>
+<div class="section" id="schedule">
+<h1>Schedule</h1>
+<p>The seminar meets every Monday from 4:30p to 6:20p in REC112 and Wednesday from
+12:30p to 1:20p in REC122. Office hours are each Monday from 3:30p to 4:20p in
+LWSN 3154M. A draft of the schedule looks as follows but remember that no plan
+survives contact with reality!</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="38%" />
+<col width="26%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Date</th>
+<th class="head">Topic</th>
+<th class="head">Presenter(s)</th>
+<th class="head">Material</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>8/25</td>
+<td>Course administration
+<a class="footnote-reference" href="#ca" id="id31">[1]</a> and Eternal War in
+Memory <a class="footnote-reference" href="#ewp" id="id32">[2]</a></td>
+<td>Mathias Payer</td>
+<td><a class="footnote-reference" href="#ewar" id="id33">[3]</a></td>
+</tr>
+<tr><td>8/27</td>
+<td>Project/paper selection</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>9/03</td>
+<td>Project/paper selection</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>9/08</td>
+<td>Memory safety (spatial,
+language-based)</td>
+<td>Daniele,
+Terry</td>
+<td><a class="footnote-reference" href="#ccured" id="id34">[4]</a>,
+<a class="footnote-reference" href="#cyclone" id="id35">[5]</a></td>
+</tr>
+<tr><td>9/10</td>
+<td>Memory safety (spatial,
+source-based)</td>
+<td>Sergei</td>
+<td><a class="footnote-reference" href="#sb" id="id36">[6]</a>,</td>
+</tr>
+<tr><td>9/15</td>
+<td>-&quot;-</td>
+<td>Scott, Denis</td>
+<td><a class="footnote-reference" href="#bbc" id="id37">[7]</a>, <a class="footnote-reference" href="#asan" id="id38">[8]</a></td>
+</tr>
+<tr><td>9/17</td>
+<td>Deadline for project
+proposals</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>9/22</td>
+<td>Memory safety (temporal,
+source-based)</td>
+<td>Xilun</td>
+<td><a class="footnote-reference" href="#cets" id="id39">[9]</a></td>
+</tr>
+<tr><td>9/22</td>
+<td>Memory safety (temporal,
+library-based)</td>
+<td>Gregory</td>
+<td><a class="footnote-reference" href="#cling" id="id40">[10]</a>,</td>
+</tr>
+<tr><td>9/24</td>
+<td>-&quot;-</td>
+<td>Nathan</td>
+<td><a class="footnote-reference" href="#dh" id="id41">[11]</a></td>
+</tr>
+<tr><td>9/29</td>
+<td>-&quot;-</td>
+<td>Nathan</td>
+<td><a class="footnote-reference" href="#dh2" id="id42">[12]</a></td>
+</tr>
+<tr><td>9/29</td>
+<td>Memory safety (temporal,
+binary-based)</td>
+<td>Xilun</td>
+<td><a class="footnote-reference" href="#mc" id="id43">[13]</a></td>
+</tr>
+<tr><td>10/01</td>
+<td>-&quot;-</td>
+<td>Robert</td>
+<td><a class="footnote-reference" href="#vg" id="id44">[14]</a></td>
+</tr>
+<tr><td>10/06</td>
+<td>no class (OSDI)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>10/08</td>
+<td>no class (OSDI)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>10/13</td>
+<td>Fall break, no class</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>10/15</td>
+<td>Project presentations</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>10/20</td>
+<td>Data Integrity</td>
+<td>Prachi, Yidan</td>
+<td><a class="footnote-reference" href="#wit" id="id45">[15]</a>, <a class="footnote-reference" href="#ba" id="id46">[16]</a></td>
+</tr>
+<tr><td>10/22</td>
+<td>Pointer Integrity</td>
+<td>Denis</td>
+<td><a class="footnote-reference" href="#pi" id="id47">[17]</a></td>
+</tr>
+<tr><td>10/27</td>
+<td>Data Space Randomization</td>
+<td>Prachi</td>
+<td><a class="footnote-reference" href="#dsr" id="id48">[19]</a>, <a class="footnote-reference" href="#aslr" id="id49">[20]</a>
+<a class="footnote-reference" href="#stir" id="id50">[21]</a></td>
+</tr>
+<tr><td>10/29</td>
+<td>No class (workshop)</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>11/03</td>
+<td>Instruction Set
+Randomization</td>
+<td>Michael, Michael</td>
+<td><a class="footnote-reference" href="#isr" id="id51">[22]</a>,
+<a class="footnote-reference" href="#ilr" id="id52">[23]</a></td>
+</tr>
+<tr><td>11/05</td>
+<td>Data-Flow Integrity</td>
+<td>Jeff</td>
+<td><a class="footnote-reference" href="#dfi" id="id53">[24]</a></td>
+</tr>
+<tr><td>11/10</td>
+<td>Instruction Set Random.</td>
+<td>Michael</td>
+<td><a class="footnote-reference" href="#isr" id="id54">[22]</a></td>
+</tr>
+<tr><td>11/10</td>
+<td>Project discussion</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>11/12</td>
+<td>Control-Flow Integrity</td>
+<td>Sergei</td>
+<td><a class="footnote-reference" href="#cfi" id="id55">[25]</a></td>
+</tr>
+<tr><td>11/17</td>
+<td>-&quot;-</td>
+<td>Syed, Pinar</td>
+<td><a class="footnote-reference" href="#xfi" id="id56">[26]</a>, <a class="footnote-reference" href="#hs" id="id57">[27]</a></td>
+</tr>
+<tr><td>11/19</td>
+<td>Code Pointer Integrity</td>
+<td>Syed</td>
+<td><a class="footnote-reference" href="#cpi" id="id58">[28]</a></td>
+</tr>
+<tr><td>11/24</td>
+<td>Dynamic policies</td>
+<td>Shagufta, Pinar</td>
+<td><a class="footnote-reference" href="#sl" id="id59">[29]</a>, <a class="footnote-reference" href="#ps" id="id60">[30]</a></td>
+</tr>
+<tr><td>12/01</td>
+<td>-&quot;-</td>
+<td>Daniele</td>
+<td><a class="footnote-reference" href="#st" id="id61">[31]</a></td>
+</tr>
+<tr><td>12/01</td>
+<td>Software-based Fault
+Isolation</td>
+<td>Servio</td>
+<td><a class="footnote-reference" href="#pf" id="id62">[32]</a></td>
+</tr>
+<tr><td>12/03</td>
+<td>-&quot;-</td>
+<td>Scott</td>
+<td><a class="footnote-reference" href="#nacl" id="id63">[33]</a></td>
+</tr>
+<tr><td>12/08</td>
+<td>Project presentations</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>12/10</td>
+<td>Project presentations</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>12/15</td>
+<td>Project presentations</td>
+<td>(backup)</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="system-security-basics">
+<h1>System security basics</h1>
+<p>The <a class="reference external" href="http://10kstudents.eu">10kstudents</a> initiative prepared <a class="reference external" href="http://10kstudents.eu/material/">some material</a> to introduce students to different forms of
+memory corruptions and other security problems. Using this material students
+become more aware of security implications in code.</p>
+<p>If you want to get more hands-on experience and practical exposure to security
+problems then the <a class="reference external" href="https://b01lers.net/">b01lers</a>, the Purdue Capture-The-Flag
+team is a great place to start as well. In weekly meetings we discuss security
+problems and possible attack vectors.</p>
+<table class="docutils footnote" frame="void" id="ca" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id31">[1]</a></td><td><a class="reference external" href="./00-logistics.pdf">Course administration slides</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ewp" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id32">[2]</a></td><td><a class="reference external" href="./01-WarGames.pdf">Eternal War in Memory slides</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ewar" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id33">[3]</a></td><td><a class="reference external" href="http://nebelwelt.net/publications/13IEEE_SP/Oakland13-Eternal_War_in_Memory.pdf">SoK: Eternal War in Memory. Laszlo Szekeres, Mathias Payer, Tao Wei, and Dawn Song. In Oakland'13: Proc. Int'l Symp. on Security and Privacy, 2013.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ccured" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id34">2</a>)</em> <a class="reference external" href="http://www3.cs.stonybrook.edu/~rob/teaching/cse608-fa05/ccured_popl02.pdf">CCured: type-safe retrofitting of legacy software. George C. Necula, Jeremy Condit, Matthew Harren, Scott McPeak, and Westley Weimer. In ACM POPL'02</a> <a class="reference external" href="http://www.cs.virginia.edu/~weimer/p/p477-necula.pdf">extended TOPLAS version</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cyclone" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id35">2</a>)</em> <a class="reference external" href="http://www.cs.cornell.edu/Projects/cyclone/papers/cyclone-safety.pdf">Cyclone: A safe dialect of C. Trevor Jim, Greg Morrisett, Dan Grossman, Michael Hicks, James Cheney, and Yanling Wang. In Usenix ATC</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="sb" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id36">2</a>)</em> <a class="reference external" href="http://www.cis.upenn.edu/~cisweb/acg/papers/pldi09_softbound.pdf">SoftBound: Highly Compatible and Complete Spatial Memory Safety for C. Santosh Nagarakatte, Jianzhou Zhao, Milo M. K. Martin, Steve Zdancewic. In PLDI'09</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bbc" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[7]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id37">2</a>)</em> <a class="reference external" href="https://www.usenix.org/legacy/event/sec09/tech/full_papers/akritidis.pdf">Baggy Bounds Checking: An Efficient and Backwards-Compatible Defense against Out-of-Bounds Errors. Periklis Akritidis, Manuel Costa, Miguel Castro, Steven Hand. In Usenix Security'09</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="asan" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[8]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id38">2</a>)</em> <a class="reference external" href="http://research.google.com/pubs/archive/37752.pdf">AddressSanitizer: A Fast Address Sanity Checker. Konstantin Serebryany, Derek Bruening, Alexander Potapenko, and Dmitry Vyukov. In Usenix Security'12</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cets" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[9]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id39">2</a>)</em> <a class="reference external" href="http://acg.cis.upenn.edu/papers/ismm10_cets.pdf">CETS: Compiler-Enforced Temporal Safety for C. Santosh Nagarakatte, Jianzhou Zhao, Milo M. K. Martin, and Steve Zdancewic. In ISMM'10</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cling" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[10]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id40">2</a>)</em> <a class="reference external" href="https://www.usenix.org/legacy/event/sec10/tech/full_papers/Akritidis.pdf">Cling: A Memory Allocator to Migate Dangling Pointers. Periklis Akritidis. In Usenix Security'10</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="dh" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[11]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id41">2</a>)</em> <a class="reference external" href="http://people.cs.umass.edu/~emery/pubs/fp014-berger.pdf">DieHard: Probabilistic Memory Safety for Unsafe Languages. Emery D. Berger and Benjamin G. Zorn. In PLDI'06</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="dh2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[12]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id42">2</a>)</em> <a class="reference external" href="http://people.cs.umass.edu/~emery/pubs/ccs03-novark.pdf">DieHarder: Securing the Heap. Gene Novark and Emery D. Berger. In CCS'10</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="mc" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[13]</td><td><em>(<a class="fn-backref" href="#id10">1</a>, <a class="fn-backref" href="#id43">2</a>)</em> MemCheck: <a class="reference external" href="http://valgrind.org/docs/memcheck2005.pdf">Using Valgrind to detect undefined value errors with bit-precision. Julian Seward and Nicholas Nethercote. In Usenix ATC'05</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="vg" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[14]</td><td><em>(<a class="fn-backref" href="#id11">1</a>, <a class="fn-backref" href="#id44">2</a>)</em> <a class="reference external" href="http://valgrind.org/docs/shadow-memory2007.pdf">How to Shadow Every Byte of Memory Used by a Program. Nicholas Nethercote and Julian Seward. In VEE'07</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="wit" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[15]</td><td><em>(<a class="fn-backref" href="#id12">1</a>, <a class="fn-backref" href="#id45">2</a>)</em> <a class="reference external" href="http://www.doc.ic.ac.uk/~cristic/papers/wit-sp-ieee-08.pdf">Preventing memory error exploits with WIT. Periklis Akritidis, Cristian Cadar, Costin Raiciu, Manuel Costa, and Miguel Castro. In IEEE SP'08 (Oakland)</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ba" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[16]</td><td><em>(<a class="fn-backref" href="#id13">1</a>, <a class="fn-backref" href="#id46">2</a>)</em> <a class="reference external" href="https://www.usenix.org/system/files/conference/atc12/atc12-final44.pdf">Body armor for binaries: preventing buffer overflows without recompilation. Asia Slowinska, Traian Stancescu, and Herbert Bos. In Usenix ATC'12.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="pi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[17]</td><td><em>(<a class="fn-backref" href="#id14">1</a>, <a class="fn-backref" href="#id47">2</a>)</em> <a class="reference external" href="https://www.usenix.org/legacy/events/sec03/tech/full_papers/cowan/cowan.pdf">PointGuard: Protecting Pointers from Buffer Overflow Vulnerabilities. Crispin Cowan, Steve Beattie, John Johansen, and Perry Wagle. Usenix Security'03</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bpi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id15">[18]</a></td><td><a class="reference external" href="https://lirias.kuleuven.be/bitstream/123456789/228745/1/p1-strackx.pdf">Breaking the memory secrecy assumption. Raoul Strckx, Yves Younan, Pieter Philippaerts, Frank Piessens, Sven Lachmund, and Thomas Walter. In Eurosec'09</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="dsr" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[19]</td><td><em>(<a class="fn-backref" href="#id16">1</a>, <a class="fn-backref" href="#id48">2</a>)</em> <a class="reference external" href="http://www.seclab.cs.stonybrook.edu/seclab/pubs/dsr.pdf">Data Space Randomization. Sandeep Bhatkar and R. Sekar. In DIMVA'08.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="aslr" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[20]</td><td><em>(<a class="fn-backref" href="#id17">1</a>, <a class="fn-backref" href="#id49">2</a>)</em> <a class="reference external" href="http://pax.grsecurity.net/docs/aslr.txt">Address Space Layout Randomization. PaX team.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="stir" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[21]</td><td><em>(<a class="fn-backref" href="#id18">1</a>, <a class="fn-backref" href="#id50">2</a>)</em> <a class="reference external" href="http://www.utdallas.edu/~hamlen/wartell12ccs.pdf">Binary Stirring: Self-randomizing Instuction Addresses of Legacy x86 Binary Code. Richard Wartell, Vishwath Mohan, Kevin W. Hamlen, and Zhiqiang Lin. In CCS'12</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="isr" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[22]</td><td><em>(<a class="fn-backref" href="#id19">1</a>, <a class="fn-backref" href="#id51">2</a>, <a class="fn-backref" href="#id54">3</a>)</em> <a class="reference external" href="http://www.cs.columbia.edu/~angelos/Papers/instructionrandomization.pdf">Countering Code-Injection Attacks with Instruction Set Randomization. Gaurav S. Kc, Angelos D. Keromytis, and Vassilis Prevelakis. In CCS'03.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ilr" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[23]</td><td><em>(<a class="fn-backref" href="#id20">1</a>, <a class="fn-backref" href="#id52">2</a>)</em> <a class="reference external" href="http://www.ieee-security.org/TC/SP2012/papers/4681a571.pdf">ILR: Where'd my gadgets go? Jason Hiser, Anh Nguyen-Tuong, Michele Co, Matthew Hall, and Jack W. Davidson. In IEEE SP'12 (Oakland).</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="dfi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[24]</td><td><em>(<a class="fn-backref" href="#id21">1</a>, <a class="fn-backref" href="#id53">2</a>)</em> <a class="reference external" href="http://research.microsoft.com/pubs/67963/dfiosdi.pdf">Securing software by enforcing Data-Flow Integrity. Miguel Castro, Manuel Costa, Tim Harris. In OSDI'06.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cfi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[25]</td><td><em>(<a class="fn-backref" href="#id22">1</a>, <a class="fn-backref" href="#id55">2</a>)</em> <a class="reference external" href="http://research.microsoft.com/pubs/64250/ccs05.pdf">Control-Flow Integrity. Martin Abadi, Mihai Budiu, Ulfar Erlingsson, Jay Ligatti. In CCS'05</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="xfi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[26]</td><td><em>(<a class="fn-backref" href="#id23">1</a>, <a class="fn-backref" href="#id56">2</a>)</em> <a class="reference external" href="https://www.usenix.org/legacy/event/osdi06/tech/full_papers/erlingsson/erlingsson.pdf">XFI: Software Guards for System Address Spaces. Ulfar Erlingsson, Martin Abadi, Michael Vrable, Mihai Budiu, and George C. Necula. In OSDI'06.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="hs" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[27]</td><td><em>(<a class="fn-backref" href="#id24">1</a>, <a class="fn-backref" href="#id57">2</a>)</em> <a class="reference external" href="http://people.csail.mit.edu/costan/readings/oakland_papers/hypersafe.pdf">HyperSafe: A Lightweight Approach to Provide Lifetime Hypervisor Control-Flow Integrity. Zhi Wang and Xuxian Jiang. In IEEE SP'10</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="cpi" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[28]</td><td><em>(<a class="fn-backref" href="#id25">1</a>, <a class="fn-backref" href="#id58">2</a>)</em> <a class="reference external" href="https://www.usenix.org/conference/osdi14/technical-sessions/presentation/kuznetsov">Code-Pointer Integrity. Volodymyr Kuznetsov, Mathias Payer, Laszlo Szekeres, George Candea, R. Sekar, Dawn Song. In OSDI'14.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="sl" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[29]</td><td><em>(<a class="fn-backref" href="#id26">1</a>, <a class="fn-backref" href="#id59">2</a>)</em> <a class="reference external" href="http://nebelwelt.net/publications/12IEEE_SP/oakland12-payer-secuLoader.pdf">Safe Loading - A Foundation for Secure Execution of Untrusted Programs. Mathias Payer, Tobias Hartmann, and Thomas R. Gross. In IEEE SP'12 (Oakland).</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ps" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[30]</td><td><em>(<a class="fn-backref" href="#id27">1</a>, <a class="fn-backref" href="#id60">2</a>)</em> <a class="reference external" href="http://www.burningcutlery.com/derek/docs/security-usenix.pdf">Secure Execution Via Program Shepherding. Vladimir Kiriansky, Derek Bruening, and Saman Amarasinghe. In Usenix Security'02.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="st" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[31]</td><td><em>(<a class="fn-backref" href="#id28">1</a>, <a class="fn-backref" href="#id61">2</a>)</em> <a class="reference external" href="http://www.citi.umich.edu/u/provos/papers/systrace.pdf">Improving Host Security with System call Policies. Niels Provos. In Usenix Security'03.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="pf" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[32]</td><td><em>(<a class="fn-backref" href="#id29">1</a>, <a class="fn-backref" href="#id62">2</a>)</em> PittSFIeld: <a class="reference external" href="http://people.csail.mit.edu/smcc/projects/pittsfield/pubs/usenix-sec-2006/pittsfield-usenix2006.pdf">Evaluating SFI for a CISC Architecture. Stephen McCamant and Greg Morrisett. In Usenix Security'06.</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="nacl" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[33]</td><td><em>(<a class="fn-backref" href="#id30">1</a>, <a class="fn-backref" href="#id63">2</a>)</em> <a class="reference external" href="http://research.google.com/pubs/archive/34913.pdf">Native Client: A Sandbox for Portable, Untrusted x86 Native Code. Bennet Yee, David Sehr, Greg Dardyk, Brad Chen, Robert Muth, Tavis Ormandy, Shiki Okasaka, Neha Narula, and Nicholas Fullagar. In IEEE SP'08 (Oakland)</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

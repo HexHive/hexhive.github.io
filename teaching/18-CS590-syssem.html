@@ -1,0 +1,1404 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>CS590-SYS Systems Security Seminar</title>
+<style type="text/css">
+
+/*
+:Author: Chad Skeeters
+:Contact: cskeeters@nciinc.com
+
+Stylesheet for use with Docutils/rst2html.
+*/
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+@media print {
+  * {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  h1 {
+    page-break-before:always;
+  }
+  h1.title {
+    page-break-before:avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+body {
+  margin: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 700px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #005580;
+  text-decoration: underline;
+}
+
+.img-rounded {
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.img-polaroid {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+cite {
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+h1 {
+  font-size: 2em;
+  padding-bottom:.2em;
+  border-bottom:1px solid grey;
+}
+h1.title {
+  padding-bottom:1em;
+  border-bottom:0px;
+}
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-family:Georgia, serif;
+  font-style:italic;
+  /*font-weight:normal;*/
+}
+
+h4 {
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.2em;
+}
+
+h6 {
+  font-size: 1.1em;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 25px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+li {
+  line-height: 20px;
+}
+
+dl {
+  margin-bottom: 20px;
+}
+
+dt,
+dd {
+  line-height: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 10px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eeeeee;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 17.5px;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px;
+}
+
+code,
+pre {
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
+code {
+  padding: 2px 4px;
+  color: #d14;
+  white-space: nowrap;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+pre.prettyprint {
+  margin-bottom: 20px;
+}
+
+pre code {
+  padding: 0;
+  color: inherit;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+  display: table-cell;
+  float: none;
+  margin-left: 0;
+}
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.hero-unit li {
+  line-height: 30px;
+}
+
+
+/* rst2html default used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.note, div.warning {
+  margin:1.5em 0px;
+  border: none;
+}
+
+div.note p.admonition-title,
+div.warning p.admonition-title
+{
+  display:none;
+}
+
+/* Clearfix
+ * http://css-tricks.com/snippets/css/clear-fix/
+ */
+
+div.note:after,
+div.warning:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
+div.note p:before,
+div.warning p:before {
+  display:block;
+  float:left;
+  font-size:4em;
+  line-height:1em;
+  margin-right:20px;
+  margin-left: 0em;
+  margin-top:-10px;
+  content:'\0270D'; /*handwriting*/
+}
+
+div.warning p:before {
+  content:'\026A0'; /*warning*/
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+.code .pygments-hll { background-color: #ffffcc }
+.code .pygments-c { color: #60a0b0; font-style: italic } /* Comment */
+.code .pygments-err { border: 1px solid #FF0000 } /* Error */
+.code .pygments-k { color: #007020; font-weight: bold } /* Keyword */
+.code .pygments-o { color: #666666 } /* Operator */
+.code .pygments-cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.code .pygments-cp { color: #007020 } /* Comment.Preproc */
+.code .pygments-c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.code .pygments-cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.code .pygments-gd { color: #A00000 } /* Generic.Deleted */
+.code .pygments-ge { font-style: italic } /* Generic.Emph */
+.code .pygments-gr { color: #FF0000 } /* Generic.Error */
+.code .pygments-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.code .pygments-gi { color: #00A000 } /* Generic.Inserted */
+.code .pygments-go { color: #888888 } /* Generic.Output */
+.code .pygments-gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.code .pygments-gs { font-weight: bold } /* Generic.Strong */
+.code .pygments-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.code .pygments-gt { color: #0044DD } /* Generic.Traceback */
+.code .pygments-kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.code .pygments-kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.code .pygments-kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.code .pygments-kp { color: #007020 } /* Keyword.Pseudo */
+.code .pygments-kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.code .pygments-kt { color: #902000 } /* Keyword.Type */
+.code .pygments-m { color: #40a070 } /* Literal.Number */
+.code .pygments-s { color: #4070a0 } /* Literal.String */
+.code .pygments-na { color: #4070a0 } /* Name.Attribute */
+.code .pygments-nb { color: #007020 } /* Name.Builtin */
+.code .pygments-nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.code .pygments-no { color: #60add5 } /* Name.Constant */
+.code .pygments-nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.code .pygments-ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.code .pygments-ne { color: #007020 } /* Name.Exception */
+.code .pygments-nf { color: #06287e } /* Name.Function */
+.code .pygments-nl { color: #002070; font-weight: bold } /* Name.Label */
+.code .pygments-nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.code .pygments-nt { color: #062873; font-weight: bold } /* Name.Tag */
+.code .pygments-nv { color: #bb60d5 } /* Name.Variable */
+.code .pygments-ow { color: #007020; font-weight: bold } /* Operator.Word */
+.code .pygments-w { color: #bbbbbb } /* Text.Whitespace */
+.code .pygments-mf { color: #40a070 } /* Literal.Number.Float */
+.code .pygments-mh { color: #40a070 } /* Literal.Number.Hex */
+.code .pygments-mi { color: #40a070 } /* Literal.Number.Integer */
+.code .pygments-mo { color: #40a070 } /* Literal.Number.Oct */
+.code .pygments-sb { color: #4070a0 } /* Literal.String.Backtick */
+.code .pygments-sc { color: #4070a0 } /* Literal.String.Char */
+.code .pygments-sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.code .pygments-s2 { color: #4070a0 } /* Literal.String.Double */
+.code .pygments-se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.code .pygments-sh { color: #4070a0 } /* Literal.String.Heredoc */
+.code .pygments-si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.code .pygments-sx { color: #c65d09 } /* Literal.String.Other */
+.code .pygments-sr { color: #235388 } /* Literal.String.Regex */
+.code .pygments-s1 { color: #4070a0 } /* Literal.String.Single */
+.code .pygments-ss { color: #517918 } /* Literal.String.Symbol */
+.code .pygments-bp { color: #007020 } /* Name.Builtin.Pseudo */
+.code .pygments-vc { color: #bb60d5 } /* Name.Variable.Class */
+.code .pygments-vg { color: #bb60d5 } /* Name.Variable.Global */
+.code .pygments-vi { color: #bb60d5 } /* Name.Variable.Instance */
+.code .pygments-il { color: #40a070 } /* Literal.Number.Integer.Long */
+
+</style>
+</head>
+<body>
+<div class="document" id="cs590-sys-systems-security-seminar">
+<h1 class="title">CS590-SYS Systems Security Seminar</h1>
+
+<p><a class="reference external" href="http://nebelwelt.net">Mathias Payer</a> -- Spring semester 2018, seminar.</p>
+<div class="section" id="seminar-overview">
+<h1>Seminar overview</h1>
+<p>In this informal seminar we discuss current interesting system security papers
+from top conferences. Systems security research is an interesting and diverse
+area that has a variety of sub fields. When discussing the individual
+publications we look at the proposed policies, the mechanisms, prototype
+implementations and their evaluation. We discuss research contributions, compare
+the publication to relocated work but also mention possible shortcomings,
+pitfalls, and applications to other areas or architectures.</p>
+<p>This seminar is intended for people that are broadly interested in systems
+security research, novel systems security trends, or clever applications of
+systems security ideas. We discuss one paper each week and try to learn new
+things about systems security research together.</p>
+<p>Topics: systems, security, programming languages, software engineering.</p>
+<ul class="simple">
+<li>Date/time: Wednesday 2:30p to 3:20p.</li>
+<li>Location: LWSN 3133.</li>
+</ul>
+</div>
+<div class="section" id="discussed-papers">
+<h1>Discussed papers</h1>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cse.psu.edu/~gxt29/paper/ptrsplit.pdf">PtrSplit: Supporting General Pointers in Automatic Program Partitioning.
+CCS'17</a>
+2018-01-10, (Priyam Biswas)</li>
+<li><a class="reference external" href="http://www.cl.cam.ac.uk/~srk31/research/papers/kell16dynamically-preprint.pdf">Stephen Kell. Dynamically diagnosing run-time type errors in unsafe code.
+OOSPLA'16</a>
+2018-01-17, (Nathan Burow)</li>
+<li><a class="reference external" href="http://dl.acm.org/citation.cfm?id=3052976">Mohamed Elsabagh, Dan Fleck, Angelos Stavrou.
+Strict Virtual Call Integrity Checking for C++ Binaries. AsiaCCS'17</a>
+2018-01-24, (Jordan Field)</li>
+<li><a class="reference external" href="http://iisp.gatech.edu/sites/default/files/images/designing_new_operating_primitives_to_improve_fuzzing_performance_vt.pdf">Wen Xu, Sanidhya Kashyap, Changwoo Min, and Taesoo Kim.
+Designing New Operating Primitives to Improve Fuzzing Performance. CCS'17</a>
+2018-01-31, (Derrick McKee)</li>
+<li><a class="reference external" href="http://www-bcf.usc.edu/~wang626/pubDOC/YuZW17.pdf">Tingting Yu, Tarannum S. Zaman, and Chao Wang.
+DESCRY: Reproducing System-Level Concurrency Failures. FSE'17</a>
+2018-02-07, (Yuxuan Chen)</li>
+<li><a class="reference external" href="https://lifeasageek.github.io/papers/han:meds.pdf">Wookhyun Han, Byunggill Joe, Byoungyoung Lee, Chengyu Song, and Insik Shin.
+Enhancing Memory Error Detection for Large-Scale Applications and Fuzz Testing. NDSS'18</a>
+2018-02-14, (Priyam Biswas)</li>
+<li><a class="reference external" href="https://www.utdallas.edu/~zhiqiang.lin/file/CCS17c.pdf">Sam Silvestro, Hongyu Liu, Corey Crosser, Zhiqiang Lin, and Tongping Liu.
+FreeGuard: A Faster Secure Heap Allocator. CCS'17</a>
+2018-02-21, (Brian Hays)</li>
+<li><a class="reference external" href="http://s3.eurecom.fr/docs/ndss18_muench.pdf">Marius Muench, Jan Stijohann, Frank Kargl, Aurelien Francillon, and Davide Balzarotti.
+What You Corrupt Is Not What You Crash. NDSS'18</a>
+2018-02-28, (Prashast Srivastava)</li>
+<li><a class="reference external" href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_05A-1_Gens_paper.pdf">David Gens, Simon Schmitt, Lucas Davi, and Ahmad-Reza Sadegh.
+K-Miner: Uncovering Memory Corruption in Linux. NDSS'18</a>
+2018-03-07 (Noah Jordan Field)</li>
+<li><a class="reference external" href="https://acmccs.github.io/papers/p2139-youA.pdf">Wei You, Peiyuan Zong, Kai Chen, XiaoFeng Wang, Xiaojing Liao, Pan Bian and
+Bin Liang. SemFuzz: Semantics-based Automatic Generation of Proof-of-Concept
+Exploits. CCS'17</a>
+2018-03-21 (Hui Peng)</li>
+<li><a class="reference external" href="https://meltdownattack.com/meltdown.pdf">Moritz Lipp, Michael Schwarz, Daniel Gruss, Thomas Prescher, Werner Haas,
+Stefan Mangard, Paul Kocher, Daniel Genkin, Yuval Yarom, and Mike Hamburg.
+Meltdown. TR '18</a>
+2018-03-28 (Kyriakos Ispoglou)</li>
+<li><a class="reference external" href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_05A-3_Biondo_paper.pdf">Andrea Biondo, Mauro Conti, and Daniele Lain.
+Back To The Epilogue: Evading Control Flow Guard via Unaligned Targets. NDSS'18</a>
+2018-04-04 (Priyam Biswas)</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/atc17/atc17-xu.pdf">Meng Xu, Kangjie Lu, Taesoo Kim, and Wenke Lee.
+Bunshin: Compositing Security Mechanisms through Diversification. ATC'17</a>
+2018-04-11 (Yuseok Jeon)</li>
+<li><a class="reference external" href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2018/02/ndss2018_04B-2_Kim_paper.pdf">Chung Hwan Kim, Taegyu Kim, Hongjun Choi, Zhongshu Gu, Byoungyoung Lee, Xiangyu Zhang, and Dongyan Xu.
+Securing Real-Time Microcontroller Systems through Customized Memory View Switching. NDSS'18</a>
+2018-04-18 (Naif Almakhdhub)</li>
+<li><a class="reference external" href="https://acmccs.github.io/papers/p2123-corinaA.pdf">Jake Corina, Aravind Machiry, Christopher Salls, Yan Shoshitaishvili, Shuang
+Hao, Christopher Kruegel, and Giovanni Vigna. DIFUZE: Interface Aware Fuzzing
+for Kernel Drivers. CCS'17</a>
+2018-04-25 (Kyriakos Ispoglou)</li>
+</ul>
+</div>
+<div class="section" id="suggested-papers">
+<h1>Suggested papers</h1>
+<p>The following papers are suggestions and can be presented during one of the
+seminars:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.vvdveen.com/publications/TypeArmor.pdf">Victor van der Veen and Enes Goktas, Moritz Contag and Andre Pawlowski, Xi
+Chen, Sanjay Rawat, Herbert Bos, Thorsten Holz, Elias Athanasopoulos,
+Cristiano Giuffrida.
+A Tough call: Mitigating Advanced Code-Reuse Attacks At The Binary Level.
+Oakland'16</a></li>
+<li><a class="reference external" href="http://link.springer.com/chapter/10.1007/978-3-319-45719-2_2">Marius Muench, Fabio Pagani, Yan Shoshitaishvili, Christopher Kruegel, Giovanni Vigna, and Davide Balzarotti.
+Taming Transactions: Towards Hardware-Assisted Control Flow Integrity Using Transactional Memory. RAID'16</a></li>
+<li><a class="reference external" href="http://3nity.io/~vj/downloads/publications/kazdagli16micro.pdf">Mikhail Kazdagli, Vijay Janapa Reddi, and Mohit Tiwari
+Quantifying and Improving the Efficiency of Hardware-based Mobile Malware Detectors. MICRO'16</a></li>
+<li><a class="reference external" href="http://nicholas.carlini.com/papers/2017_sp_nnrobustattacks.pdf">Nicholas Carlini and David Wagner. Towards Evaluating the Robustness of Neural Networks. Oakland'17</a></li>
+<li><a class="reference external" href="https://cseweb.ucsd.edu/~klevchen/diesel-sp17.pdf">Moritz Contag, Guo Li, Andre Pawlowski, Felix Domke, Kirill Levchenko, Thorsten Holz, Stefan Savage.
+How They Did It: An Analysis of Emission Defeat Devices in Modern Automobiles. Oakland'17</a></li>
+<li><a class="reference external" href="https://www.ieee-security.org/TC/SP2017/papers/16.pdf">Fraser Brown, Shravan Narayan, Riad S. Wahby, Dawson Engler, Ranjit Jhala, Deian Stefan.
+Finding and Preventing Bugs in JavaScript Bindings. Oakland'17</a></li>
+<li><a class="reference external" href="https://syssec.mistakenot.net/papers/eurosp-2017.pdf">Dennis Andriesse, Asia Slowinska, Herbert Bos.
+Compiler-Agnostic Function Detection in Binaries. EuroSP'17</a></li>
+<li><a class="reference external" href="http://www-bcf.usc.edu/~wang626/pubDOC/YuZW17.pdf">Tingting Yu, Tarannum S. Zaman, Chao Wang.
+DESCRY: Reproducing System-Level Concurrency Failures. FSE'17</a></li>
+<li><a class="reference external" href="https://www.ieee-security.org/TC/SP2017/papers/120.pdf">Oleksii Starov, Nick Nikiforakis.
+XHOUND: Quantifying the Fingerprintability of Browser Extensions. SP'17</a></li>
+<li><a class="reference external" href="https://people.mpi-sws.org/~dg/papers/csf17-hyperproperties.pdf">Marco Patrignani, Deepak Garg.
+Secure compilation and hyperproperty preservation. CSF'17</a></li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-pengfei">Pengfei Wang, Jens Krinke, Kai Lu, Gen Li, Steve Dodier-Lazaro.
+How Double-Fetch Situations turn into Double-Fetch Vulnerabilities: A Study of
+Double Fetches in the Linux Kernel. SEC'17</a></li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/xu-jun">Jun Xu, Dongliang Mu, Xinyu Xing, Peng Liu, Ping Chen, Bing Mao.
+Postmortem Program Analysis with Hardware-Enhanced Post-Crash Artifacts. SEC'17</a></li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/gruss">Daniel Gruss Julian Lettner, Felix Schuster, Olya Ohrimenko, Istvan Haller, and Manuel Costa
+Strong and Efficient Cache Side-Channel Protection using Hardware Transactional Memory. SEC'17</a></li>
+<li>Wenhao Wang, Xiaoyang Xu, and Kevin Hamlen.
+Object Flow Integrity. CCS'17</li>
+<li>Jie Huang, Oliver Schranz, Sven Bugiel, and Michael Backes.
+The ART of App Compartmentalization: Compiler-based Library Privilege
+Separation on Stock Android. CCS '17</li>
+<li>David Korczynski and Heng Yin.
+Capturing Malware Propagations with Code Injections and Code-Reuse attacks.
+CCS'17</li>
+<li>Yi Han, Sriharsha Etigowni, Hua Liu, Saman Zonouz, and Athina Petropulu.
+Watch Me, but Don't Touch Me! Contactless Control Flow Monitoring via
+Electromagnetic Emanations. CCS'17</li>
+<li>Ethan Cecchetti, Andrew Myers, Owen Arden. Nonmalleable Information Flow
+Control. CCS'17</li>
+<li>Grant Hernandez, Farhaan Fowze, Dave Jing Tian, Tuba Yavuz, and Kevin Butler.
+FirmUSB: Vetting USB Device Firmware using Domain Informed Symbolic Execution.
+CCS'17</li>
+<li><a class="reference external" href="http://www.cs.columbia.edu/~junfeng/papers/deepxplore-sosp17.pdf">Kexin Pei, Yinzhi Cao, Junfeng Yang, and Suman Jana.
+DeepXplore: Automated Whitebox Testing of Deep Learning Systems. SOSP'17.</a></li>
+</ul>
+<!-- * `Thomas Nyman, Jan-Erik Ekberg, Lucas Davi, N. Asokan. -->
+<!-- CFI CaRE: Hardware-supported Call and Return Enforcement for Commercial Microcontrollers. -->
+</div>
+<div class="section" id="seminar-format">
+<h1>Seminar format</h1>
+<p>For the seminar we will focus on top systems security topics from conferences
+like IEEE Security and Privacy (Oakland), Usenix Security, NDSS, CCS, PLDI,
+OSDI, SOSP, Usenix ATC, or EuroSys. Top papers from other conferences are
+welcome as well as long as there is sufficient interest.</p>
+<p>The seminar is student run, i.e., a student will present a paper each week. The
+general idea is that everybody reads the paper and one person (the one who
+selected the paper) is discussion lead. The discussion lead gives a 10-15 minute
+introduction into the paper and highlights the important research contributions.
+After this introduction we'll focus on an open discussion of the advantages of
+the paper, possible disadvantages, evaluation, scope, alternatives, and other
+constraints.</p>
+<p>It is expected that students lead at least one discussion per semester. If you
+intend to take this course for credit you <em>must</em> present at least one paper. If you
+have a paper in mind, please sign up with <a class="reference external" href="mailto:mathias.payer&#64;nebelwelt.net">Mathias</a> to agree on a date and paper.  The
+general mailing list for the seminar is at
+<a class="reference external" href="https://lists.purdue.edu/mailman/listinfo/syssem">https://lists.purdue.edu/mailman/listinfo/syssem</a> and can be reached using
+<a class="reference external" href="mailto:syssem&#64;lists.purdue.edu">syssem&#64;lists.purdue.edu</a>. If you are
+interested in the seminar then please sign up on the mailing list as all
+announcements and reminders will go out to that list.</p>
+<p>Discussion leads are expected to synchronize the topic with Mathias and are then
+responsible to send out announcement emails and reminders to the seminar email
+list.</p>
+</div>
+<div class="section" id="previous-semesters">
+<h1>Previous semesters</h1>
+<p><em>Fall 2017</em></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-ding.pdf">Ren Ding, Chenxiong Qian, Chengyu Song, William Harris, Taesoo Kim, Wenke Lee.
+Efficient Protection of Path-Sensitive Control Security. SEC'17</a>
+2017-08-23 (Nathan Burow)</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-machiry.pdf">Aravind Machiry, Chad Spensky, Jake Corina, Nick Stephens, Christopher Kruegel, Giovanni Vigna.
+DR. CHECKER: A Soundy Analysis for Linux Kernel Drivers. SEC'17</a>
+2017-08-30 (Derrick McKee)</li>
+<li><a class="reference external" href="http://cs.ucsb.edu/~yanick/publications/2017_sec_bootstomp.pdf">Nilo Redini, Aravind Machiry, Dipanjan Das, Yanick Fratantonio, Antonio
+Bianchi, Eric Gustafson, Yan Shoshitaishvili, Christopher Kruegel, Giovanni Vigna.
+BootStomp: On the Security of Bootloaders in Mobile Devices. SEC'17</a>
+2017-09-06 (Rohit Bhatia)</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/lee-sangho">Sangho Lee, Ming-Wei Shih, Prasun Gera, Taesoo Kim, Hyesoon Kim, Marcus Peinad.
+Inferring Fine-grained Control Flow Inside SGX Enclaves with Branch Shadowing. SEC'17</a>
+2017-09-13 (Priyam Biswas)</li>
+<li><a class="reference external" href="https://www.ieee-security.org/TC/SP2017/papers/579.pdf">Tiffany Bao, Ruoyu Wang, Yan Shoshitaishvili, David Brumley.
+Your Exploit is Mine: Automatic Shellcode Transplant for Remote Exploits.
+Oakland'17</a>
+2017-09-20 (Prashast Srivastava)</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/yang">Zhaomo Yang, Brian Johannesmeyer, Anders Trier Olesen, Sorin Lerner, Kirill Levchenko.
+Dead Store Elimination (Still) Considered Harmful. SEC'17</a>
+2017-09-27 (Yuseok Jeon)</li>
+<li><a class="reference external" href="http://www.cs.vu.nl/~giuffrida/papers/dangsan_eurosys17.pdf">Erik van der Kouwe, Vinod Nigade, Cirstiano Giuffrida. DangSan: Scalable
+Use-After-Free Detection. EuroSys'17</a>
+2017-10-04 (Noah Field)</li>
+<li><a class="reference external" href="http://mweissbacher.com/publications/ccs_hacrs.pdf">Yan Shoshitaishvili, Michael Weissbacher, Lukas Dresel, Christopher Salls,
+Ruoyu Wang, Christopher Kruegel, Giovanni Vigna. Rise of the HaCRS:
+Augmenting Autonomous Cyber Reasoning Systems with Human Assistance. CCS'17</a>
+2017-10-11 (Sushant Dinesh)</li>
+<li><a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/10/komodo.pdf">Andrew Ferraiuolo, Andrew Baumann, Chris Hawblitzel, Bryan Parno.
+Komodo: Using verification to disentangle secure-enclave hardware from software. SOSP'17</a>
+2017-10-18 (Priyam Biswas)</li>
+<li><a class="reference external" href="http://wp.internetsociety.org/ndss/wp-content/uploads/sites/25/2017/09/ndss2017_09-2_Lu_paper.pdf">Kangjie Lu, Marie-Therese Walter, David Pfaff, Stefan Nürnberger, Wenke Lee, and Michael Backes.
+Unleashing Use-Before-Initialization Vulnerabilities in the Linux Kernel Using Targeted Stack Spraying. NDSS'17</a>
+2017-10-25 (Derrick McKee)</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/dang">Thurston H.Y. Dang, Petros Maniatis, David Wagner.
+Oscar: A Practical Page-Permissions-Based Scheme for Thwarting Dangling Pointers. SEC'17</a>
+2017-11-01 (Nathan Burow)</li>
+<li><a class="reference external" href="https://acmccs.github.io/papers/p1709-lekiesA.pdf">Sebastian Lekies, Krzysztof Kotowicz, Samuel Gross, Eduardo A. Vela Nava, Martin Johns.
+Code-Reuse Aacks for the Web: Breaking Cross-Site Scripting
+Mitigations via Script Gadgets. CCS'17</a>
+2017-11-08 (Kyriakos Ispoglou)</li>
+<li><a class="reference external" href="https://vvdveen.com/publications/newton.pdf">Victor van der Veen, Dennis Andriesse, Manolis Stamatogiannakis, Xi Chen,
+Herbert Bos, Cristiano Giuffrida.
+The Dynamics of Innocent Flesh on the Bone: Code Reuse Ten Years Later. CCS'17</a>
+2017-11-15 (Bader AlBassam)</li>
+<li><a class="reference external" href="https://www.cc.gatech.edu/~mfazzini/publications/2017_ccs_ji.pdf">Yang Ji, Sangho Lee, Evan Downing, Weiren Wang, Mattia Fazzini, Taesoo Kim,
+Alessandro Orso, and Wenke Lee.
+RAIN: Refinable Attack Investigation with On-demand Inter-Process Information
+Flow Tracking. CCS'17</a>
+2017-11-29 (Priyam Biswas)</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/koppe">Philipp Koppe, Benjamin Kollenda, Marc Fyrbiak, Christian Kison, Robert Gawlik, Christof Paar, Thorsten Holz.
+Reverse Engineering x86 Processor Microcode. SEC'17</a>
+2017-12-06 (Kyriakos Ispoglou)</li>
+</ul>
+<p><em>Spring 2017</em></p>
+<ul class="simple">
+<li><a class="reference external" href="http://dl.acm.org/citation.cfm?id=2978340">Jun Xu, Dongliang Mu, Ping Chen, Xinyu Xing, Pei Wang, Peng Liu.
+CREDAL: Towards Locating a Memory Corruption Vulnerability with Your Core Dump. CCS'16</a>
+2017-01-09 (Nathan Burow).</li>
+<li>2017-01-16 No class</li>
+<li><a class="reference external" href="http://syssec.rub.de/media/emma/veroeffentlichungen/2016/12/22/marx_ndss2017.pdf">Andre Pawlowski, Moritz Contag, Victor van der Veen, Chris Ouwehand,
+Thorsten Holz, Herbert Bos, Elias Athanasopoulos, Cristiano Giuffrida.
+MARX: Uncovering Class Hierarchies in C++ Programs. NDSS'17</a>
+2017-01-23 (Christine Utz)</li>
+<li><a class="reference external" href="https://www.comp.nus.edu.sg/~shweta24/publications/dop_oakland16.pdf">Data-Oriented Programming: On the Expressiveness of Non-Control Data Attacks
+Hong Hu, Shweta Shinde, Adrian Sendroiu, Zheng Leong Chua, Prateek Saxena,
+and Zhenkai Liang. Oakland'16</a>
+2017-01-30 (Prashast Srivastava)</li>
+<li><a class="reference external" href="http://cryptosec.ucsd.edu/miscpapers/venkat-asplos2016.pdf">Ashish Venkat, Sriskanda Shamasunder, Dean M. Tullsen, Hovav Shacham.
+HIPStR – Heterogeneous-ISA Program State Relocation. ASPLOS'16</a>
+2017-02-06 (Abe Clements)</li>
+<li><a class="reference external" href="https://arxiv.org/pdf/1603.05615v1.pdf">Ziqiao Zhou, Michael K. Reiter, and Yinqian Zhang.
+A Software Approach to Defeating Side Channels in Last-Level Caches. CCS'16</a>
+2017-02-13 (Bader AlBassam)</li>
+<li><a class="reference external" href="http://www.ics.uci.edu/~perl/ndss16_lr2.pdf">Kjell Braden, Stephen Crane, Lucas Davi, Michael Franz, Per Larsen,
+Christopher Liebchen, and Ahmad-Reza Sadeghi.
+Leakage-Resilient Layout Randomization for Mobile Devices. NDSS'16</a>
+2017-02-20 (Naif Almakhdhub)</li>
+<li><a class="reference external" href="http://www.cs.vu.nl/~herbertb/download/papers/anc_ndss17.pdf">Ben Gras, Kaveh Razavi, Erik Bosman, Herbert Bos, and Cristiano Giuffrida.
+ASLR on the Line: Practical Cache Attacks on the MMU. NDSS'17</a>
+2017-02-27 (Derrick McKee)</li>
+<li><a class="reference external" href="https://s2lab.isg.rhul.ac.uk/papers/files/ndss2017.pdf">Gregory J. Duck, Roland H. C. Yap, Lorenzo Cavallaro.
+Stack Bounds Protection with Low Fat Pointers. NDSS'17</a>
+2017-03-06 (Nathan Burow).</li>
+<li><a class="reference external" href="http://cps.kaist.ac.kr/papers/ndss17-sgxshield.pdf">Jaebaek Seo, Byounyoung Lee, Seongmin Kim, Ming-Wei Shih, Insik Shin, Dongsu Han, Taesoo Kim.
+SGX-Shield: Enabling Address Space Layout Randomization for SGX Programs. NDSS'17</a>
+2017-03-20 (Priyam Biswas).</li>
+<li><a class="reference external" href="http://www.cs.vu.nl/~herbertb/download/papers/safeinit_ndss17.pdf">Alyssa Milburn, Herbert Bos, Cristiano Giuffrida.
+SafeInit: Comprehensive and Practical Mitigation of Uninitialized Read Vulnerabilities.
+NDSS'17</a>
+2017-03-27 (Yuseok Jeon).</li>
+<li><a class="reference external" href="https://www.labs.hpe.com/techreports/2015/HPL-2015-71R1.pdf">Amro Awad, Pratyusa Manadhata, Yan Solihin, Stuart Haber, and William Horne.
+Silent Shredder: Zero-Cost Shredding for Secure Non-Volatile Main Memory
+Controllers. ASPLOS 2016</a>
+2017-04-03 (Terry Hsu)</li>
+<li><a class="reference external" href="https://seclab.cs.ucsb.edu/media/uploads/papers/ramblr-ndss17.pdf">Ruoyu Wang, Yan Shoshitaishvili, Antonio Bianchi, Aravind Machiry, John Grosen, Paul Grosen, Christopher Kruegel, and Giovanni Vigna
+Ramblr: Making Reassembly Great Again. NDSS'17</a>
+2017-04-10 (Hui Peng)</li>
+<li><a class="reference external" href="http://www.cs.columbia.edu/~junfeng/papers/shuffler-osdi16.pdf">David Williams-King, Graham Gobieski, Kent Williams-King, James P. Blake, Xinhao Yuan, Patrick Colp, Michelle Zheng, Vasileios P. Kemerlis, Junfeng Yang, William Aiello
+Shuffler: Fast and Deployable Continuous Code Re-Randomization. OSDI'16</a>
+2017-04-17 (Derrick McKee)</li>
+<li><a class="reference external" href="http://plrg.eecs.uci.edu/~bhawkins/blackbox/cgo2016.pdf">Byron Hawkins, Brian Demsky, and Michael B. Taylor.
+BlackBox:  Lightweight  Security Monitoring  for  COTS  Binaries. CGO'16</a>
+2017-04-24 (Abe Clements)</li>
+</ul>
+<p><em>Fall 2016</em></p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cl.cam.ac.uk/~pes20/cerberus/pldi16.pdf">Kayvan Memarian, Justus Matthiesen, James Lingard, Kyndylan Nienhuis, David
+Chisnall, Robert N.M. Watson, and Peter Sewell.
+Into the Depths of C: Elaborating the De Facto Standards. PLDI'16</a>
+2016-08-24 (Nathan Burow).</li>
+<li><a class="reference external" href="https://www.internetsociety.org/sites/default/files/blogs-media/driller-augmenting-fuzzing-through-selective-symbolic-execution.pdf">Nick Stephens, John Grosen, Christopher Salls, Andrew Dutcher, Ruoyu Wang,
+Jacopo Corbetta, Yan Shoshitaishvili, Christopher Kruegel, Giovanni Vigna.
+Driller: Augmenting Fuzzing Through Selective Symbolic Execution. NDSS'16</a>
+2016-08-31 (Syed Rafiul Hussain).</li>
+<li><a class="reference external" href="https://davidlazar.org/papers/vuvuzela.pdf">Jelle van den Hooff, David Lazar, Matei Zaharia, Nickolai Zeldovich.
+Vuvuzela: Scalable Private Messaging Resistant to Traffic Analysis. SOSP'15</a>
+2016-09-07 (Julian Stephen).</li>
+<li><a class="reference external" href="http://web.stanford.edu/~mlfbrown/paper.pdf">Fraser Brown, Andres Noetzli, Dawson Engler.
+How to Build Static Checking Systems Using Orders of Magnitude Less Code. ASPLOS'16.</a>
+2016-09-14 (Derrick McKee).</li>
+<li><a class="reference external" href="https://www.internetsociety.org/sites/default/files/blogs-media/skee-lightweight-secure-kernel-level-execution-environment-for-arm.pdf">Ahmed Azab, Kirk Swidowski, Rohan Bhutkar, Jia Ma, Wenbo Shen, Ruowen Wang, Peng Ning.
+SKEE: A Lightweight Secure Kernel-level Execution Environment for ARM. NDSS'16.</a>
+2016-09-21 (Abe Clements).</li>
+<li><a class="reference external" href="http://srg.doc.ic.ac.uk/files/papers/varan-asplos-15.pdf">Petr Hosek and Cristian Cadar.
+VARAN the Unbelievable. ASPLOS'15</a>
+2016-09-28 (Priyam Biswas).</li>
+<li><a class="reference external" href="http://www.cs.binghamton.edu/~dima/micro16.pdf">Dmitry Evtyushkin, Dmitry Ponomarev, and Nael Abu-Ghazaleh.
+Jump Over ASLR: Attacking Branch Predictors to Bypass ASLR. MICRO'16</a>
+2016-10-05 (Terry Hsu).</li>
+<li><a class="reference external" href="http://www.ieee-security.org/TC/SP2016/papers/0824a954.pdf">Kevin Z. Snow, Roman Rogowski, Fabian Monrose, Jan Werner, Hyungjoon Koo, and Michalis Polychronakis.
+Return to the Zombie Gadgets: Undermining Destructive Code Reads via Code Inference Attacks. Oakland'16</a>
+2016-10-12 (Bader AlBassam).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_goktas.pdf">Enes Gökta, Robert Gawlik, Benjamin Kollenda, Elias Athanasopoulos,
+Georgios Portokalidis, Cristiano Giuffrida, Herbert Bos.
+Undermining Information Hiding (And What to do About it). Usenix SEC'16</a>
+2016-10-19 (Christine Utz).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_yun.pdf">Insu Yun, Changwoo Min, Xujie Si, Yeongjin Jang, Taesoo Kim, and Mayur Naik.
+APISan: Sanitizing API Usages through Semantic Cross-Checking. Usenix SEC'16</a>
+2016-10-26 (Hui Peng).</li>
+<li><a class="reference external" href="http://plrg.eecs.uci.edu/~bhawkins/blackbox/cgo2016.pdf">Byron Hawkins, Brian Demsky, and Michael B. Taylor.
+BlackBox: Lightweight Security C Monitoring for COTS Binaries. CGo'16</a>
+2016-11-02 (Lovepreet Singh)</li>
+<li><a class="reference external" href="http://www.cc.gatech.edu/~klu38/publications/unisan-ccs16.pdf">Kangjie Lu, Chengyu Song, Taesoo Kim, and Wenke Lee
+UniSan: Proactive Kernel Memory Initialization to Eliminate Data Leakages. CCS'16</a>
+2016-11-09 (Yuseok Jeon)</li>
+<li><a class="reference external" href="https://www.nds.rub.de/media/nds/veroeffentlichungen/2016/10/19/tls-attacker-ccs16.pdf">Juraj Somorovsky.
+Systematic Fuzzing and Testing of TLS Libraries. CCS'16</a>
+2016-11-16 (Samuel Jero)</li>
+<li><a class="reference external" href="https://www.tu-braunschweig.de/Medien-DB/sec/pubs/2016-ccs.pdf">Christian Wressnegger, Fabian Yamaguchi, Alwin Maier, and Konrad Rieck.
+Twice the Bits, Twice the Trouble: Vulnerabilities Induced by Migrating to 64-Bit Platforms. CCS'16</a>
+2016-11-30 (Denis Ulybyshev)</li>
+<li><a class="reference external" href="https://arxiv.org/pdf/1605.07763v2.pdf">Tigist Abera, N. Asokan, Lucas Davi, Jan-Erik Ekberg, Thomas Nyman, Andrew
+Paverd, Ahmed-Reza Sadeghi, and Gene Tsudik.
+C-FLAT: Control-Flow Attestation for Embedded Systems Software. CCS'16</a>
+2016-12-06 (Prashast Srivastava)</li>
+<li><a class="reference external" href="https://www.trust.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_TRUST/PubsPDF/sandscout-final-ccs-2016.pdf">Luke Deshotels, Razvan Deaconescu, Mihai Chiroiu, Lucas Davi, William Enck,
+and Ahmed-Reza Sadeghi. SandScout: Automatic Detection of Flaws in iOS Sandbox Profiles. CCS'16</a>
+2016-12-06 (Sushant Dinesh)</li>
+</ul>
+<p><em>Spring 2016</em></p>
+<ul class="simple">
+<li><a class="reference external" href="http://research.google.com/pubs/pub43308.html">Evgeniy Stepanov, Konstantin Serebryany.
+MemorySanitizer: fast detector of uninitialized memory use in C++. CGO'15</a>
+2016-01-11 (Nathan Burow).</li>
+<li><a class="reference external" href="https://taesoo.gtisc.gatech.edu/pubs/2016/song:kenali.pdf">Chengyu Song, Byoungyoung Lee, Kangjie Lu, William Harris, Taesoo Kim, Wenke Lee.
+Enforcing Kernel Security Invariants with Data Flow Integrity. NDSS'16</a>
+2016-01-25 (Scott Carr).</li>
+<li><a class="reference external" href="http://research.microsoft.com/pubs/255833/IronFleet-twocol.pdf">Chris Hawblitzel, Jon Howell, Manos Kapritsos, Jacob R. Lorch, Bryan Parno,
+Michael L. Roberts, Srinath Setty, Brian Zill.
+IronFleet: Proving Practical Distributed Systems Correct. SOSP '15</a>
+2016-02-01 (Derrick McKee).</li>
+<li><a class="reference external" href="http://www.cc.gatech.edu/~klu38/publications/runtimeaslr-ndss16.pdf">Kangjie Lu, Stefan Nuernberger, Michael Backes, Wenke Lee.
+How to Make ASLR Win the Clone Wars: Runtime Re-Randomization. NDSS'16</a>
+2016-02-08 (Gregory Essertel).</li>
+<li>No seminar due to the looming Usenix Security deadline. 2016-02-15 (/dev/null).</li>
+<li><a class="reference external" href="http://wdtz.org/files/asplos200-dautenhahn.pdf">Nathan Dautenhahn, Theodoros Kasampalis, Will Dietz, John Criswell, Vikram Adve.
+Nested Kernel: An Operating System Architecture for Intra-Kernel Privilege Separation. ASPLOS'15</a>
+2016-02-22 (Terry Hsu).</li>
+<li><a class="reference external" href="https://cseweb.ucsd.edu/~lerner/papers/ivtbl-ndss16.pdf">Dimitar Bounov, Rami Gokhan Kici, Sorin Lerner.
+Protecting C++ Dynamic Dispatch Through VTable Interleaving. NDSS'16</a>
+2016-02-29 (Yuseok Jeon).</li>
+<li><a class="reference external" href="https://web.eecs.umich.edu/~zmao/Papers/alfred_ccs15.pdf">Qi Alfred Chen, Zhiyun Qian, Yunhan Jack Jia, Yuru Shao, Z. Morley Mao.
+Static Detection of Packet Injection Vulnerabilities - A Case for Identifying
+Attacker-controlled Implicit Information Leaks. CCS'15</a>
+2016-03-07 (Samuel Jero).</li>
+<li><a class="reference external" href="https://www.internetsociety.org/sites/default/files/blogs-media/towards-automated-dynamic-analysis-linux-based-embedded-firmware.pdf">Daming D. Chen, Manuel Egele, Maverick Woo, David Brumley.
+Towards Automated Dynamic Analysis for Linux-based Embedded Firmware. NDSS'16</a>
+2016-03-21 (Jacek Rzeniewicz).</li>
+<li><a class="reference external" href="http://www.cse.psu.edu/~gxt29/paper/picfi.pdf">Ben Niu, Gang Tan.
+Per-Input Control-Flow Integrity. CCS'15</a>
+2016-03-28 (Syed Rafiul Hussain).</li>
+<li><a class="reference external" href="https://www.internetsociety.org/sites/default/files/blogs-media/protracer-towards-practical-provenance-tracing-alternating-logging-tainting.pdf">Shiqing Ma, Xiangyu Zhang, Dongyan Xu.
+ProTracer: Towards Practical Provenance Tracing by Alternating Between Logging and Tainting. NDSS'16</a>
+2016-04-04 (Priyam Biswas).</li>
+<li><a class="reference external" href="http://vvdveen.com/publications/TypeArmor.pdf">Victor van der Veen, Enes Goektas, Moritz Contag, Andre Pawlowski, Xi Chen,
+Sanjay Rawat, Herbert Bos, Thorsten Holz, Elias Athanasopoulos, and Cristiano
+Giuffrida.
+A Tough call: Mitigating Advanced Code-Reuse Attacks At The Binary Level. Oakland'16</a>
+2016-04-11 (Hui Peng).</li>
+<li><a class="reference external" href="https://www.cl.cam.ac.uk/~dc552/papers/asplos15-memory-safe-c.pdf">Chisnall, Colin Rothwell, Robert N.M. Watson, Jonathan Woodruff, Munraj
+Vadera, Simon W. Moore, Michael Roe, Brooks Davis, Peter G. Neumann.
+Beyond the PDP-11: Architectural Support for a Memory-Safe C Abstract Machine. ASPLOS'15</a>
+2016-04-18 (Nathan Burow).</li>
+<li><a class="reference external" href="http://plrg.eecs.uci.edu/~bhawkins/blackbox/cgo2016.pdf">Byron Hawkins, Brian Demsky, and Michael B. Taylor.
+BlackBox:  Lightweight  Security Monitoring  for  COTS  Binaries. CGO'16</a>
+2016-04-25 (Mathias Payer).</li>
+</ul>
+<p><em>Fall 2015</em></p>
+<ul class="simple">
+<li><a class="reference external" href="http://drops.dagstuhl.de/opus/volltexte/2015/5026/pdf/16.pdf">Santosh Nagarakatte, Milo M. K. Martin, Steve Zdancewic.
+Everything You Want to Know About Pointer-Based Checking. Dagstuhl'15</a>
+2015-08-27 (Mathias Payer).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/nsdi15/nsdi15-paper-pedrosa.pdf">L. Pedrosa, A. Fogel, N. Kothari, R. Govindan, R. Mahajan, and T. Millstein.
+Analyzing Protocol Implementations for Interoperability. NSDI'15</a>
+2015-09-03 (Samuel Jero).</li>
+<li><a class="reference external" href="http://nebelwelt.net/publications/files/15SEC.pdf">Nicholas Carlini, Antonio Barresi, Mathias Payer, Thomas R. Gross, and David Wagner.
+Control-Flow Bending: On the Effectiveness of Control-Flow Integrity. Usenix Security'15</a>
+2015-09-10 (Ispo).</li>
+<li><a class="reference external" href="https://www.cs.utah.edu/~regehr/papers/pldi15.pdf">Nuno Lopes, David Menendez, Santosh Nagarakatte, and John Regehr.
+Provably Correct Peephole Optimizations with Alive. PLDI'15</a>
+2015-09-17 (Nathan Burow).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/woot15/woot15-paper-rushanan.pdf">Michael Rushanan and Stephen Checkoway,
+Run-DMA. WOOT'15</a>
+2015-09-24 (Derrick McKee).</li>
+<li><a class="reference external" href="http://www.bailis.org/papers/ramp-sigmod2014.pdf">Peter Bailis, Alan Fekete, Joseph Hellerstein, Ali Ghodsi, and Ion Stoica.
+Scalable Atomic Visibility with RAMP Transactions. SIGMOD'14</a>
+2015-10-01 (Denis Ulybyshev).</li>
+<li><a class="reference external" href="https://users.ece.cmu.edu/~sangkilc/papers/oakland15-cha.pdf">Sang Kil Cha, Maverick Woo, and David Brumley.
+Program-Adaptive Mutational Fuzzing. Oakland'15</a>
+2015-10-08 (Syed Rafiul Hussain).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-hu.pdf">Hong Hu, Zheng Leong Chua, Sendroiu Adrian, Prateek Saxena, and Zhenkai Liang.
+Automatic Generation of Data-Oriented Exploits. SEC'15</a>
+2015-10-15 (Terry Ching-Hsiang Hsu).</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity15/technical-sessions/presentation/lee">Byoungyoung Lee, Chengyu Song, Taesoo Kim, and Wenke Lee.
+Type Casting Verification: Stopping an Emerging Attack Vector. SEC'15</a>
+2015-10-22 (Yuseok Jeon).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-sun.pdf">Yixin Sunm Anne Edmundson, Laurent Vanbever, Oscar Li, Jennifer Rexford, Mung Chiang, and Prateek Mittal.
+RAPTOR: Routing Attacks on Privacy in Tor. SEC'15</a>
+2015-10-29 (Kyriakos Ispoglou).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-ming.pdf">Jiang Ming, Dinghao Wu, Gaoyao Xiao, Jun Wang, and Peng Liu.
+TaintPipe: Pipelined Symbolic Taint Analysis. SEC'15</a>
+2015-11-05 (Priyam Biswas).</li>
+<li>2015-11-12 OAKLAND IS COMING, no seminar this Thursday.</li>
+<li><a class="reference external" href="http://people.csail.mit.edu/stelios/papers/jujutsu_ccs15.pdf">Isaac Evans et al.
+Control Jujutsu: On the Weaknesses of Fine-Grained Control Flow Integrity. SEC'15</a>
+2015-11-19 (Hui Peng).</li>
+<li><a class="reference external" href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-zellweger.pdf">Gerd Zellweger, Simon Gerber, Kornilios Kourtis, and Timothy Roscoe
+Decoupling Cores, Kernels, and Operating Systems. OSDI'14</a>
+2015-12-03 (Derrick McKee).</li>
+<li><a class="reference external" href="http://www.burningcutlery.com/derek/docs/dgc-CGO15.pdf">Byron Hawkins, Brian Demsky, Derek Bruening, and Qin Zhao.
+Optimizing Binary Translation of Dynamically Generated Code. CGO'15</a>
+2015-12-10 (Nathan Burow).</li>
+</ul>
+<p><em>Spring 2015</em></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi">Xi Wang, David Lazar, Nickolai Zeldovich, Adam Chlipala, Zachary Tatlock.
+Jitk: A Trustworthy In-Kernel Interpreter Infrastructure. OSDI'14</a>,
+2015-02-10 (Mathias Payer).</li>
+<li><a class="reference external" href="http://people.csail.mit.edu/rinard/paper/pldi14.pdf">Fan Long, Stelios Sidiroglou-Douskos, Martin Rinard.
+Automatic Runtime Error Repair and Containment via Recovery Shepherding. PLDI'14</a>,
+2015-02-17 (Scott A. Carr).</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/costin">Andrei Costin, Jonas Zaddach, Aurélien Francillon, Davide Balzarotti.
+A Large-Scale Analysis of the Security of Embedded Firmwares. Usenix Security'14</a>,
+2015-02-24 (Nathan Burow).</li>
+<li><a class="reference external" href="http://www.csl.sri.com/users/vinod/papers/rosemary.pdf">Seungwon Shin, Yongjoo Song, Taekyung Lee, Sangho Lee, Jaewoong Chung, Phillip Porras,
+Vinod Yegneswaran, Jiseong Noh, Brent Byunghoon Kang.
+Rosemary: A Robust, Secure, and High-performance Network Operating System. CCS'14</a>,
+2015-03-03 (Samuel Jero).</li>
+<li><a class="reference external" href="https://www.usenix.org/conference/osdi14/technical-sessions/presentation/peter">Simon Peter, Jialin Li, Irene Zhang, Dan R. K. Ports, Doug Woos, Arvind Krishnamurthy,
+Thomas Anderson, Timothy Roscoe.
+Arrakis: The Operating System is the Control Plane. OSDI'14</a>,
+2015-03-10 (Daniele Midi).</li>
+<li><a class="reference external" href="http://dl.acm.org/citation.cfm?id=2738611">William Arthur, Ben Mehne, Reetuparna Das, Todd Austin.
+Getting in control of your control flow with control-data isolation. CGO'15</a>,
+2015-03-26 (Nathan Burow).</li>
+<li><a class="reference external" href="http://dl.acm.org/citation.cfm?id=2660212">Jonathan Bell, Gail Kaiser.
+Phosphor: illuminating dynamic data flow in commodity JVMs. OOPSLA'14</a>,
+2015-04-02 (Keith Chapman).</li>
+<li><a class="reference external" href="http://sva.cs.illinois.edu/pubs/KCoFI-Oakland-2014.pdf">John Criswell, Nathan Dautenhahn, Vikram Adve.
+KCoFI: Complete Control-Flow Integrity for Commodity Operating System Kernels. SP'14.</a>,
+2015-04-09 (Scott Carr).</li>
+<li><a class="reference external" href="http://www.icsi.berkeley.edu/pubs/networking/troubleshootingblackbox14.pdf">C. Scott, A. Wundsam, J. Lai, A. El-hassany, S. Whitlock, H. B. Acharya, S. Shenker.
+Troubleshooting Blackbox SDN Control Software with Minimal Causal Sequences. SIGCOMM'14</a>,
+2015-04-16 (Samuel Jero).</li>
+<li><a class="reference external" href="http://www.hgi.ruhr-uni-bochum.de/media/emma/veroeffentlichungen/2015/03/28/COOP-Oakland15.pdf">Schuster, Felix, Thomas Tendyck, Christopher Liebchen, Lucas Davi, Ahmad-Reza
+Sadeghi, Thorsten Holz.
+Counterfeit Object-oriented Programming. Oakland'15</a>,
+2015-04-23 (Daniele Midi).</li>
+<li><a class="reference external" href="http://research.microsoft.com/apps/pubs/default.aspx?id=138696">Manuel Fahndrich, Francesco Logozzo.
+Static Contract Checking with Abstract Interpretation. FoVeOOS 2010</a>,
+2015-04-30 (Scott A. Carr).</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

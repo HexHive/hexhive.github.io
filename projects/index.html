@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Mathias Payer">
+<meta name="theme-color" content="#563d7c">
+<title>HexHive</title>
+<!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../css/academicons.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container"> 
+<nav class="navbar navbar-expand-md navbar-light bg-light static-top" style="background-color: #e3f2fd;">
+	<a class="navbar-brand" href="../#"><img src="../img/hexhive.png" width="50px"/>&nbsp;<span style="color:#2fbf00;">Hex</span><span style="color:#000c10;">Hive</span></a>
+	<div class="navbar" id="navbar">
+	<ul class="navbar-nav mr-auto">
+		<li><a class="nav-link" href="../#people">People</a></li>
+		<li class="nav-item"><a class="nav-link" href="../publications">Publications</a></li>
+		<li class="nav-item active"><a class="nav-link" href="#">Projects</a></li>
+		<li class="nav-item"><a class="nav-link" href="../teaching/">Teaching</a></li>
+		<li class="nav-item"><a class="nav-link" href="../epflprojects">Student Projects</a></li>
+	</ul>
+	</div>
+	<img src="../img/epfl.png" class="ml-auto" width="100px"/>
+</nav>
+</div>
+
+<main role="main" class="container">
+
+<section id="ERCCodeSan">
+<div class="jumbotron">
+<h4>ERC StG CodeSan: Code Sanitization for Vulnerability Pruning and
+Exploitation Mitigation</h4>
+<img src="erc_logo.jpg" width="20%" class="rounded float-right" alt="ERC logo"/>
+<p>Despite massive efforts in securing software, about 60 security bugs are publicly reported each month. Systems software is prone to low level bugs caused by undefined behavior (memory corruption, type confusion, or API confusion). Exploits abuse undefined behavior to execute attacker specified code, or to leak information.<br/>
+
+We propose code sanitization (CodeSan), a comprehensive approach to improve code quality. CodeSan will sanitize software by (i) automating bug discovery during development through software testing and (ii) protecting deployed software through reflective mitigations. CodeSan trades formal completeness for practical scalability in three steps: First, policy-based sanitization makes undefined behavior (through violations of memory safety, type safety, or API flow safety) explicit and detectable given concrete test inputs. Second, automatic test case generation increases testing coverage for large programs without the need for pre-existing test cases, enabling broader and automated use of policy-based sanitization. Third, for deployed software, reflective mitigations place runtime checks precisely where they are needed based on data-flow and control-flow coverage from our testing efforts. CodeSan complements formal approaches by protecting software that is currently out of reach due to its size, complexity, or low level nature.<br/>
+
+CodeSan is a compelling, comprehensive, and adaptive approach to thoroughly address undefined behavior for complex software. The three proposed thrusts complement each other naturally and will immediately guard large software systems such as Google Chromium, Mozilla Firefox, the Android system, or the Linux kernel, making them resilient against attacks.
+
+In line with PI Payer’s track record on open sourcing his group’s research artifacts on cast sanitization, transformative fuzzing, or control-flow hijacking mitigations, all prototypes produced during CodeSan will be released as open-source.</p>
+
+<h6>Duration: March 2020 to February 2025</h6>
+
+<h6>Publications, Prototypes, and Artifacts</h6>
+
+<p class="publication">
+<b><a href="../publications/files/23SEC.pdf" name="23SEC">GLeeFuzz: Fuzzing WebGL Through Error-Message-Guided Mutation</a></b><span class="float-right"><b>2023</b></span><br/>Hui Peng, Zhihao Yao, Ardalan Amiri Sani, Dave (Jing) Tian, and Mathias Payer.<br/>In <i><b>SEC'23</b>: Usenix Security Symposium, 2023</i> (<a href="https://github.com/HexHive/GLeeFuzz">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/23Oakland.pdf" name="23Oakland">TEEzz: Fuzzing Trusted Applications on COTS Android Devices</a></b><br/>Marcel Busch, Mathias Payer, Aravind Machiry, Christopher Kruegel, Giovanni Vigna, and Chad Spensky.<br/>In <i><b>Oakland'23</b>: IEEE International Symposium on Security and Privacy, 2023</i></p>
+
+<p class="publication">
+<b><a href="../publications/files/22CCS.pdf" name="22CCS">Evocatio: Conjuring Bug Capabilities from a Single PoC</a></b><span class="float-right"><b>2022</b></span><br/>Zhiyuan Jiang, Shuitao Gan, Adrian Herrera, Flavio Toffalini, Lucio Romerio, Chaojing Tang, Manuel Egele, Chao Zhang, and Mathias Payer.<br/>In <i><b>CCS'22</b>: ACM Conference on Computer and Communication Security, 2022</i> (<a href="https://github.com/HexHive/Evocatio">source</a>, <a href="http://dx.doi.org/10.1145/3548606.3560575">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22CCS2.pdf" name="22CCS2">PACMem: Enforcing Spatial and Temporal Memory Safety via ARM Pointer Authentication</a></b><br/>Yuan Li, Wende Tan, Zhizheng Lv, Songtao Yang, Mathias Payer, Ying Liu, and Chao Zhang.<br/>In <i><b>CCS'22</b>: ACM Conference on Computer and Communication Security, 2022</i> (<a href="http://dx.doi.org/10.1145/3548606.3560598">DOI</a>)</p>
+<p class="publication">
+<b><a href="../publications/files/22FSE.pdf" name="22FSE">Minerva: Browser API Fuzzing with Dynamic Mod-Ref Analysis</a></b><br/>Chijin Zhou, Quan Zhang, Mingzhe Wang, Lihua Guo, Jie Liang, Zhe Liu, Mathias Payer, and Yu Jiang.<br/>In <i><b>FSE'22</b>: ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2022</i></p>
+
+<p class="publication">
+<b><a href="../publications/files/22CHES.pdf" name="22CHES">BreakMi: Reversing, Exploiting and Fixing Xiaomi Fitness Tracking Ecosystem</a></b><br/>Marco Casagrande, Eleonora Losiouk, Mauro Conti, Mathias Payer, and Daniele Antonioli.<br/>In <i><b>CHES'22</b>: IACR Conference on Crypotographic Hardware and Embedded Systems, 2022</i> (<a href="https://github.com/Skiti/BreakMi">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22WOOT.pdf" name="22WOOT">On the Insecurity of Vehicles Against Protocol-Level Bluetooth Threats</a></b><br/>Daniele Antonioli, and Mathias Payer.<br/>In <i><b>WOOT'22</b>: Usenix Workshop on Offensive Technologies, 2022</i></p>
+
+<p class="publication">
+<b><a href="../publications/files/22SEC.pdf" name="22SEC">Midas: Systematic Kernel TOCTTOU Protection</a></b><br/>Atri Bhattacharyya, Uros Tesic, and Mathias Payer.<br/>In <i><b>SEC'22</b>: Usenix Security Symposium, 2022</i> (<a href="https://github.com/HexHive/Midas">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22SEC2.pdf" name="22SEC2">ProFactory: Improving IoT Security via Formalized Protocol Customization</a></b><br/>Fei Wang, Jianliang Wu, Yuhong Nan, Yousra Aafer, Xiangyu Zhang, Dongyan Xu, and Mathias Payer.<br/>In <i><b>SEC'22</b>: Usenix Security Symposium, 2022</i> (<a href="https://github.com/JacobFeiWang/USENIX22_ProFactory">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22NDSS.pdf" name="22NDSS">The Taming of the Stack: Isolating Stack Data from Memory Errors</a></b><br/>Kaiming Huang, Yongzhe Huang, Mathias Payer, Zhiyun Qian, Jack Sampson, Gang Tan, and Trent Jaeger.<br/>In <i><b>NDSS'22</b>: Network and Distributed System Security Symposium, 2022</i> (<a href="http://dx.doi.org/10.14722/NDSS.2022.23060">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22NDSS2.pdf" name="22NDSS2">Preventing Kernel Hacks with HAKCs</a></b><br/>Derrick McKee, Yianni Giannaris, Carolina Ortega Perez, Howard Shrobe, Mathias Payer, Hamed Okhravi, and Nathan Burow.<br/>In <i><b>NDSS'22</b>: Network and Distributed System Security Symposium, 2022</i> (<a href="./files/22NDSS2-presentation.pdf">presentation</a>,  <b>distinguished paper award</b>, <a href="https://github.com/mit-ll/hakc">source</a>, <a href="http://dx.doi.org/10.14722/ndss.2022.24026">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/22AsiaCCS.pdf" name="22AsiaCCS">BLURtooth: Exploiting Cross-Transport Key Derivation in Bluetooth Classic and Bluetooth Low Energy</a></b><br/>Daniele Antonioli, Nils Tippenhauer, Kasper Rasmussen, and Mathias Payer.<br/>In <i><b>AsiaCCS'22</b>: ACM Symp. on InformAtion, Computer and Communications Security, 2022</i> (<a href="https://hexhive.epfl.ch/BLURtooth/">project</a>, <a href="https://youtu.be/FzFQD3XTLlA">video</a>, <a href="http://dx.doi.org/10.1145/3488932.3523258">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21CCS.pdf" name="21CCS">Igor: Crash Deduplication Through root-Cause Clustering</a></b><span class="float-right"><b>2021</b></span><br/>Zhiyuan Jiang, Xiyue Jiang, Ahmad Hazimeh, Chaojing Tang, Chao Zhang, and Mathias Payer.<br/>In <i><b>CCS'21</b>: ACM Conference on Computer and Communication Security, 2021</i> (<a href="https://github.com/HexHive/Igor">source</a>, <a href="http://dx.doi.org/10.1145/3460120.3485364">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21MICRO.pdf" name="21MICRO">Principal Kernel Analysis: A Tractable Methodology to Simulate Scaled GPU Workloads</a></b><br/>Cesar Avalos Baddouh, Mahmoud Khairy, Roland N. Green, Mathias Payer, and Timothy G. Rogers.<br/>In <i><b>MICRO'21</b>: International Symposium on Microarchitecture, 2021</i></p>
+
+<p class="publication">
+<b><a href="../publications/files/21CODASPY.pdf" name="21CODASPY">Code Specialization through Dynamic Feature Observation</a></b><br/>Priyam Biswas, Nathan Burow, and Mathias Payer.<br/>In <i><b>CODASPY'21</b>: ACM Conference on Data and Application Security and Privacy, 2021</i> (<a href="https://github.com/HexHive/Ancile">source</a>, <a href="http://dx.doi.org/10.1145/3422337.3447844">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21SEC.pdf" name="21SEC">LIGHTBLUE: Automatic Profile-Aware Debloating of Bluetooth</a></b><br/>Jianliang Wu, Ruoyu Wu, Daniele Antonioli, Mathias Payer, Nils Ole Tippenhauer, Dongyan Xu, Dave (Jing) Tian, and Antonio Bianchi.<br/>In <i><b>SEC'21</b>: Usenix Security Symposium, 2021</i> (<a href="https://github.com/purseclab/lightblue">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21ICSE.pdf" name="21ICSE">Too Quiet in the Library: An Empirical Study of Security Updates in Android Apps' Native Code</a></b><br/>Sumaya Almanee, Arda Unal, Mathias Payer, and Joshua Garcia.<br/>In <i><b>ICSE'21</b>: International Conference on Software Engineering, 2021</i> (<a href="https://www.youtube.com/watch?v=bhetmqVN6Qc">video</a>, <a href="https://github.com/salmanee/Librarian">source</a>, <a href="http://dx.doi.org/10.1109/ICSE43902.2021.00122">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21ISSTA2.pdf" name="21ISSTA2">Seed Selection for Successful Fuzzing</a></b><br/>Adrian Herrera, Hendra Gunadi, Shane Magrath, Michael Norrish, Mathias Payer, and Tony Hosking.<br/>In <i><b>ISSTA'21</b>: ACM SIGSOFT International Symposium on Software Testing and Analysis, 2021</i> (<a href="http://dx.doi.org/10.1145/3460319.3464795">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21ISSTA.pdf" name="21ISSTA">Gramatron: Effective Grammar-aware Fuzzing</a></b><br/>Prashast Srivastava, and Mathias Payer.<br/>In <i><b>ISSTA'21</b>: ACM SIGSOFT International Symposium on Software Testing and Analysis, 2021</i> (<a href="https://github.com/HexHive/Gramatron">source</a>, <a href="http://dx.doi.org/10.1145/3460319.3464814">DOI</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/21SIGMETRICS.pdf" name="21SIGMETRICS">MAGMA: A Ground-Truth Fuzzing Benchmark</a></b><br/>Ahmad Hazimeh, Adrian Herrera, and Mathias Payer.<br/>In <i><b>SIGMETRICS'21</b>: ACM SIGMETRICS, 2021</i> (<a href="https://github.com/HexHive/Magma">source</a>, <a href="http://dx.doi.org/10.1145/3428334">DOI</a>)</p>
+
+<!-- 2020 -->
+<p class="publication"><b><a href="../publications/files/20ATC.pdf" name="20ATC">FuZZan: Efficient Sanitizer Metadata Design for Fuzzing</a></b><span class="float-right"><b>2020</b></span><br/>Yuseok Jeon, WookHyun Han, Nathan Burow, and Mathias Payer.<br/>In <i><b>ATC'20</b>: Usenix Annual Technical Conference, 2020</i> (<a href="https://github.com/HexHive/FuZZan">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/20SEC3.pdf" name="20SEC3">USBFuzz: A Framework for Fuzzing USB Drivers by Device Emulation</a></b><br/>Hui Peng, and Mathias Payer.<br/>In <i><b>SEC'20</b>: Usenix Security Symposium, 2020</i> (<a href="https://github.com/HexHive/USBFuzz">source</a>)</p>
+
+<p class="publication">
+<b><a href="../publications/files/20SEC2.pdf" name="20SEC2">HALucinator: Firmware Re-hosting Through Abstraction Layer Emulation</a></b><br/>Abraham A. Clements, Eric Gustafson, Tobias Scharnowski, David Fritz, Christopher Kruegel, Giovanni Vigna, Saurabh Bagchi, and Mathias Payer.<br/>In <i><b>SEC'20</b>: Usenix Security Symposium, 2020</i> (<a href="https://github.com/embedded-sec/halucinator">HALucinator source</a>, <a href="https://github.com/ucsb-seclab/hal-fuzz">HALfuzz source</a>)</p>
+
+</div>
+</section>
+
+</main>
+</body>
+</html>

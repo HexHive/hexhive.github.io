@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Mathias Payer">
+<meta name="theme-color" content="#563d7c">
+<title>HexHive</title>
+<!-- Bootstrap core CSS -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/academicons.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container"> 
+<nav class="navbar navbar-expand-md navbar-light bg-light static-top" style="background-color: #e3f2fd;">
+	<a class="navbar-brand" href="../#"><img src="../../img/hexhive.png" width="50px"/>&nbsp;<span style="color:#2fbf00;">Hex</span><span style="color:#000c10;">Hive</span></a>
+	<div class="navbar" id="navbar">
+	<ul class="navbar-nav mr-auto">
+		<li><a class="nav-link" href="../../#people">People</a></li>
+		<li class="nav-item"><a class="nav-link" href="../../publications">Publications</a></li>
+		<li class="nav-item active"><a class="nav-link" href="../">Projects</a></li>
+	</ul>
+	</div>
+	<img src="../../img/epfl.png" class="ml-auto" width="100px"/>
+</nav>
+</div>
+
+<main role="main" class="container">
+
+<section id="epflprojects">
+<div class="jumbotron">
+<p><h1>PeriFuzz: fuzzing the peripheral device/kernel frontier</h1>
+</p>
+
+<p>
+The OS kernel is responsible for managing the computer's underlying hardware,
+mediating access to shared resources, and managing requests from peripheral
+devices. The kernel is exposed to input from user programs via the syscall
+interface, data packets from the network, as well as hardware through device
+drivers for attached peripherals. The reliability and security of the kernel are
+paramount as it affects the whole system. All three input interfaces expose the
+kernel to attacks. To date, testing efforts have focused mostly on syscalls and
+network peripherals. The possibility of malicious hardware, e.g., a USB
+connected device, has been neglected. The state of the art testing technique,
+fuzzing, relies on providing random data to programs. Fuzzing device drivers has
+proven difficult because no good technique exists for providing random data from
+the hardware.  Consequently, fuzzing achieves poor coverage in device drivers.
+<br/><br/>
+
+We present PeriFuzz, a framework to apply coverage-guided fuzzing to OS
+kernels, coming from a malicious peripheral device.  PeriFuzz emulates a 
+peripheral device that provides data to the kernel (when it performs IO
+operations). This allows us to fuzz the peripheral input space of the kernel from
+the device's perspective, an angle that is difficult to achieve with real
+hardware.</br><br/>
+
+We implemented a prototype that focuses on USB device drivers of the Linux
+kernel. Our preliminary evaluation on 9 recent versions of Linux kernel
+demonstrates its effectiveness: PeriFuzz discovered 53 bugs, out of which 37
+are new, and 36 are memory bugs of high security impact, potentially allowing
+arbitrary read or write in the kernel address space.
+</p>
+<p>
+<table>
+<tr><td><b><u>CVE</u></b></td><td><b><u>Title</u></b></td><td><b><u>Patch</u></b></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20169">CVE-2018-20169</a></td><td>OOB read in __usb_get_extra_descriptor</td><td><a
+href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=704620afc70cf47abb9d6a1a57f3825d2bca49cf">4.20-RC5</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-19824">CVE-2018-19824</a>&nbsp;</td><td>UAF write in usb_audio_probe</td><td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5f8cf712582617d523120df67d392059eaf2fc4b">4.20-RC5</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15098">CVE-2019-15098</a></td><td>NULL derefernce in ath6kl_usb_alloc_urb_from_pipe&nbsp;</td><td><a href="https://lore.kernel.org/linux-wireless/20190804002905.11292-1-benquike@gmail.com/T/#u">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15099">CVE-2019-15099</a></td><td>NULL derefernce in ath10k_usb_alloc_urb_from_pipe&nbsp;</td><td><a href="https://lore.kernel.org/linux-wireless/20190804003101.11541-1-benquike@gmail.com/T/#u">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-19985">CVE-2018-19985</a></td><td>OOB read in hso_get_config_data</td><td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5146f95df782b0ac61abde36567e718692725c89">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15117">CVE-2019-15117</a></td><td>OOB access in parse_audio_mixer_unit</td><td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=daac07156b330b18eb5071aec4b3ddca1c377f2c">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15118">CVE-2019-15118</a></td><td>Stack buffer overflow bug in check_input_term</td><td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=19bce474c45be69a284ecee660aa12d8f1e88f18">git</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15504">CVE-2019-15504</a></td><td>Double
+free bug in rsi_91x_deinit</td><td><a
+href="https://lore.kernel.org/lkml/20190819220230.10597-1-benquike@gmail.com/">5.2.9</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15505">CVE-2019-15505</a></td><td>OOB
+read in technisat_usb2_get_ir</td><td><a
+href="https://git.linuxtv.org/media_tree.git/commit/?id=0c4df39e504bf925ab666132ac3c98d6cbbe380b">git</a>
+and <a
+href="https://lore.kernel.org/lkml/b9b256cb-95f2-5fa1-9956-5a602a017c11@gmail.com/">lkml</a></td></tr>
+
+<tr><td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15505">CVE-2019-15505</a></td><td>OOB
+read in technisat_usb2_get_ir</td><td><a
+href="https://git.linuxtv.org/media_tree.git/commit/?id=0c4df39e504bf925ab666132ac3c98d6cbbe380b">git</a>
+and <a
+href="https://lore.kernel.org/lkml/b9b256cb-95f2-5fa1-9956-5a602a017c11@gmail.com/">lkml</a></td></tr>
+
+<!--
+<tr><td>?</a></td><td>OOB read in build_audio_procunit</td><td><a href="">git</a></td></tr>
+-->
+
+</table>
+<br/>
+</p>
+</td>
+	</tr>
+</table>
+</section>
+
+</main>
+</body>
+</html>

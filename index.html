@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Mathias Payer">
+<meta name="theme-color" content="#563d7c">
+<title>HexHive</title>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/fontawesome.min.css" rel="stylesheet"/>
+<link href="css/academicons.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container"> 
+<nav class="navbar navbar-expand-md navbar-light bg-light static-top" style="background-color: #e3f2fd;">
+	<a class="navbar-brand" href="#"><img src="img/hexhive.png" width="50px"/>&nbsp;<span style="color:#2fbf00;">Hex</span><span style="color:#000c10;">Hive</span></a>
+	<div class="navbar" id="navbar">
+	<ul class="navbar-nav mr-auto">
+		<li><a class="nav-link" href="#people">People</a></li>
+		<li class="nav-item"><a class="nav-link" href="publications/">Publications</a></li>
+		<li class="nav-item"><a class="nav-link" href="projects/">Projects</a></li>
+		<li class="nav-item"><a class="nav-link" href="teaching/">Teaching</a></li>
+		<li class="nav-item"><a class="nav-link" href="epflprojects/">Student Projects</a></li>
+	</ul>
+	</div>
+	<img src="img/epfl.png" class="ml-auto" width="100px"/>
+</nav>
+</div>
+
+<main role="main" class="container">
+
+<section id="overview">
+<div class="jumbotron" style="padding: 15px;">
+<p>
+<!--<img src="img/hexhive.png" class="img-fluid" style="max-width:250px; margin-left:12px; float:right;" alt="HexHive logo"/>-->
+<h4>Research Agenda</h4>
+Our research focuses on software and systems security. Despite efforts and improvements in bug discovery techniques, some exploitable vulnerabilities will remain. We target techniques that both enable developers to discover and remove bugs and make programs resilient against the exploitation of unknown or unpatched vulnerabilities.
+<br/><br/>
+
+To discover bugs we propose (i) sanitization techniques that enforce a security property such as memory or type safety; given concrete program input, our sanitizers then flag any property violations and (ii) fuzzing techniques that leverage static and dynamic analysis to create program inputs to explore program areas that are not yet covered through existing test cases. To protect against exploitable vulnerabilities, we focus on control-flow integrity using specific language semantics, enforcing type integrity, and protecting selective data. Under this premise, we focus on compiler-based, runtime-based, and language-based protection mechanisms and security policies that increase the resilience of applications against attacks (in the presence of software vulnerabilities). All prototypes are released as <a href="https://github.com/HexHive/">open-source</a> and we release <a href="https://www.youtube.com/channel/UCyELAYN0IIwVCxiDEn0YAtQ">talks on YouTube</a>.</p>
+
+
+<p><h4>Key Topics</h4>
+software security, system security, sanitization, software testing, fuzzing
+mitigation, fault isolation, compartmentalization.</p>
+
+<p><h4>Frequently Asked Questions</h4>
+Interested in joining HexHive? Read the <a href="./advice.html">advice</a> for
+prospective students and how to apply.
+If you are an EPFL student and looking for a BSc, MSc, or PhD semester
+project, check out the <a href="./epflprojects/">project page</a>.<br/>
+Interested in Capture the Flag? Come play with the
+<a href="https://polygl0ts.ch/">(EPFL) polygl0ts</a>.</p>
+</div>
+</section>
+
+<section id="people">
+<div class="jumbotron" style="padding: 15px;">
+<h4>Meet the members of the HexHive</h4>
+<div class="row">
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/mathias.jpg" width="200px"><br/>
+		<b>Mathias Payer</b><br/>
+		Associate Professor<br/>
+		<a href="mailto:mathias.payer@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a rel="me" href="https://infosec.exchange/@gannimo"><i class="fab fa-mastodon"></i></a>&nbsp;
+		<a href="https://twitter.com/gannimo"><i class="fab fa-twitter"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=9cFCY5wAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://github.com/gannimo"><i class="fab fa-github-square"></i></a>&nbsp;
+		<a href="https://nebelwelt.net"><i class="fa fa-home"></i></a>&nbsp;
+		<a href="https://nebelwelt.net/cv-payerm.pdf"><i class="ai ai-cv"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/marcel.jpg" width="200px"><br/>
+		<b>Marcel Busch</b><br/>
+		Post Doc<br/>
+		<a href="mailto:marcel.busch@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://twitter.com/0ddc0de"><i class="fab fa-twitter"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=n5hXOPMAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://github.com/0ddc0de"><i class="fab fa-github-square"></i></a>&nbsp;
+		<a href="https://0ddc0.de/files/cv.pdf"><i class="ai ai-cv"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/qiang.jpg" width="200px"><br/>
+		<b>Qiang Liu</b><br/>
+		Post Doc<br/>
+		<a href="mailto:qiang.liu@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://twitter.com/qiangliu717"><i class="fab fa-twitter"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=fa1uB2sAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://github.com/cyruscyliu"><i class="fab fa-github-square"></i></a>&nbsp;
+		<a href="https://cyruscyliu.github.io/"><i class="fa fa-home"></i></a>&nbsp;
+		<a href="https://cyruscyliu.github.io/Qiang_s_CV.pdf"><i class="ai ai-cv"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle"	src="img/people/qinying.jpg" width="200px"><br/>
+		<b>Qinying Wang</b><br/>
+		Post Doc<br/>
+		<a href="mailto:qinying.wang@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=bRI3h-oAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://www.wqqqy.cn/"><i class="fa fa-home"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/nicolas.jpg" width="200px"><br/>
+		<b>Nicolas Badoux</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:n.badoux@hotmail.com"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://twitter.com/n_vwvw"><i class="fab fa-twitter"></i></a>&nbsp;
+		<a href="https://github.com/vwvw"><i class="fab fa-github-square"></i></a>&nbsp;
+		<a href="https://nicolasbadoux.com"><i class="fa fa-home"></i></a>&nbsp;
+		<a href="https://nicolasbadoux.com/resume_Nicolas_Badoux.pdf"><i class="ai ai-cv"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/luca.jpg" width="200px"><br/>
+		<b>Luca Di Bartolomeo</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:luca.dibartolomeo@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://twitter.com/cyan_pencil"><i class="fab fa-twitter"></i></a>&nbsp;
+		<a href="https://github.com/cyanpencil"><i class="fab fa-github-square"></i></a>&nbsp;
+		<a href="https://cyanpencil.xyz"><i class="fa fa-home"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/florian.jpg" width="200px"><br/>
+		<b>Florian Hofhammer</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:florian.hofhammer@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/florianhofhammer"><i class="fab fa-github-square"></i></a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/tao.jpg" width="200px"><br/>
+		<b>Tao Lyu</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:tao.lyu@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=ZtO4-pMAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://lvtao-sec.github.io/"><i class="fa fa-home"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/zhiyao.jpg" width="200px"><br/>
+		<b>Zhiyao Feng</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:zhiyao.feng@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/FengZhiyao"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/chibin.jpg" width="200px"><br/>
+		<b>Chibin Zhang</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:chibin.zhang@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/chibinz"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/philipp.jpg" width="200px"><br/>
+		<b>Philipp Mao</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:philipp.mao@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/philippmao"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/han.jpg" width="200px"><br/>
+		<b>Han Zheng</b><br/>
+		PhD Candidate<br/>
+		<a href="mailto:han.zheng@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=s0sU80QAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://github.com/kdsjzh"><i class="fab fa-github-square"></i></a>&nbsp;
+		</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/solene.jpg" width="200px"><br/>
+		<b>Sol&egrave;ne Husseini</b><br/>
+		PhD Student<br/>
+		<a href="mailto:solene.husseini@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/smolene"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/rafaila.jpg" width="200px"><br/>
+		<b>Rafaila Galanopoulou</b><br/>
+		PhD Student<br/>
+		<a href="mailto:rafaila.galanopoulou@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=HRnBLu8AAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+		<a href="https://github.com/rafailagln"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/dariia.jpg" width="200px"><br/>
+		<b>Dariia Kharytonova</b><br/>
+		MSc Research Scholar<br/>
+		<a href="mailto:dariia.kharytonova@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/rokhaya.jpg" width="200px"><br/>
+		<b>Rokhaya Fall</b><br/>
+		MSc Research Scholar<br/>
+		<a href="mailto:rokhaya-diamil.fall@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://github.com/therokdaba"><i class="fab fa-github-square"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/zheyu.jpg" width="200px"><br/>
+		<b>Zheyu Ma</b><br/>
+		Visiting Student<br/>
+		<a href="mailto:zheyu.ma@epfl.ch"><i class="fa fa-envelope"></i></a>&nbsp;
+		<a href="https://scholar.google.com/citations?user=sQ9jxQMAAAAJ"><i class="ai ai-google-scholar"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/zezhong.jpg" width="200px"><br/>
+		<b>Zezhong Ren</b><br/>
+		Visiting Student<br/>
+		<a href="https://renzezhong.wordpress.com"><i class="fa fa-home"></i></a>&nbsp;
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" src="img/people/natascha.jpg" width="200px"><br/>
+		<b>Natascha Fontana</b><br/>
+		Administrative Assistant<br/>
+		<a href="mailto:natascha.fontana@epfl.ch"><i class="fa fa-envelope"></i></a>
+	</div>
+</div>
+</section>
+
+<section id="alumni">
+<div class="jumbotron" style="padding: 15px;">
+<p>
+<h4>Graduated PhD students and Post Docs</h4>
+
+<div class="row">
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/flavio.jpg" width="200px"><br/>
+		<b>Flavio Toffalini</b><br/>
+		Post Doc, fall '21 to fall '24<br/>
+		First job: <a href="http://flaviotoffalini.info/">asst prof at RUB</a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/andres.jpg" width="200px"><br/>
+		<b>Andr&eacute;s Sanchez</b><br/>
+		Researcher, fall '19 to spring '24<br/>
+		First job: Amazon
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/adrian.jpg" width="200px"><br/>
+		<b>Adrian Herrera</b><br/>
+		ANU PhD '24<br/>(co-advised by Tony Hosking)<br/>
+		First job: Interrupt Labs
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/atri.jpg" width="200px"><br/>
+		<b>Atri Bhattacharyya</b><br/>
+		EPFL PhD spring '24 <a href="./theses/24-bhattacharyya-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: Oracle Labs
+	</div>
+    <div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle"style="filter: grayscale(70%);" src="img/people/gwangmu.jpg" width="200px"><br/>
+		<b>Gwangmu Lee</b><br/>
+		Post Doc, spring '22 to spring '24<br/>
+		First job: CSCS Swiss National Supercomputing Centre
+	  </div>
+	  <div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/ahmad.jpg" width="200px"><br/>
+		<b>Ahmad Hazimeh</b><br/>
+		EPFL PhD spring '24 <a href="./theses/24-hazimeh-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: BugScale
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/prashast.jpg" width="200px"><br/>
+		<b>Prashast Srivastava</b><br/>
+		Purdue PhD spring '23 <a href="./theses/23-srivastava-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: post doc at Columbia
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/derrick.jpg" width="200px"><br/>
+		<b>Derrick McKee</b><br/>
+		Purdue PhD spring '22 <a href="./theses/22-mckee-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: MIT LL
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/daniele.jpg" width="200px"><br/>
+		<b>Daniele Antonioli</b><br/>
+		Post Doc, spring '20 to fall '21<br/>
+		First job: <a href="https://francozappa.github.io/">asst prof at EURECOM</a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/hui.jpg" width="200px"><br/>
+		<b>Hui Peng</b><br/>
+		Purdue PhD spring '21 <a href="./theses/21-peng-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: Baidu Research
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/priyam.jpg" width="200px"><br/>
+		<b>Priyam Biswas</b><br/>
+		Purdue PhD fall '20 <a href="./theses/20-biswas-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: Intel Research
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/jeon.jpg" width="200px"><br/>
+		<b>Yuseok Jeon</b><br/>
+		Purdue PhD summer '20 <a href="./theses/20-jeon-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: <a href="http://ysjeon.net">asst prof at UNIST</a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/naif.jpg" width="200px"><br/>
+		<b>Naif Almakhdhub</b><br/>
+		Purdue PhD spring '20 <a href="./theses/20-almakhdhub-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>(co-advised by Saurabh Bagchi)<br/>
+		First job: <a href="https://fac.ksu.edu.sa/nalmakhdob">asst prof at KSU</a>
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/abe.jpg" width="200px"><br/>
+		<b>Abe Clements</b><br/>
+		Purdue PhD spring '19 <a href="./theses/19-clements-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>(co-advised by Saurabh Bagchi)<br/>
+		First job: Sandia National Labs
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/ispo.jpg" width="200px"><br/>
+		<b>Kyriakos Ispoglou</b><br/>
+		Purdue PhD spring '19 <a href="./theses/19-ispoglou-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: Google
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/nathan.jpg" width="200px"><br/>
+		<b>Nathan Burow</b><br/>
+		Purdue PhD fall '18 <a href="./theses/18-burow-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: MIT LL
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/terry.jpg" width="200px"><br/>
+		<b>Terry Hsu</b><br/>
+		Purdue PhD spring '18 <a href="./theses/18-hsu-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>(co-advised by Patrick Eugster)<br/>
+		First job: Apple
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/scott.jpg" width="200px"><br/>
+		<b>Scott Carr</b><br/>
+		Purdue PhD spring '17 <a href="./theses/17-carr-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>
+		First job: Northrop Grumman
+	</div>
+	<div class="col-md-3 col-sm-4 col-6 text-center">
+		<img class="img-fluid member-avatar rounded-circle" style="filter: grayscale(70%);" src="img/people/ahmed.jpg" width="200px"><br/>
+		<b>Ahmed Hussein</b><br/>
+		Purdue PhD fall '16 <a href="./theses/16-hussein-thesis.pdf"><i class="fa fa-graduation-cap"></i></a><br/>(co-advised by Tony Hosking)<br/>
+		First job: Huawei
+	</div>
+</div>
+</p>
+<p><h4>Past visitors and researchers:</h4>
+<ul>
+<li>Zurab Tsinadze (MSc research scholar, fall '22 to spring '24)</li>
+<li>Duo Xu (MSc research scholar, fall '21 to fall '23)</li>
+<li>Yishun Zeng (visiting PhD student from Tsinghua University, spring '23 and fall '23)</li>
+<li>Qinying Wang (visiting PhD student from Zhejiang University, spring '23 and fall '23)</li>
+<li>Zhiyuan Jiang (virtual visiting PhD student from NUDT fall '21 to spring '23)</li>
+<li><a href="https://www.xujianhao.top/">Jianhao Xu</a> (visiting PhD student from Nanjing University, fall '22 and spring '23)</li>
+<li><a href="https://megele.io/">Manuel Egele</a> (visiting faculty during his sabbatical from BU, fall '21 and spring '22)</li>
+<li>Hossein Moghaddas (MSc research scholar, fall '21 and spring '22)</li>
+<li>Han Zheng (visiting MSc student from University of Chinese Academy of Sciences, spring '22 and fall '22)</li>
+<li>Qiang Liu (visiting PhD student from Zhejiang University, fall '21 and spring '22)</li>
+<li>Majid Salehi (visiting PhD student from KU Leuven, fall '21)</li>
+<li>Anil Kurmus (visiting researcher, fall '19)</li>
+<li>Sushant Dinesh (PhD student/<a href="./theses/19-dinesh-thesis.pdf">MSc thesis</a>, graduated spring '19)</li>
+<li>Alessandro Di Federico (visiting PhD student, fall '16)</li>
+</ul></p>
+</div>
+</section>
+
+<section id="contact">
+<div class="jumbotron">
+<div class="row">
+<div class="col-xs-6">
+<h4>Contact</h4>
+<table>
+<tr><td valign="top">Address:&nbsp;</td><td>
+EPFL IC IINFCOM HEXHIVE&nbsp;&nbsp;&nbsp;<br/>
+Bâtiment BC 160<br/>
+Station 14<br/>
+CH-1015 Lausanne</td>
+</tr>
+<tr><td>Office:</td><td><a href="https://plan.epfl.ch/?room==BC%20160">BC 160</a> (Mathias)</td></tr>
+<tr><td>Lab:</td><td><a href="https://plan.epfl.ch/?room==BC%20159">BC 159</a></td></tr>
+</table>
+</div>
+<div class="col-xs-6">
+<br/>
+<a href="https://www.openstreetmap.org/export/embed.html?bbox=6.5589988231658936%2C46.516956139522314%2C6.565704345703126%2C46.52011963719466&amp;layer=mapnik&amp;marker=46.518539,6.562108"><img src="img/map.gif" width="600px"/></a>
+<br/><small>
+Directions: You can reach the BC building by metro m1 (stop "EPFL") or bus 701 (stop "Parc scientifique").<br/>
+There is (very) limited parking next to BC.
+The HexHive offices are on the first floor of BC in the east.</small> 
+</div>
+</div>
+</div>
+</section>
+
+</main>
+</body>
+</html>

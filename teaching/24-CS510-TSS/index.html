@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CS-510 Topics in Software Security</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style type="text/css">
+html {
+font-size: 100%;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+a:focus {
+outline: thin dotted #333;
+outline: 5px auto -webkit-focus-ring-color;
+outline-offset: -2px;
+}
+a:hover,
+a:active {
+outline: 0;
+}
+sub,
+sup {
+position: relative;
+font-size: 75%;
+line-height: 0;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+img {
+width: auto\9;
+height: auto;
+max-width: 100%;
+vertical-align: middle;
+border: 0;
+-ms-interpolation-mode: bicubic;
+}
+@media print {
+* {
+color: #000 !important;
+text-shadow: none !important;
+background: transparent !important;
+box-shadow: none !important;
+}
+a,
+a:visited {
+text-decoration: underline;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after,
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
+content: "";
+}
+pre,
+blockquote {
+border: 1px solid #999;
+page-break-inside: avoid;
+}
+thead {
+display: table-header-group;
+}
+tr,
+img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page {
+margin: 0.5cm;
+}
+h1 {
+page-break-before:always;
+}
+h1.title {
+page-break-before:avoid;
+}
+p,
+h2,
+h3 {
+orphans: 3;
+widows: 3;
+}
+h2,
+h3 {
+page-break-after: avoid;
+}
+}
+body {
+margin: 40px;
+margin-right: auto;
+margin-left: auto;
+width: 700px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333333;
+background-color: #ffffff;
+}
+a {
+color: #0088cc;
+text-decoration: none;
+}
+a:hover,
+a:focus {
+color: #005580;
+text-decoration: underline;
+}
+.img-rounded {
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+.img-polaroid {
+padding: 4px;
+background-color: #fff;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+p {
+margin: 0 0 10px;
+}
+small {
+font-size: 85%;
+}
+strong {
+font-weight: bold;
+}
+em {
+font-style: italic;
+}
+cite {
+font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+font-family: inherit;
+font-weight: bold;
+line-height: 20px;
+color: inherit;
+text-rendering: optimizelegibility;
+}
+h1 {
+font-size: 2em;
+padding-bottom:.2em;
+border-bottom:1px solid grey;
+}
+h1.title {
+padding-bottom:1em;
+border-bottom:0px;
+}
+h2 {
+font-size: 1.5em;
+}
+h3 {
+font-size: 1.3em;
+font-family:Georgia, serif;
+font-style:italic;
+
+}
+h4 {
+font-size: 1.3em;
+}
+h5 {
+font-size: 1.2em;
+}
+h6 {
+font-size: 1.1em;
+}
+ul,
+ol {
+padding: 0;
+margin: 0 0 10px 25px;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-bottom: 0;
+}
+li {
+line-height: 20px;
+}
+dl {
+margin-bottom: 20px;
+}
+dt,
+dd {
+line-height: 20px;
+}
+dt {
+font-weight: bold;
+}
+dd {
+margin-left: 10px;
+}
+hr {
+margin: 20px 0;
+border: 0;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid #ffffff;
+}
+abbr[title],
+abbr[data-original-title] {
+cursor: help;
+border-bottom: 1px dotted #999999;
+}
+abbr.initialism {
+font-size: 90%;
+text-transform: uppercase;
+}
+blockquote {
+padding: 0 0 0 15px;
+margin: 0 0 20px;
+border-left: 5px solid #eeeeee;
+}
+blockquote p {
+margin-bottom: 0;
+font-size: 17.5px;
+font-weight: 300;
+line-height: 1.25;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+content: "";
+}
+address {
+display: block;
+margin-bottom: 20px;
+font-style: normal;
+line-height: 20px;
+}
+code,
+pre {
+padding: 0 3px 2px;
+font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+font-size: 12px;
+color: #333333;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+code {
+padding: 2px 4px;
+color: #d14;
+white-space: nowrap;
+background-color: #f7f7f9;
+border: 1px solid #e1e1e8;
+}
+pre {
+display: block;
+padding: 9.5px;
+margin: 0 0 10px;
+font-size: 13px;
+line-height: 20px;
+word-break: break-all;
+word-wrap: break-word;
+white-space: pre;
+white-space: pre-wrap;
+background-color: #f5f5f5;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.15);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+pre.prettyprint {
+margin-bottom: 20px;
+}
+pre code {
+padding: 0;
+color: inherit;
+white-space: pre;
+white-space: pre-wrap;
+background-color: transparent;
+border: 0;
+}
+.pre-scrollable {
+max-height: 340px;
+overflow-y: scroll;
+}
+table {
+max-width: 100%;
+width: 100%;
+background-color: transparent;
+border-collapse: collapse;
+border-spacing: 0;
+}
+.table {
+width: 100%;
+margin-bottom: 20px;
+border: 1px solid;
+}
+.table th,
+.table td {
+padding: 8px;
+line-height: 20px;
+text-align: left;
+vertical-align: top;
+border-top: 1px solid #dddddd;
+}
+.table th {
+font-weight: bold;
+}
+.table thead th {
+vertical-align: bottom;
+background-color: #cccccc;
+}
+th {
+background-color: #cccccc;
+}
+tr:nth-child(even) {
+background-color: #cccccc;
+}
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+border-top: 0;
+}
+.table tbody + tbody {
+border-top: 2px solid #dddddd;
+}
+.table .table {
+background-color: #ffffff;
+}
+.table-condensed th,
+.table-condensed td {
+padding: 4px 5px;
+}
+.table-bordered {
+border: 1px solid #dddddd;
+border-collapse: separate;
+*border-collapse: collapse;
+border-left: 0;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.table-bordered th,
+.table-bordered td {
+border-left: 1px solid #dddddd;
+}
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+border-top: 0;
+}
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+-webkit-border-top-left-radius: 4px;
+border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+}
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+-webkit-border-top-right-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+-webkit-border-bottom-left-radius: 4px;
+border-bottom-left-radius: 4px;
+-moz-border-radius-bottomleft: 4px;
+}
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+-webkit-border-bottom-right-radius: 4px;
+border-bottom-right-radius: 4px;
+-moz-border-radius-bottomright: 4px;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+-webkit-border-bottom-left-radius: 0;
+border-bottom-left-radius: 0;
+-moz-border-radius-bottomleft: 0;
+}
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+-webkit-border-bottom-right-radius: 0;
+border-bottom-right-radius: 0;
+-moz-border-radius-bottomright: 0;
+}
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+-webkit-border-top-left-radius: 4px;
+border-top-left-radius: 4px;
+-moz-border-radius-topleft: 4px;
+}
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+-webkit-border-top-right-radius: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-topright: 4px;
+}
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+background-color: #999999;
+}
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+background-color: #f5f5f5;
+}
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+display: table-cell;
+float: none;
+margin-left: 0;
+}
+.hero-unit {
+padding: 60px;
+margin-bottom: 30px;
+font-size: 18px;
+font-weight: 200;
+line-height: 30px;
+color: inherit;
+background-color: #eeeeee;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+.hero-unit h1 {
+margin-bottom: 0;
+font-size: 60px;
+line-height: 1;
+letter-spacing: -1px;
+color: inherit;
+}
+.hero-unit li {
+line-height: 30px;
+}
+
+.borderless, table.borderless td, table.borderless th {
+border: 0 }
+table.borderless td, table.borderless th {
+
+padding: 0 0.5em 0 0 ! important }
+.first {
+
+margin-top: 0 ! important }
+.last, .with-subtitle {
+margin-bottom: 0 ! important }
+.hidden {
+display: none }
+a.toc-backref {
+text-decoration: none ;
+color: black }
+blockquote.epigraph {
+margin: 2em 5em ; }
+dl.docutils dd {
+margin-bottom: 0.5em }
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+overflow: hidden;
+}
+
+div.abstract {
+margin: 2em 5em }
+div.abstract p.topic-title {
+font-weight: bold ;
+text-align: center }
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+margin: 2em ;
+border: medium outset ;
+padding: 1em }
+div.note, div.warning {
+margin:1.5em 0px;
+border: none;
+}
+div.note p.admonition-title,
+div.warning p.admonition-title
+{
+display:none;
+}
+
+div.note:after,
+div.warning:after {
+content:"";
+display:table;
+clear:both;
+}
+div.note p:before,
+div.warning p:before {
+display:block;
+float:left;
+font-size:4em;
+line-height:1em;
+margin-right:20px;
+margin-left: 0em;
+margin-top:-10px;
+content:'\0270D'; 
+}
+div.warning p:before {
+content:'\026A0'; 
+}
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+font-weight: bold ;
+font-family: sans-serif }
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+color: red ;
+font-weight: bold ;
+font-family: sans-serif }
+
+div.dedication {
+margin: 2em 5em ;
+text-align: center ;
+font-style: italic }
+div.dedication p.topic-title {
+font-weight: bold ;
+font-style: normal }
+div.figure {
+margin-left: 2em ;
+margin-right: 2em }
+div.footer, div.header {
+clear: both;
+font-size: smaller }
+div.line-block {
+display: block ;
+margin-top: 1em ;
+margin-bottom: 1em }
+div.line-block div.line-block {
+margin-top: 0 ;
+margin-bottom: 0 ;
+margin-left: 1.5em }
+div.sidebar {
+margin: 0 0 0.5em 1em ;
+border: medium outset ;
+padding: 1em ;
+background-color: #ffffee ;
+width: 40% ;
+float: right ;
+clear: right }
+div.sidebar p.rubric {
+font-family: sans-serif ;
+font-size: medium }
+div.system-messages {
+margin: 5em }
+div.system-messages h1 {
+color: red }
+div.system-message {
+border: medium outset ;
+padding: 1em }
+div.system-message p.system-message-title {
+color: red ;
+font-weight: bold }
+div.topic {
+margin: 2em }
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+margin-top: 0.4em }
+h1.title {
+text-align: center }
+h2.subtitle {
+text-align: center }
+hr.docutils {
+width: 75% }
+img.align-left, .figure.align-left, object.align-left {
+clear: left ;
+float: left ;
+margin-right: 1em }
+img.align-right, .figure.align-right, object.align-right {
+clear: right ;
+float: right ;
+margin-left: 1em }
+img.align-center, .figure.align-center, object.align-center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.align-left {
+text-align: left }
+.align-center {
+clear: both ;
+text-align: center }
+.align-right {
+text-align: right }
+
+div.align-right {
+text-align: inherit }
+
+
+ol.simple, ul.simple {
+margin-bottom: 1em }
+ol.arabic {
+list-style: decimal }
+ol.loweralpha {
+list-style: lower-alpha }
+ol.upperalpha {
+list-style: upper-alpha }
+ol.lowerroman {
+list-style: lower-roman }
+ol.upperroman {
+list-style: upper-roman }
+p.attribution {
+text-align: right ;
+margin-left: 50% }
+p.caption {
+font-style: italic }
+p.credits {
+font-style: italic ;
+font-size: smaller }
+p.label {
+white-space: nowrap }
+p.rubric {
+font-weight: bold ;
+font-size: larger ;
+color: maroon ;
+text-align: center }
+p.sidebar-title {
+font-family: sans-serif ;
+font-weight: bold ;
+font-size: larger }
+p.sidebar-subtitle {
+font-family: sans-serif ;
+font-weight: bold }
+p.topic-title {
+font-weight: bold }
+pre.address {
+margin-bottom: 0 ;
+margin-top: 0 ;
+font: inherit }
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+margin-left: 2em ;
+margin-right: 2em }
+pre.code .ln { color: grey; } 
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+span.classifier {
+font-family: sans-serif ;
+font-style: oblique }
+span.classifier-delimiter {
+font-family: sans-serif ;
+font-weight: bold }
+span.interpreted {
+font-family: sans-serif }
+span.option {
+white-space: nowrap }
+span.pre {
+white-space: pre }
+span.problematic {
+color: red }
+span.section-subtitle {
+
+font-size: 80% }
+table.citation {
+border-left: solid 1px gray;
+margin-left: 1px }
+table.docinfo {
+margin: 2em 4em }
+table.docutils {
+margin-top: 0.5em ;
+margin-bottom: 0.5em }
+table.footnote {
+border-left: solid 1px black;
+margin-left: 1px }
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+padding-left: 0.5em ;
+padding-right: 0.5em ;
+vertical-align: top }
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+font-weight: bold ;
+text-align: left ;
+white-space: nowrap ;
+padding-left: 0 }
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+font-size: 100% }
+ul.auto-toc {
+list-style-type: none }
+.code .pygments-hll { background-color: #ffffcc }
+.code .pygments-c { color: #60a0b0; font-style: italic } 
+.code .pygments-err { border: 1px solid #FF0000 } 
+.code .pygments-k { color: #007020; font-weight: bold } 
+.code .pygments-o { color: #666666 } 
+.code .pygments-cm { color: #60a0b0; font-style: italic } 
+.code .pygments-cp { color: #007020 } 
+.code .pygments-c1 { color: #60a0b0; font-style: italic } 
+.code .pygments-cs { color: #60a0b0; background-color: #fff0f0 } 
+.code .pygments-gd { color: #A00000 } 
+.code .pygments-ge { font-style: italic } 
+.code .pygments-gr { color: #FF0000 } 
+.code .pygments-gh { color: #000080; font-weight: bold } 
+.code .pygments-gi { color: #00A000 } 
+.code .pygments-go { color: #888888 } 
+.code .pygments-gp { color: #c65d09; font-weight: bold } 
+.code .pygments-gs { font-weight: bold } 
+.code .pygments-gu { color: #800080; font-weight: bold } 
+.code .pygments-gt { color: #0044DD } 
+.code .pygments-kc { color: #007020; font-weight: bold } 
+.code .pygments-kd { color: #007020; font-weight: bold } 
+.code .pygments-kn { color: #007020; font-weight: bold } 
+.code .pygments-kp { color: #007020 } 
+.code .pygments-kr { color: #007020; font-weight: bold } 
+.code .pygments-kt { color: #902000 } 
+.code .pygments-m { color: #40a070 } 
+.code .pygments-s { color: #4070a0 } 
+.code .pygments-na { color: #4070a0 } 
+.code .pygments-nb { color: #007020 } 
+.code .pygments-nc { color: #0e84b5; font-weight: bold } 
+.code .pygments-no { color: #60add5 } 
+.code .pygments-nd { color: #555555; font-weight: bold } 
+.code .pygments-ni { color: #d55537; font-weight: bold } 
+.code .pygments-ne { color: #007020 } 
+.code .pygments-nf { color: #06287e } 
+.code .pygments-nl { color: #002070; font-weight: bold } 
+.code .pygments-nn { color: #0e84b5; font-weight: bold } 
+.code .pygments-nt { color: #062873; font-weight: bold } 
+.code .pygments-nv { color: #bb60d5 } 
+.code .pygments-ow { color: #007020; font-weight: bold } 
+.code .pygments-w { color: #bbbbbb } 
+.code .pygments-mf { color: #40a070 } 
+.code .pygments-mh { color: #40a070 } 
+.code .pygments-mi { color: #40a070 } 
+.code .pygments-mo { color: #40a070 } 
+.code .pygments-sb { color: #4070a0 } 
+.code .pygments-sc { color: #4070a0 } 
+.code .pygments-sd { color: #4070a0; font-style: italic } 
+.code .pygments-s2 { color: #4070a0 } 
+.code .pygments-se { color: #4070a0; font-weight: bold } 
+.code .pygments-sh { color: #4070a0 } 
+.code .pygments-si { color: #70a0d0; font-style: italic } 
+.code .pygments-sx { color: #c65d09 } 
+.code .pygments-sr { color: #235388 } 
+.code .pygments-s1 { color: #4070a0 } 
+.code .pygments-ss { color: #517918 } 
+.code .pygments-bp { color: #007020 } 
+.code .pygments-vc { color: #bb60d5 } 
+.code .pygments-vg { color: #bb60d5 } 
+.code .pygments-vi { color: #bb60d5 } 
+.code .pygments-il { color: #40a070 } 
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CS-510 Topics in Software Security</h1>
+</header>
+<p>Taught by <a href="https://nebelwelt.net">Mathias Payer</a>. Fall semester 2024, 3 credit course.</p>
+<h1 id="news">News</h1>
+<ul>
+<li>11/05 Final update of course schedule and list</li>
+<li>24/09 Updated course schedule and list</li>
+<li>17/09 Updated course schedule and presentation timings</li>
+<li>10/09 <a href="https://docs.google.com/presentation/d/1AafMK5-g7mI6m-roNRly70-neNciI7rxEtZXACvZrNg/">Introduction presentation</a> and course updated</li>
+</ul>
+<h1 id="course-overview">Course overview</h1>
+<p>Unsafe languages like C/C++ are widely used for their great promise of performance. Unfortunately, these languages are prone to a large set of different types of memory and type errors that allow the exploitation of several attack vectors such as code reuse, privilege escalation, or information leaks. On a high level memory and type safety would solve all these problems. Safe languages can (somewhat) cheaply enforce these properties. Unfortunately, these guarantees come at a high cost if retrofitted onto existing languages.</p>
+<p>When working with unsafe languages, three fundamental approaches exist to protect against software flaws: formal verification (proving the absence of bugs), software testing (finding bugs), and mitigation (protecting against the exploitation of bugs). In this seminar, we will primarily focus on recent advances in system security by looking at papers from recent top tier conferences.</p>
+<p>This seminar explores three areas: the understanding of attack vectors, approaches to software testing, and mitigation strategies. First you need to understand what kind of software flaws exist in low level software and how those flaws can be exploited.</p>
+<p>Each student will pick one topic from the list of topics below. Alternatively, the student may suggest a paper from a top tier venue of the last year in security (NDSS, Oakland, SEC, or CCS). The student is expected to organize the material and prepare a presentation of the topic for the other students. The main goals of this seminar are:</p>
+<ol type="1">
+<li>understanding and defining the security policy and corresponding guarantees/trade-offs implemented by given work;</li>
+<li>reasoning about the power and effectiveness (completeness in regard to attack vectors covered, strength of the guarantees, and effectiveness) of different security policies (and being able to compare between them);</li>
+<li>reasoning on the computational and resource cost of mechanisms and possible downsides;</li>
+<li>alternative implementations of the policy at other levels of abstraction.</li>
+<li>developing skills to present a technical topic in computer science to an audience of peers;</li>
+<li>learning how to identify possible research topics and articulating differences to existing related work.</li>
+</ol>
+<p>Your grade is based on:</p>
+<ol type="1">
+<li>technical presentation of your topic (60%);</li>
+<li>writing a two page summary of <em>a colleague&#39;s</em> presentation and paper (30%); the suggested layout is to use the first page for the summary of the paper, one column as a summary of the class discussion and the final column with your own reflections; use the <a href="https://www.usenix.org/conferences/author-resources/paper-templates">Usenix template</a> for the summary;</li>
+<li>active participation in class which includes reading the assigned papers and asking questions/participating in the discussions (10%).</li>
+</ol>
+<p>Submit your slides until Friday before your presentation so that you can incorporate some feedback for your presentation on Tuesday. For the summary, submit it until Monday night after the presentation, i.e., you have one week for the summary.</p>
+<h1 id="schedule">Schedule</h1>
+<p>The seminar meets Tuesdays from 10:15 to 12:00 in INM203. A draft of the schedule looks as follows but remember that no plan survives contact with reality!</p>
+<table>
+<colgroup>
+<col style="width: 10%"></col>
+<col style="width: 60%"></col>
+<col style="width: 15%"></col>
+<col style="width: 15%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Paper</th>
+<th>Presenter</th>
+<th>Scribe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10/09</td>
+<td>Introduction</td>
+<td>Mathias</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>17/09</td>
+<td>QUACK: Hindering Deserialization Attacks via Static Duck Typing (NDSS&#39;24)</td>
+<td>Luca Carroz</td>
+<td>Daniel Bucher</td>
+</tr>
+<tr class="odd">
+<td>17/09</td>
+<td>Invited talk by Chao Zhang (Research Faculty at Tsinghua)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>24/09</td>
+<td>Wear&#39;s my Data? Understanding the Cross-Device Runtime Permission Model in Wearables (Oakland&#39;24)</td>
+<td>Johanna Nuding</td>
+<td>Paul Tissot-Daguette</td>
+</tr>
+<tr class="odd">
+<td>24/09</td>
+<td>Predictive Context-sensitive Fuzzing (NDSS&#39;24)</td>
+<td>Paul Tissot-Daguette</td>
+<td>Johanna Nuding</td>
+</tr>
+<tr class="even">
+<td>24/09</td>
+<td>Rise of Inspectron: Automated Black-box Auditing of Cross-platform Electron Apps (SEC&#39;24)</td>
+<td>Houhou Thomas</td>
+<td>Xavier Marchon</td>
+</tr>
+<tr class="odd">
+<td>1/10</td>
+<td>CAMP: Compiler and Allocator-based Heap Memory Protection (SEC&#39;24)</td>
+<td>Jonas Sulzer</td>
+<td>Julian Levkov</td>
+</tr>
+<tr class="even">
+<td>1/10</td>
+<td>Everything is Good for Something: Counterexample-Guided Directed Fuzzing via Likely Invariant Inference (Oakland&#39;24)</td>
+<td>Julian Levkov</td>
+<td>Jonas Sulzer</td>
+</tr>
+<tr class="odd">
+<td>1/10</td>
+<td>Vulnerability-oriented Testing for RESTful APIs (USENIX &#39;24)</td>
+<td>Rafaila Galanopoulou</td>
+<td>Daniel López</td>
+</tr>
+<tr class="even">
+<td>8/10</td>
+<td>The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web (Oakland&#39;24*)</td>
+<td>Siim Markus Marvet</td>
+<td>Maitri Dedhia</td>
+</tr>
+<tr class="odd">
+<td>8/10</td>
+<td>LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors (NDSS&#39;24)</td>
+<td>Xavier Marchon</td>
+<td>Yago Pérez</td>
+</tr>
+<tr class="even">
+<td>8/10</td>
+<td>Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality (NDSS&#39;24*)</td>
+<td>Yago Pérez</td>
+<td>Diogo Cardoso</td>
+</tr>
+<tr class="odd">
+<td>15/10</td>
+<td>Spill the TeA: An Empirical Study of Trusted Application Rollback Prevention on Android</td>
+<td>Dominique Huang</td>
+<td>Shunchang Liu</td>
+</tr>
+<tr class="even">
+<td>15/10</td>
+<td>LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks (Oakland&#39;24)</td>
+<td>Daniel López</td>
+<td>Thomas Houhou</td>
+</tr>
+<tr class="odd">
+<td>15/10</td>
+<td>From Virtual Touch to Tesla Command: Unlocking Unauthenticated Control Chains From Smart Glasses for Vehicle Takeover (Oakland&#39;24*)</td>
+<td>Oscar de Francesca</td>
+<td>Alexander Procelewski</td>
+</tr>
+<tr class="even">
+<td>22/10</td>
+<td>Holidays</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>29/10</td>
+<td>ShapFuzz: Efficient Fuzzing via Shapley-Guided Byte Selection (NDSS&#39;24)</td>
+<td>Alexander Procelewski</td>
+<td>Oscar de Francesca</td>
+</tr>
+<tr class="even">
+<td>29/10</td>
+<td>PrintListener: Uncovering the Vulnerability of Fingerprint Authentication via the Finger Friction Sound (NDSS&#39;24)</td>
+<td>Maitri Dedhia</td>
+<td>Jonas Scholz</td>
+</tr>
+<tr class="odd">
+<td>29/10</td>
+<td>DarthShader: Fuzzing WebGPU Shader Translators &amp; Compilers</td>
+<td>Solène Husseini</td>
+<td>Eugen Bosnjak</td>
+</tr>
+<tr class="even">
+<td>5/11</td>
+<td>MetaSafe: Compiling for Protecting Smart Pointer Metadata to Ensure Safe Rust Integrity (SEC&#39;24)</td>
+<td>Daniel Bucher</td>
+<td>Luca Carroz</td>
+</tr>
+<tr class="odd">
+<td>5/11</td>
+<td>Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities (Oakland&#39;24*)</td>
+<td>Samuel Tepoorten</td>
+<td>Raymond Nasr</td>
+</tr>
+<tr class="even">
+<td>5/11</td>
+<td>GPU Memory Exploitation for Fun and Profit (SEC&#39;24)</td>
+<td>Flavien Jaquerod</td>
+<td>Solène Husseini</td>
+</tr>
+<tr class="odd">
+<td>12/11</td>
+<td>UntrustIDE: Exploiting Weaknesses in VS Code Extensions (NDSS&#39;24*)</td>
+<td>Eugen Bosnjak</td>
+<td>Flavien Jaquerod</td>
+</tr>
+<tr class="even">
+<td>12/11</td>
+<td>Why Aren’t We Using Passkeys? Obstacles Companies Face Deploying FIDO2 Passwordless Authentication</td>
+<td>Raymond Nasr</td>
+<td>Samuel Tepoorten</td>
+</tr>
+<tr class="odd">
+<td>12/11</td>
+<td>EL3XIR: Fuzzing COTS Secure Monitors (SEC&#39;24)</td>
+<td>Nadine Al Fadel Raad</td>
+<td>Rafaila Galanopoulou</td>
+</tr>
+<tr class="even">
+<td>19/11</td>
+<td>No class</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>26/11</td>
+<td>From Chatbots to Phishbots?: Phishing Scam Generation in Commercial Large Language Models (Oakland&#39;24*)</td>
+<td>Shunchang Liu</td>
+<td>Dominique Huang</td>
+</tr>
+<tr class="even">
+<td>26/11</td>
+<td>CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation (CCS&#39;23)</td>
+<td>Ahyoung Seo</td>
+<td>Siim Markus Marvet</td>
+</tr>
+<tr class="odd">
+<td>26/11</td>
+<td>K-LEAK: Towards Automating the Generation of Multi-Step Infoleak Exploits against the Linux Kernel (NDSS&#39;24)</td>
+<td>Ethan Bai</td>
+<td>Sahil Singhvi</td>
+</tr>
+<tr class="even">
+<td>3/12</td>
+<td>RustSan: Retrofitting AddressSanitizer for Efficient Sanitization of Rust (SEC&#39;24)</td>
+<td>Khalil M&#39;hirsi</td>
+<td>Ahyoung Seo</td>
+</tr>
+<tr class="odd">
+<td>3/12</td>
+<td>File Hijacking Vulnerability: The Elephant in the Room (NDSS&#39;24)</td>
+<td>Diogo Cardoso</td>
+<td>Iman Attia</td>
+</tr>
+<tr class="even">
+<td>3/12</td>
+<td>Go Go Gadget Hammer: Flipping Nested Pointers for Arbitrary Data Leakage (SEC&#39;24)</td>
+<td>Rasmus Makiniemi</td>
+<td>Ethan Bai</td>
+</tr>
+<tr class="odd">
+<td>10/12</td>
+<td>Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms (NDSS&#39;24*)</td>
+<td>Sahil Singhvi</td>
+<td>Nadine Al Fadel Raad</td>
+</tr>
+<tr class="even">
+<td>10/12</td>
+<td>HYPERPILL: Fuzzing for Hypervisor-bugs by Leveraging the Hardware Virtualization Interface (SEC&#39;24*)</td>
+<td>Jonas Scholz</td>
+<td>Khalil M&#39;hirsi</td>
+</tr>
+<tr class="odd">
+<td>10/12</td>
+<td>&quot;False negative - that one is going to kill you.&quot; - Understanding Industry Perspectives of Static Analysis based Security Testing (Oakland&#39;24*)</td>
+<td>Iman Attia</td>
+<td>Rasmus Makiniemi</td>
+</tr>
+<tr class="even">
+<td>17/12</td>
+<td>No class</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="topic-presentations">Topic presentations</h1>
+<p>The length of presentations for research papers should be between around 25 minutes, followed by 10 minutes of discussion (i.e., 35min per slot followed by 5min of feedback/setup). You can structure the presentation as follows:</p>
+<ol type="1">
+<li>Motivation of the paper (1-2 slides, ~5 minutes)</li>
+<li>Key research questions (1-2 slides, ~5 minutes)</li>
+<li>Presentation of the core design and implementation of the research paper (4-8 slides, ~10 minutes)</li>
+<li>Evaluation of the security policy (2-3 slides, ~5 minutes)</li>
+<li>Material for discussion: advantages, disadvantages, limitations of the approach (2-3 slides, ~5 minutes)</li>
+<li>Summary slide of the paper: policy, defense property (at which point in memory model), implementation (language, compiler, or runtime)</li>
+</ol>
+<p>When preparing the presentation, send a PDF version of your slides to <a href="mailto:mathias.payer@epfl.ch">Mathias</a> <em>before</em> your talk to get feedback and submit the final slides <em>right before</em> your talk.</p>
+<h1 id="topics">Topics</h1>
+<p>This list is non-exhaustive and the list may be adapted during class and students may suggest other recent software security papers they are interested in. The open book Software Security: Principles, Policies, and Protection<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> provides an overview of many topics but does not go into depth for each policy. Similarly, the Eternal War in Memory<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> presents an overview of the software security landscape. <code class="interpreted-text" role="strike">Crossed out topics</code> have already been selected.</p>
+<p><em>Fuzzing everywhere</em></p>
+<ul>
+<li>HOPPER: Interpretative Fuzzing for Libraries (CCS&#39;23)</li>
+<li><code class="interpreted-text" role="strike">ShapFuzz: Efficient Fuzzing via Shapley-Guided Byte Selection (NDSS&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">Predictive Context-sensitive Fuzzing (NDSS&#39;24)</code></li>
+<li>Facilitating Non-Intrusive In-Vivo Firmware Testing with Stateless Instrumentation (NDSS&#39;24)</li>
+<li>SoK: Prudent Evaluation Practices for Fuzzing (Oakland&#39;24*)</li>
+<li>SyzGen++: Dependency Inference for Augmenting Kernel Driver Fuzzing (Oakland&#39;24)</li>
+<li><code class="interpreted-text" role="strike">Everything is Good for Something: Counterexample-Guided Directed Fuzzing via Likely Invariant Inference (Oakland&#39;24)</code></li>
+<li>Data Coverage for Guided Fuzzing (SEC&#39;24)</li>
+<li>Cascade: CPU Fuzzing via Intricate Program Generation (SEC&#39;24)</li>
+<li><code class="interpreted-text" role="strike">HyperPill: Fuzzing for Hypervisor-bugs by leveraging the Hardware Virtualization Interface (SEC&#39;24\*)</code></li>
+<li><code class="interpreted-text" role="strike">EL3XIR: Fuzzing COTS Secure Monitors (SEC&#39;24)</code></li>
+<li>SDFuzz: Target States Driven Directed Fuzzing (SEC&#39;24)</li>
+<li>SHiFT: Semi-hosted Fuzz Testing for Embedded Applications (SEC&#39;24)</li>
+<li>MultiFuzz: A Multi-Stream Fuzzer For Testing Monolithic Firmware(SEC&#39;24)</li>
+</ul>
+<p><em>Sanitization is king</em></p>
+<ul>
+<li>SHERLOC: Secure and Holistic Control-Flow Violation Detection on Embedded Systems (CCS&#39;23)</li>
+<li><code class="interpreted-text" role="strike">CoCo: Efficient Browser Extension Vulnerability Detection via Coverage-guided, Concurrent Abstract Interpretation (CCS&#39;23)</code></li>
+<li><code class="interpreted-text" role="strike">QUACK: Hindering Deserialization Attacks via Static Duck Typing (NDSS&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">LMSanitator: Defending Prompt-Tuning Against Task-Agnostic Backdoors (NDSS&#39;24)</code></li>
+<li>SoK: Unintended Interactions among Machine Learning Defenses and Risks (Oakland&#39;24*)</li>
+<li>Don&#39;t Waste My Efforts: Pruning Redundant Sanitizer Checks by Developer-Implemented Type Checks (SEC&#39;24)</li>
+<li><code class="interpreted-text" role="strike">RustSan: Retrofitting AddressSanitizer for Efficient Sanitization of Rust (SEC&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">CAMP: Compiler and Allocator-based Heap Memory Protection (SEC&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">DMAAUTH: A Lightweight Pointer Integrity-based Secure Architecture to Defeat DMA Attacks (SEC&#39;24)</code></li>
+</ul>
+<p><em>Languages and interactions</em></p>
+<ul>
+<li><code class="interpreted-text" role="strike">Eavesdropping on Controller Acoustic Emanation for Keystroke Inference Attack in Virtual Reality (NDSS&#39;24\*)</code></li>
+<li><code class="interpreted-text" role="strike">UntrustIDE: Exploiting Weaknesses in VS Code Extensions (NDSS&#39;24\*)</code></li>
+<li>BENZENE: A Practical Root Cause Analysis System with an Under-Constrained State Mutation (Oakland&#39;24*)</li>
+<li><code class="interpreted-text" role="strike">Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities (Oakland&#39;24\*)</code></li>
+<li><code class="interpreted-text" role="strike">LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks (Oakland&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">Wear&#39;s my Data? Understanding the Cross-Device Runtime Permission Model in Wearables (Oakland&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">From Chatbots to Phishbots?: Phishing Scam Generation in Commercial Large Language Models (Oakland&#39;24\*)</code></li>
+<li><code class="interpreted-text" role="strike">MetaSafe: Compiling for Protecting Smart Pointer Metadata to Ensure Safe Rust Integrity (SEC&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">Spill the TeA: An Empirical Study of Trusted Application Rollback Prevention on Android (SEC&#39;24)</code></li>
+</ul>
+<p><em>Exploits and attacks</em></p>
+<ul>
+<li><code class="interpreted-text" role="strike">File Hijacking Vulnerability: The Elephant in the Room (NDSS&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">Like, Comment, Get Scammed: Characterizing Comment Scams on Media Platforms (NDSS&#39;24\*)</code></li>
+<li>SyzBridge: Bridging the Gap in Exploitability Assessment of Linux Kernel Bugs in the Linux Ecosystem (NDSS&#39;24)</li>
+<li><code class="interpreted-text" role="strike">K-LEAK: Towards Automating the Generation of Multi-Step Infoleak Exploits against the Linux Kernel （NDSS&#39;24）</code></li>
+<li>Leaky Address Masking: Exploiting Unmasked Spectre Gadgets with Noncanonical Address Translation (Oakland&#39;24)</li>
+<li>&quot;False negative - that one is going to kill you.&quot; - Understanding Industry Perspectives of Static Analysis based Security Testing (Oakland&#39;24*)</li>
+<li><code class="interpreted-text" role="strike">The Great Request Robbery: An Empirical Study of Client-side Request Hijacking Vulnerabilities on the Web (Oakland&#39;24\*)</code></li>
+<li><code class="interpreted-text" role="strike">Parse Me, Baby, One More Time: Bypassing HTML Sanitizer via Parsing Differentials (Oakland&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">From Virtual Touch to Tesla Command: Unlocking Unauthenticated Control Chains From Smart Glasses for Vehicle Takeover (Oakland&#39;24\*)</code></li>
+<li>WESEE: Using Malicious #VC Interrupts to Break AMD SEV-SNP (Oakland&#39;24*)</li>
+<li><code class="interpreted-text" role="strike">Go Go Gadget Hammer: Flipping Nested Pointers for Arbitrary Data Leakage (SEC&#39;24)</code></li>
+<li><code class="interpreted-text" role="strike">GPU Memory Exploitation for Fun and Profit (SEC&#39;24)</code></li>
+</ul>
+<p>You can find the papers through DBLP or the corresponding websites:</p>
+<ul>
+<li><a href="https://www.sigsac.org/ccs/CCS2023/">CCS&#39;23</a></li>
+<li><a href="https://www.ndss-symposium.org/ndss2024/">NDSS&#39;24</a></li>
+<li><a href="https://www.ieee-security.org/TC/SP2024/">Oakland&#39;24</a></li>
+<li><a href="https://www.usenix.org/conference/usenixsecurity24">SEC&#39;24</a></li>
+</ul>
+<h1 id="references">References</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://nebelwelt.net/SS3P/">Software Security: Principles, Policies, and Protection. Mathias Payer</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://nebelwelt.net/publications/files/13Oakland.pdf">SoK: Eternal War in Memory. Laszlo Szekeres, Mathias Payer, Tao Wei, and Dawn Song. In Oakland&#39;13: Proc. Int&#39;l Symp. on Security and Privacy, 2013.</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
