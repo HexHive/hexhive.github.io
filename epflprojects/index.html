@@ -39,70 +39,247 @@
 <p>This is a list of possible open, unassigned BSc or MSc research projects in the HexHive group <b>for EPFL students</b>.</p>
 <p>Check out our list of <a href="past_projects.html">completed projects</a> to get an idea of past projects.</p>
 <p>The projects are designed to be adjustable and scalable according to the type of BSc, MSc, or short PhD research project depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
-<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/vtLPqWz6ZHHMApkSA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews. The first application deadline for projects in fall '24 is July 04 and the second deadline is August 31, 2024.</p>
+<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/vtLPqWz6ZHHMApkSA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews.</p>
 <p>In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss! Reach out to the people most closest to your ideas and we'll let the ideas bubble up.</p>
 
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#library-fuzzing">Library Fuzzing</a></li>
 <li><a href="#android-acropalypse">Android acropalypse</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking Fuzzers for Structured Text Input Software</a></li>
-<li><a href="#exploring-proprietary-android-system-services">Exploring Proprietary Android System Services</a></li>
-<li><a href="#investigating-the-rp2350-bootrom">Investigating the RP2350 bootrom</a></li>
-<li><a href="#creating-a-cycle-accurate-multi-architecture-simulator">Creating a cycle-accurate multi-architecture simulator</a></li>
-<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
-<li><a href="#leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use Bugs</a></li>
-<li><a href="#evaluation-on-syscall-filtering-techniques">Evaluation on Syscall Filtering Techniques</a></li>
-<li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
-<li><a href="#hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</a></li>
-<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#type-confusion-test-suite">Type confusion test
+suite</a></li>
+<li><a href="#fuzzing-c-libraries">Fuzzing C++ libraries</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+Retrowriting</a></li>
+<li><a
+href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking
+Fuzzers for Structured Text Input Software</a></li>
+<li><a href="#exploring-proprietary-android-system-services">Exploring
+Proprietary Android System Services</a></li>
+<li><a href="#investigating-the-rp2350-bootrom">Investigating the RP2350
+bootrom</a></li>
+<li><a
+href="#creating-a-cycle-accurate-multi-architecture-simulator">Creating
+a cycle-accurate multi-architecture simulator</a></li>
+<li><a
+href="#seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</a></li>
+<li><a
+href="#leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging
+Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use
+Bugs</a></li>
+<li><a
+href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking
+Fuzzers For Seed Selection Capability</a></li>
+<li><a href="#hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit
+Hypervisors</a></li>
+<li><a
+href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
+Magma: A Ground-Truth Fuzzing Benchmark</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
+<h5 id="library-fuzzing">Library Fuzzing</h5>
+<ul>
+<li>Point of contact: <a href="mailto:flavio.toffalini@epfl.ch">Flavio
+Toffalini</a></li>
+<li>Keywords: Linux, library, fuzzing</li>
+</ul>
+<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of
+bytes, fuzzing libraries requires drivers (library consumers) to bridge
+an input into a sequence of APIs. The code coverage and error discovery
+depend on the API combinations within the driver. Therefore, it is
+crucial having interesting drivers to deeply test a target library.
+Unfortunately, building such drivers is challenging due to a lack of
+semantic information about the APIs and their usage. Moreover, insidious
+errors may appear only with rare API sequences. Current techniques infer
+API usage from already-existing programs, however, the quality of the
+new drivers is inevitably limited by the existing consumers. In this
+project, we aim at generating library drivers without looking into
+existing consumers. Precisely, we use a combination of static analysis
+and automatic testing to mine the API usage and automatically build
+drivers able to explore a vaster library portion of code and trigger
+more complex errors.</p>
+<p>The research questions in this project are:</p>
+<ul>
+<li>how can we design static analysis to infer API dependency
+information and use them to build interesting drivers?</li>
+<li>how can we use feedback from automatic testing to refine the driver
+generation (e.g., remove incorrect API sequences)?</li>
+</ul>
+<p>The candidate will require to assist the design and develop of a
+prototype for testing different driver building strategies. The
+prototype will be a combination of different technologies, such as
+static analysis over LLVM IR, Python modules for the driver generation,
+and fuzzer for the automatic testing.</p>
+<p>A candidate should be interested in (or familiar with) at least one
+of the following topics.</p>
+<ul>
+<li>LLVM/Clang (also C/C++ will help)</li>
+<li>Basic knowledge of static analysis</li>
+<li>Python and OOP</li>
+</ul>
 <h5 id="android-acropalypse">Android acropalypse</h5>
 <ul>
-<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
 <li>Suitable for: Msc Semester Project / Thesis</li>
 <li>Keywords: Reverse Engineering, Static Analysis</li>
 </ul>
-<p>You might have heard about the recent security disaster that is <a href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>. Well, it turns out that the reason behind this bug is Google silently updating some <a href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s API for opening files</a> which causes files not to be truncated anymore when opening them.</p>
-<p>This is pretty wild and we think that there might be many more applications of aCropalypse, not just cropped screenshots. This project is about writing tooling to automatically analyze Android apks and searching for potential alternative data leaks.</p>
+<p>You might have heard about the recent security disaster that is <a
+href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>.
+Well, it turns out that the reason behind this bug is Google silently
+updating some <a
+href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s
+API for opening files</a> which causes files not to be truncated anymore
+when opening them.</p>
+<p>This is pretty wild and we think that there might be many more
+applications of aCropalypse, not just cropped screenshots. This project
+is about writing tooling to automatically analyze Android apks and
+searching for potential alternative data leaks.</p>
 <p>A candidate should be interested in:</p>
 <ul>
 <li>Android application reverse engineering</li>
 <li>Static analysis tooling for Android apks</li>
 </ul>
-<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h5>
+<h5 id="type-confusion-test-suite">Type confusion test suite</h5>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
+Badoux</a></li>
+<li>Keywords: sanitizer, type confusion, test suite</li>
 </ul>
-<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
-<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
+<p>Type confusion is a common vulnerability in C/C++ programs. It occurs
+when a type is incorrectly casted to another type. This can lead to
+memory corruption and code execution. HexHive has published a <a
+href="https://nebelwelt.net/files/17CCS.pdf">number</a> of <a
+href="https://nebelwelt.net/files/16CCS2.pdf">works</a> trying to detect
+and mitigate the impact of type confusions. The goal of this project is
+to create a test suite for type confusion detection tools. Recent works
+have been evaluated on a common run time performance benchmark but they
+miss a validation on a common set of type confusion bugs. The test suite
+will be composed of a set of programs and unit test with type confusion
+bugs. Some bugs should be based on real world vulnerabilities while
+others can be purely synthetic.</p>
+<p>We would aim to:</p>
 <ul>
-<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
-<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
+<li>Identify a set of type confusion bugs in real world programs. Create
+a set of</li>
+<li>synthetic type confusion bugs. Create a representative set of unit
+tests for</li>
+<li>type confusion detection tools. Evaluate state-of-the-art type
+confusion</li>
+<li>detection tools on the test suite.</li>
+</ul>
+<p>Students should have a basic understanding of how C/C++ programs are
+built and a good grasp of Linux internals.</p>
+<h5 id="fuzzing-c-libraries">Fuzzing C++ libraries</h5>
+<ul>
+<li>Point of contact: <a href="mailto:nicolas.badoux@epfl.ch">Nicolas
+Badoux</a></li>
+<li>Keywords: library fuzzing, fuzzing, C++</li>
+</ul>
+<p>Unlike fuzzing CLI programs, whose input is modeled as a stream of
+bytes, fuzzing libraries requires drivers (library consumers) to bridge
+an input into a sequence of APIs. The code coverage and error discovery
+depend on the API combinations within the driver. Recent work at HexHive
+has shown promising result for automatically generating these drivers
+for C libraries. The goal of this project is to extend this work to C++
+libraries. In particular, some adaptations will be necessary to handle
+the object-oriented nature of C++ as well as supporting casting
+operations.</p>
+<p>The candidate will be required to identify the necessary adaptations
+to the existing C library fuzzing tool as well as implement support for
+them in the existing framework. The prototype will be a combination of
+different technologies, such as static analysis over LLVM IR, Python
+modules for the driver generation, and fuzzer for the automatic testing.
+The candidate will also be in charged of finding and motivating the
+choice of suitable C++ libraries to test.</p>
+<p>A candidate should be interested in (or familiar with) the following
+topics.</p>
+<ul>
+<li>LLVM/Clang (also C/C++ will help)</li>
+<li>Python</li>
+</ul>
+<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver
+Retrowriting</h5>
+<ul>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
+<li>Keywords: Retrowrite, binary rewriting, mobile reverse
+engineering</li>
+</ul>
+<p>A common feature of the Android ecosystem are proprietary binary
+blobs. Vendors may not update these and may not compile them with the
+latest exploit mitigations. A particular cause of concern are kernel
+modules given their privileged access.</p>
+<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting
+tool that can retrofit mitigations to legacy binaries without the need
+for source code. This currently works on ARM64 and x86-64 platforms, and
+x86-64 in kernel mode. The goal of this project would be to target ARM64
+kernel modules, with the ability to add for example kASAN. We would aim
+to:</p>
+<ul>
+<li>Identify kernel modules of particular interest, including open
+source modules to act as ground truth.</li>
+<li>Produce a framework to evaluate the effectiveness of binary
+rewriting these modules by exercising their functionality, using fuzzing
+where appropriate.</li>
 <li>Modify Retrowrite to support ARM64 kernel modules.</li>
-<li>Evaluate the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
+<li>Evaluate the implementation against ground truth targets and against
+targets of interest. Evaluate the cost of instrumentation passes.</li>
 </ul>
-<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
-<h5 id="benchmarking-fuzzers-for-structured-text-input-software">Benchmarking Fuzzers for Structured Text Input Software</h5>
+<p>Students should have a basic understanding of how Linux kernel
+modules are built and loaded, and a good grasp of Linux internals.
+Ambitious students may also have Android Internals knowledge and be
+interested in testing their work on Android hardware.</p>
+<h5
+id="benchmarking-fuzzers-for-structured-text-input-software">Benchmarking
+Fuzzers for Structured Text Input Software</h5>
 <ul>
-<li>Point of contact: <a href="mailto:chibin.zhang@epfl.ch">Chibin Zhang</a></li>
+<li>Point of contact: <a href="mailto:chibin.zhang@epfl.ch">Chibin
+Zhang</a></li>
 <li>Suitable for: Master Thesis Project</li>
 <li>Keywords: fuzzing, benchmark, compilers, data analysis</li>
 </ul>
-<p>Fuzzing is an effective technique for finding bugs in software. Prior works have created benchmarks to assess the performance of fuzzers. However, these benchmarks are biased towards targets that accept binary inputs and towards fuzzers that mutate at the byte level. Additionally, they suffer from saturation, meaning the performance differences between top fuzzers are often insignificant. It is a known issue that existing byte-level fuzzers do not perform well on targets accepting structured text inputs. Current fuzzing benchmarks do not include state-of-the-art structure-aware fuzzers, such as grammar fuzzers, in their baselines. This is due to the fact that these fuzzers typically require additional grammars, dictionaries, or large seed corpora. Furthermore, existing structure-aware fuzzers have been evaluated on a limited set of disparate targets, run with different specifications, making it challenging to compare their performance quantitatively or even qualitatively.</p>
-<p>In this project, you will create an extensive benchmark for targets that accept structured text inputs. You are expected to integrate at least 8 structure/syntax-aware fuzzers and 16 new targets (latest version), along with the required grammars, dictionaries, and corpora. It is suggested to use the Nix build system, as its build configurations are written declaratively and build artifacts are deterministic. This choice is anticipated to streamline the benchmarking process and ensure reproducibility. You will then conduct fuzzing campaigns and analyze the results quantitatively. A potential focus could be assessing the impact of the provided grammars, dictionaries, and corpora on the performance of the fuzzers. The build, run, and analysis scripts will be open-sourced to facilitate future research.</p>
+<p>Fuzzing is an effective technique for finding bugs in software. Prior
+works have created benchmarks to assess the performance of fuzzers.
+However, these benchmarks are biased towards targets that accept binary
+inputs and towards fuzzers that mutate at the byte level. Additionally,
+they suffer from saturation, meaning the performance differences between
+top fuzzers are often insignificant. It is a known issue that existing
+byte-level fuzzers do not perform well on targets accepting structured
+text inputs. Current fuzzing benchmarks do not include state-of-the-art
+structure-aware fuzzers, such as grammar fuzzers, in their baselines.
+This is due to the fact that these fuzzers typically require additional
+grammars, dictionaries, or large seed corpora. Furthermore, existing
+structure-aware fuzzers have been evaluated on a limited set of
+disparate targets, run with different specifications, making it
+challenging to compare their performance quantitatively or even
+qualitatively.</p>
+<p>In this project, you will create an extensive benchmark for targets
+that accept structured text inputs. You are expected to integrate at
+least 8 structure/syntax-aware fuzzers and 16 new targets (latest
+version), along with the required grammars, dictionaries, and corpora.
+It is suggested to use the Nix build system, as its build configurations
+are written declaratively and build artifacts are deterministic. This
+choice is anticipated to streamline the benchmarking process and ensure
+reproducibility. You will then conduct fuzzing campaigns and analyze the
+results quantitatively. A potential focus could be assessing the impact
+of the provided grammars, dictionaries, and corpora on the performance
+of the fuzzers. The build, run, and analysis scripts will be
+open-sourced to facilitate future research.</p>
 <p>Examples of interesting fuzzers and targets for integration:</p>
 <ul>
-<li>Fuzzers: AFL++ with cmplog and autodict, Token-level AFL, Gramatron, Nautilus, Grimoire, Superion, Polyglot, CSmith.</li>
+<li>Fuzzers: AFL++ with cmplog and autodict, Token-level AFL, Gramatron,
+Nautilus, Grimoire, Superion, Polyglot, CSmith.</li>
 <li>Targets:
 <ul>
 <li>All targets included in fuzzbench.</li>
-<li>Compilers/Interpreters/Assemblers accepting code inputs: clang, hotspot, python, php, ruby, v8, JavaScriptCore, SpiderMonkey.</li>
+<li>Compilers/Interpreters/Assemblers accepting code inputs: clang,
+hotspot, python, php, ruby, v8, JavaScriptCore, SpiderMonkey.</li>
 <li>Document formats: html, postscript, word, rtf, roff, markdown.</li>
-<li>Data (interchange) formats and their processors: json, yaml, toml, xml, csv, tsv, jq, yq, sqlite.</li>
+<li>Data (interchange) formats and their processors: json, yaml, toml,
+xml, csv, tsv, jq, yq, sqlite.</li>
 </ul></li>
 </ul>
 <p>Recommended Background:</p>
@@ -111,85 +288,197 @@
 <li>Familiarity with NixOS and Nix-based build tools.</li>
 <li>Experience with fuzzing and triaging compiler/interpreter bugs.</li>
 </ul>
-<h5 id="exploring-proprietary-android-system-services">Exploring Proprietary Android System Services</h5>
+<h5 id="exploring-proprietary-android-system-services">Exploring
+Proprietary Android System Services</h5>
 <ul>
-<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp Mao</a></li>
+<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp
+Mao</a></li>
 <li>Suitable for: MSc project, MSc semester project</li>
 <li>Keywords: Android, reverse engineering, frida</li>
 </ul>
-<p>Android system services (high-privileged userspace processes) are an important piece of Android’s security architecture. Smartphone vendors usually modify Android and add their own features, which often include additional system services. These system services are an interesting target for malicioius apps, since the services’ API is usually accessible to an app. While past research has predominantly focused on native (C++) system services, this project aims to investigate the system services that appear to be implemented in Java.</p>
-<p>The objective of this project is to develop tools for analyzing proprietary Java system services. We aim to understand how these services operate, their privilege levels, and any potential vulnerabilities they may have. An ideal outcome of the project is a tool that can be deployed against a phone to then automatically analyze all system services.</p>
-<p>Project tasks (in no particular order): - Writing frida hooks to dynamically analyze running proprietary Java services - Reverse-engineering proprietary Java services</p>
-<p>Students interested in this project should have written at least one frida script to hook an Android app.</p>
-<h5 id="investigating-the-rp2350-bootrom">Investigating the RP2350 bootrom</h5>
+<p>Android system services (high-privileged userspace processes) are an
+important piece of Android’s security architecture. Smartphone vendors
+usually modify Android and add their own features, which often include
+additional system services. These system services are an interesting
+target for malicioius apps, since the services’ API is usually
+accessible to an app. While past research has predominantly focused on
+native (C++) system services, this project aims to investigate the
+system services that appear to be implemented in Java.</p>
+<p>The objective of this project is to develop tools for analyzing
+proprietary Java system services. We aim to understand how these
+services operate, their privilege levels, and any potential
+vulnerabilities they may have. An ideal outcome of the project is a tool
+that can be deployed against a phone to then automatically analyze all
+system services.</p>
+<p>Project tasks (in no particular order): - Writing frida hooks to
+dynamically analyze running proprietary Java services -
+Reverse-engineering proprietary Java services</p>
+<p>Students interested in this project should have written at least one
+frida script to hook an Android app.</p>
+<h5 id="investigating-the-rp2350-bootrom">Investigating the RP2350
+bootrom</h5>
 <ul>
-<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
 <li>Suitable for: MSc semester project</li>
 <li>Keywords: Emulation, dynamic binary instrumentation, re-hosting</li>
 </ul>
-<p>The <a href="https://www.raspberrypi.com/products/rp2350/">new RP2350</a> microcontroller has a wide range of capabilities, including Arm TrustZone-M for its Cortex-M33 cores, dual-architecture (RISC-V/Arm) support, special RPi-only peripherals (HSTX, PIO), etc. Furthermore, it supports secure boot and booting from encrypted flash. These security features are new additions in comparison to the features of the (older and less capable) RP2040 microcontroller.</p>
-<p>In order to properly support all those features, not only the hardware but also the bootrom needed to be redesigned. Raspberry Pi luckily open-sourced the <a href="https://github.com/raspberrypi/pico-bootrom-rp2350">code for the bootrom</a>, which allows for static analysis of the code. However, static analysis only gets us so far; dynamic analysis provides us with even more insights into its functionality and run-time values for variables, peripheral state, etc.</p>
-<p>In this project, we aim to re-host the RP2350 bootrom into a virtual environment, which allows us to step through the bootrom’s code at runtime and interact with its runtime state.</p>
-<p>An interested student ideally has experience with embedded development for microcontrollers and is comfortable with reading/understanding Arm and/or RISC-V assembly. Familiarity with emulation frameworks such as Unicorn is a plus.</p>
-<h5 id="creating-a-cycle-accurate-multi-architecture-simulator">Creating a cycle-accurate multi-architecture simulator</h5>
+<p>The <a href="https://www.raspberrypi.com/products/rp2350/">new
+RP2350</a> microcontroller has a wide range of capabilities, including
+Arm TrustZone-M for its Cortex-M33 cores, dual-architecture (RISC-V/Arm)
+support, special RPi-only peripherals (HSTX, PIO), etc. Furthermore, it
+supports secure boot and booting from encrypted flash. These security
+features are new additions in comparison to the features of the (older
+and less capable) RP2040 microcontroller.</p>
+<p>In order to properly support all those features, not only the
+hardware but also the bootrom needed to be redesigned. Raspberry Pi
+luckily open-sourced the <a
+href="https://github.com/raspberrypi/pico-bootrom-rp2350">code for the
+bootrom</a>, which allows for static analysis of the code. However,
+static analysis only gets us so far; dynamic analysis provides us with
+even more insights into its functionality and run-time values for
+variables, peripheral state, etc.</p>
+<p>In this project, we aim to re-host the RP2350 bootrom into a virtual
+environment, which allows us to step through the bootrom’s code at
+runtime and interact with its runtime state.</p>
+<p>An interested student ideally has experience with embedded
+development for microcontrollers and is comfortable with
+reading/understanding Arm and/or RISC-V assembly. Familiarity with
+emulation frameworks such as Unicorn is a plus.</p>
+<h5 id="creating-a-cycle-accurate-multi-architecture-simulator">Creating
+a cycle-accurate multi-architecture simulator</h5>
 <ul>
-<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian
+Hofhammer</a></li>
 <li>Suitable for: MSc semester project</li>
 <li>Keywords: Microarchitecture, simulation</li>
 </ul>
-<p><a href="https://github.com/radareorg/r2wars">r2wars</a> is a game in which participants write small assembly bots that execute in the same address space. Whichever bot crashes first (e.g., by being overwritten by the competing bot) loses. This game is an adaptation of the original <a href="https://en.wikipedia.org/wiki/Corewars">Corewars</a> idea but with a twist: instead of being based on a programming language similar to assembly designed specifically for this kind of game, r2wars builds on top of the radare2 reverse engineering tooling and allows bots to be written in real-world architecture assembly (e.g., x86, Arm, RISC-V, Mips, …). However, while the supported ISAs are taken from the real world, the execution model is far from close to reality. Most instructions take the same amount of time, no matter the ISA or their complexity. In a real system, more complex instructions would execute in more cycles, and microarchitectural state such as pipeline state, caches, etc. would affect performance.</p>
-<p>In this project, we aim to model r2wars “closer to the real world”, i.e., execute instructions in a cycle-accurate simulation. For this purpose, we can leverage a cycle-accurate simulator such as <a href="https://www.gem5.org/">gem5</a>.</p>
-<p>The project requires familiarity with assembly code (at least reading and understanding) as well as basic knowledge about microarchitectural state.</p>
-<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
+<p><a href="https://github.com/radareorg/r2wars">r2wars</a> is a game in
+which participants write small assembly bots that execute in the same
+address space. Whichever bot crashes first (e.g., by being overwritten
+by the competing bot) loses. This game is an adaptation of the original
+<a href="https://en.wikipedia.org/wiki/Corewars">Corewars</a> idea but
+with a twist: instead of being based on a programming language similar
+to assembly designed specifically for this kind of game, r2wars builds
+on top of the radare2 reverse engineering tooling and allows bots to be
+written in real-world architecture assembly (e.g., x86, Arm, RISC-V,
+Mips, …). However, while the supported ISAs are taken from the real
+world, the execution model is far from close to reality. Most
+instructions take the same amount of time, no matter the ISA or their
+complexity. In a real system, more complex instructions would execute in
+more cycles, and microarchitectural state such as pipeline state,
+caches, etc. would affect performance.</p>
+<p>In this project, we aim to model r2wars “closer to the real world”,
+i.e., execute instructions in a cycle-accurate simulation. For this
+purpose, we can leverage a cycle-accurate simulator such as <a
+href="https://www.gem5.org/">gem5</a>.</p>
+<p>The project requires familiarity with assembly code (at least reading
+and understanding) as well as basic knowledge about microarchitectural
+state.</p>
+<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP
+implementation for double fetch protection</h5>
 <ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di
+Bartolomeo</a></li>
 <li>Suitable for: MSc thesis</li>
-<li>Keywords: kernel security, data race protection, security policy</li>
+<li>Keywords: kernel security, data race protection, security
+policy</li>
 </ul>
-<p>System call filtering is a crucial part of protection policies ubiquitous in cloud, desktop and mobile environments (Android, Docker, etc.). The existing SECCOMP filter system is unable to inspect arguments passed by reference since the user can modify the values in memory, resulting in a TOCTTOU exploit.</p>
-<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel, exploiting the user memory access API to provide double fetch protection. In this project, you will implement and evaluate SECCOMP filtering for system call arguments passed by reference, leveraging Midas to protect the kernel from the double fetch introduced in the process.</p>
+<p>System call filtering is a crucial part of protection policies
+ubiquitous in cloud, desktop and mobile environments (Android, Docker,
+etc.). The existing SECCOMP filter system is unable to inspect arguments
+passed by reference since the user can modify the values in memory,
+resulting in a TOCTTOU exploit.</p>
+<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel,
+exploiting the user memory access API to provide double fetch
+protection. In this project, you will implement and evaluate SECCOMP
+filtering for system call arguments passed by reference, leveraging
+Midas to protect the kernel from the double fetch introduced in the
+process.</p>
 <ul>
 <li>This project requires:
 <ul>
 <li>Expert experience in C development</li>
-<li>Experience with standard C/GNU build, development and debug tools (gdb, Makefiles)</li>
+<li>Experience with standard C/GNU build, development and debug tools
+(gdb, Makefiles)</li>
 <li>Understanding of OS principles</li>
 <li>Basic experience of OS coding/course project</li>
-<li>Understanding of the x86 architecture and assembly coding/debugging</li>
+<li>Understanding of the x86 architecture and assembly
+coding/debugging</li>
 </ul></li>
 </ul>
-<h5 id="leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use Bugs</h5>
+<h5
+id="leveraging-static-analysis-on-binaries-to-uncover-time-of-check-time-of-use-bugs">Leveraging
+Static Analysis on Binaries to Uncover Time-of-Check-Time-of-Use
+Bugs</h5>
 <ul>
-<li>Point of contact: <a href="mailto:marcel.busch@epfl.ch">Marcel Busch</a></li>
+<li>Point of contact: <a href="mailto:marcel.busch@epfl.ch">Marcel
+Busch</a></li>
 <li>Suitable for: MSc semester project</li>
-<li>Keywords: software engineering, reverse engineering, binary analysis, static analysis</li>
+<li>Keywords: software engineering, reverse engineering, binary
+analysis, static analysis</li>
 </ul>
-<p>TOCTOU bugs can lead to severe memory corruptions. These memory corruptions might allow adversaries to compromise and take full control of the affected system. In this project, we want to port and adapt an exisiting binary static analysis to uncover TOCTOU bugs in proprietary real-world software.</p>
-<p>A candidate should be interested in (and ideally already be familiar with):</p>
+<p>TOCTOU bugs can lead to severe memory corruptions. These memory
+corruptions might allow adversaries to compromise and take full control
+of the affected system. In this project, we want to port and adapt an
+exisiting binary static analysis to uncover TOCTOU bugs in proprietary
+real-world software.</p>
+<p>A candidate should be interested in (and ideally already be familiar
+with):</p>
 <ul>
 <li>Python</li>
 <li>Ghidra/Ghidrathon and/or angr</li>
 <li>ARM assembly</li>
 <li>Static analysis (e.g., RDA)</li>
 </ul>
-<h5 id="evaluation-on-syscall-filtering-techniques">Evaluation on Syscall Filtering Techniques</h5>
+<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking
+Fuzzers For Seed Selection Capability</h5>
 <ul>
-<li>Point of contact: <a href="mailto:zhiyao.feng@epfl.ch">Zhiyao Feng</a></li>
-<li>Keywords: syscall filtering, Linux, Android, 0-day exploit</li>
+<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han
+Zheng</a></li>
+<li>Keywords: Benchmark, Fuzzing</li>
 </ul>
-<p>It is common that the OS kernels (e.g., Android) do not do security updates for years, due to labor-intensive update costs and limited software support lifespan. This leaves those kernels vulnerable to exploits. To protect them, we can utilize syscall filtering techniques to block potentially malicious syscall sequences before causing any damage. So the kernels remain safe, even if they are not updated.</p>
-<p>There are some existing techniques or features that can be used for this purpose, like Seccomp, Seccomp-cBPF, and Seccomp Notify provided by the Linux kernel, along with some methods from research papers. They offer various capabilities and trade-offs in filtering syscalls for certain vulnerabilities.</p>
-<p>In this project, we will evaluate these syscall filtering techniques, by reproducing some known 0-day exploits, applying the syscall filtering techniques, and checking if the exploits can be successfully blocked.</p>
-<p>A candidate should be proficient in C programming and have a good grasp of Linux internals.</p>
-<h5 id="hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</h5>
+<p>Fuzzing is an efficient software testing technique to reveal bugs.
+Therefore it has been widely investigated both in academia and industry.
+Despite the growth of the newly proposed fuzzing prototypes, evaluating
+the fuzzer’s coverage capability is still challenging.</p>
+<p>Existing platforms like fuzzbench pick the well-constructed harness,
+which enable the fuzzers to iterate over each seed in the queue
+exhaustively.<br />
+Nevertheless, real-world scenarios might deviate from this ideal: seed
+explosion widely exists, fuzzer’s seed selection capability is critical
+and should not be deprioritize in the evaluation.</p>
+<p>In this project, we will extend fuzzbench to more complex targets,
+which allows a more thorough assessment of fuzzer’s seed selection
+capability.</p>
+<p>The goal of this project:</p>
 <ul>
-<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>design a metric to define and select the “complex” targets</li>
+<li>integrate the target into the fuzzbench and evaluate existing
+fuzzers</li>
+<li>propose some metrics other than coverage to assess the seed
+selection capability.</li>
+</ul>
+<p>A candidate should be interested in (ideally familiar with) the
+following: * Python * Basic knowledge of configure/cmake/make *
+Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
+<h5 id="hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit
+Hypervisors</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang
+Liu</a></li>
 <li>Suitable for: Master Semester Project</li>
 <li>Keywords: Blackbox, Virtual Device, Fuzzing</li>
 </ul>
-<p>Virtual devices remain the main attack surface to hypervisors. Vulnerabilities in virtual devices lead to denial of service, data breaches, execution hijacking, and other security problems. Hyper-Cube was proposed to fuzz virtual devices. It is a blackbox fuzzer and has very high throughput. Hyper-Cube has great usability but suffers from the following two problems:</p>
+<p>Virtual devices remain the main attack surface to hypervisors.
+Vulnerabilities in virtual devices lead to denial of service, data
+breaches, execution hijacking, and other security problems. Hyper-Cube
+was proposed to fuzz virtual devices. It is a blackbox fuzzer and has
+very high throughput. Hyper-Cube has great usability but suffers from
+the following two problems:</p>
 <ul>
-<li>Hyper-Cube is only compatible with hypervisors that support a x86 32-bit OS.</li>
+<li>Hyper-Cube is only compatible with hypervisors that support a x86
+32-bit OS.</li>
 </ul>
 <p>In this project, we aim to achieve three specific goals.</p>
 <ul>
@@ -197,20 +486,46 @@
 <li>Optimize the implementation to achieve higher throughput.</li>
 <li>Analyze found bugs, report them, and help to fix.</li>
 </ul>
-<p>We are building an extensive blackbox virtual device fuzzer based on Hyper-Cube. A candidate is required to have experience with programming in C, compiling with Clang, programming profiling (e.g., FlameGraph), and algorithm optimization. It is preferable but not necessary to have experience with fuzzing, the development of operating systems and virtual devices, ARM, Hyper-V, VMWare Esxi, and macOS.</p>
+<p>We are building an extensive blackbox virtual device fuzzer based on
+Hyper-Cube. A candidate is required to have experience with programming
+in C, compiling with Clang, programming profiling (e.g., FlameGraph),
+and algorithm optimization. It is preferable but not necessary to have
+experience with fuzzing, the development of operating systems and
+virtual devices, ARM, Hyper-V, VMWare Esxi, and macOS.</p>
 <p>Recommended readings:</p>
 <ul>
-<li><a href="https://www.ndss-symposium.org/wp-content/uploads/2020/02/23096-paper.pdf">Hyper-Cube Paper</a></li>
-<li><a href="https://github.com/RUB-SysSec/Hypercube">Hyper-Cube Source Code</a></li>
+<li><a
+href="https://www.ndss-symposium.org/wp-content/uploads/2020/02/23096-paper.pdf">Hyper-Cube
+Paper</a></li>
+<li><a href="https://github.com/RUB-SysSec/Hypercube">Hyper-Cube Source
+Code</a></li>
 </ul>
-<h5 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</h5>
+<h5 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining
+Magma: A Ground-Truth Fuzzing Benchmark</h5>
 <ul>
-<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang
+Liu</a></li>
 <li>Suitable for: BS/Master semester Project</li>
 <li>Keywords: Fuzzing, Evaluation, Benchmark</li>
 </ul>
-<p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. By reverse-engineering the commit which fixed a certain bug, we can identify what the root cause of the bug was, reintroduce it, and add a check (a canary) to determine when that bug is triggered, based on program state information available at runtime (i.e., variable values).</p>
-<p>As fuzzers are tuned and improved on a regular basis, the benchmark upon which they’re evaluated must equally be upgraded, to keep up with the progress and avoid becoming out-dated. To achieve this, new targets and bugs must be added frequently, and old targets and bugs must be checked again for relevance, in case some bugs become unreachable/untrigerrable, or in case the target’s source code has changed enough to disallow the reintroduction of some bug without reintroducing old code functionality.</p>
+<p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer
+evaluation framework that enables accurate performance measurements by
+leveraging ground-truth information on bugs in real software. Magma
+includes a library of real targets (e.g. libpng, libtiff, openssl, etc…)
+with real bugs that have been re-introduced into those targets based on
+previous bug reports and fix commits. By reverse-engineering the commit
+which fixed a certain bug, we can identify what the root cause of the
+bug was, reintroduce it, and add a check (a canary) to determine when
+that bug is triggered, based on program state information available at
+runtime (i.e., variable values).</p>
+<p>As fuzzers are tuned and improved on a regular basis, the benchmark
+upon which they’re evaluated must equally be upgraded, to keep up with
+the progress and avoid becoming out-dated. To achieve this, new targets
+and bugs must be added frequently, and old targets and bugs must be
+checked again for relevance, in case some bugs become
+unreachable/untrigerrable, or in case the target’s source code has
+changed enough to disallow the reintroduction of some bug without
+reintroducing old code functionality.</p>
 <p>For this project, you are expected to:</p>
 <ul>
 <li>Add a few new fuzzers to Magma</li>
@@ -218,7 +533,11 @@
 <li>Develop CI/CD to handle third-party testing requests</li>
 </ul>
 <h5 id="other-projects">Other projects</h5>
-<p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
+<p>Several other projects are possible in the areas of software and
+system security. We are open to discussing possible projects around the
+development of security benchmarks, using machine learning to detect
+vulnerabilities, secure memory allocation, sanitizer-based coverage
+tracking, and others.</p>
 
 
 </div>
