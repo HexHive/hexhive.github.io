@@ -39,7 +39,7 @@
 <p>This is a list of possible open, unassigned BSc or MSc research projects in the HexHive group <b>for EPFL students</b>.</p>
 <p>Check out our list of <a href="past_projects.html">completed projects</a> to get an idea of past projects.</p>
 <p>The projects are designed to be adjustable and scalable according to the type of BSc, MSc, or short PhD research project depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
-<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/vtLPqWz6ZHHMApkSA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews.</p>
+<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/vtLPqWz6ZHHMApkSA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews. Apply early as spots are limited.</p>
 <p>In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss! Reach out to the people most closest to your ideas and we'll let the ideas bubble up.</p>
 
 <nav id="TOC" role="doc-toc">
@@ -54,8 +54,6 @@ Retrowriting</a></li>
 <li><a
 href="#benchmarking-fuzzers-for-structured-text-input-software">Benchmarking
 Fuzzers for Structured Text Input Software</a></li>
-<li><a href="#exploring-proprietary-android-system-services">Exploring
-Proprietary Android System Services</a></li>
 <li><a href="#investigating-the-rp2350-bootrom">Investigating the RP2350
 bootrom</a></li>
 <li><a
@@ -288,33 +286,6 @@ xml, csv, tsv, jq, yq, sqlite.</li>
 <li>Familiarity with NixOS and Nix-based build tools.</li>
 <li>Experience with fuzzing and triaging compiler/interpreter bugs.</li>
 </ul>
-<h5 id="exploring-proprietary-android-system-services">Exploring
-Proprietary Android System Services</h5>
-<ul>
-<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp
-Mao</a></li>
-<li>Suitable for: MSc project, MSc semester project</li>
-<li>Keywords: Android, reverse engineering, frida</li>
-</ul>
-<p>Android system services (high-privileged userspace processes) are an
-important piece of Android’s security architecture. Smartphone vendors
-usually modify Android and add their own features, which often include
-additional system services. These system services are an interesting
-target for malicioius apps, since the services’ API is usually
-accessible to an app. While past research has predominantly focused on
-native (C++) system services, this project aims to investigate the
-system services that appear to be implemented in Java.</p>
-<p>The objective of this project is to develop tools for analyzing
-proprietary Java system services. We aim to understand how these
-services operate, their privilege levels, and any potential
-vulnerabilities they may have. An ideal outcome of the project is a tool
-that can be deployed against a phone to then automatically analyze all
-system services.</p>
-<p>Project tasks (in no particular order): - Writing frida hooks to
-dynamically analyze running proprietary Java services -
-Reverse-engineering proprietary Java services</p>
-<p>Students interested in this project should have written at least one
-frida script to hook an Android app.</p>
 <h5 id="investigating-the-rp2350-bootrom">Investigating the RP2350
 bootrom</h5>
 <ul>
