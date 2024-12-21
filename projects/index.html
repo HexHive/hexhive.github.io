@@ -22,9 +22,9 @@
 	<ul class="navbar-nav mr-auto">
 		<li><a class="nav-link" href="../#people">People</a></li>
 		<li class="nav-item"><a class="nav-link" href="../publications">Publications</a></li>
-		<li class="nav-item active"><a class="nav-link" href="#">Projects</a></li>
+		<li class="nav-item"><a class="nav-link" href="../projects">Projects</a></li>
 		<li class="nav-item"><a class="nav-link" href="../teaching/">Teaching</a></li>
-		<li class="nav-item"><a class="nav-link" href="../epflprojects">Student Projects</a></li>
+		<li class="nav-item active"><a class="nav-link" href="#">Student Projects</a></li>
 	</ul>
 	</div>
 	<img src="../img/epfl.png" class="ml-auto" width="100px"/>
@@ -33,90 +33,147 @@
 
 <main role="main" class="container">
 
-<section id="ERCCodeSan">
+<section id="epflprojects">
 <div class="jumbotron">
-<h4>ERC StG CodeSan: Code Sanitization for Vulnerability Pruning and
-Exploitation Mitigation</h4>
-<img src="erc_logo.jpg" width="20%" class="rounded float-right" alt="ERC logo"/>
-<p>Despite massive efforts in securing software, about 60 security bugs are publicly reported each month. Systems software is prone to low level bugs caused by undefined behavior (memory corruption, type confusion, or API confusion). Exploits abuse undefined behavior to execute attacker specified code, or to leak information.<br/>
+<h4 id="hexhive-phd-msc-bsc-projects">HexHive PhD, MSc, BSc projects</h4>
+<p>This is a list of possible open, unassigned BSc or MSc research projects in the HexHive group <b>for EPFL students</b>.</p>
+<p>Check out our list of <a href="past_projects.html">completed projects</a> to get an idea of past projects.</p>
+<p>The projects are designed to be adjustable and scalable according to the type of BSc, MSc, or short PhD research project depending on the depth of the evaluation and exploration. For all projects we expect an open mind, good coding skills (especially in C/C++), and the willingness to learn. Previous experience with compilers (LLVM), build systems, and reverse engineering helps but is not required.</p>
+<p>If you are interested in any of these topics then apply through <a href="https://forms.gle/vtLPqWz6ZHHMApkSA">our application form</a>. All project applications have to go through this form and we will internally discuss all applications and then invite students for interviews. Apply early as spots are limited.</p>
+<p>In the HexHive we welcome independent ideas from students as well, as long as they focus on the topics of system and software security, especially (but not exclusively) in sanitization of unsafe code, interactions between different components, mitigations, compiler-based security analyses, or fuzzing. So if you have an idea for your own project let us know and we can discuss! Reach out to the people most closest to your ideas and we'll let the ideas bubble up.</p>
 
-We propose code sanitization (CodeSan), a comprehensive approach to improve code quality. CodeSan will sanitize software by (i) automating bug discovery during development through software testing and (ii) protecting deployed software through reflective mitigations. CodeSan trades formal completeness for practical scalability in three steps: First, policy-based sanitization makes undefined behavior (through violations of memory safety, type safety, or API flow safety) explicit and detectable given concrete test inputs. Second, automatic test case generation increases testing coverage for large programs without the need for pre-existing test cases, enabling broader and automated use of policy-based sanitization. Third, for deployed software, reflective mitigations place runtime checks precisely where they are needed based on data-flow and control-flow coverage from our testing efforts. CodeSan complements formal approaches by protecting software that is currently out of reach due to its size, complexity, or low level nature.<br/>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#android-acropalypse">Android acropalypse</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
+<li><a href="#investigating-the-rp2350-bootrom">Investigating the RP2350 bootrom</a></li>
+<li><a href="#creating-a-cycle-accurate-multi-architecture-simulator">Creating a cycle-accurate multi-architecture simulator</a></li>
+<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
+<li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
+<li><a href="#hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</a></li>
+<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#other-projects">Other projects</a></li>
+</ul>
+</nav>
+<h5 id="android-acropalypse">Android acropalypse</h5>
+<ul>
+<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Suitable for: Msc Semester Project / Thesis</li>
+<li>Keywords: Reverse Engineering, Static Analysis</li>
+</ul>
+<p>You might have heard about the recent security disaster that is <a href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>. Well, it turns out that the reason behind this bug is Google silently updating some <a href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s API for opening files</a> which causes files not to be truncated anymore when opening them.</p>
+<p>This is pretty wild and we think that there might be many more applications of aCropalypse, not just cropped screenshots. This project is about writing tooling to automatically analyze Android apks and searching for potential alternative data leaks.</p>
+<p>A candidate should be interested in:</p>
+<ul>
+<li>Android application reverse engineering</li>
+<li>Static analysis tooling for Android apks</li>
+</ul>
+<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h5>
+<ul>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
+</ul>
+<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
+<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
+<ul>
+<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
+<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
+<li>Modify Retrowrite to support ARM64 kernel modules.</li>
+<li>Evaluate the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
+</ul>
+<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
+<h5 id="investigating-the-rp2350-bootrom">Investigating the RP2350 bootrom</h5>
+<ul>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
+<li>Suitable for: MSc semester project</li>
+<li>Keywords: Emulation, dynamic binary instrumentation, re-hosting</li>
+</ul>
+<p>The <a href="https://www.raspberrypi.com/products/rp2350/">new RP2350</a> microcontroller has a wide range of capabilities, including Arm TrustZone-M for its Cortex-M33 cores, dual-architecture (RISC-V/Arm) support, special RPi-only peripherals (HSTX, PIO), etc. Furthermore, it supports secure boot and booting from encrypted flash. These security features are new additions in comparison to the features of the (older and less capable) RP2040 microcontroller.</p>
+<p>In order to properly support all those features, not only the hardware but also the bootrom needed to be redesigned. Raspberry Pi luckily open-sourced the <a href="https://github.com/raspberrypi/pico-bootrom-rp2350">code for the bootrom</a>, which allows for static analysis of the code. However, static analysis only gets us so far; dynamic analysis provides us with even more insights into its functionality and run-time values for variables, peripheral state, etc.</p>
+<p>In this project, we aim to re-host the RP2350 bootrom into a virtual environment, which allows us to step through the bootrom’s code at runtime and interact with its runtime state.</p>
+<p>An interested student ideally has experience with embedded development for microcontrollers and is comfortable with reading/understanding Arm and/or RISC-V assembly. Familiarity with emulation frameworks such as Unicorn is a plus.</p>
+<h5 id="creating-a-cycle-accurate-multi-architecture-simulator">Creating a cycle-accurate multi-architecture simulator</h5>
+<ul>
+<li>Point of contact: <a href="florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
+<li>Suitable for: MSc semester project</li>
+<li>Keywords: Microarchitecture, simulation</li>
+</ul>
+<p><a href="https://github.com/radareorg/r2wars">r2wars</a> is a game in which participants write small assembly bots that execute in the same address space. Whichever bot crashes first (e.g., by being overwritten by the competing bot) loses. This game is an adaptation of the original <a href="https://en.wikipedia.org/wiki/Corewars">Corewars</a> idea but with a twist: instead of being based on a programming language similar to assembly designed specifically for this kind of game, r2wars builds on top of the radare2 reverse engineering tooling and allows bots to be written in real-world architecture assembly (e.g., x86, Arm, RISC-V, Mips, …). However, while the supported ISAs are taken from the real world, the execution model is far from close to reality. Most instructions take the same amount of time, no matter the ISA or their complexity. In a real system, more complex instructions would execute in more cycles, and microarchitectural state such as pipeline state, caches, etc. would affect performance.</p>
+<p>In this project, we aim to model r2wars “closer to the real world”, i.e., execute instructions in a cycle-accurate simulation. For this purpose, we can leverage a cycle-accurate simulator such as <a href="https://www.gem5.org/">gem5</a>.</p>
+<p>The project requires familiarity with assembly code (at least reading and understanding) as well as basic knowledge about microarchitectural state.</p>
+<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
+<ul>
+<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
+<li>Suitable for: MSc thesis</li>
+<li>Keywords: kernel security, data race protection, security policy</li>
+</ul>
+<p>System call filtering is a crucial part of protection policies ubiquitous in cloud, desktop and mobile environments (Android, Docker, etc.). The existing SECCOMP filter system is unable to inspect arguments passed by reference since the user can modify the values in memory, resulting in a TOCTTOU exploit.</p>
+<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel, exploiting the user memory access API to provide double fetch protection. In this project, you will implement and evaluate SECCOMP filtering for system call arguments passed by reference, leveraging Midas to protect the kernel from the double fetch introduced in the process.</p>
+<ul>
+<li>This project requires:
+<ul>
+<li>Expert experience in C development</li>
+<li>Experience with standard C/GNU build, development and debug tools (gdb, Makefiles)</li>
+<li>Understanding of OS principles</li>
+<li>Basic experience of OS coding/course project</li>
+<li>Understanding of the x86 architecture and assembly coding/debugging</li>
+</ul></li>
+</ul>
+<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</h5>
+<ul>
+<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han Zheng</a></li>
+<li>Keywords: Benchmark, Fuzzing</li>
+</ul>
+<p>Fuzzing is an efficient software testing technique to reveal bugs. Therefore it has been widely investigated both in academia and industry. Despite the growth of the newly proposed fuzzing prototypes, evaluating the fuzzer’s coverage capability is still challenging.</p>
+<p>Existing platforms like fuzzbench pick the well-constructed harness, which enable the fuzzers to iterate over each seed in the queue exhaustively.<br />
+Nevertheless, real-world scenarios might deviate from this ideal: seed explosion widely exists, fuzzer’s seed selection capability is critical and should not be deprioritize in the evaluation.</p>
+<p>In this project, we will extend fuzzbench to more complex targets, which allows a more thorough assessment of fuzzer’s seed selection capability.</p>
+<p>The goal of this project:</p>
+<ul>
+<li>design a metric to define and select the “complex” targets</li>
+<li>integrate the target into the fuzzbench and evaluate existing fuzzers</li>
+<li>propose some metrics other than coverage to assess the seed selection capability.</li>
+</ul>
+<p>A candidate should be interested in (ideally familiar with) the following: * Python * Basic knowledge of configure/cmake/make * Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
+<h5 id="hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: Master Semester Project</li>
+<li>Keywords: Blackbox, Virtual Device, Fuzzing</li>
+</ul>
+<p>Virtual devices remain the main attack surface to hypervisors. Vulnerabilities in virtual devices lead to denial of service, data breaches, execution hijacking, and other security problems. Hyper-Cube was proposed to fuzz virtual devices. It is a blackbox fuzzer and has very high throughput. Hyper-Cube has great usability but suffers from the following two problems:</p>
+<ul>
+<li>Hyper-Cube is only compatible with hypervisors that support a x86 32-bit OS.</li>
+</ul>
+<p>In this project, we aim to achieve three specific goals.</p>
+<ul>
+<li>Adjust Hyper-Cube OS to be 64-bit compatible.</li>
+<li>Optimize the implementation to achieve higher throughput.</li>
+<li>Analyze found bugs, report them, and help to fix.</li>
+</ul>
+<p>We are building an extensive blackbox virtual device fuzzer based on Hyper-Cube. A candidate is required to have experience with programming in C, compiling with Clang, programming profiling (e.g., FlameGraph), and algorithm optimization. It is preferable but not necessary to have experience with fuzzing, the development of operating systems and virtual devices, ARM, Hyper-V, VMWare Esxi, and macOS.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.ndss-symposium.org/wp-content/uploads/2020/02/23096-paper.pdf">Hyper-Cube Paper</a></li>
+<li><a href="https://github.com/RUB-SysSec/Hypercube">Hyper-Cube Source Code</a></li>
+</ul>
+<h5 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: BS/Master semester Project</li>
+<li>Keywords: Fuzzing, Evaluation, Benchmark</li>
+</ul>
+<p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. By reverse-engineering the commit which fixed a certain bug, we can identify what the root cause of the bug was, reintroduce it, and add a check (a canary) to determine when that bug is triggered, based on program state information available at runtime (i.e., variable values).</p>
+<p>As fuzzers are tuned and improved on a regular basis, the benchmark upon which they’re evaluated must equally be upgraded, to keep up with the progress and avoid becoming out-dated. To achieve this, new targets and bugs must be added frequently, and old targets and bugs must be checked again for relevance, in case some bugs become unreachable/untrigerrable, or in case the target’s source code has changed enough to disallow the reintroduction of some bug without reintroducing old code functionality.</p>
+<p>For this project, you are expected to:</p>
+<ul>
+<li>Add a few new fuzzers to Magma</li>
+<li>Port existing bug oracles to recent targets</li>
+<li>Develop CI/CD to handle third-party testing requests</li>
+</ul>
+<h5 id="other-projects">Other projects</h5>
+<p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
-CodeSan is a compelling, comprehensive, and adaptive approach to thoroughly address undefined behavior for complex software. The three proposed thrusts complement each other naturally and will immediately guard large software systems such as Google Chromium, Mozilla Firefox, the Android system, or the Linux kernel, making them resilient against attacks.
-
-In line with PI Payer’s track record on open sourcing his group’s research artifacts on cast sanitization, transformative fuzzing, or control-flow hijacking mitigations, all prototypes produced during CodeSan will be released as open-source.</p>
-
-<h6>Duration: March 2020 to February 2025</h6>
-
-<h6>Publications, Prototypes, and Artifacts</h6>
-
-<p class="publication">
-<b><a href="../publications/files/23SEC.pdf" name="23SEC">GLeeFuzz: Fuzzing WebGL Through Error-Message-Guided Mutation</a></b><span class="float-right"><b>2023</b></span><br/>Hui Peng, Zhihao Yao, Ardalan Amiri Sani, Dave (Jing) Tian, and Mathias Payer.<br/>In <i><b>SEC'23</b>: Usenix Security Symposium, 2023</i> (<a href="https://github.com/HexHive/GLeeFuzz">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/23Oakland.pdf" name="23Oakland">TEEzz: Fuzzing Trusted Applications on COTS Android Devices</a></b><br/>Marcel Busch, Mathias Payer, Aravind Machiry, Christopher Kruegel, Giovanni Vigna, and Chad Spensky.<br/>In <i><b>Oakland'23</b>: IEEE International Symposium on Security and Privacy, 2023</i></p>
-
-<p class="publication">
-<b><a href="../publications/files/22CCS.pdf" name="22CCS">Evocatio: Conjuring Bug Capabilities from a Single PoC</a></b><span class="float-right"><b>2022</b></span><br/>Zhiyuan Jiang, Shuitao Gan, Adrian Herrera, Flavio Toffalini, Lucio Romerio, Chaojing Tang, Manuel Egele, Chao Zhang, and Mathias Payer.<br/>In <i><b>CCS'22</b>: ACM Conference on Computer and Communication Security, 2022</i> (<a href="https://github.com/HexHive/Evocatio">source</a>, <a href="http://dx.doi.org/10.1145/3548606.3560575">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22CCS2.pdf" name="22CCS2">PACMem: Enforcing Spatial and Temporal Memory Safety via ARM Pointer Authentication</a></b><br/>Yuan Li, Wende Tan, Zhizheng Lv, Songtao Yang, Mathias Payer, Ying Liu, and Chao Zhang.<br/>In <i><b>CCS'22</b>: ACM Conference on Computer and Communication Security, 2022</i> (<a href="http://dx.doi.org/10.1145/3548606.3560598">DOI</a>)</p>
-<p class="publication">
-<b><a href="../publications/files/22FSE.pdf" name="22FSE">Minerva: Browser API Fuzzing with Dynamic Mod-Ref Analysis</a></b><br/>Chijin Zhou, Quan Zhang, Mingzhe Wang, Lihua Guo, Jie Liang, Zhe Liu, Mathias Payer, and Yu Jiang.<br/>In <i><b>FSE'22</b>: ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering, 2022</i></p>
-
-<p class="publication">
-<b><a href="../publications/files/22CHES.pdf" name="22CHES">BreakMi: Reversing, Exploiting and Fixing Xiaomi Fitness Tracking Ecosystem</a></b><br/>Marco Casagrande, Eleonora Losiouk, Mauro Conti, Mathias Payer, and Daniele Antonioli.<br/>In <i><b>CHES'22</b>: IACR Conference on Crypotographic Hardware and Embedded Systems, 2022</i> (<a href="https://github.com/Skiti/BreakMi">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22WOOT.pdf" name="22WOOT">On the Insecurity of Vehicles Against Protocol-Level Bluetooth Threats</a></b><br/>Daniele Antonioli, and Mathias Payer.<br/>In <i><b>WOOT'22</b>: Usenix Workshop on Offensive Technologies, 2022</i></p>
-
-<p class="publication">
-<b><a href="../publications/files/22SEC.pdf" name="22SEC">Midas: Systematic Kernel TOCTTOU Protection</a></b><br/>Atri Bhattacharyya, Uros Tesic, and Mathias Payer.<br/>In <i><b>SEC'22</b>: Usenix Security Symposium, 2022</i> (<a href="https://github.com/HexHive/Midas">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22SEC2.pdf" name="22SEC2">ProFactory: Improving IoT Security via Formalized Protocol Customization</a></b><br/>Fei Wang, Jianliang Wu, Yuhong Nan, Yousra Aafer, Xiangyu Zhang, Dongyan Xu, and Mathias Payer.<br/>In <i><b>SEC'22</b>: Usenix Security Symposium, 2022</i> (<a href="https://github.com/JacobFeiWang/USENIX22_ProFactory">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22NDSS.pdf" name="22NDSS">The Taming of the Stack: Isolating Stack Data from Memory Errors</a></b><br/>Kaiming Huang, Yongzhe Huang, Mathias Payer, Zhiyun Qian, Jack Sampson, Gang Tan, and Trent Jaeger.<br/>In <i><b>NDSS'22</b>: Network and Distributed System Security Symposium, 2022</i> (<a href="http://dx.doi.org/10.14722/NDSS.2022.23060">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22NDSS2.pdf" name="22NDSS2">Preventing Kernel Hacks with HAKCs</a></b><br/>Derrick McKee, Yianni Giannaris, Carolina Ortega Perez, Howard Shrobe, Mathias Payer, Hamed Okhravi, and Nathan Burow.<br/>In <i><b>NDSS'22</b>: Network and Distributed System Security Symposium, 2022</i> (<a href="./files/22NDSS2-presentation.pdf">presentation</a>,  <b>distinguished paper award</b>, <a href="https://github.com/mit-ll/hakc">source</a>, <a href="http://dx.doi.org/10.14722/ndss.2022.24026">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/22AsiaCCS.pdf" name="22AsiaCCS">BLURtooth: Exploiting Cross-Transport Key Derivation in Bluetooth Classic and Bluetooth Low Energy</a></b><br/>Daniele Antonioli, Nils Tippenhauer, Kasper Rasmussen, and Mathias Payer.<br/>In <i><b>AsiaCCS'22</b>: ACM Symp. on InformAtion, Computer and Communications Security, 2022</i> (<a href="https://hexhive.epfl.ch/BLURtooth/">project</a>, <a href="https://youtu.be/FzFQD3XTLlA">video</a>, <a href="http://dx.doi.org/10.1145/3488932.3523258">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21CCS.pdf" name="21CCS">Igor: Crash Deduplication Through root-Cause Clustering</a></b><span class="float-right"><b>2021</b></span><br/>Zhiyuan Jiang, Xiyue Jiang, Ahmad Hazimeh, Chaojing Tang, Chao Zhang, and Mathias Payer.<br/>In <i><b>CCS'21</b>: ACM Conference on Computer and Communication Security, 2021</i> (<a href="https://github.com/HexHive/Igor">source</a>, <a href="http://dx.doi.org/10.1145/3460120.3485364">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21MICRO.pdf" name="21MICRO">Principal Kernel Analysis: A Tractable Methodology to Simulate Scaled GPU Workloads</a></b><br/>Cesar Avalos Baddouh, Mahmoud Khairy, Roland N. Green, Mathias Payer, and Timothy G. Rogers.<br/>In <i><b>MICRO'21</b>: International Symposium on Microarchitecture, 2021</i></p>
-
-<p class="publication">
-<b><a href="../publications/files/21CODASPY.pdf" name="21CODASPY">Code Specialization through Dynamic Feature Observation</a></b><br/>Priyam Biswas, Nathan Burow, and Mathias Payer.<br/>In <i><b>CODASPY'21</b>: ACM Conference on Data and Application Security and Privacy, 2021</i> (<a href="https://github.com/HexHive/Ancile">source</a>, <a href="http://dx.doi.org/10.1145/3422337.3447844">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21SEC.pdf" name="21SEC">LIGHTBLUE: Automatic Profile-Aware Debloating of Bluetooth</a></b><br/>Jianliang Wu, Ruoyu Wu, Daniele Antonioli, Mathias Payer, Nils Ole Tippenhauer, Dongyan Xu, Dave (Jing) Tian, and Antonio Bianchi.<br/>In <i><b>SEC'21</b>: Usenix Security Symposium, 2021</i> (<a href="https://github.com/purseclab/lightblue">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21ICSE.pdf" name="21ICSE">Too Quiet in the Library: An Empirical Study of Security Updates in Android Apps' Native Code</a></b><br/>Sumaya Almanee, Arda Unal, Mathias Payer, and Joshua Garcia.<br/>In <i><b>ICSE'21</b>: International Conference on Software Engineering, 2021</i> (<a href="https://www.youtube.com/watch?v=bhetmqVN6Qc">video</a>, <a href="https://github.com/salmanee/Librarian">source</a>, <a href="http://dx.doi.org/10.1109/ICSE43902.2021.00122">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21ISSTA2.pdf" name="21ISSTA2">Seed Selection for Successful Fuzzing</a></b><br/>Adrian Herrera, Hendra Gunadi, Shane Magrath, Michael Norrish, Mathias Payer, and Tony Hosking.<br/>In <i><b>ISSTA'21</b>: ACM SIGSOFT International Symposium on Software Testing and Analysis, 2021</i> (<a href="http://dx.doi.org/10.1145/3460319.3464795">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21ISSTA.pdf" name="21ISSTA">Gramatron: Effective Grammar-aware Fuzzing</a></b><br/>Prashast Srivastava, and Mathias Payer.<br/>In <i><b>ISSTA'21</b>: ACM SIGSOFT International Symposium on Software Testing and Analysis, 2021</i> (<a href="https://github.com/HexHive/Gramatron">source</a>, <a href="http://dx.doi.org/10.1145/3460319.3464814">DOI</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/21SIGMETRICS.pdf" name="21SIGMETRICS">MAGMA: A Ground-Truth Fuzzing Benchmark</a></b><br/>Ahmad Hazimeh, Adrian Herrera, and Mathias Payer.<br/>In <i><b>SIGMETRICS'21</b>: ACM SIGMETRICS, 2021</i> (<a href="https://github.com/HexHive/Magma">source</a>, <a href="http://dx.doi.org/10.1145/3428334">DOI</a>)</p>
-
-<!-- 2020 -->
-<p class="publication"><b><a href="../publications/files/20ATC.pdf" name="20ATC">FuZZan: Efficient Sanitizer Metadata Design for Fuzzing</a></b><span class="float-right"><b>2020</b></span><br/>Yuseok Jeon, WookHyun Han, Nathan Burow, and Mathias Payer.<br/>In <i><b>ATC'20</b>: Usenix Annual Technical Conference, 2020</i> (<a href="https://github.com/HexHive/FuZZan">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/20SEC3.pdf" name="20SEC3">USBFuzz: A Framework for Fuzzing USB Drivers by Device Emulation</a></b><br/>Hui Peng, and Mathias Payer.<br/>In <i><b>SEC'20</b>: Usenix Security Symposium, 2020</i> (<a href="https://github.com/HexHive/USBFuzz">source</a>)</p>
-
-<p class="publication">
-<b><a href="../publications/files/20SEC2.pdf" name="20SEC2">HALucinator: Firmware Re-hosting Through Abstraction Layer Emulation</a></b><br/>Abraham A. Clements, Eric Gustafson, Tobias Scharnowski, David Fritz, Christopher Kruegel, Giovanni Vigna, Saurabh Bagchi, and Mathias Payer.<br/>In <i><b>SEC'20</b>: Usenix Security Symposium, 2020</i> (<a href="https://github.com/embedded-sec/halucinator">HALucinator source</a>, <a href="https://github.com/ucsb-seclab/hal-fuzz">HALfuzz source</a>)</p>
 
 </div>
 </section>
