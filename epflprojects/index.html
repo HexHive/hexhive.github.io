@@ -49,7 +49,6 @@
 <li><a href="#investigating-the-rp2350-bootrom">Investigating the RP2350 bootrom</a></li>
 <li><a href="#creating-a-cycle-accurate-multi-architecture-simulator">Creating a cycle-accurate multi-architecture simulator</a></li>
 <li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
-<li><a href="#benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</a></li>
 <li><a href="#hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</a></li>
 <li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
 <li><a href="#other-projects">Other projects</a></li>
@@ -119,22 +118,6 @@
 <li>Understanding of the x86 architecture and assembly coding/debugging</li>
 </ul></li>
 </ul>
-<h5 id="benchmarking-fuzzers-for-seed-selection-capability">Benchmarking Fuzzers For Seed Selection Capability</h5>
-<ul>
-<li>Point of contact: <a href="mailto:han.zheng@epfl.ch">Han Zheng</a></li>
-<li>Keywords: Benchmark, Fuzzing</li>
-</ul>
-<p>Fuzzing is an efficient software testing technique to reveal bugs. Therefore it has been widely investigated both in academia and industry. Despite the growth of the newly proposed fuzzing prototypes, evaluating the fuzzer’s coverage capability is still challenging.</p>
-<p>Existing platforms like fuzzbench pick the well-constructed harness, which enable the fuzzers to iterate over each seed in the queue exhaustively.<br />
-Nevertheless, real-world scenarios might deviate from this ideal: seed explosion widely exists, fuzzer’s seed selection capability is critical and should not be deprioritize in the evaluation.</p>
-<p>In this project, we will extend fuzzbench to more complex targets, which allows a more thorough assessment of fuzzer’s seed selection capability.</p>
-<p>The goal of this project:</p>
-<ul>
-<li>design a metric to define and select the “complex” targets</li>
-<li>integrate the target into the fuzzbench and evaluate existing fuzzers</li>
-<li>propose some metrics other than coverage to assess the seed selection capability.</li>
-</ul>
-<p>A candidate should be interested in (ideally familiar with) the following: * Python * Basic knowledge of configure/cmake/make * Experience with Coverage Guided Greybox Fuzzer (e.g., AFL/AFL++)</p>
 <h5 id="hyper-cube2-for-64-bit-hypervisors">Hyper-Cube2 for 64-bit Hypervisors</h5>
 <ul>
 <li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
