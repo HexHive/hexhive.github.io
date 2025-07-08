@@ -50,6 +50,8 @@
 <li><a href="#building-better-benchmarks">Building Better Benchmarks</a></li>
 <li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
 <li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
+<li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -147,6 +149,36 @@
 <li>Add a few new fuzzers to Magma</li>
 <li>Port existing bug oracles to recent targets</li>
 <li>Develop CI/CD to handle third-party testing requests</li>
+</ul>
+<h5 id="legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</h5>
+<ul>
+<li>Point of contact: <a href="rafaila.galanopoulou@epfl.ch">Rafaila Galanopoulou</a></li>
+<li>Suitable for: MSc semester project or thesis, potentially also BSc semester project</li>
+<li>Keywords: systems security, language safety, vulnerability analysis</li>
+</ul>
+<p>Developed for over 30 years, <a href="https://en.wikipedia.org/wiki/History_of_Linux">Linux</a> has already become the computing foundation for today’s digital world; from gigantic, complex mainframes (e.g., supercomputers) to cheap, wimpy embedded devices (e.g., IoTs), countless applications are built on top of it. <a href="https://doc.rust-lang.org/book/">Rust</a> is a statically and strongly-typed language. In short, its safety model regulates the accesses to memory locations: at one given time, only one variable may write to a memory location but many may read from it.</p>
+<p>We focus on a selection of widely used Unix utilities such as <code>sed</code>, <code>grep</code>, <code>tar</code>, <code>find</code>, <code>netcat</code>, and <code>sort</code>. For each utility, we will either port an existing Rust-based clone or develop a minimal functional reimplementation in Rust using automated translation tools. The original GNU or BSD implementations written in C will serve as the baseline for comparison.</p>
+<p>For this project, the objectives are to:</p>
+<ul>
+<li>Identify and compare the types and historical evolution of vulnerabilities in C and Rust implementations.</li>
+<li>Analyze how Rust’s safety guarantees mitigate specific classes of bugs.</li>
+<li>Evaluate the practicality and trade-offs of rewriting or porting Unix utilities from C to Rust.</li>
+<li>Investigate the impact of feature set size and code complexity on the overall security surface.</li>
+</ul>
+<h5 id="how-deep-is-your-love">How deep is your love?</h5>
+<ul>
+<li>Point of contact: <a href="rafaila.galanopoulou@epfl.ch">Rafaila Galanopoulou</a></li>
+<li>Suitable for: MSc semester project or thesis, potentially also BSc semester project</li>
+<li>Keywords: cross-language analysis, dependency mapping, software supply chain security</li>
+</ul>
+<p>Modern software ecosystems increasingly rely on cross-language architectures. These dependencies are often deeply nested and opaque, making it difficult to fully understand control flow, data flow, and potential risk boundaries. Using multiple programming languages and libraries has other challenges, i.e., increasing the complexity and support issues. As a result, developers need to track versions, bugs, and compatibility with multiple compilers and runtimes rather than a single set.</p>
+<p>We focus on a curated set of 10–50 real-world PyPI software projects, selected based on factors such as popularity and maturity. For each project, we will create the call graphs using either static analysis or dynamic tracing. These graphs aim to capture the complete invocation paths, including transitions between high-level code and native components written in other programming languages.</p>
+<p>For this project, the objectives are to:</p>
+<ul>
+<li>Select and analyze a diverse set of Python projects using cross-language components.</li>
+<li>Build static or dynamic call graphs that trace API and function invocations across language boundaries.</li>
+<li>Annotate and classify unresolved edges, particularly those crossing into foreign code, to identify fragile or opaque integration points.</li>
+<li>Visualize and quantify key metrics: total functions, call graph coverage,language breakdown, and which functionalities are implemented in each language.</li>
 </ul>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
