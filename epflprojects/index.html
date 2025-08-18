@@ -52,6 +52,7 @@
 <li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
 <li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
 <li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
+<li><a href="#machine-learning-model-obfuscation">Machine Learning Model Obfuscation</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -180,6 +181,24 @@
 <li>Annotate and classify unresolved edges, particularly those crossing into foreign code, to identify fragile or opaque integration points.</li>
 <li>Visualize and quantify key metrics: total functions, call graph coverage,language breakdown, and which functionalities are implemented in each language.</li>
 </ul>
+<h5 id="machine-learning-model-obfuscation">Machine Learning Model Obfuscation</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: BSc semester project, potentially BSs thesis, MSc semester project or thesis</li>
+<li>Keywords: AI compiler, ML models, ML binaries, obfuscation</li>
+</ul>
+<p>AI compilers transform scripts that describe machine learning models (ML models) into hardware-executable binaries (ML binaries). Examples include PyTorch Glow, TensorFlow XLA, Apache TVM, and NVIDIA cuDNN. The compilation process typically lowers models through multiple stages: first into high-level intermediate representations (IRs), then into low-level IRs, and finally into machine code [1]. High-level IRs usually take the form of computation graphs that represent the structure of the ML model. They are generally hardware-agnostic, meaning they don’t assume a specific execution platform. Low-level IRs, on the other hand, are generally framework-agnostic, meaning they can be generated from different front-end frameworks but are more closely tied to specific hardware backends. In some cases, ML models can also be compiled to WebAssembly (Wasm), which provides relatively fast performance and is portable across different platforms.</p>
+<p>While ML models rely on massive amounts of data and computing resources, they are extremely valuable assets, and once deployed, their confidentiality must be preserved. However, this guarantee can be undermined through techniques such as model de-compilation [2] or side-channel information leakage [3].</p>
+<p>Our goal is to explore obfuscation techniques for ML models, and more broadly, to develop general capabilities for security optimization of ML models by extending and modifying compiler infrastructures. Since this project is in an early stage, the objectives are to:</p>
+<ul>
+<li>Compile diverse ML models with different compilers to obtain the corresponding binaries across multiple backends</li>
+<li>Analyze the execution of these binaries on CPU/GPU, focusing on their runtime behavior, memory access patterns, and data sharing mechanisms.</li>
+<li>Study existing machine learning–based de-compilation techniques and explore ways to break their assumptions or patterns by modifying compilers such that the generated binaries are resistant to decompilation</li>
+</ul>
+<p>Recommended readings:</p>
+<p>[1] <a href="https://huyenchip.com/2021/09/07/a-friendly-introduction-to-machine-learning-compilers-and-optimizers.html">A friendly introduction to machine learning compilers and optimizers</a><br />
+[2] <a href="https://www.usenix.org/system/files/conference/usenixsecurity25/sec24winter-prepub-338-wu-ruoyu.pdf">NEUROSCOPE: Reverse Engineering Deep Neural Network on Edge Devices using Dynamic Analysis</a><br />
+[3] <a href="https://gpuhammer.com/">GPUHammer: Rowhammer Attacks on GPU Memories are Practical</a></p>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
