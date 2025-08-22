@@ -53,6 +53,8 @@
 <li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
 <li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
 <li><a href="#machine-learning-model-obfuscation">Machine Learning Model Obfuscation</a></li>
+<li><a href="#beyond-the-sample-firmware-survey-of-embedded-system-security">Beyond the Sample Firmware: Survey of Embedded System Security</a></li>
+<li><a href="#trust-across-the-skies-survey-of-all-altitude-aero-space-security">Trust Across the Skies: Survey of All-Altitude Aero-Space Security</a></li>
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -184,7 +186,7 @@
 <h5 id="machine-learning-model-obfuscation">Machine Learning Model Obfuscation</h5>
 <ul>
 <li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
-<li>Suitable for: BSc semester project, potentially BSs thesis, MSc semester project or thesis</li>
+<li>Suitable for: BSc semester project, potentially BSc thesis, MSc semester project or thesis</li>
 <li>Keywords: AI compiler, ML models, ML binaries, obfuscation</li>
 </ul>
 <p>AI compilers transform scripts that describe machine learning models (ML models) into hardware-executable binaries (ML binaries). Examples include PyTorch Glow, TensorFlow XLA, Apache TVM, and NVIDIA cuDNN. The compilation process typically lowers models through multiple stages: first into high-level intermediate representations (IRs), then into low-level IRs, and finally into machine code [1]. High-level IRs usually take the form of computation graphs that represent the structure of the ML model. They are generally hardware-agnostic, meaning they don’t assume a specific execution platform. Low-level IRs, on the other hand, are generally framework-agnostic, meaning they can be generated from different front-end frameworks but are more closely tied to specific hardware backends. In some cases, ML models can also be compiled to WebAssembly (Wasm), which provides relatively fast performance and is portable across different platforms.</p>
@@ -192,13 +194,42 @@
 <p>Our goal is to explore obfuscation techniques for ML models, and more broadly, to develop general capabilities for security optimization of ML models by extending and modifying compiler infrastructures. Since this project is in an early stage, the objectives are to:</p>
 <ul>
 <li>Compile diverse ML models with different compilers to obtain the corresponding binaries across multiple backends</li>
-<li>Analyze the execution of these binaries on CPU/GPU, focusing on their runtime behavior, memory access patterns, and data sharing mechanisms.</li>
+<li>Analyze the execution of these binaries on CPU/GPU, focusing on their runtime behavior, memory access patterns, and data sharing mechanisms</li>
 <li>Study existing machine learning–based de-compilation techniques and explore ways to break their assumptions or patterns by modifying compilers such that the generated binaries are resistant to decompilation</li>
 </ul>
 <p>Recommended readings:</p>
 <p>[1] <a href="https://huyenchip.com/2021/09/07/a-friendly-introduction-to-machine-learning-compilers-and-optimizers.html">A friendly introduction to machine learning compilers and optimizers</a><br />
 [2] <a href="https://www.usenix.org/system/files/conference/usenixsecurity25/sec24winter-prepub-338-wu-ruoyu.pdf">NEUROSCOPE: Reverse Engineering Deep Neural Network on Edge Devices using Dynamic Analysis</a><br />
 [3] <a href="https://gpuhammer.com/">GPUHammer: Rowhammer Attacks on GPU Memories are Practical</a></p>
+<h5 id="beyond-the-sample-firmware-survey-of-embedded-system-security">Beyond the Sample Firmware: Survey of Embedded System Security</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: BSc semester project, potentially BSc thesis, MSc semester project, or thesis</li>
+<li>Keywords: Embedded system security, Hardening and attacks, Embedded inference</li>
+</ul>
+<p>Embedded systems power critical applications ranging from satellites and public transport to agricultural machinery, smart locks, routers, and cameras. Their security cannot be captured by sample firmware alone, as real-world threats span multiple layers. At the hardware level, attacks such as voltage glitching challenge integrity measurement and device resilience, while hardening techniques aim to close these gaps. At the hardware–software boundary, co-designed mitigations like MPUs and hypervisors play a key role in isolation and key management, yet remain targets of sophisticated attacks. At the software layer, authentication protocols and cryptographic keys are frequently exposed, undermining device trustworthiness. This survey provides a holistic view of these challenges and defenses, while also considering the computational capacity of embedded platforms and their growing role in enabling embedded inference at the edge.</p>
+<p>The objectives are to:</p>
+<ul>
+<li>Compile a representative list of critical embedded devices and their firmware</li>
+<li>Survey existing mitigations at the hardware, hardware–software co-design, and software levels, along with corresponding attack techniques</li>
+<li>Assess the computational capabilities of embedded systems and examine the feasibility and challenges of deploying machine learning inference on these platforms</li>
+</ul>
+<p>Recommended readings:</p>
+<p>[1] <a href="https://dl.acm.org/doi/pdf/10.1145/3433210.3453093">SoK: Enabling Security Analyses of Embedded Systems via Rehosting</a></p>
+<h5 id="trust-across-the-skies-survey-of-all-altitude-aero-space-security">Trust Across the Skies: Survey of All-Altitude Aero-Space Security</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
+<li>Suitable for: BSc semester project, potentially BSc thesis, MSc semester project, or thesis</li>
+<li>Keywords: Embedded system security, Hardening and attacks, Embedded inference</li>
+</ul>
+<p>All-altitude aero-space security spans diverse targets—including satellites, aircraft, drones, base stations, and supporting cloud infrastructures—but the most critical challenge lies in securing the integrated cloud–base station–aircraft–satellite networks. These multi-layered systems enable global communication, navigation, and control, yet also introduce cascading vulnerabilities. An adversary who compromises a single layer, such as a base station or cloud service, may propagate attacks upward to aircraft or satellites, or downward to end devices, threatening safety and mission continuity. Known attack vectors include GPS spoofing, signal jamming, avionics intrusion, and exploitation of weak authentication and key management in cross-domain links. Mitigations require coordinated defenses: trusted execution in aircraft and satellites, integrity verification at base stations, and secure orchestration in the cloud. Building resilience in these interconnected networks remains a central challenge, demanding end-to-end designs that unify hardware, protocol, and system-level defenses across altitudes.</p>
+<p>The objectives are to:</p>
+<ul>
+<li>Compile a representative list of aero-space targets</li>
+<li>Survey existing mitigations and attacks</li>
+</ul>
+<p>Recommended readings:</p>
+<p>[1] <a href="https://media.ccc.de/v/38c3-hacking-yourself-a-satellite-recovering-beesat-1">Hacking yourself a satellite - recovering BEESAT-1</a></p>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
