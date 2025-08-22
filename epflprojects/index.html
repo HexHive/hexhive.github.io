@@ -142,16 +142,15 @@
 <h5 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</h5>
 <ul>
 <li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
-<li>Suitable for: BS/Master semester Project</li>
+<li>Suitable for: BSc semester Project, potentially MSc semester project</li>
 <li>Keywords: Fuzzing, Evaluation, Benchmark</li>
 </ul>
 <p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. By reverse-engineering the commit which fixed a certain bug, we can identify what the root cause of the bug was, reintroduce it, and add a check (a canary) to determine when that bug is triggered, based on program state information available at runtime (i.e., variable values).</p>
 <p>As fuzzers are tuned and improved on a regular basis, the benchmark upon which they’re evaluated must equally be upgraded, to keep up with the progress and avoid becoming out-dated. To achieve this, new targets and bugs must be added frequently, and old targets and bugs must be checked again for relevance, in case some bugs become unreachable/untrigerrable, or in case the target’s source code has changed enough to disallow the reintroduction of some bug without reintroducing old code functionality.</p>
 <p>For this project, you are expected to:</p>
 <ul>
-<li>Add a few new fuzzers to Magma</li>
-<li>Port existing bug oracles to recent targets</li>
-<li>Develop CI/CD to handle third-party testing requests</li>
+<li>Finish collecting the Proof-of-Concepts to trigger the injected bugs</li>
+<li>Potentially automate valid input construction</li>
 </ul>
 <h5 id="legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</h5>
 <ul>
