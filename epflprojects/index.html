@@ -44,16 +44,14 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#android-acropalypse">Android acropalypse</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#towards-deterministic-dynamic-analysis-of-inter-connected-services">Towards Deterministic Dynamic Analysis of Inter-connected Services</a></li>
-<li><a href="#building-better-benchmarks">Building Better Benchmarks</a></li>
-<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
-<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
-<li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
-<li><a href="#synthesizing-peripheral-models-from-mcu-manuals-with-llms">Synthesizing Peripheral Models from MCU Manuals with LLMs</a></li>
-<li><a href="#other-projects">Other projects</a></li>
+<li><a href="#android-acropalypse" id="toc-android-acropalypse">Android acropalypse</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting" id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
+<li><a href="#seccomp-implementation-for-double-fetch-protection" id="toc-seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
+<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark" id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c" id="toc-legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
+<li><a href="#how-deep-is-your-love" id="toc-how-deep-is-your-love">How deep is your love?</a></li>
+<li><a href="#synthesizing-peripheral-models-from-mcu-manuals-with-llms" id="toc-synthesizing-peripheral-models-from-mcu-manuals-with-llms">Synthesizing Peripheral Models from MCU Manuals with LLMs</a></li>
+<li><a href="#other-projects" id="toc-other-projects">Other projects</a></li>
 </ul>
 </nav>
 <h5 id="android-acropalypse">Android acropalypse</h5>
@@ -83,42 +81,6 @@
 <li>Evaluate the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
 </ul>
 <p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
-<h5 id="towards-deterministic-dynamic-analysis-of-inter-connected-services">Towards Deterministic Dynamic Analysis of Inter-connected Services</h5>
-<ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
-<li>Suitable for: MSc thesis</li>
-<li>Keywords: Emulation, dynamic binary instrumentation, re-hosting, firmware</li>
-</ul>
-<p>Previous re-hosting work has mainly focused on bringing a single firmware image up in a virtualized environment for various dynamic analysis use cases. This approach is certainly valid for use cases such as fuzzing, where we want to simply throw as many inputs at a target’s exposed interfaces as possible, not caring too much about how realistic those inputs are.</p>
-<p>Take as an example a car’s engine control unit (ECU): if we want to find bugs via fuzzing, we “simply” (a pretty bold claim in the re-hosting world :)) execute it over and over again with randomized inputs to cover as much of its code as possible. The input interfaces might include temperature sensors inside the car’s engine. Assuming the firmware crashes when handling a reported temperature of -999°C, such a crash is certainly an interesting finding but far off from reality and therefore potentially a false positive bug (I’d like to actually see a combustion engine running at negative temperatures, especially at temps below 0K before I consider this a true positive :)).</p>
-<p>To weed out false positives in fuzzing or also for other dynamic analysis use cases (could be as simple as quick debugging iteration during firmware development), we would like to re-host firmware in a more realistic environment. One approach for this aim would be to constrain the input spaces to realistic values. Another approach (and the one we want to target in this project) is to model a full system instead of only single components. In the above example, this could mean re-hosting both the ECU firmware and potential sensor endpoints so that the sensor endpoints would provide the ECU with more realistic data based on their internal, potentially opaque calculations. However, we need to ensure deterministic execution of such a composed system to, e.g., reliably reproduce bugs. This project therefore has two goals:</p>
-<ol type="1">
-<li>Build a multi-system dynamic analysis framework</li>
-<li>Design the framework in such a way that execution is deterministic</li>
-</ol>
-<p>A student working on this project should have:</p>
-<ul>
-<li>Experience with emulation via tools such as <a href="https://www.qemu.org/">QEMU</a>, <a href="https://panda.re/">PANDA</a>, <a href="https://www.unicorn-engine.org/">Unicorn</a>, or similar</li>
-<li>Strong systems programming skills (at least C, potentially also other languages such as Rust or Zig)</li>
-<li>Reverse engineering experience</li>
-<li>Experience with/the willingness to learn about embedded systems (both microcontroller and application processor-based (e.g., Arm Cortex-M and Cortex-A)</li>
-</ul>
-<h5 id="building-better-benchmarks">Building Better Benchmarks</h5>
-<ul>
-<li>Point of contact: <a href="mailto:florian.hofhammer@epfl.ch">Florian Hofhammer</a></li>
-<li>Suitable for: MSc semester project, potentially also BSc semester project</li>
-<li>Keywords: benchmarking, evaluation, CI/CD, devops</li>
-</ul>
-<p>The <a href="https://en.wikipedia.org/wiki/Replication_crisis">replication crisis</a> in academia in general and CS in particular has caused recent developments such as conferences requiring to submit paper artifacts and awarding badges for reproduced results.</p>
-<p>While this is an important step forward in making research results more <em>reproducible</em>, the results are still not necessarily <em>comparable</em>. Different papers on the same subject may use different benchmarks to drive their point home, or use the same benchmarks but report different metrics obtained from those benchmarks (e.g., one paper focuses on compute overhead whereas another paper focuses on memory overhead).</p>
-<p>We are aiming to create a standardized set of benchmarks and metrics to evaluate papers’ artifacts and compare their results fairly. In this project, you will integrate existing research artifacts into an evaluation pipeline and extend this pipeline with additional benchmarks. You will then process the benchmark results into a standardized set of metrics.</p>
-<p>This project requires:</p>
-<ul>
-<li>A good understanding of build systems and how to build and run systems software (GNU make, cmake,…)</li>
-<li>Experience with containerization tools such as Docker or Podman</li>
-<li>Scripting/data processing experience (Python, Bash, or your favorite other language if applicable)</li>
-<li>Experience with CI/CD pipelines for automated benchmark running is a plus</li>
-</ul>
 <h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
 <ul>
 <li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
