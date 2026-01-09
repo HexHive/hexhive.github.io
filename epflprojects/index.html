@@ -44,14 +44,14 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#android-acropalypse" id="toc-android-acropalypse">Android acropalypse</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting" id="toc-arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#seccomp-implementation-for-double-fetch-protection" id="toc-seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
-<li><a href="#maintaining-magma-a-ground-truth-fuzzing-benchmark" id="toc-maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</a></li>
-<li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c" id="toc-legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
-<li><a href="#how-deep-is-your-love" id="toc-how-deep-is-your-love">How deep is your love?</a></li>
-<li><a href="#synthesizing-peripheral-models-from-mcu-manuals-with-llms" id="toc-synthesizing-peripheral-models-from-mcu-manuals-with-llms">Synthesizing Peripheral Models from MCU Manuals with LLMs</a></li>
-<li><a href="#other-projects" id="toc-other-projects">Other projects</a></li>
+<li><a href="#android-acropalypse">Android acropalypse</a></li>
+<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
+<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
+<li><a href="#agentic-magma-a-ground-truth-fuzzing-benchmark">Agentic Magma: A Ground-Truth Fuzzing Benchmark</a></li>
+<li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
+<li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
+<li><a href="#synthesizing-peripheral-models-from-mcu-manuals-with-llms">Synthesizing Peripheral Models from MCU Manuals with LLMs</a></li>
+<li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
 <h5 id="android-acropalypse">Android acropalypse</h5>
@@ -99,18 +99,17 @@
 <li>Understanding of the x86 architecture and assembly coding/debugging</li>
 </ul></li>
 </ul>
-<h5 id="maintaining-magma-a-ground-truth-fuzzing-benchmark">Maintaining Magma: A Ground-Truth Fuzzing Benchmark</h5>
+<h5 id="agentic-magma-a-ground-truth-fuzzing-benchmark">Agentic Magma: A Ground-Truth Fuzzing Benchmark</h5>
 <ul>
 <li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
 <li>Suitable for: BSc semester Project, potentially MSc semester project</li>
-<li>Keywords: Fuzzing, Evaluation, Benchmark</li>
+<li>Keywords: Agentic AI, Fuzzing, Evaluation, Benchmark</li>
 </ul>
-<p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. By reverse-engineering the commit which fixed a certain bug, we can identify what the root cause of the bug was, reintroduce it, and add a check (a canary) to determine when that bug is triggered, based on program state information available at runtime (i.e., variable values).</p>
-<p>As fuzzers are tuned and improved on a regular basis, the benchmark upon which they’re evaluated must equally be upgraded, to keep up with the progress and avoid becoming out-dated. To achieve this, new targets and bugs must be added frequently, and old targets and bugs must be checked again for relevance, in case some bugs become unreachable/untrigerrable, or in case the target’s source code has changed enough to disallow the reintroduction of some bug without reintroducing old code functionality.</p>
-<p>For this project, you are expected to:</p>
+<p><a href="https://hexhive.epfl.ch/magma/">Magma</a> is a fuzzer evaluation framework that enables accurate performance measurements by leveraging ground-truth information on bugs in real software. Magma includes a library of real targets (e.g. libpng, libtiff, openssl, etc…) with real bugs that have been re-introduced into those targets based on previous bug reports and fix commits. Magma can report whether a bug is triggered, reached, or detected.</p>
+<p>As time goes on, new bugs are discovered and need to be reintroduced into Magma. We aim to develop a few agentic workflows to automate this reintroduction. For this project, you are expected to:</p>
 <ul>
-<li>Finish collecting the Proof-of-Concepts to trigger the injected bugs</li>
-<li>Potentially automate valid input construction</li>
+<li>Develop agentic workflows to understand the root cause of existing bugs and generate PoCs to trigger these bugs.</li>
+<li>Develop agentic workflows to understand the root cause of new bugs, patch the recent targets, and generate PoCs to trigger these bugs.</li>
 </ul>
 <h5 id="legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</h5>
 <ul>
