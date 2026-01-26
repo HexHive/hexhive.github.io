@@ -44,9 +44,6 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#android-acropalypse">Android acropalypse</a></li>
-<li><a href="#arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</a></li>
-<li><a href="#seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</a></li>
 <li><a href="#agentic-magma-a-ground-truth-fuzzing-benchmark">Agentic Magma: A Ground-Truth Fuzzing Benchmark</a></li>
 <li><a href="#legacy-rebooted-a-comparative-study-of-unix-utilities-in-rust-and-c">Legacy Rebooted: A Comparative Study of Unix Utilities in Rust and C</a></li>
 <li><a href="#how-deep-is-your-love">How deep is your love?</a></li>
@@ -54,51 +51,6 @@
 <li><a href="#other-projects">Other projects</a></li>
 </ul>
 </nav>
-<h5 id="android-acropalypse">Android acropalypse</h5>
-<ul>
-<li>Point of contact: <a href="mailto:luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Suitable for: Msc Semester Project / Thesis</li>
-<li>Keywords: Reverse Engineering, Static Analysis</li>
-</ul>
-<p>You might have heard about the recent security disaster that is <a href="https://www.da.vidbuchanan.co.uk/blog/exploiting-acropalypse.html">aCropalypse</a>. Well, it turns out that the reason behind this bug is Google silently updating some <a href="https://issuetracker.google.com/issues/180526528?pli=1">Android’s API for opening files</a> which causes files not to be truncated anymore when opening them.</p>
-<p>This is pretty wild and we think that there might be many more applications of aCropalypse, not just cropped screenshots. This project is about writing tooling to automatically analyze Android apks and searching for potential alternative data leaks.</p>
-<p>A candidate should be interested in:</p>
-<ul>
-<li>Android application reverse engineering</li>
-<li>Static analysis tooling for Android apks</li>
-</ul>
-<h5 id="arm64-kernel-driver-retrowriting">ARM64 Kernel Driver Retrowriting</h5>
-<ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Keywords: Retrowrite, binary rewriting, mobile reverse engineering</li>
-</ul>
-<p>A common feature of the Android ecosystem are proprietary binary blobs. Vendors may not update these and may not compile them with the latest exploit mitigations. A particular cause of concern are kernel modules given their privileged access.</p>
-<p>Hexhive’s Retrowrite project is a state-of-the-art binary rewriting tool that can retrofit mitigations to legacy binaries without the need for source code. This currently works on ARM64 and x86-64 platforms, and x86-64 in kernel mode. The goal of this project would be to target ARM64 kernel modules, with the ability to add for example kASAN. We would aim to:</p>
-<ul>
-<li>Identify kernel modules of particular interest, including open source modules to act as ground truth.</li>
-<li>Produce a framework to evaluate the effectiveness of binary rewriting these modules by exercising their functionality, using fuzzing where appropriate.</li>
-<li>Modify Retrowrite to support ARM64 kernel modules.</li>
-<li>Evaluate the implementation against ground truth targets and against targets of interest. Evaluate the cost of instrumentation passes.</li>
-</ul>
-<p>Students should have a basic understanding of how Linux kernel modules are built and loaded, and a good grasp of Linux internals. Ambitious students may also have Android Internals knowledge and be interested in testing their work on Android hardware.</p>
-<h5 id="seccomp-implementation-for-double-fetch-protection">SECCOMP implementation for double fetch protection</h5>
-<ul>
-<li>Point of contact: <a href="luca.dibartolomeo@epfl.ch">Luca Di Bartolomeo</a></li>
-<li>Suitable for: MSc thesis</li>
-<li>Keywords: kernel security, data race protection, security policy</li>
-</ul>
-<p>System call filtering is a crucial part of protection policies ubiquitous in cloud, desktop and mobile environments (Android, Docker, etc.). The existing SECCOMP filter system is unable to inspect arguments passed by reference since the user can modify the values in memory, resulting in a TOCTTOU exploit.</p>
-<p>Midas is a novel mitigation for TOCTTOU bugs in the kernel, exploiting the user memory access API to provide double fetch protection. In this project, you will implement and evaluate SECCOMP filtering for system call arguments passed by reference, leveraging Midas to protect the kernel from the double fetch introduced in the process.</p>
-<ul>
-<li>This project requires:
-<ul>
-<li>Expert experience in C development</li>
-<li>Experience with standard C/GNU build, development and debug tools (gdb, Makefiles)</li>
-<li>Understanding of OS principles</li>
-<li>Basic experience of OS coding/course project</li>
-<li>Understanding of the x86 architecture and assembly coding/debugging</li>
-</ul></li>
-</ul>
 <h5 id="agentic-magma-a-ground-truth-fuzzing-benchmark">Agentic Magma: A Ground-Truth Fuzzing Benchmark</h5>
 <ul>
 <li>Point of contact: <a href="mailto:qiang.liu@epfl.ch">Qiang Liu</a></li>
