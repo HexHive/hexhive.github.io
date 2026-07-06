@@ -45,9 +45,38 @@ different supervisors at the same time. We will internally discuss all applicati
 
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#adding-support-for-trusty-to-tämu" id="toc-adding-support-for-trusty-to-tämu">Adding Support for Trusty to TÄMU</a></li>
+<li><a href="#improving-coverage-reliability-in-cortex-m-firmware-rehosting" id="toc-improving-coverage-reliability-in-cortex-m-firmware-rehosting">Improving Coverage Reliability in Cortex-M Firmware Rehosting</a></li>
 <li><a href="#other-projects" id="toc-other-projects">Other projects</a></li>
 </ul>
 </nav>
+<h5 id="adding-support-for-trusty-to-tämu">Adding Support for Trusty to TÄMU</h5>
+<ul>
+<li>Point of contact: <a href="mailto:philipp.mao@epfl.ch">Philipp Mao</a></li>
+<li>Suitable for: MSc semester project or Bsc thesis</li>
+<li>Keywords: systems security, TEE, vulnerability analysis</li>
+</ul>
+<p>TÄMU[1] is an emulator for Trusted Applications, the applications running in the TEE. TÄMU already has support for almost all TEEs. The goal of this project is to add support for Google’s Trusty TEE[2], used on Pixel and Unisoc devices, to TÄMU. This includes modeling the runtime the Trusty TAs require and harnessing the TAs for fuzzing.</p>
+<p>Requirements for this project are familiarity with ghidra, gdb, and python.</p>
+<p>[1] https://nebelwelt.net/files/26Oakland.pdf</p>
+<p>[2] https://source.android.com/docs/security/features/trusty?hl=de</p>
+<h5 id="improving-coverage-reliability-in-cortex-m-firmware-rehosting">Improving Coverage Reliability in Cortex-M Firmware Rehosting</h5>
+<ul>
+<li>Point of contact: <a href="mailto:qinying.wang@epfl.ch">Qinying Wang</a></li>
+<li>Suitable for: MSc thesis</li>
+<li>Keywords: firmware security, Cortex-M, rehosting, fuzzing, vulnerability analysis</li>
+</ul>
+<p>Cortex-M firmware is widely used in embedded and IoT devices, including drones, medical devices, industrial controllers, and smart-home systems. Firmware rehosting enables scalable analysis by running firmware in an emulated environment instead of on physical hardware. This makes fuzzing easier, faster, and more observable.</p>
+<p>However, rehosting systems approximate many aspects of the original execution environment, including MMIO behavior, interrupts, timers, DMA, memory layout, and initialization logic. These approximations may help firmware reach deeper code, but they may also affect the reliability of coverage-based fuzzing results.</p>
+<p>This project studies the quality of coverage reported by Cortex-M firmware rehosting systems. The goal is to understand when reported coverage corresponds to meaningful firmware exploration and when it may be affected by artifacts of the rehosted execution environment. Based on this analysis, the project will explore techniques for improving coverage-guided firmware fuzzing.</p>
+<p>For this project, the objectives are to:</p>
+<ul>
+<li>Study how rehosting approximations affect coverage-guided firmware fuzzing.</li>
+<li>Design a framework to record coverage together with relevant execution-context information.</li>
+<li>Build controlled firmware examples for analyzing coverage reliability.</li>
+<li>Develop and evaluate techniques for improving fuzzing effectiveness in rehosted Cortex-M firmware.</li>
+</ul>
+<p>Requirements for this project are familiarity with Ghidra, GDB, Python, and C. Experience with QEMU/Unicorn, or fuzzing is a plus.</p>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
