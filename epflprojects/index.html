@@ -47,6 +47,7 @@ different supervisors at the same time. We will internally discuss all applicati
 <ul>
 <li><a href="#adding-support-for-trusty-to-tämu" id="toc-adding-support-for-trusty-to-tämu">Adding Support for Trusty to TÄMU</a></li>
 <li><a href="#improving-coverage-reliability-in-cortex-m-firmware-rehosting" id="toc-improving-coverage-reliability-in-cortex-m-firmware-rehosting">Improving Coverage Reliability in Cortex-M Firmware Rehosting</a></li>
+<li><a href="#ownership-aware-bug-hunting-in-rust-crates" id="toc-ownership-aware-bug-hunting-in-rust-crates">Ownership-Aware Bug Hunting in Rust Crates</a></li>
 <li><a href="#other-projects" id="toc-other-projects">Other projects</a></li>
 </ul>
 </nav>
@@ -77,6 +78,29 @@ different supervisors at the same time. We will internally discuss all applicati
 <li>Develop and evaluate techniques for improving fuzzing effectiveness in rehosted Cortex-M firmware.</li>
 </ul>
 <p>Requirements for this project are familiarity with Ghidra, GDB, Python, and C. Experience with QEMU/Unicorn, or fuzzing is a plus.</p>
+<h5 id="ownership-aware-bug-hunting-in-rust-crates">Ownership-Aware Bug Hunting in Rust Crates</h5>
+<ul>
+<li>Point of contact: <a href="mailto:yiwen.xu@epfl.ch">Yiwen Xu</a></li>
+<li>Suitable for: MSc semester project</li>
+<li>Keywords: Rust, Program Analysis, Bug Detection</li>
+</ul>
+<p><strong>Background</strong>: Rust Ownership is its core design feature that enforces memory safety and prevents data races at compile time, without the need for garbage collection. However, to improve efficiency, expressiveness, and compatibility, Rust introduces <code>unsafe</code> blocks, which are often regarded as the Achilles’ heel of its safety guarantees. Unsafe blocks may lead to mismanagement of Rust’s ownership discipline by allowing programmers to bypass certain compile-time safety checks.</p>
+<p><strong>Description</strong>: This project aims to build an ownership-aware bug detection mechanism for Rust crates. Ideally, the mechanism should systematically model ownership transitions induced by unsafe APIs in Rust programs, including ownership acquisition, transfer, duplication, and destruction, particularly when such transitions cannot be tracked or enforced by the compiler.</p>
+<p>Ownership modeling can become more challenging in the presence of nested or recursive types. For example, an unsafe invocation of <code>std::ptr::copy_nonoverlapping&lt;T&gt;</code> performs a bitwise copy of a value of type <code>T</code>. If <code>T</code> contains nested fields, such as <code>Box</code>, <code>Vec</code>, or <code>String</code>, this operation copies only their in-memory representations rather than duplicating the heap resources they own. As a result, the original value and the copied value may both appear to own the same nested allocation. When both values are subsequently dropped, Rust may attempt to free the same resource twice, leading to a double-free bug.</p>
+<p>Requirements:</p>
+<ul>
+<li>Strong understanding of Rust and its underlying mechanisms (such as compilation passes and representations)</li>
+<li>Familiar with static or dynamic analysis tools (such as CodeQL, Semgrep, LLVM Analyzer, etc)</li>
+<li>Curiosity and self-motivation in exploring technical problems</li>
+<li>CTF experience is a plus</li>
+</ul>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://dl.acm.org/doi/10.1145/3542948">SafeDrop: Detecting Memory Deallocation Bugs of Rust Programs via Static Data-Flow Analysis</a></li>
+<li><a href="https://dl.acm.org/doi/10.1145/3477132.3483570">Rudra: Finding Memory Safety Bugs in Rust at the Ecosystem Scale</a></li>
+<li><a href="https://www.usenix.org/conference/usenixsecurity25/presentation/chen-hung-mao">TYPEPULSE: Detecting Type Confusion Bugs in Rust Programs</a></li>
+<li><a href="https://github.com/rust-lang/miri/">Miri, an Undefined Behavior detection tool for Rust</a></li>
+</ul>
 <h5 id="other-projects">Other projects</h5>
 <p>Several other projects are possible in the areas of software and system security. We are open to discussing possible projects around the development of security benchmarks, using machine learning to detect vulnerabilities, secure memory allocation, sanitizer-based coverage tracking, and others.</p>
 
